@@ -1,0 +1,85 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2005:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2030:3: remark: unrolled loop by a factor of 19 [-Rpass=loop-unroll]
+                for (int i = 4; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2057:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2086:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2085:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN2; ++i) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2114:3: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                for (int j = 1; j < LEN2; j++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2141:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2171:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2174:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2201:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2204:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2233:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:2231:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:5546:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i = i+5){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRestructuring-flt/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

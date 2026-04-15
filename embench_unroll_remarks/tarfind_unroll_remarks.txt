@@ -1,0 +1,50 @@
+embench-iot/src/tarfind/tarfind.c:76:2: remark: completely unrolled loop with 35 iterations [-Rpass=loop-unroll]
+        for (i = 0; i < files; i++){
+        ^
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 39 iterations [-Rpass=loop-unroll]
+          for(p = 0; p < flen; p++){
+          ^
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 38 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 37 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 36 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 35 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 34 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 33 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 31 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 30 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 29 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 28 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 27 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 26 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 25 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 23 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 22 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 21 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 20 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 19 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 18 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 17 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 15 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 14 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 13 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 12 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 11 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 10 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 9 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:83:4: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/tarfind/tarfind.c:97:4: remark: completely unrolled loop with 35 iterations [-Rpass=loop-unroll]
+          for (i = 0; i < files; i++){
+          ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

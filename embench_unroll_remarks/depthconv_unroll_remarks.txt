@@ -1,0 +1,16 @@
+embench-iot/src/depthconv/depthconv.c:679:5: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+    for (int i = 0;
+    ^
+embench-iot/src/depthconv/depthconv.c:156:25: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+                        for (int filter_y = 0; filter_y < filter_height; ++filter_y)
+                        ^
+embench-iot/src/depthconv/depthconv.c:148:17: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (int in_channel = 0; in_channel < input_depth; ++in_channel)
+                ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

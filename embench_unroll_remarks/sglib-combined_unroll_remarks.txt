@@ -1,0 +1,47 @@
+embench-iot/src/sglib-combined/combined.c:88:1: remark: completely unrolled loop with 19 iterations [-Rpass=loop-unroll]
+SGLIB_DEFINE_HASHED_CONTAINER_FUNCTIONS (ilist, HASH_TAB_SIZE,
+^
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+SGLIB_DEFINE_DL_LIST_FUNCTIONS (dllist, DLLIST_COMPARATOR, ptr_to_previous,
+^
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 7 iterations [-Rpass=loop-unroll]
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/sglib-combined/combined.c:88:1: remark: completely unrolled loop with 19 iterations [-Rpass=loop-unroll]
+SGLIB_DEFINE_HASHED_CONTAINER_FUNCTIONS (ilist, HASH_TAB_SIZE,
+^
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+SGLIB_DEFINE_DL_LIST_FUNCTIONS (dllist, DLLIST_COMPARATOR, ptr_to_previous,
+^
+embench-iot/src/sglib-combined/combined.c:218:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (i = 0; i < 100; ++i)
+        ^
+embench-iot/src/sglib-combined/combined.c:59:1: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+SGLIB_DEFINE_DL_LIST_FUNCTIONS (dllist, DLLIST_COMPARATOR, ptr_to_previous,
+^
+embench-iot/src/sglib-combined/combined.c:237:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (i = 0; i < 100; i++)
+        ^
+embench-iot/src/sglib-combined/combined.c:248:2: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+        for (ll = sglib_hashed_ilist_it_init (&it, htab);
+        ^
+embench-iot/src/sglib-combined/combined.c:258:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (i = 0; i < 100; i++)
+        ^
+embench-iot/src/sglib-combined/combined.c:271:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (i = 0; i < 100; i++)
+        ^
+embench-iot/src/sglib-combined/combined.c:277:2: remark: unrolled loop by a factor of 5 [-Rpass=loop-unroll]
+        while (!SGLIB_HEAP_IS_EMPTY (int, a, ai))
+        ^
+embench-iot/src/sglib-combined/combined.c:287:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (i = 0; i < 100; i++)
+        ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

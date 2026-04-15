@@ -1,0 +1,9 @@
+./PolyBenchC-4.2.1/stencils/jacobi-1d/jacobi-1d.c:32:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+  for (i = 0; i < n; i++)
+  ^
+./PolyBenchC-4.2.1/stencils/jacobi-1d/jacobi-1d.c:74:7: remark: unrolled loop by a factor of 27 [-Rpass=loop-unroll]
+      for (i = 1; i < _PB_N - 1; i++)
+      ^
+./PolyBenchC-4.2.1/stencils/jacobi-1d/jacobi-1d.c:76:7: remark: unrolled loop by a factor of 27 [-Rpass=loop-unroll]
+      for (i = 1; i < _PB_N - 1; i++)
+      ^

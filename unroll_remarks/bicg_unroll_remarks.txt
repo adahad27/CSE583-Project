@@ -1,0 +1,9 @@
+./PolyBenchC-4.2.1/linear-algebra/kernels/bicg/bicg.c:88:7: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+      for (j = 0; j < _PB_M; j++)
+      ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/bicg/bicg.c:33:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+  for (i = 0; i < m; i++)
+  ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/bicg/bicg.c:37:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < m; j++)
+    ^

@@ -1,0 +1,18 @@
+./PolyBenchC-4.2.1/stencils/fdtd-2d/fdtd-2d.c:39:5: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+    for (j = 0; j < ny; j++)
+    ^
+./PolyBenchC-4.2.1/stencils/fdtd-2d/fdtd-2d.c:104:7: remark: unrolled loop by a factor of 80 [-Rpass=loop-unroll]
+      for (j = 0; j < _PB_NY; j++)
+      ^
+./PolyBenchC-4.2.1/stencils/fdtd-2d/fdtd-2d.c:107:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (j = 0; j < _PB_NY; j++)
+        ^
+./PolyBenchC-4.2.1/stencils/fdtd-2d/fdtd-2d.c:110:2: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+        for (j = 1; j < _PB_NY; j++)
+        ^
+./PolyBenchC-4.2.1/stencils/fdtd-2d/fdtd-2d.c:109:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      for (i = 0; i < _PB_NX; i++)
+      ^
+./PolyBenchC-4.2.1/stencils/fdtd-2d/fdtd-2d.c:113:2: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+        for (j = 0; j < _PB_NY - 1; j++)
+        ^

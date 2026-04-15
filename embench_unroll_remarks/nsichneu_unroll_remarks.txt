@@ -1,0 +1,13 @@
+embench-iot/src/nsichneu/libnsichneu.c:4561:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < 3; i++)
+  ^
+embench-iot/src/nsichneu/libnsichneu.c:4570:3: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  for (i = 3; i < 5; i++)
+  ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

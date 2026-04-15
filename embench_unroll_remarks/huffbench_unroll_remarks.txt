@@ -1,0 +1,25 @@
+embench-iot/src/huffbench/libhuffbench.c:195:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+  for (i = 0; i < 256; ++i)
+  ^
+embench-iot/src/huffbench/libhuffbench.c:253:4: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+          while (l)             // while not at end of trie
+          ^
+embench-iot/src/huffbench/libhuffbench.c:374:4: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+          for (i = 0; i < clen[j]; ++i)
+          ^
+embench-iot/src/huffbench/libhuffbench.c:389:3: remark: unrolled loop by a factor of 5 [-Rpass=loop-unroll]
+  for (i = 1; i < 256; ++i)
+  ^
+embench-iot/src/huffbench/libhuffbench.c:425:7: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+      while (heap2[i] < k)
+      ^
+embench-iot/src/huffbench/libhuffbench.c:488:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (unsigned int gsf_cnt = 0; gsf_cnt < gsf; gsf_cnt++)
+    ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

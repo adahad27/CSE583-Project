@@ -1,0 +1,21 @@
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:34:7: remark: unrolled loop by a factor of 24 [-Rpass=loop-unroll]
+      for (k = 0; k < n; k++)
+      ^
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:75:17: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (k = 1; k < _PB_N-1; k++) {
+                ^
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:74:13: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+            for (j = 1; j < _PB_N-1; j++) {
+            ^
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:73:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+        for (i = 1; i < _PB_N-1; i++) {
+        ^
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:85:16: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+               for (k = 1; k < _PB_N-1; k++) {
+               ^
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:84:12: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+           for (j = 1; j < _PB_N-1; j++) {
+           ^
+./PolyBenchC-4.2.1/stencils/heat-3d/heat-3d.c:83:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+        for (i = 1; i < _PB_N-1; i++) {
+        ^

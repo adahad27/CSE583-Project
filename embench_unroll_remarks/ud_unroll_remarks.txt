@@ -1,0 +1,97 @@
+embench-iot/src/ud/libud.c:166:6: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+            for(j = 0; j <= n; j++)
+            ^
+embench-iot/src/ud/libud.c:163:2: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+        for(i = 0; i <= n; i++)
+        ^
+embench-iot/src/ud/libud.c:189:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+  for(i = 0; i < n; i++)
+  ^
+embench-iot/src/ud/libud.c:205:11: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+          for(k = 0; k <= i; k++) /* triangular loop vs. i */
+          ^
+embench-iot/src/ud/libud.c:198:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+            for(k = 0; k < i; k++)
+            ^
+embench-iot/src/ud/libud.c:205:11: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+          for(k = 0; k <= i; k++) /* triangular loop vs. i */
+          ^
+embench-iot/src/ud/libud.c:202:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:198:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+            for(k = 0; k < i; k++)
+            ^
+embench-iot/src/ud/libud.c:192:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:205:11: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+          for(k = 0; k <= i; k++) /* triangular loop vs. i */
+          ^
+embench-iot/src/ud/libud.c:202:7: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:198:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+            for(k = 0; k < i; k++)
+            ^
+embench-iot/src/ud/libud.c:192:7: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:205:11: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+          for(k = 0; k <= i; k++) /* triangular loop vs. i */
+          ^
+embench-iot/src/ud/libud.c:202:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:192:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:202:7: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:192:7: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:211:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+  for(i = 1; i <= n; i++)       /* iterates n times */
+  ^
+embench-iot/src/ud/libud.c:214:7: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+      for(j = 0; j < i; j++)    /* triangular sub loop */
+      ^
+embench-iot/src/ud/libud.c:214:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+embench-iot/src/ud/libud.c:214:7: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+embench-iot/src/ud/libud.c:214:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/ud/libud.c:219:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+  for(i = n-1; i >= 0; i--)     /* iterates n times */
+  ^
+embench-iot/src/ud/libud.c:222:7: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular sub loop */
+      ^
+embench-iot/src/ud/libud.c:222:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+embench-iot/src/ud/libud.c:222:7: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+embench-iot/src/ud/libud.c:222:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/ud/libud.c:155:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (unsigned int gsf_cnt = 0; gsf_cnt < gsf; gsf_cnt++)
+    ^
+embench-iot/src/ud/libud.c:198:13: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+            for(k = 0; k < i; k++)
+            ^
+embench-iot/src/ud/libud.c:192:7: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular loop vs. i */
+      ^
+embench-iot/src/ud/libud.c:205:11: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+          for(k = 0; k <= i; k++) /* triangular loop vs. i */
+          ^
+embench-iot/src/ud/libud.c:214:7: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+      for(j = 0; j < i; j++)    /* triangular sub loop */
+      ^
+embench-iot/src/ud/libud.c:222:7: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+      for(j = i+1; j <= n; j++) /* triangular sub loop */
+      ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

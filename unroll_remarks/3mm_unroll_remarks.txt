@@ -1,0 +1,9 @@
+./PolyBenchC-4.2.1/linear-algebra/kernels/3mm/3mm.c:89:2: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+        for (k = 0; k < _PB_NK; ++k)
+        ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/3mm/3mm.c:97:2: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+        for (k = 0; k < _PB_NM; ++k)
+        ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/3mm/3mm.c:105:2: remark: unrolled loop by a factor of 36 [-Rpass=loop-unroll]
+        for (k = 0; k < _PB_NJ; ++k)
+        ^

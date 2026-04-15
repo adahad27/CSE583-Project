@@ -1,0 +1,23 @@
+embench-iot/src/nettle-aes/nettle-aes.c:896:2: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+        for (k = 0; k < 4; k++)
+        ^
+embench-iot/src/nettle-aes/nettle-aes.c:888:2: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+        for (k = 0; k < 4; k++)
+        ^
+embench-iot/src/nettle-aes/nettle-aes.c:736:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (i = 0, rp = rcon; i < nk; i++)
+  ^
+embench-iot/src/nettle-aes/nettle-aes.c:736:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+embench-iot/src/nettle-aes/nettle-aes.c:1123:3: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+  for (unsigned int i = 0; i < LEN; i++)
+  ^
+embench-iot/src/nettle-aes/nettle-aes.c:1164:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (unsigned int gsf_cnt = 0; gsf_cnt < gsf; gsf_cnt++)
+    ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

@@ -1,0 +1,157 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:149:3: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i += stride) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:149:3: remark: unrolled loop by a factor of 64 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:1681:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN-1; ++i) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:1716:4: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                        for (int i = 0; i < LEN-1; i++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2796:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2825:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2855:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2885:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2919:5: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                                for (int j = 1; j < LEN2; j++) {
+                                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2917:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2946:4: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:2976:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:3043:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:3078:3: remark: unrolled loop by a factor of 5 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:3115:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:3146:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:3186:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:3215:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:4617:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:4650:3: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:4695:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:4869:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:5546:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i = i+5){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/ControlFlow-dbl/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

@@ -1,0 +1,13 @@
+embench-iot/src/statemate/libstatemate.c:1483:3: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < 64; i++)
+  ^
+embench-iot/src/statemate/libstatemate.c:1455:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (unsigned int gsf_cnt = 0; gsf_cnt < gsf; gsf_cnt++)
+    ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

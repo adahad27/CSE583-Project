@@ -1,0 +1,41 @@
+embench-iot/src/edn/libedn.c:99:7: remark: completely unrolled loop with 50 iterations [-Rpass=loop-unroll]
+      for (j = 0; j < ORDER; j++)
+      ^
+embench-iot/src/edn/libedn.c:125:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+      for (i = 0; i < 32; i += 2)
+      ^
+embench-iot/src/edn/libedn.c:170:3: remark: completely unrolled loop with 50 iterations [-Rpass=loop-unroll]
+  for (n = 0; n < 50; n++)
+  ^
+embench-iot/src/edn/libedn.c:238:4: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+          for (j = 0; j < 4; j++)
+          ^
+embench-iot/src/edn/libedn.c:233:3: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  for (k = 1, m = 0, n = 13, p = 8; k <= 8;
+  ^
+embench-iot/src/edn/libedn.c:63:3: remark: unrolled loop by a factor of 15 [-Rpass=loop-unroll]
+  for (i = 0; i < 150; i++)
+  ^
+embench-iot/src/edn/libedn.c:77:3: remark: unrolled loop by a factor of 15 [-Rpass=loop-unroll]
+  for (i = 0; i < 150; i++)
+  ^
+embench-iot/src/edn/libedn.c:236:7: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+      for (i = 0; i < 8; i++, d += p)
+      ^
+embench-iot/src/edn/libedn.c:236:7: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+embench-iot/src/edn/libedn.c:63:3: remark: unrolled loop by a factor of 30 [-Rpass=loop-unroll]
+  for (i = 0; i < 150; i++)
+  ^
+embench-iot/src/edn/libedn.c:77:3: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+  for (i = 0; i < 150; i++)
+  ^
+embench-iot/src/edn/libedn.c:150:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+  for (i = n - 2; i >= 0; i--)
+  ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

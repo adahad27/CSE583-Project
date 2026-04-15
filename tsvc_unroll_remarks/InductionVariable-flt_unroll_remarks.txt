@@ -1,0 +1,76 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:141:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:141:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1228:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN-1; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1291:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < (LEN/2); i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1325:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1360:4: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1391:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1423:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN/2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:1456:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN/2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:4800:3: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/InductionVariable-flt/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

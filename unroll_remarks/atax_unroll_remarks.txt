@@ -1,0 +1,12 @@
+./PolyBenchC-4.2.1/linear-algebra/kernels/atax/atax.c:34:3: remark: unrolled loop by a factor of 15 [-Rpass=loop-unroll]
+  for (i = 0; i < n; i++)
+  ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/atax/atax.c:37:5: remark: unrolled loop by a factor of 21 [-Rpass=loop-unroll]
+    for (j = 0; j < n; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/atax/atax.c:79:7: remark: unrolled loop by a factor of 42 [-Rpass=loop-unroll]
+      for (j = 0; j < _PB_N; j++)
+      ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/atax/atax.c:81:7: remark: unrolled loop by a factor of 42 [-Rpass=loop-unroll]
+      for (j = 0; j < _PB_N; j++)
+      ^

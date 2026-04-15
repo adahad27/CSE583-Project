@@ -1,0 +1,80 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:264:4: remark: unrolled loop by a factor of 5 [-Rpass=loop-unroll]
+          for (int i = 0; i < lll; i++) {
+          ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:830:3: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+                for (int i = 0; i < lll; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:859:3: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN; i += 2) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:882:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN/2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:911:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = LEN - 2; i >= 0; i--) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:937:3: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+                for (int i = LEN - 1; i >= 0; i--) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:965:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:990:3: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1018:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1048:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1076:4: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1103:3: remark: unrolled loop by a factor of 9 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN - 5; i += 5) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1134:3: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1164:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1163:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:1193:4: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:5546:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i = i+5){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LinearDependence-dbl/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

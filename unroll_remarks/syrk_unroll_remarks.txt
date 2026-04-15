@@ -1,0 +1,9 @@
+./PolyBenchC-4.2.1/linear-algebra/blas/syrk/syrk.c:37:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < m; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/syrk/syrk.c:40:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < n; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/syrk/syrk.c:86:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (k = 0; k < _PB_M; k++) {
+    ^

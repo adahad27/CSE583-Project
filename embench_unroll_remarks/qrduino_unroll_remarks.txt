@@ -1,0 +1,108 @@
+embench-iot/src/qrduino/qrtest.c:58:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (unsigned int gsf_cnt = 0; gsf_cnt < gsf; gsf_cnt++)
+    ^
+embench-iot/src/qrduino/qrencode.c:43:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  while (x >= 255)
+  ^
+embench-iot/src/qrduino/qrencode.c:43:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:43:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:43:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:43:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:322:7: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+      for (j = 0; j < 8; j++, d <<= 1)
+      ^
+embench-iot/src/qrduino/qrencode.c:582:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < 8; i++, fmtbits >>= 1)
+  ^
+embench-iot/src/qrduino/qrencode.c:592:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < 7; i++, fmtbits >>= 1)
+  ^
+embench-iot/src/qrduino/qrencode.c:235:3: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+  while (i < max)
+  ^
+embench-iot/src/qrduino/qrencode.c:163:7: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+      for (j = i; j > 0; j--)
+      ^
+embench-iot/src/qrduino/qrencode.c:247:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < neccblk1; i++)
+  ^
+embench-iot/src/qrduino/qrencode.c:253:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < neccblk2; i++)
+  ^
+embench-iot/src/qrduino/qrencode.c:263:7: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+      for (j = 0; j < neccblk1; j++)
+      ^
+embench-iot/src/qrduino/qrencode.c:265:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+      for (j = 0; j < neccblk2; j++)
+      ^
+embench-iot/src/qrduino/qrencode.c:268:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  for (j = 0; j < neccblk2; j++)
+  ^
+embench-iot/src/qrduino/qrencode.c:271:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (j = 0; j < neccblk1 + neccblk2; j++)
+    ^
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+          do
+          ^
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:326:4: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+embench-iot/src/qrduino/qrencode.c:493:3: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+  for (i = 3; i < length - 1; i += 2)
+  ^
+embench-iot/src/qrduino/qrencode.c:544:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  while (big > WD * WD)
+  ^
+embench-iot/src/qrduino/qrencode.c:493:3: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+  for (i = 3; i < length - 1; i += 2)
+  ^
+embench-iot/src/qrduino/qrframe.c:73:7: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+      for (j = 0; j < 6; j++)
+      ^
+embench-iot/src/qrduino/qrframe.c:80:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for (j = 1; j < 5; j++)
+      ^
+embench-iot/src/qrduino/qrframe.c:87:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+      for (j = 2; j < 4; j++)
+      ^
+embench-iot/src/qrduino/qrframe.c:103:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  for (j = -2; j < 2; j++)
+  ^
+embench-iot/src/qrduino/qrframe.c:110:3: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  for (j = 0; j < 2; j++)
+  ^
+embench-iot/src/qrduino/qrframe.c:171:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+    for (y = 0; y < 3; y++, bc--)
+    ^
+embench-iot/src/qrduino/qrframe.c:199:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  for (y = 0; y < 7; y++)
+  ^
+embench-iot/src/qrduino/qrframe.c:205:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (x = 0; x < 8; x++)
+  ^
+embench-iot/src/qrduino/qrframe.c:212:3: remark: completely unrolled loop with 9 iterations [-Rpass=loop-unroll]
+  for (x = 0; x < 9; x++)
+  ^
+embench-iot/src/qrduino/qrframe.c:214:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (x = 0; x < 8; x++)
+  ^
+embench-iot/src/qrduino/qrframe.c:219:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  for (y = 0; y < 7; y++)
+  ^
+embench-iot/src/qrduino/qrframe.c:300:3: remark: completely unrolled loop with 39 iterations [-Rpass=loop-unroll]
+  for (vers = 1; vers < 40; vers++)
+  ^
+embench-iot/src/qrduino/qrframe.c:136:7: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+      while (x > delta - 3U)
+      ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

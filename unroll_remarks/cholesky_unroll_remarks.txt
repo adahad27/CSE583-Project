@@ -1,0 +1,6 @@
+./PolyBenchC-4.2.1/linear-algebra/solvers/cholesky/cholesky.c:49:7: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+      for (s = 0; s < n; ++s)
+      ^
+./PolyBenchC-4.2.1/linear-algebra/solvers/cholesky/cholesky.c:52:7: remark: unrolled loop by a factor of 50 [-Rpass=loop-unroll]
+      for (s = 0; s < n; ++s)
+      ^

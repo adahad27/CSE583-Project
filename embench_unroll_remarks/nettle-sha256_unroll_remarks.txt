@@ -1,0 +1,25 @@
+embench-iot/src/nettle-sha256/nettle-sha256.c:218:3: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < SHA256_DATA_LENGTH; i++, input += 4)
+  ^
+embench-iot/src/nettle-sha256/nettle-sha256.c:237:3: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  for (i = 0, d = data; i < 16; i += 8, k += 8, d += 8)
+  ^
+embench-iot/src/nettle-sha256/nettle-sha256.c:434:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (size_t i = 0; i < _SHA256_DIGEST_LENGTH; i++)
+  ^
+embench-iot/src/nettle-sha256/nettle-sha256.c:140:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < words; i++, dst += 4)
+  ^
+embench-iot/src/nettle-sha256/nettle-sha256.c:348:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  MD_UPDATE (ctx, length, data, COMPRESS, ctx->count++);
+  ^
+embench-iot/src/nettle-sha256/nettle-sha256.c:473:5: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+    for (unsigned int gsf_cnt = 0; gsf_cnt < gsf; gsf_cnt++)
+    ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

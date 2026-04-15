@@ -1,0 +1,65 @@
+embench-iot/src/picojpeg/libpicojpeg.c:1445:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < 8; i++)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:1870:3: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  for (i = 64; i > 0; i--)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:1722:7: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+      for (x = 0; x < 8; x++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1837:7: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+      for (x = 0; x < 8; x++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1689:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for (x = 0; x < 4; x++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1804:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for (x = 0; x < 4; x++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1650:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for (x = 0; x < 4; x++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1765:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+      for (x = 0; x < 4; x++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:2423:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+                      for (r = 16; r > 0; r--)
+                      ^
+embench-iot/src/picojpeg/libpicojpeg.c:536:3: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  for (;;)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:646:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+      for (i = 0; i <= 15; i++)
+      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1368:3: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  for (i = 0; i < 64; i++)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:509:11: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      if (i == 16)
+          ^
+embench-iot/src/picojpeg/libpicojpeg.c:509:11: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+embench-iot/src/picojpeg/libpicojpeg.c:2405:9: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+                      while (r)
+                      ^
+embench-iot/src/picojpeg/libpicojpeg.c:1915:3: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+  for (i = 64; i > 0; i--)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:1890:3: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+  for (i = 64; i > 0; i--)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:992:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  for (;;)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:854:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  while (left)
+  ^
+embench-iot/src/picojpeg/libpicojpeg.c:700:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      for (i = 0; i < 64; i++)
+      ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

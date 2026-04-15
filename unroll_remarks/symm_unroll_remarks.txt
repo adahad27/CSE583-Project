@@ -1,0 +1,7 @@
+./PolyBenchC-4.2.1/linear-algebra/blas/symm/symm.c:38:5: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+    for (j = 0; j < n; j++) {
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/symm/symm.c:94:7: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+      for (j = 0; j < _PB_N; j++ )
+      ^
+./PolyBenchC-4.2.1/linear-algebra/blas/symm/symm.c:94:7: remark: unrolled loop by a factor of 30 [-Rpass=loop-unroll]

@@ -1,0 +1,34 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:4285:3: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i += 5) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:4316:3: remark: unrolled loop by a factor of 50 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:4348:3: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i += 5) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:4379:3: remark: unrolled loop by a factor of 5 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i += 5) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/LoopRerolling-dbl/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

@@ -1,0 +1,15 @@
+./PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c:38:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < nj; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c:41:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < nk; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c:44:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < nj; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c:90:5: remark: unrolled loop by a factor of 55 [-Rpass=loop-unroll]
+    for (j = 0; j < _PB_NJ; j++)
+    ^
+./PolyBenchC-4.2.1/linear-algebra/blas/gemm/gemm.c:93:8: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+       for (j = 0; j < _PB_NJ; j++)
+       ^

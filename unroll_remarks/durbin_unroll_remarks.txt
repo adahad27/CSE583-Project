@@ -1,0 +1,6 @@
+./PolyBenchC-4.2.1/linear-algebra/solvers/durbin/durbin.c:31:3: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+  for (i = 0; i < n; i++)
+  ^
+./PolyBenchC-4.2.1/linear-algebra/solvers/durbin/durbin.c:77:2: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+ for (k = 1; k < _PB_N; k++) {
+ ^

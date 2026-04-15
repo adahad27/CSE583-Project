@@ -1,0 +1,6 @@
+./PolyBenchC-4.2.1/linear-algebra/solvers/gramschmidt/gramschmidt.c:100:4: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+          for (i = 0; i < _PB_M; i++)
+          ^
+./PolyBenchC-4.2.1/linear-algebra/solvers/gramschmidt/gramschmidt.c:102:4: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+          for (i = 0; i < _PB_M; i++)
+          ^

@@ -1,0 +1,130 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:127:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2436:3: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2463:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2491:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2517:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN-1; i++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2548:3: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2579:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2612:3: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2643:3: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2673:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int j = 1; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2703:4: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2732:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; ++i) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:2764:3: remark: unrolled loop by a factor of 11 [-Rpass=loop-unroll]
+                for (int i = 1; i < LEN; ++i) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:5546:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i = i+5){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/Expansion-dbl/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

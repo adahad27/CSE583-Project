@@ -1,0 +1,17 @@
+./PolyBenchC-4.2.1/stencils/adi/adi.c:32:5: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+    for (j = 0; j < n; j++)
+    ^
+./PolyBenchC-4.2.1/stencils/adi/adi.c:102:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      for (j=1; j<_PB_N-1; j++) {
+      ^
+./PolyBenchC-4.2.1/stencils/adi/adi.c:102:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+./PolyBenchC-4.2.1/stencils/adi/adi.c:108:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      for (j=_PB_N-2; j>=1; j--) {
+      ^
+./PolyBenchC-4.2.1/stencils/adi/adi.c:117:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      for (j=1; j<_PB_N-1; j++) {
+      ^
+./PolyBenchC-4.2.1/stencils/adi/adi.c:117:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+./PolyBenchC-4.2.1/stencils/adi/adi.c:122:7: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+      for (j=_PB_N-2; j>=1; j--) {
+      ^

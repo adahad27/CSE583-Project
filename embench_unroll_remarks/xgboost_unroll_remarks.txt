@@ -1,0 +1,55 @@
+embench-iot/src/xgboost/xgboost.c:30:9: remark: completely unrolled loop with 40 iterations [-Rpass=loop-unroll]
+        for (size_t j = 0; j < NUM_TREES; j++) {
+        ^
+embench-iot/src/xgboost/xgboost.c:62:5: remark: completely unrolled loop with 9 iterations [-Rpass=loop-unroll]
+    for (uint8_t i = 1; i < 10; i++) {
+    ^
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+            while(!(node_id & 0x80)) { // Leaf nodes have ID >= 128
+            ^
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/src/xgboost/xgboost.c:40:13: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

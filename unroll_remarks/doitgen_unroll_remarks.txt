@@ -1,0 +1,9 @@
+./PolyBenchC-4.2.1/linear-algebra/kernels/doitgen/doitgen.c:80:7: remark: completely unrolled loop with 160 iterations [-Rpass=loop-unroll]
+      for (p = 0; p < _PB_NP; p++)
+      ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/doitgen/doitgen.c:77:2: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+        for (s = 0; s < _PB_NP; s++)
+        ^
+./PolyBenchC-4.2.1/linear-algebra/kernels/doitgen/doitgen.c:34:7: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+      for (k = 0; k < np; k++)
+      ^

@@ -1,0 +1,13 @@
+embench-iot/src/wikisort/libwikisort.c:1095:6: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+            for (index = 0; index < total; index++)
+            ^
+embench-iot/src/wikisort/libwikisort.c:171:3: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  for (i = range.start + 1; i < range.end; i++)
+  ^
+embench-iot/examples/mac/speed-M1/boardsupport.c:25:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+embench-iot/examples/mac/speed-M1/boardsupport.c:32:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+                                                ^~~~~~~~~~~~~~~~~~
+2 warnings generated.

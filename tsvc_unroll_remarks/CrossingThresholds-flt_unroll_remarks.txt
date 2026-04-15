@@ -1,0 +1,64 @@
+In file included from llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/tsc.c:5:
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:169:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:163:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3426:4: remark: completely unrolled loop with 256 iterations [-Rpass=loop-unroll]
+                        for (int j = 0; j < LEN2; j++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:207:2: remark: unrolled loop by a factor of 8 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:218:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++){
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:226:2: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN2*LEN2; i++){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:123:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3250:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3279:3: remark: unrolled loop by a factor of 16 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3310:3: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3342:3: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3370:3: remark: unrolled loop by a factor of 64 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3398:3: remark: unrolled loop by a factor of 32 [-Rpass=loop-unroll]
+                for (int i = 0; i < LEN2; i++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3454:4: remark: unrolled loop by a factor of 17 [-Rpass=loop-unroll]
+                        for (int i = 1; i < LEN2; i++) {
+                        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3453:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+                for (int j = 1; j < LEN2; j++) {
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:3465:3: remark: unrolled loop by a factor of 64 [-Rpass=loop-unroll]
+                for (int j = 0; j < LEN2; j++)
+                ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:5546:2: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i = i+5){
+        ^
+llvm-test-suite/MultiSource/Benchmarks/TSVC/CrossingThresholds-flt/../tsc.inc:5564:2: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+        for (int i = 0; i < LEN; i++){
+        ^

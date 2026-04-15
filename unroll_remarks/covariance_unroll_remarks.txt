@@ -1,0 +1,12 @@
+./PolyBenchC-4.2.1/datamining/covariance/covariance.c:35:5: remark: unrolled loop by a factor of 30 [-Rpass=loop-unroll]
+    for (j = 0; j < M; j++)
+    ^
+./PolyBenchC-4.2.1/datamining/covariance/covariance.c:76:7: remark: unrolled loop by a factor of 56 [-Rpass=loop-unroll]
+      for (i = 0; i < _PB_N; i++)
+      ^
+./PolyBenchC-4.2.1/datamining/covariance/covariance.c:82:5: remark: unrolled loop by a factor of 48 [-Rpass=loop-unroll]
+    for (j = 0; j < _PB_M; j++)
+    ^
+./PolyBenchC-4.2.1/datamining/covariance/covariance.c:89:9: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+        for (k = 0; k < _PB_N; k++)
+        ^

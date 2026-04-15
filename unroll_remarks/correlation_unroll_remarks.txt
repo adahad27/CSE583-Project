@@ -1,0 +1,15 @@
+./PolyBenchC-4.2.1/datamining/correlation/correlation.c:36:5: remark: unrolled loop by a factor of 25 [-Rpass=loop-unroll]
+    for (j = 0; j < M; j++)
+    ^
+./PolyBenchC-4.2.1/datamining/correlation/correlation.c:82:7: remark: unrolled loop by a factor of 56 [-Rpass=loop-unroll]
+      for (i = 0; i < _PB_N; i++)
+      ^
+./PolyBenchC-4.2.1/datamining/correlation/correlation.c:91:7: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+      for (i = 0; i < _PB_N; i++)
+      ^
+./PolyBenchC-4.2.1/datamining/correlation/correlation.c:103:5: remark: unrolled loop by a factor of 20 [-Rpass=loop-unroll]
+    for (j = 0; j < _PB_M; j++)
+    ^
+./PolyBenchC-4.2.1/datamining/correlation/correlation.c:116:11: remark: unrolled loop by a factor of 40 [-Rpass=loop-unroll]
+          for (k = 0; k < _PB_N; k++)
+          ^

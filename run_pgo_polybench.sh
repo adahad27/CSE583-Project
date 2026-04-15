@@ -7,7 +7,7 @@ LLVM_PROFDATA="xcrun llvm-profdata"
 POLYBENCH_ROOT="./PolyBenchC-4.2.1"
 UTILITIES="$POLYBENCH_ROOT/utilities"
 RESULTS_DIR="./pgo_results"
-REMARKS_DIR="./unroll_remarks"
+REMARKS_DIR="./polybench_unroll_remarks"
 
 rm -rf $RESULTS_DIR
 rm -rf $REMARKS_DIR

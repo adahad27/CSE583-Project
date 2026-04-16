@@ -19,4 +19,10 @@ if [ ! -d "llvm-test-suite" ]; then
     git clone --depth 1 https://github.com/llvm/llvm-test-suite.git
 fi
 
+# NPB 3.0 OMP C (if missing)
+if [ ! -d "NPB3.0-omp-C" ]; then
+    echo "Cloning NPB3.0-omp-C..."
+    git clone https://github.com/benchmark-subsetting/NPB3.0-omp-C.git
+fi
+
 

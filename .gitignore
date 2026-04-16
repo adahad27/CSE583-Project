@@ -26,7 +26,7 @@
 /PolyBenchC-4.2.1/
 /embench-iot/
 /llvm-test-suite/
-/embench-iot/
+/NPB3.0-omp-C/
 
 # Common build artifacts to ignore (backup safety)
 *.o

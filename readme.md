@@ -1,1 +1,1 @@
-Make sure to run setup.sh before you do anything 
+Make sure to run setup.sh before you do anything so you can download the required repos

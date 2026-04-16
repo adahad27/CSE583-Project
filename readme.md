@@ -1,0 +1,1 @@
+Make sure to run setup.sh before you do anything 

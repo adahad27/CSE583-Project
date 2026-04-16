@@ -19,12 +19,14 @@
 
 # Whitelist essential project documentation and configuration
 !context.md
+!readme.md
 !.gitignore
 
 # Explicitly ignore benchmark repositories (they will be caught by /* anyway)
 /PolyBenchC-4.2.1/
 /embench-iot/
 /llvm-test-suite/
+/embench-iot/
 
 # Common build artifacts to ignore (backup safety)
 *.o

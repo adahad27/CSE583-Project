@@ -1,37 +1,37 @@
 .vscode/
 
-# Ignore everything by default
-/*
+# # Ignore everything by default
+# /*
 
-# Allow directories to be scanned for contents
-!*/
+# # Allow directories to be scanned for contents
+# !*/
 
-# Whitelist PGO results directories
-!*pgo_results/
-!*pgo_results/**
+# # Whitelist PGO results directories
+# !*pgo_results/
+# !*pgo_results/**
 
-# Whitelist unroll remarks directories
-!*unroll_remarks/
-!*unroll_remarks/**
+# # Whitelist unroll remarks directories
+# !*unroll_remarks/
+# !*unroll_remarks/**
 
-# Whitelist individual bash scripts
-!*.sh
+# # Whitelist individual bash scripts
+# !*.sh
 
-# Whitelist essential project documentation and configuration
-!context.md
-!readme.md
-!.gitignore
+# # Whitelist essential project documentation and configuration
+# !context.md
+# !readme.md
+# !.gitignore
 
-# Explicitly ignore benchmark repositories (they will be caught by /* anyway)
-/PolyBenchC-4.2.1/
-/embench-iot/
-/llvm-test-suite/
-/NPB3.0-omp-C/
+# # Explicitly ignore benchmark repositories (they will be caught by /* anyway)
+# /PolyBenchC-4.2.1/
+# /embench-iot/
+# /llvm-test-suite/
+# /NPB3.0-omp-C/
 
-# Common build artifacts to ignore (backup safety)
-*.o
-*.a
-*.so
-*.dylib
-*.exe
-.DS_Store
+# # Common build artifacts to ignore (backup safety)
+# *.o
+# *.a
+# *.so
+# *.dylib
+# *.exe
+# .DS_Store

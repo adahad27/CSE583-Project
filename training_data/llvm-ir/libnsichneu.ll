@@ -1,5 +1,5 @@
-; ModuleID = '../src/nsichneu/libnsichneu.c'
-source_filename = "../src/nsichneu/libnsichneu.c"
+; ModuleID = '../../src/nsichneu/libnsichneu.c'
+source_filename = "../../src/nsichneu/libnsichneu.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-i128:128-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -10,6822 +10,9213 @@ target triple = "x86_64-unknown-linux-gnu"
 @P2_marking_member_0 = dso_local global [5 x i64] zeroinitializer, align 16
 @P3_marking_member_0 = dso_local global [6 x i64] zeroinitializer, align 16
 
-; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(none) uwtable
-define dso_local void @initialise_benchmark() local_unnamed_addr #0 {
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @initialise_benchmark() #0 {
   ret void
 }
 
-; Function Attrs: nofree norecurse nounwind uwtable
-define dso_local void @warm_caches(i32 noundef %0) local_unnamed_addr #1 {
-  tail call fastcc void @benchmark_body(i32 noundef 1, i32 noundef %0)
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @warm_caches(i32 noundef %0) #0 {
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 %0, ptr %2, align 4
+  %4 = load i32, ptr %2, align 4
+  %5 = call i32 @benchmark_body(i32 noundef 1, i32 noundef %4)
+  store i32 %5, ptr %3, align 4
   ret void
 }
 
-; Function Attrs: nofree noinline norecurse nounwind memory(readwrite, argmem: none) uwtable
-define internal fastcc void @benchmark_body(i32 noundef range(i32 1, 1233) %0, i32 noundef %1) unnamed_addr #2 {
-  %3 = icmp eq i32 %1, 0
-  br i1 %3, label %4471, label %4
-
-4:                                                ; preds = %2, %4468
-  %5 = phi i32 [ %4469, %4468 ], [ 0, %2 ]
-  br label %6
-
-6:                                                ; preds = %4, %4465
-  %7 = phi i32 [ 0, %4 ], [ %4466, %4465 ]
-  store volatile i32 3, ptr @P1_is_marked, align 4, !tbaa !5
-  store volatile i32 5, ptr @P2_is_marked, align 4, !tbaa !5
-  store volatile i32 0, ptr @P3_is_marked, align 4, !tbaa !5
-  %8 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %9 = icmp sgt i32 %8, 2
-  br i1 %9, label %10, label %38
-
-10:                                               ; preds = %6
-  %11 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %12 = icmp slt i32 %11, 4
-  br i1 %12, label %13, label %38
-
-13:                                               ; preds = %10
-  %14 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %15 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %16 = icmp eq i64 %14, %15
-  br i1 %16, label %17, label %38
-
-17:                                               ; preds = %13
-  %18 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %19 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %20 = icmp slt i64 %18, %19
-  br i1 %20, label %21, label %38
-
-21:                                               ; preds = %17
-  %22 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %23 = add nsw i32 %22, -3
-  store volatile i32 %23, ptr @P1_is_marked, align 4, !tbaa !5
-  %24 = sub nsw i64 %18, %19
-  %25 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %26 = sext i32 %25 to i64
-  %27 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %26
-  store volatile i64 %18, ptr %27, align 8, !tbaa !9
-  %28 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %29 = add nsw i32 %28, 1
-  %30 = sext i32 %29 to i64
-  %31 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %30
-  store volatile i64 %19, ptr %31, align 8, !tbaa !9
-  %32 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %33 = add nsw i32 %32, 2
-  %34 = sext i32 %33 to i64
-  %35 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %34
-  store volatile i64 %24, ptr %35, align 8, !tbaa !9
-  %36 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %37 = add nsw i32 %36, 3
-  store volatile i32 %37, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %38
-
-38:                                               ; preds = %21, %17, %13, %10, %6
-  %39 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %40 = icmp sgt i32 %39, 2
-  br i1 %40, label %41, label %69
-
-41:                                               ; preds = %38
-  %42 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %43 = icmp slt i32 %42, 4
-  br i1 %43, label %44, label %69
-
-44:                                               ; preds = %41
-  %45 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %46 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %47 = icmp eq i64 %45, %46
-  br i1 %47, label %48, label %69
-
-48:                                               ; preds = %44
-  %49 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %50 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %51 = icmp slt i64 %49, %50
-  br i1 %51, label %52, label %69
-
-52:                                               ; preds = %48
-  %53 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %54 = add nsw i32 %53, -3
-  store volatile i32 %54, ptr @P1_is_marked, align 4, !tbaa !5
-  %55 = sub nsw i64 %49, %50
-  %56 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %57 = sext i32 %56 to i64
-  %58 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %57
-  store volatile i64 %49, ptr %58, align 8, !tbaa !9
-  %59 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %60 = add nsw i32 %59, 1
-  %61 = sext i32 %60 to i64
-  %62 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %61
-  store volatile i64 %50, ptr %62, align 8, !tbaa !9
-  %63 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %64 = add nsw i32 %63, 2
-  %65 = sext i32 %64 to i64
-  %66 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %65
-  store volatile i64 %55, ptr %66, align 8, !tbaa !9
-  %67 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %68 = add nsw i32 %67, 3
-  store volatile i32 %68, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %69
-
-69:                                               ; preds = %52, %48, %44, %41, %38
-  %70 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %71 = icmp sgt i32 %70, 2
-  br i1 %71, label %72, label %100
-
-72:                                               ; preds = %69
-  %73 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %74 = icmp slt i32 %73, 4
-  br i1 %74, label %75, label %100
-
-75:                                               ; preds = %72
-  %76 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %77 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %78 = icmp eq i64 %76, %77
-  br i1 %78, label %79, label %100
-
-79:                                               ; preds = %75
-  %80 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %81 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %82 = icmp slt i64 %80, %81
-  br i1 %82, label %83, label %100
-
-83:                                               ; preds = %79
-  %84 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %85 = add nsw i32 %84, -3
-  store volatile i32 %85, ptr @P1_is_marked, align 4, !tbaa !5
-  %86 = sub nsw i64 %80, %81
-  %87 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %88 = sext i32 %87 to i64
-  %89 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %88
-  store volatile i64 %80, ptr %89, align 8, !tbaa !9
-  %90 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %91 = add nsw i32 %90, 1
-  %92 = sext i32 %91 to i64
-  %93 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %92
-  store volatile i64 %81, ptr %93, align 8, !tbaa !9
-  %94 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %95 = add nsw i32 %94, 2
-  %96 = sext i32 %95 to i64
-  %97 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %96
-  store volatile i64 %86, ptr %97, align 8, !tbaa !9
-  %98 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %99 = add nsw i32 %98, 3
-  store volatile i32 %99, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %100
-
-100:                                              ; preds = %83, %79, %75, %72, %69
-  %101 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %102 = icmp sgt i32 %101, 2
-  br i1 %102, label %103, label %131
-
-103:                                              ; preds = %100
-  %104 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %105 = icmp slt i32 %104, 4
-  br i1 %105, label %106, label %131
-
-106:                                              ; preds = %103
-  %107 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %108 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %109 = icmp eq i64 %107, %108
-  br i1 %109, label %110, label %131
-
-110:                                              ; preds = %106
-  %111 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %112 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %113 = icmp slt i64 %111, %112
-  br i1 %113, label %114, label %131
-
-114:                                              ; preds = %110
-  %115 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %116 = add nsw i32 %115, -3
-  store volatile i32 %116, ptr @P1_is_marked, align 4, !tbaa !5
-  %117 = sub nsw i64 %111, %112
-  %118 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %119 = sext i32 %118 to i64
-  %120 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %119
-  store volatile i64 %111, ptr %120, align 8, !tbaa !9
-  %121 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %122 = add nsw i32 %121, 1
-  %123 = sext i32 %122 to i64
-  %124 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %123
-  store volatile i64 %112, ptr %124, align 8, !tbaa !9
-  %125 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %126 = add nsw i32 %125, 2
-  %127 = sext i32 %126 to i64
-  %128 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %127
-  store volatile i64 %117, ptr %128, align 8, !tbaa !9
-  %129 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %130 = add nsw i32 %129, 3
-  store volatile i32 %130, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %131
-
-131:                                              ; preds = %114, %110, %106, %103, %100
-  %132 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %133 = icmp sgt i32 %132, 2
-  br i1 %133, label %134, label %162
-
-134:                                              ; preds = %131
-  %135 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %136 = icmp slt i32 %135, 4
-  br i1 %136, label %137, label %162
-
-137:                                              ; preds = %134
-  %138 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %139 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %140 = icmp eq i64 %138, %139
-  br i1 %140, label %141, label %162
-
-141:                                              ; preds = %137
-  %142 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %143 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %144 = icmp slt i64 %142, %143
-  br i1 %144, label %145, label %162
-
-145:                                              ; preds = %141
-  %146 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %147 = add nsw i32 %146, -3
-  store volatile i32 %147, ptr @P1_is_marked, align 4, !tbaa !5
-  %148 = sub nsw i64 %142, %143
-  %149 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %150 = sext i32 %149 to i64
-  %151 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %150
-  store volatile i64 %142, ptr %151, align 8, !tbaa !9
-  %152 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %153 = add nsw i32 %152, 1
-  %154 = sext i32 %153 to i64
-  %155 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %154
-  store volatile i64 %143, ptr %155, align 8, !tbaa !9
-  %156 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %157 = add nsw i32 %156, 2
-  %158 = sext i32 %157 to i64
-  %159 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %158
-  store volatile i64 %148, ptr %159, align 8, !tbaa !9
-  %160 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %161 = add nsw i32 %160, 3
-  store volatile i32 %161, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %162
-
-162:                                              ; preds = %145, %141, %137, %134, %131
-  %163 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %164 = icmp sgt i32 %163, 2
-  br i1 %164, label %165, label %193
-
-165:                                              ; preds = %162
-  %166 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %167 = icmp slt i32 %166, 4
-  br i1 %167, label %168, label %193
-
-168:                                              ; preds = %165
-  %169 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %170 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %171 = icmp eq i64 %169, %170
-  br i1 %171, label %172, label %193
-
-172:                                              ; preds = %168
-  %173 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %174 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %175 = icmp slt i64 %173, %174
-  br i1 %175, label %176, label %193
-
-176:                                              ; preds = %172
-  %177 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %178 = add nsw i32 %177, -3
-  store volatile i32 %178, ptr @P1_is_marked, align 4, !tbaa !5
-  %179 = sub nsw i64 %173, %174
-  %180 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %181 = sext i32 %180 to i64
-  %182 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %181
-  store volatile i64 %173, ptr %182, align 8, !tbaa !9
-  %183 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %184 = add nsw i32 %183, 1
-  %185 = sext i32 %184 to i64
-  %186 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %185
-  store volatile i64 %174, ptr %186, align 8, !tbaa !9
-  %187 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %188 = add nsw i32 %187, 2
-  %189 = sext i32 %188 to i64
-  %190 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %189
-  store volatile i64 %179, ptr %190, align 8, !tbaa !9
-  %191 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %192 = add nsw i32 %191, 3
-  store volatile i32 %192, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %193
-
-193:                                              ; preds = %176, %172, %168, %165, %162
-  %194 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %195 = icmp sgt i32 %194, 3
-  br i1 %195, label %196, label %228
-
-196:                                              ; preds = %193
-  %197 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %198 = icmp slt i32 %197, 4
-  br i1 %198, label %199, label %228
-
-199:                                              ; preds = %196
-  %200 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %201 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %202 = icmp eq i64 %200, %201
-  br i1 %202, label %203, label %228
-
-203:                                              ; preds = %199
-  %204 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %205 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %206 = icmp eq i64 %204, %205
-  br i1 %206, label %207, label %228
-
-207:                                              ; preds = %203
-  %208 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %209 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %210 = icmp sgt i64 %209, %208
-  br i1 %210, label %211, label %228
-
-211:                                              ; preds = %207
-  %212 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %213 = add nsw i32 %212, -4
-  store volatile i32 %213, ptr @P2_is_marked, align 4, !tbaa !5
-  %214 = add nsw i64 %209, %208
-  %215 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %216 = sext i32 %215 to i64
-  %217 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %216
-  store volatile i64 %208, ptr %217, align 8, !tbaa !9
-  %218 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %219 = add nsw i32 %218, 1
-  %220 = sext i32 %219 to i64
-  %221 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %220
-  store volatile i64 %209, ptr %221, align 8, !tbaa !9
-  %222 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %223 = add nsw i32 %222, 2
-  %224 = sext i32 %223 to i64
-  %225 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %224
-  store volatile i64 %214, ptr %225, align 8, !tbaa !9
-  %226 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %227 = add nsw i32 %226, 3
-  store volatile i32 %227, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %228
-
-228:                                              ; preds = %211, %207, %203, %199, %196, %193
-  %229 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %230 = icmp sgt i32 %229, 3
-  br i1 %230, label %231, label %263
-
-231:                                              ; preds = %228
-  %232 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %233 = icmp slt i32 %232, 4
-  br i1 %233, label %234, label %263
-
-234:                                              ; preds = %231
-  %235 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %236 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %237 = icmp eq i64 %235, %236
-  br i1 %237, label %238, label %263
-
-238:                                              ; preds = %234
-  %239 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %240 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %241 = icmp eq i64 %239, %240
-  br i1 %241, label %242, label %263
-
-242:                                              ; preds = %238
-  %243 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %244 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %245 = icmp sgt i64 %244, %243
-  br i1 %245, label %246, label %263
-
-246:                                              ; preds = %242
-  %247 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %248 = add nsw i32 %247, -4
-  store volatile i32 %248, ptr @P2_is_marked, align 4, !tbaa !5
-  %249 = add nsw i64 %244, %243
-  %250 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %251 = sext i32 %250 to i64
-  %252 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %251
-  store volatile i64 %243, ptr %252, align 8, !tbaa !9
-  %253 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %254 = add nsw i32 %253, 1
-  %255 = sext i32 %254 to i64
-  %256 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %255
-  store volatile i64 %244, ptr %256, align 8, !tbaa !9
-  %257 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %258 = add nsw i32 %257, 2
-  %259 = sext i32 %258 to i64
-  %260 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %259
-  store volatile i64 %249, ptr %260, align 8, !tbaa !9
-  %261 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %262 = add nsw i32 %261, 3
-  store volatile i32 %262, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %263
-
-263:                                              ; preds = %246, %242, %238, %234, %231, %228
-  %264 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %265 = icmp sgt i32 %264, 3
-  br i1 %265, label %266, label %298
-
-266:                                              ; preds = %263
-  %267 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %268 = icmp slt i32 %267, 4
-  br i1 %268, label %269, label %298
-
-269:                                              ; preds = %266
-  %270 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %271 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %272 = icmp eq i64 %270, %271
-  br i1 %272, label %273, label %298
-
-273:                                              ; preds = %269
-  %274 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %275 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %276 = icmp eq i64 %274, %275
-  br i1 %276, label %277, label %298
-
-277:                                              ; preds = %273
-  %278 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %279 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %280 = icmp sgt i64 %279, %278
-  br i1 %280, label %281, label %298
-
-281:                                              ; preds = %277
-  %282 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %283 = add nsw i32 %282, -4
-  store volatile i32 %283, ptr @P2_is_marked, align 4, !tbaa !5
-  %284 = add nsw i64 %279, %278
-  %285 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %286 = sext i32 %285 to i64
-  %287 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %286
-  store volatile i64 %278, ptr %287, align 8, !tbaa !9
-  %288 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %289 = add nsw i32 %288, 1
-  %290 = sext i32 %289 to i64
-  %291 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %290
-  store volatile i64 %279, ptr %291, align 8, !tbaa !9
-  %292 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %293 = add nsw i32 %292, 2
-  %294 = sext i32 %293 to i64
-  %295 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %294
-  store volatile i64 %284, ptr %295, align 8, !tbaa !9
-  %296 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %297 = add nsw i32 %296, 3
-  store volatile i32 %297, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %298
-
-298:                                              ; preds = %281, %277, %273, %269, %266, %263
-  %299 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %300 = icmp sgt i32 %299, 3
-  br i1 %300, label %301, label %333
-
-301:                                              ; preds = %298
-  %302 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %303 = icmp slt i32 %302, 4
-  br i1 %303, label %304, label %333
-
-304:                                              ; preds = %301
-  %305 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %306 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %307 = icmp eq i64 %305, %306
-  br i1 %307, label %308, label %333
-
-308:                                              ; preds = %304
-  %309 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %310 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %311 = icmp eq i64 %309, %310
-  br i1 %311, label %312, label %333
-
-312:                                              ; preds = %308
-  %313 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %314 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %315 = icmp sgt i64 %314, %313
-  br i1 %315, label %316, label %333
-
-316:                                              ; preds = %312
-  %317 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %318 = add nsw i32 %317, -4
-  store volatile i32 %318, ptr @P2_is_marked, align 4, !tbaa !5
-  %319 = add nsw i64 %314, %313
-  %320 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %321 = sext i32 %320 to i64
-  %322 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %321
-  store volatile i64 %313, ptr %322, align 8, !tbaa !9
-  %323 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %324 = add nsw i32 %323, 1
-  %325 = sext i32 %324 to i64
-  %326 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %325
-  store volatile i64 %314, ptr %326, align 8, !tbaa !9
-  %327 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %328 = add nsw i32 %327, 2
-  %329 = sext i32 %328 to i64
-  %330 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %329
-  store volatile i64 %319, ptr %330, align 8, !tbaa !9
-  %331 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %332 = add nsw i32 %331, 3
-  store volatile i32 %332, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %333
-
-333:                                              ; preds = %316, %312, %308, %304, %301, %298
-  %334 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %335 = icmp sgt i32 %334, 3
-  br i1 %335, label %336, label %368
-
-336:                                              ; preds = %333
-  %337 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %338 = icmp slt i32 %337, 4
-  br i1 %338, label %339, label %368
-
-339:                                              ; preds = %336
-  %340 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %341 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %342 = icmp eq i64 %340, %341
-  br i1 %342, label %343, label %368
-
-343:                                              ; preds = %339
-  %344 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %345 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %346 = icmp eq i64 %344, %345
-  br i1 %346, label %347, label %368
-
-347:                                              ; preds = %343
-  %348 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %349 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %350 = icmp sgt i64 %349, %348
-  br i1 %350, label %351, label %368
-
-351:                                              ; preds = %347
-  %352 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %353 = add nsw i32 %352, -4
-  store volatile i32 %353, ptr @P2_is_marked, align 4, !tbaa !5
-  %354 = add nsw i64 %349, %348
-  %355 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %356 = sext i32 %355 to i64
-  %357 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %356
-  store volatile i64 %348, ptr %357, align 8, !tbaa !9
-  %358 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %359 = add nsw i32 %358, 1
-  %360 = sext i32 %359 to i64
-  %361 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %360
-  store volatile i64 %349, ptr %361, align 8, !tbaa !9
-  %362 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %363 = add nsw i32 %362, 2
-  %364 = sext i32 %363 to i64
-  %365 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %364
-  store volatile i64 %354, ptr %365, align 8, !tbaa !9
-  %366 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %367 = add nsw i32 %366, 3
-  store volatile i32 %367, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %368
-
-368:                                              ; preds = %351, %347, %343, %339, %336, %333
-  %369 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %370 = icmp sgt i32 %369, 3
-  br i1 %370, label %371, label %403
-
-371:                                              ; preds = %368
-  %372 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %373 = icmp slt i32 %372, 4
-  br i1 %373, label %374, label %403
-
-374:                                              ; preds = %371
-  %375 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %376 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %377 = icmp eq i64 %375, %376
-  br i1 %377, label %378, label %403
-
-378:                                              ; preds = %374
-  %379 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %380 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %381 = icmp eq i64 %379, %380
-  br i1 %381, label %382, label %403
-
-382:                                              ; preds = %378
-  %383 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %384 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %385 = icmp sgt i64 %384, %383
-  br i1 %385, label %386, label %403
-
-386:                                              ; preds = %382
-  %387 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %388 = add nsw i32 %387, -4
-  store volatile i32 %388, ptr @P2_is_marked, align 4, !tbaa !5
-  %389 = add nsw i64 %384, %383
-  %390 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %391 = sext i32 %390 to i64
-  %392 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %391
-  store volatile i64 %383, ptr %392, align 8, !tbaa !9
-  %393 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %394 = add nsw i32 %393, 1
-  %395 = sext i32 %394 to i64
-  %396 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %395
-  store volatile i64 %384, ptr %396, align 8, !tbaa !9
-  %397 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %398 = add nsw i32 %397, 2
-  %399 = sext i32 %398 to i64
-  %400 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %399
-  store volatile i64 %389, ptr %400, align 8, !tbaa !9
-  %401 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %402 = add nsw i32 %401, 3
-  store volatile i32 %402, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %403
-
-403:                                              ; preds = %386, %382, %378, %374, %371, %368
-  %404 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %405 = icmp sgt i32 %404, 3
-  br i1 %405, label %406, label %438
-
-406:                                              ; preds = %403
-  %407 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %408 = icmp slt i32 %407, 4
-  br i1 %408, label %409, label %438
-
-409:                                              ; preds = %406
-  %410 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %411 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %412 = icmp eq i64 %410, %411
-  br i1 %412, label %413, label %438
-
-413:                                              ; preds = %409
-  %414 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %415 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %416 = icmp eq i64 %414, %415
-  br i1 %416, label %417, label %438
-
-417:                                              ; preds = %413
-  %418 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %419 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %420 = icmp sgt i64 %419, %418
-  br i1 %420, label %421, label %438
-
-421:                                              ; preds = %417
-  %422 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %423 = add nsw i32 %422, -4
-  store volatile i32 %423, ptr @P2_is_marked, align 4, !tbaa !5
-  %424 = add nsw i64 %419, %418
-  %425 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+; Function Attrs: noinline nounwind uwtable
+define internal i32 @benchmark_body(i32 noundef %0, i32 noundef %1) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  %8 = alloca i64, align 8
+  %9 = alloca i64, align 8
+  %10 = alloca i64, align 8
+  %11 = alloca i64, align 8
+  %12 = alloca i64, align 8
+  %13 = alloca i64, align 8
+  %14 = alloca i64, align 8
+  %15 = alloca i64, align 8
+  %16 = alloca i64, align 8
+  %17 = alloca i64, align 8
+  %18 = alloca i64, align 8
+  %19 = alloca i64, align 8
+  %20 = alloca i64, align 8
+  %21 = alloca i64, align 8
+  %22 = alloca i64, align 8
+  %23 = alloca i64, align 8
+  %24 = alloca i64, align 8
+  %25 = alloca i64, align 8
+  %26 = alloca i64, align 8
+  %27 = alloca i64, align 8
+  %28 = alloca i64, align 8
+  %29 = alloca i64, align 8
+  %30 = alloca i64, align 8
+  %31 = alloca i64, align 8
+  %32 = alloca i64, align 8
+  %33 = alloca i64, align 8
+  %34 = alloca i64, align 8
+  %35 = alloca i64, align 8
+  %36 = alloca i64, align 8
+  %37 = alloca i64, align 8
+  %38 = alloca i64, align 8
+  %39 = alloca i64, align 8
+  %40 = alloca i64, align 8
+  %41 = alloca i64, align 8
+  %42 = alloca i64, align 8
+  %43 = alloca i64, align 8
+  %44 = alloca i64, align 8
+  %45 = alloca i64, align 8
+  %46 = alloca i64, align 8
+  %47 = alloca i64, align 8
+  %48 = alloca i64, align 8
+  %49 = alloca i64, align 8
+  %50 = alloca i64, align 8
+  %51 = alloca i64, align 8
+  %52 = alloca i64, align 8
+  %53 = alloca i64, align 8
+  %54 = alloca i64, align 8
+  %55 = alloca i64, align 8
+  %56 = alloca i64, align 8
+  %57 = alloca i64, align 8
+  %58 = alloca i64, align 8
+  %59 = alloca i64, align 8
+  %60 = alloca i64, align 8
+  %61 = alloca i64, align 8
+  %62 = alloca i64, align 8
+  %63 = alloca i64, align 8
+  %64 = alloca i64, align 8
+  %65 = alloca i64, align 8
+  %66 = alloca i64, align 8
+  %67 = alloca i64, align 8
+  %68 = alloca i64, align 8
+  %69 = alloca i64, align 8
+  %70 = alloca i64, align 8
+  %71 = alloca i64, align 8
+  %72 = alloca i64, align 8
+  %73 = alloca i64, align 8
+  %74 = alloca i64, align 8
+  %75 = alloca i64, align 8
+  %76 = alloca i64, align 8
+  %77 = alloca i64, align 8
+  %78 = alloca i64, align 8
+  %79 = alloca i64, align 8
+  %80 = alloca i64, align 8
+  %81 = alloca i64, align 8
+  %82 = alloca i64, align 8
+  %83 = alloca i64, align 8
+  %84 = alloca i64, align 8
+  %85 = alloca i64, align 8
+  %86 = alloca i64, align 8
+  %87 = alloca i64, align 8
+  %88 = alloca i64, align 8
+  %89 = alloca i64, align 8
+  %90 = alloca i64, align 8
+  %91 = alloca i64, align 8
+  %92 = alloca i64, align 8
+  %93 = alloca i64, align 8
+  %94 = alloca i64, align 8
+  %95 = alloca i64, align 8
+  %96 = alloca i64, align 8
+  %97 = alloca i64, align 8
+  %98 = alloca i64, align 8
+  %99 = alloca i64, align 8
+  %100 = alloca i64, align 8
+  %101 = alloca i64, align 8
+  %102 = alloca i64, align 8
+  %103 = alloca i64, align 8
+  %104 = alloca i64, align 8
+  %105 = alloca i64, align 8
+  %106 = alloca i64, align 8
+  %107 = alloca i64, align 8
+  %108 = alloca i64, align 8
+  %109 = alloca i64, align 8
+  %110 = alloca i64, align 8
+  %111 = alloca i64, align 8
+  %112 = alloca i64, align 8
+  %113 = alloca i64, align 8
+  %114 = alloca i64, align 8
+  %115 = alloca i64, align 8
+  %116 = alloca i64, align 8
+  %117 = alloca i64, align 8
+  %118 = alloca i64, align 8
+  %119 = alloca i64, align 8
+  %120 = alloca i64, align 8
+  %121 = alloca i64, align 8
+  %122 = alloca i64, align 8
+  %123 = alloca i64, align 8
+  %124 = alloca i64, align 8
+  %125 = alloca i64, align 8
+  %126 = alloca i64, align 8
+  %127 = alloca i64, align 8
+  %128 = alloca i64, align 8
+  %129 = alloca i64, align 8
+  %130 = alloca i64, align 8
+  %131 = alloca i64, align 8
+  %132 = alloca i64, align 8
+  %133 = alloca i64, align 8
+  %134 = alloca i64, align 8
+  %135 = alloca i64, align 8
+  %136 = alloca i64, align 8
+  %137 = alloca i64, align 8
+  %138 = alloca i64, align 8
+  %139 = alloca i64, align 8
+  %140 = alloca i64, align 8
+  %141 = alloca i64, align 8
+  %142 = alloca i64, align 8
+  %143 = alloca i64, align 8
+  %144 = alloca i64, align 8
+  %145 = alloca i64, align 8
+  %146 = alloca i64, align 8
+  %147 = alloca i64, align 8
+  %148 = alloca i64, align 8
+  %149 = alloca i64, align 8
+  %150 = alloca i64, align 8
+  %151 = alloca i64, align 8
+  %152 = alloca i64, align 8
+  %153 = alloca i64, align 8
+  %154 = alloca i64, align 8
+  %155 = alloca i64, align 8
+  %156 = alloca i64, align 8
+  %157 = alloca i64, align 8
+  %158 = alloca i64, align 8
+  %159 = alloca i64, align 8
+  %160 = alloca i64, align 8
+  %161 = alloca i64, align 8
+  %162 = alloca i64, align 8
+  %163 = alloca i64, align 8
+  %164 = alloca i64, align 8
+  %165 = alloca i64, align 8
+  %166 = alloca i64, align 8
+  %167 = alloca i64, align 8
+  %168 = alloca i64, align 8
+  %169 = alloca i64, align 8
+  %170 = alloca i64, align 8
+  %171 = alloca i64, align 8
+  %172 = alloca i64, align 8
+  %173 = alloca i64, align 8
+  %174 = alloca i64, align 8
+  %175 = alloca i64, align 8
+  %176 = alloca i64, align 8
+  %177 = alloca i64, align 8
+  %178 = alloca i64, align 8
+  %179 = alloca i64, align 8
+  %180 = alloca i64, align 8
+  %181 = alloca i64, align 8
+  %182 = alloca i64, align 8
+  %183 = alloca i64, align 8
+  %184 = alloca i64, align 8
+  %185 = alloca i64, align 8
+  %186 = alloca i64, align 8
+  %187 = alloca i64, align 8
+  %188 = alloca i64, align 8
+  %189 = alloca i64, align 8
+  %190 = alloca i64, align 8
+  %191 = alloca i64, align 8
+  %192 = alloca i64, align 8
+  %193 = alloca i64, align 8
+  %194 = alloca i64, align 8
+  %195 = alloca i64, align 8
+  %196 = alloca i64, align 8
+  %197 = alloca i64, align 8
+  %198 = alloca i64, align 8
+  %199 = alloca i64, align 8
+  %200 = alloca i64, align 8
+  %201 = alloca i64, align 8
+  %202 = alloca i64, align 8
+  %203 = alloca i64, align 8
+  %204 = alloca i64, align 8
+  %205 = alloca i64, align 8
+  %206 = alloca i64, align 8
+  %207 = alloca i64, align 8
+  %208 = alloca i64, align 8
+  %209 = alloca i64, align 8
+  %210 = alloca i64, align 8
+  %211 = alloca i64, align 8
+  %212 = alloca i64, align 8
+  %213 = alloca i64, align 8
+  %214 = alloca i64, align 8
+  %215 = alloca i64, align 8
+  %216 = alloca i64, align 8
+  %217 = alloca i64, align 8
+  %218 = alloca i64, align 8
+  %219 = alloca i64, align 8
+  %220 = alloca i64, align 8
+  %221 = alloca i64, align 8
+  %222 = alloca i64, align 8
+  %223 = alloca i64, align 8
+  %224 = alloca i64, align 8
+  %225 = alloca i64, align 8
+  %226 = alloca i64, align 8
+  %227 = alloca i64, align 8
+  %228 = alloca i64, align 8
+  %229 = alloca i64, align 8
+  %230 = alloca i64, align 8
+  %231 = alloca i64, align 8
+  %232 = alloca i64, align 8
+  %233 = alloca i64, align 8
+  %234 = alloca i64, align 8
+  %235 = alloca i64, align 8
+  %236 = alloca i64, align 8
+  %237 = alloca i64, align 8
+  %238 = alloca i64, align 8
+  %239 = alloca i64, align 8
+  %240 = alloca i64, align 8
+  %241 = alloca i64, align 8
+  %242 = alloca i64, align 8
+  %243 = alloca i64, align 8
+  %244 = alloca i64, align 8
+  %245 = alloca i64, align 8
+  %246 = alloca i64, align 8
+  %247 = alloca i64, align 8
+  %248 = alloca i64, align 8
+  %249 = alloca i64, align 8
+  %250 = alloca i64, align 8
+  %251 = alloca i64, align 8
+  %252 = alloca i64, align 8
+  %253 = alloca i64, align 8
+  %254 = alloca i64, align 8
+  %255 = alloca i64, align 8
+  %256 = alloca i64, align 8
+  %257 = alloca i64, align 8
+  %258 = alloca i64, align 8
+  %259 = alloca i64, align 8
+  %260 = alloca i64, align 8
+  %261 = alloca i64, align 8
+  %262 = alloca i64, align 8
+  %263 = alloca i64, align 8
+  %264 = alloca i64, align 8
+  %265 = alloca i64, align 8
+  %266 = alloca i64, align 8
+  %267 = alloca i64, align 8
+  %268 = alloca i64, align 8
+  %269 = alloca i64, align 8
+  %270 = alloca i64, align 8
+  %271 = alloca i64, align 8
+  %272 = alloca i64, align 8
+  %273 = alloca i64, align 8
+  %274 = alloca i64, align 8
+  %275 = alloca i64, align 8
+  %276 = alloca i64, align 8
+  %277 = alloca i64, align 8
+  %278 = alloca i64, align 8
+  %279 = alloca i64, align 8
+  %280 = alloca i64, align 8
+  %281 = alloca i64, align 8
+  %282 = alloca i64, align 8
+  %283 = alloca i64, align 8
+  %284 = alloca i64, align 8
+  %285 = alloca i64, align 8
+  %286 = alloca i64, align 8
+  %287 = alloca i64, align 8
+  %288 = alloca i64, align 8
+  %289 = alloca i64, align 8
+  %290 = alloca i64, align 8
+  %291 = alloca i64, align 8
+  %292 = alloca i64, align 8
+  %293 = alloca i64, align 8
+  %294 = alloca i64, align 8
+  %295 = alloca i64, align 8
+  %296 = alloca i64, align 8
+  %297 = alloca i64, align 8
+  %298 = alloca i64, align 8
+  %299 = alloca i64, align 8
+  %300 = alloca i64, align 8
+  %301 = alloca i64, align 8
+  %302 = alloca i64, align 8
+  %303 = alloca i64, align 8
+  %304 = alloca i64, align 8
+  %305 = alloca i64, align 8
+  %306 = alloca i64, align 8
+  %307 = alloca i64, align 8
+  %308 = alloca i64, align 8
+  %309 = alloca i64, align 8
+  %310 = alloca i64, align 8
+  %311 = alloca i64, align 8
+  %312 = alloca i64, align 8
+  %313 = alloca i64, align 8
+  %314 = alloca i64, align 8
+  %315 = alloca i64, align 8
+  %316 = alloca i64, align 8
+  %317 = alloca i64, align 8
+  %318 = alloca i64, align 8
+  %319 = alloca i64, align 8
+  %320 = alloca i64, align 8
+  %321 = alloca i64, align 8
+  %322 = alloca i64, align 8
+  %323 = alloca i64, align 8
+  %324 = alloca i64, align 8
+  %325 = alloca i64, align 8
+  %326 = alloca i64, align 8
+  %327 = alloca i64, align 8
+  %328 = alloca i64, align 8
+  %329 = alloca i64, align 8
+  %330 = alloca i64, align 8
+  %331 = alloca i64, align 8
+  %332 = alloca i64, align 8
+  %333 = alloca i64, align 8
+  %334 = alloca i64, align 8
+  %335 = alloca i64, align 8
+  %336 = alloca i64, align 8
+  %337 = alloca i64, align 8
+  %338 = alloca i64, align 8
+  %339 = alloca i64, align 8
+  %340 = alloca i64, align 8
+  %341 = alloca i64, align 8
+  %342 = alloca i64, align 8
+  %343 = alloca i64, align 8
+  %344 = alloca i64, align 8
+  %345 = alloca i64, align 8
+  %346 = alloca i64, align 8
+  %347 = alloca i64, align 8
+  %348 = alloca i64, align 8
+  %349 = alloca i64, align 8
+  %350 = alloca i64, align 8
+  %351 = alloca i64, align 8
+  %352 = alloca i64, align 8
+  %353 = alloca i64, align 8
+  %354 = alloca i64, align 8
+  %355 = alloca i64, align 8
+  %356 = alloca i64, align 8
+  %357 = alloca i64, align 8
+  %358 = alloca i64, align 8
+  %359 = alloca i64, align 8
+  %360 = alloca i64, align 8
+  %361 = alloca i64, align 8
+  %362 = alloca i64, align 8
+  %363 = alloca i64, align 8
+  %364 = alloca i64, align 8
+  %365 = alloca i64, align 8
+  %366 = alloca i64, align 8
+  %367 = alloca i64, align 8
+  %368 = alloca i64, align 8
+  %369 = alloca i64, align 8
+  %370 = alloca i64, align 8
+  %371 = alloca i64, align 8
+  %372 = alloca i64, align 8
+  %373 = alloca i64, align 8
+  %374 = alloca i64, align 8
+  %375 = alloca i64, align 8
+  %376 = alloca i64, align 8
+  %377 = alloca i64, align 8
+  %378 = alloca i64, align 8
+  %379 = alloca i64, align 8
+  %380 = alloca i64, align 8
+  %381 = alloca i64, align 8
+  %382 = alloca i64, align 8
+  %383 = alloca i64, align 8
+  %384 = alloca i64, align 8
+  %385 = alloca i64, align 8
+  store i32 %0, ptr %3, align 4
+  store i32 %1, ptr %4, align 4
+  store i32 0, ptr %6, align 4
+  br label %386
+
+386:                                              ; preds = %6118, %2
+  %387 = load i32, ptr %6, align 4
+  %388 = load i32, ptr %3, align 4
+  %389 = icmp ult i32 %387, %388
+  br i1 %389, label %390, label %6121
+
+390:                                              ; preds = %386
+  store i32 0, ptr %7, align 4
+  br label %391
+
+391:                                              ; preds = %6114, %390
+  %392 = load i32, ptr %7, align 4
+  %393 = load i32, ptr %4, align 4
+  %394 = icmp ult i32 %392, %393
+  br i1 %394, label %395, label %6117
+
+395:                                              ; preds = %391
+  store volatile i32 3, ptr @P1_is_marked, align 4
+  store volatile i32 5, ptr @P2_is_marked, align 4
+  store volatile i32 0, ptr @P3_is_marked, align 4
+  %396 = load volatile i32, ptr @P1_is_marked, align 4
+  %397 = icmp sge i32 %396, 3
+  br i1 %397, label %398, label %436
+
+398:                                              ; preds = %395
+  %399 = load volatile i32, ptr @P3_is_marked, align 4
+  %400 = add nsw i32 %399, 3
+  %401 = icmp sle i32 %400, 6
+  br i1 %401, label %402, label %436
+
+402:                                              ; preds = %398
+  %403 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  %404 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  %405 = icmp eq i64 %403, %404
+  br i1 %405, label %406, label %436
+
+406:                                              ; preds = %402
+  %407 = load volatile i64, ptr @P1_marking_member_0, align 16
+  store i64 %407, ptr %8, align 8
+  %408 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  store i64 %408, ptr %9, align 8
+  %409 = load i64, ptr %8, align 8
+  %410 = load i64, ptr %9, align 8
+  %411 = icmp slt i64 %409, %410
+  br i1 %411, label %412, label %435
+
+412:                                              ; preds = %406
+  %413 = load volatile i32, ptr @P1_is_marked, align 4
+  %414 = sub nsw i32 %413, 3
+  store volatile i32 %414, ptr @P1_is_marked, align 4
+  %415 = load i64, ptr %8, align 8
+  %416 = load i64, ptr %9, align 8
+  %417 = sub nsw i64 %415, %416
+  store i64 %417, ptr %10, align 8
+  %418 = load i64, ptr %8, align 8
+  %419 = load volatile i32, ptr @P3_is_marked, align 4
+  %420 = add nsw i32 %419, 0
+  %421 = sext i32 %420 to i64
+  %422 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %421
+  store volatile i64 %418, ptr %422, align 8
+  %423 = load i64, ptr %9, align 8
+  %424 = load volatile i32, ptr @P3_is_marked, align 4
+  %425 = add nsw i32 %424, 1
   %426 = sext i32 %425 to i64
   %427 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %426
-  store volatile i64 %418, ptr %427, align 8, !tbaa !9
-  %428 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %429 = add nsw i32 %428, 1
-  %430 = sext i32 %429 to i64
-  %431 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %430
-  store volatile i64 %419, ptr %431, align 8, !tbaa !9
-  %432 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %433 = add nsw i32 %432, 2
-  %434 = sext i32 %433 to i64
-  %435 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %434
-  store volatile i64 %424, ptr %435, align 8, !tbaa !9
-  %436 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %437 = add nsw i32 %436, 3
-  store volatile i32 %437, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %438
+  store volatile i64 %423, ptr %427, align 8
+  %428 = load i64, ptr %10, align 8
+  %429 = load volatile i32, ptr @P3_is_marked, align 4
+  %430 = add nsw i32 %429, 2
+  %431 = sext i32 %430 to i64
+  %432 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %431
+  store volatile i64 %428, ptr %432, align 8
+  %433 = load volatile i32, ptr @P3_is_marked, align 4
+  %434 = add nsw i32 %433, 3
+  store volatile i32 %434, ptr @P3_is_marked, align 4
+  br label %435
 
-438:                                              ; preds = %421, %417, %413, %409, %406, %403
-  %439 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %440 = icmp sgt i32 %439, 3
-  br i1 %440, label %441, label %473
+435:                                              ; preds = %412, %406
+  br label %436
 
-441:                                              ; preds = %438
-  %442 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %443 = icmp slt i32 %442, 4
-  br i1 %443, label %444, label %473
+436:                                              ; preds = %435, %402, %398, %395
+  %437 = load volatile i32, ptr @P1_is_marked, align 4
+  %438 = icmp sge i32 %437, 3
+  br i1 %438, label %439, label %477
 
-444:                                              ; preds = %441
-  %445 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %446 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %447 = icmp eq i64 %445, %446
-  br i1 %447, label %448, label %473
+439:                                              ; preds = %436
+  %440 = load volatile i32, ptr @P3_is_marked, align 4
+  %441 = add nsw i32 %440, 3
+  %442 = icmp sle i32 %441, 6
+  br i1 %442, label %443, label %477
 
-448:                                              ; preds = %444
-  %449 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %450 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %451 = icmp eq i64 %449, %450
-  br i1 %451, label %452, label %473
+443:                                              ; preds = %439
+  %444 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  %445 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  %446 = icmp eq i64 %444, %445
+  br i1 %446, label %447, label %477
 
-452:                                              ; preds = %448
-  %453 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %454 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %455 = icmp sgt i64 %454, %453
-  br i1 %455, label %456, label %473
+447:                                              ; preds = %443
+  %448 = load volatile i64, ptr @P1_marking_member_0, align 16
+  store i64 %448, ptr %11, align 8
+  %449 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  store i64 %449, ptr %12, align 8
+  %450 = load i64, ptr %11, align 8
+  %451 = load i64, ptr %12, align 8
+  %452 = icmp slt i64 %450, %451
+  br i1 %452, label %453, label %476
 
-456:                                              ; preds = %452
-  %457 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %458 = add nsw i32 %457, -4
-  store volatile i32 %458, ptr @P2_is_marked, align 4, !tbaa !5
-  %459 = add nsw i64 %454, %453
-  %460 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %461 = sext i32 %460 to i64
-  %462 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %461
-  store volatile i64 %453, ptr %462, align 8, !tbaa !9
-  %463 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %464 = add nsw i32 %463, 1
-  %465 = sext i32 %464 to i64
-  %466 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %465
-  store volatile i64 %454, ptr %466, align 8, !tbaa !9
-  %467 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %468 = add nsw i32 %467, 2
-  %469 = sext i32 %468 to i64
-  %470 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %469
-  store volatile i64 %459, ptr %470, align 8, !tbaa !9
-  %471 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %472 = add nsw i32 %471, 3
-  store volatile i32 %472, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %473
+453:                                              ; preds = %447
+  %454 = load volatile i32, ptr @P1_is_marked, align 4
+  %455 = sub nsw i32 %454, 3
+  store volatile i32 %455, ptr @P1_is_marked, align 4
+  %456 = load i64, ptr %11, align 8
+  %457 = load i64, ptr %12, align 8
+  %458 = sub nsw i64 %456, %457
+  store i64 %458, ptr %13, align 8
+  %459 = load i64, ptr %11, align 8
+  %460 = load volatile i32, ptr @P3_is_marked, align 4
+  %461 = add nsw i32 %460, 0
+  %462 = sext i32 %461 to i64
+  %463 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %462
+  store volatile i64 %459, ptr %463, align 8
+  %464 = load i64, ptr %12, align 8
+  %465 = load volatile i32, ptr @P3_is_marked, align 4
+  %466 = add nsw i32 %465, 1
+  %467 = sext i32 %466 to i64
+  %468 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %467
+  store volatile i64 %464, ptr %468, align 8
+  %469 = load i64, ptr %13, align 8
+  %470 = load volatile i32, ptr @P3_is_marked, align 4
+  %471 = add nsw i32 %470, 2
+  %472 = sext i32 %471 to i64
+  %473 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %472
+  store volatile i64 %469, ptr %473, align 8
+  %474 = load volatile i32, ptr @P3_is_marked, align 4
+  %475 = add nsw i32 %474, 3
+  store volatile i32 %475, ptr @P3_is_marked, align 4
+  br label %476
 
-473:                                              ; preds = %456, %452, %448, %444, %441, %438
-  %474 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %475 = icmp sgt i32 %474, 3
-  br i1 %475, label %476, label %508
+476:                                              ; preds = %453, %447
+  br label %477
 
-476:                                              ; preds = %473
-  %477 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %478 = icmp slt i32 %477, 4
-  br i1 %478, label %479, label %508
+477:                                              ; preds = %476, %443, %439, %436
+  %478 = load volatile i32, ptr @P1_is_marked, align 4
+  %479 = icmp sge i32 %478, 3
+  br i1 %479, label %480, label %518
 
-479:                                              ; preds = %476
-  %480 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %481 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %482 = icmp eq i64 %480, %481
-  br i1 %482, label %483, label %508
+480:                                              ; preds = %477
+  %481 = load volatile i32, ptr @P3_is_marked, align 4
+  %482 = add nsw i32 %481, 3
+  %483 = icmp sle i32 %482, 6
+  br i1 %483, label %484, label %518
 
-483:                                              ; preds = %479
-  %484 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %485 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %486 = icmp eq i64 %484, %485
-  br i1 %486, label %487, label %508
+484:                                              ; preds = %480
+  %485 = load volatile i64, ptr @P1_marking_member_0, align 16
+  %486 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  %487 = icmp eq i64 %485, %486
+  br i1 %487, label %488, label %518
 
-487:                                              ; preds = %483
-  %488 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %489 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %490 = icmp sgt i64 %489, %488
-  br i1 %490, label %491, label %508
+488:                                              ; preds = %484
+  %489 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  store i64 %489, ptr %14, align 8
+  %490 = load volatile i64, ptr @P1_marking_member_0, align 16
+  store i64 %490, ptr %15, align 8
+  %491 = load i64, ptr %14, align 8
+  %492 = load i64, ptr %15, align 8
+  %493 = icmp slt i64 %491, %492
+  br i1 %493, label %494, label %517
 
-491:                                              ; preds = %487
-  %492 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %493 = add nsw i32 %492, -4
-  store volatile i32 %493, ptr @P2_is_marked, align 4, !tbaa !5
-  %494 = add nsw i64 %489, %488
-  %495 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %496 = sext i32 %495 to i64
-  %497 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %496
-  store volatile i64 %488, ptr %497, align 8, !tbaa !9
-  %498 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %499 = add nsw i32 %498, 1
-  %500 = sext i32 %499 to i64
-  %501 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %500
-  store volatile i64 %489, ptr %501, align 8, !tbaa !9
-  %502 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %503 = add nsw i32 %502, 2
-  %504 = sext i32 %503 to i64
-  %505 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %504
-  store volatile i64 %494, ptr %505, align 8, !tbaa !9
-  %506 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %507 = add nsw i32 %506, 3
-  store volatile i32 %507, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %508
+494:                                              ; preds = %488
+  %495 = load volatile i32, ptr @P1_is_marked, align 4
+  %496 = sub nsw i32 %495, 3
+  store volatile i32 %496, ptr @P1_is_marked, align 4
+  %497 = load i64, ptr %14, align 8
+  %498 = load i64, ptr %15, align 8
+  %499 = sub nsw i64 %497, %498
+  store i64 %499, ptr %16, align 8
+  %500 = load i64, ptr %14, align 8
+  %501 = load volatile i32, ptr @P3_is_marked, align 4
+  %502 = add nsw i32 %501, 0
+  %503 = sext i32 %502 to i64
+  %504 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %503
+  store volatile i64 %500, ptr %504, align 8
+  %505 = load i64, ptr %15, align 8
+  %506 = load volatile i32, ptr @P3_is_marked, align 4
+  %507 = add nsw i32 %506, 1
+  %508 = sext i32 %507 to i64
+  %509 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %508
+  store volatile i64 %505, ptr %509, align 8
+  %510 = load i64, ptr %16, align 8
+  %511 = load volatile i32, ptr @P3_is_marked, align 4
+  %512 = add nsw i32 %511, 2
+  %513 = sext i32 %512 to i64
+  %514 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %513
+  store volatile i64 %510, ptr %514, align 8
+  %515 = load volatile i32, ptr @P3_is_marked, align 4
+  %516 = add nsw i32 %515, 3
+  store volatile i32 %516, ptr @P3_is_marked, align 4
+  br label %517
 
-508:                                              ; preds = %491, %487, %483, %479, %476, %473
-  %509 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %510 = icmp sgt i32 %509, 3
-  br i1 %510, label %511, label %543
+517:                                              ; preds = %494, %488
+  br label %518
 
-511:                                              ; preds = %508
-  %512 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %513 = icmp slt i32 %512, 4
-  br i1 %513, label %514, label %543
+518:                                              ; preds = %517, %484, %480, %477
+  %519 = load volatile i32, ptr @P1_is_marked, align 4
+  %520 = icmp sge i32 %519, 3
+  br i1 %520, label %521, label %559
 
-514:                                              ; preds = %511
-  %515 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %516 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %517 = icmp eq i64 %515, %516
-  br i1 %517, label %518, label %543
+521:                                              ; preds = %518
+  %522 = load volatile i32, ptr @P3_is_marked, align 4
+  %523 = add nsw i32 %522, 3
+  %524 = icmp sle i32 %523, 6
+  br i1 %524, label %525, label %559
 
-518:                                              ; preds = %514
-  %519 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %520 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %521 = icmp eq i64 %519, %520
-  br i1 %521, label %522, label %543
+525:                                              ; preds = %521
+  %526 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  %527 = load volatile i64, ptr @P1_marking_member_0, align 16
+  %528 = icmp eq i64 %526, %527
+  br i1 %528, label %529, label %559
 
-522:                                              ; preds = %518
-  %523 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %524 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %525 = icmp sgt i64 %524, %523
-  br i1 %525, label %526, label %543
+529:                                              ; preds = %525
+  %530 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  store i64 %530, ptr %17, align 8
+  %531 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  store i64 %531, ptr %18, align 8
+  %532 = load i64, ptr %17, align 8
+  %533 = load i64, ptr %18, align 8
+  %534 = icmp slt i64 %532, %533
+  br i1 %534, label %535, label %558
 
-526:                                              ; preds = %522
-  %527 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %528 = add nsw i32 %527, -4
-  store volatile i32 %528, ptr @P2_is_marked, align 4, !tbaa !5
-  %529 = add nsw i64 %524, %523
-  %530 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %531 = sext i32 %530 to i64
-  %532 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %531
-  store volatile i64 %523, ptr %532, align 8, !tbaa !9
-  %533 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %534 = add nsw i32 %533, 1
-  %535 = sext i32 %534 to i64
-  %536 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %535
-  store volatile i64 %524, ptr %536, align 8, !tbaa !9
-  %537 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %538 = add nsw i32 %537, 2
-  %539 = sext i32 %538 to i64
-  %540 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %539
-  store volatile i64 %529, ptr %540, align 8, !tbaa !9
-  %541 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %542 = add nsw i32 %541, 3
-  store volatile i32 %542, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %543
+535:                                              ; preds = %529
+  %536 = load volatile i32, ptr @P1_is_marked, align 4
+  %537 = sub nsw i32 %536, 3
+  store volatile i32 %537, ptr @P1_is_marked, align 4
+  %538 = load i64, ptr %17, align 8
+  %539 = load i64, ptr %18, align 8
+  %540 = sub nsw i64 %538, %539
+  store i64 %540, ptr %19, align 8
+  %541 = load i64, ptr %17, align 8
+  %542 = load volatile i32, ptr @P3_is_marked, align 4
+  %543 = add nsw i32 %542, 0
+  %544 = sext i32 %543 to i64
+  %545 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %544
+  store volatile i64 %541, ptr %545, align 8
+  %546 = load i64, ptr %18, align 8
+  %547 = load volatile i32, ptr @P3_is_marked, align 4
+  %548 = add nsw i32 %547, 1
+  %549 = sext i32 %548 to i64
+  %550 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %549
+  store volatile i64 %546, ptr %550, align 8
+  %551 = load i64, ptr %19, align 8
+  %552 = load volatile i32, ptr @P3_is_marked, align 4
+  %553 = add nsw i32 %552, 2
+  %554 = sext i32 %553 to i64
+  %555 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %554
+  store volatile i64 %551, ptr %555, align 8
+  %556 = load volatile i32, ptr @P3_is_marked, align 4
+  %557 = add nsw i32 %556, 3
+  store volatile i32 %557, ptr @P3_is_marked, align 4
+  br label %558
 
-543:                                              ; preds = %526, %522, %518, %514, %511, %508
-  %544 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %545 = icmp sgt i32 %544, 3
-  br i1 %545, label %546, label %578
+558:                                              ; preds = %535, %529
+  br label %559
 
-546:                                              ; preds = %543
-  %547 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %548 = icmp slt i32 %547, 4
-  br i1 %548, label %549, label %578
+559:                                              ; preds = %558, %525, %521, %518
+  %560 = load volatile i32, ptr @P1_is_marked, align 4
+  %561 = icmp sge i32 %560, 3
+  br i1 %561, label %562, label %600
 
-549:                                              ; preds = %546
-  %550 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %551 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %552 = icmp eq i64 %550, %551
-  br i1 %552, label %553, label %578
+562:                                              ; preds = %559
+  %563 = load volatile i32, ptr @P3_is_marked, align 4
+  %564 = add nsw i32 %563, 3
+  %565 = icmp sle i32 %564, 6
+  br i1 %565, label %566, label %600
 
-553:                                              ; preds = %549
-  %554 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %555 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %556 = icmp eq i64 %554, %555
-  br i1 %556, label %557, label %578
+566:                                              ; preds = %562
+  %567 = load volatile i64, ptr @P1_marking_member_0, align 16
+  %568 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  %569 = icmp eq i64 %567, %568
+  br i1 %569, label %570, label %600
 
-557:                                              ; preds = %553
-  %558 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %559 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %560 = icmp sgt i64 %559, %558
-  br i1 %560, label %561, label %578
+570:                                              ; preds = %566
+  %571 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  store i64 %571, ptr %20, align 8
+  %572 = load volatile i64, ptr @P1_marking_member_0, align 16
+  store i64 %572, ptr %21, align 8
+  %573 = load i64, ptr %20, align 8
+  %574 = load i64, ptr %21, align 8
+  %575 = icmp slt i64 %573, %574
+  br i1 %575, label %576, label %599
 
-561:                                              ; preds = %557
-  %562 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %563 = add nsw i32 %562, -4
-  store volatile i32 %563, ptr @P2_is_marked, align 4, !tbaa !5
-  %564 = add nsw i64 %559, %558
-  %565 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %566 = sext i32 %565 to i64
-  %567 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %566
-  store volatile i64 %558, ptr %567, align 8, !tbaa !9
-  %568 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %569 = add nsw i32 %568, 1
-  %570 = sext i32 %569 to i64
-  %571 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %570
-  store volatile i64 %559, ptr %571, align 8, !tbaa !9
-  %572 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %573 = add nsw i32 %572, 2
-  %574 = sext i32 %573 to i64
-  %575 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %574
-  store volatile i64 %564, ptr %575, align 8, !tbaa !9
-  %576 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %577 = add nsw i32 %576, 3
-  store volatile i32 %577, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %578
+576:                                              ; preds = %570
+  %577 = load volatile i32, ptr @P1_is_marked, align 4
+  %578 = sub nsw i32 %577, 3
+  store volatile i32 %578, ptr @P1_is_marked, align 4
+  %579 = load i64, ptr %20, align 8
+  %580 = load i64, ptr %21, align 8
+  %581 = sub nsw i64 %579, %580
+  store i64 %581, ptr %22, align 8
+  %582 = load i64, ptr %20, align 8
+  %583 = load volatile i32, ptr @P3_is_marked, align 4
+  %584 = add nsw i32 %583, 0
+  %585 = sext i32 %584 to i64
+  %586 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %585
+  store volatile i64 %582, ptr %586, align 8
+  %587 = load i64, ptr %21, align 8
+  %588 = load volatile i32, ptr @P3_is_marked, align 4
+  %589 = add nsw i32 %588, 1
+  %590 = sext i32 %589 to i64
+  %591 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %590
+  store volatile i64 %587, ptr %591, align 8
+  %592 = load i64, ptr %22, align 8
+  %593 = load volatile i32, ptr @P3_is_marked, align 4
+  %594 = add nsw i32 %593, 2
+  %595 = sext i32 %594 to i64
+  %596 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %595
+  store volatile i64 %592, ptr %596, align 8
+  %597 = load volatile i32, ptr @P3_is_marked, align 4
+  %598 = add nsw i32 %597, 3
+  store volatile i32 %598, ptr @P3_is_marked, align 4
+  br label %599
 
-578:                                              ; preds = %561, %557, %553, %549, %546, %543
-  %579 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %580 = icmp sgt i32 %579, 3
-  br i1 %580, label %581, label %613
+599:                                              ; preds = %576, %570
+  br label %600
 
-581:                                              ; preds = %578
-  %582 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %583 = icmp slt i32 %582, 4
-  br i1 %583, label %584, label %613
+600:                                              ; preds = %599, %566, %562, %559
+  %601 = load volatile i32, ptr @P1_is_marked, align 4
+  %602 = icmp sge i32 %601, 3
+  br i1 %602, label %603, label %641
 
-584:                                              ; preds = %581
-  %585 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %586 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %587 = icmp eq i64 %585, %586
-  br i1 %587, label %588, label %613
+603:                                              ; preds = %600
+  %604 = load volatile i32, ptr @P3_is_marked, align 4
+  %605 = add nsw i32 %604, 3
+  %606 = icmp sle i32 %605, 6
+  br i1 %606, label %607, label %641
 
-588:                                              ; preds = %584
-  %589 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %590 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %591 = icmp eq i64 %589, %590
-  br i1 %591, label %592, label %613
+607:                                              ; preds = %603
+  %608 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  %609 = load volatile i64, ptr @P1_marking_member_0, align 16
+  %610 = icmp eq i64 %608, %609
+  br i1 %610, label %611, label %641
 
-592:                                              ; preds = %588
-  %593 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %594 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %595 = icmp sgt i64 %594, %593
-  br i1 %595, label %596, label %613
+611:                                              ; preds = %607
+  %612 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 2), align 16
+  store i64 %612, ptr %23, align 8
+  %613 = load volatile i64, ptr getelementptr inbounds ([3 x i64], ptr @P1_marking_member_0, i64 0, i64 1), align 8
+  store i64 %613, ptr %24, align 8
+  %614 = load i64, ptr %23, align 8
+  %615 = load i64, ptr %24, align 8
+  %616 = icmp slt i64 %614, %615
+  br i1 %616, label %617, label %640
 
-596:                                              ; preds = %592
-  %597 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %598 = add nsw i32 %597, -4
-  store volatile i32 %598, ptr @P2_is_marked, align 4, !tbaa !5
-  %599 = add nsw i64 %594, %593
-  %600 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %601 = sext i32 %600 to i64
-  %602 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %601
-  store volatile i64 %593, ptr %602, align 8, !tbaa !9
-  %603 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %604 = add nsw i32 %603, 1
-  %605 = sext i32 %604 to i64
-  %606 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %605
-  store volatile i64 %594, ptr %606, align 8, !tbaa !9
-  %607 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %608 = add nsw i32 %607, 2
-  %609 = sext i32 %608 to i64
-  %610 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %609
-  store volatile i64 %599, ptr %610, align 8, !tbaa !9
-  %611 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %612 = add nsw i32 %611, 3
-  store volatile i32 %612, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %613
-
-613:                                              ; preds = %596, %592, %588, %584, %581, %578
-  %614 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %615 = icmp sgt i32 %614, 3
-  br i1 %615, label %616, label %648
-
-616:                                              ; preds = %613
-  %617 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %618 = icmp slt i32 %617, 4
-  br i1 %618, label %619, label %648
-
-619:                                              ; preds = %616
-  %620 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %621 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %622 = icmp eq i64 %620, %621
-  br i1 %622, label %623, label %648
-
-623:                                              ; preds = %619
-  %624 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %625 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %626 = icmp eq i64 %624, %625
-  br i1 %626, label %627, label %648
-
-627:                                              ; preds = %623
-  %628 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %629 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %630 = icmp sgt i64 %629, %628
-  br i1 %630, label %631, label %648
-
-631:                                              ; preds = %627
-  %632 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %633 = add nsw i32 %632, -4
-  store volatile i32 %633, ptr @P2_is_marked, align 4, !tbaa !5
-  %634 = add nsw i64 %629, %628
-  %635 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+617:                                              ; preds = %611
+  %618 = load volatile i32, ptr @P1_is_marked, align 4
+  %619 = sub nsw i32 %618, 3
+  store volatile i32 %619, ptr @P1_is_marked, align 4
+  %620 = load i64, ptr %23, align 8
+  %621 = load i64, ptr %24, align 8
+  %622 = sub nsw i64 %620, %621
+  store i64 %622, ptr %25, align 8
+  %623 = load i64, ptr %23, align 8
+  %624 = load volatile i32, ptr @P3_is_marked, align 4
+  %625 = add nsw i32 %624, 0
+  %626 = sext i32 %625 to i64
+  %627 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %626
+  store volatile i64 %623, ptr %627, align 8
+  %628 = load i64, ptr %24, align 8
+  %629 = load volatile i32, ptr @P3_is_marked, align 4
+  %630 = add nsw i32 %629, 1
+  %631 = sext i32 %630 to i64
+  %632 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %631
+  store volatile i64 %628, ptr %632, align 8
+  %633 = load i64, ptr %25, align 8
+  %634 = load volatile i32, ptr @P3_is_marked, align 4
+  %635 = add nsw i32 %634, 2
   %636 = sext i32 %635 to i64
   %637 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %636
-  store volatile i64 %628, ptr %637, align 8, !tbaa !9
-  %638 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %639 = add nsw i32 %638, 1
-  %640 = sext i32 %639 to i64
-  %641 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %640
-  store volatile i64 %629, ptr %641, align 8, !tbaa !9
-  %642 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %643 = add nsw i32 %642, 2
-  %644 = sext i32 %643 to i64
-  %645 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %644
-  store volatile i64 %634, ptr %645, align 8, !tbaa !9
-  %646 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %647 = add nsw i32 %646, 3
-  store volatile i32 %647, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %648
+  store volatile i64 %633, ptr %637, align 8
+  %638 = load volatile i32, ptr @P3_is_marked, align 4
+  %639 = add nsw i32 %638, 3
+  store volatile i32 %639, ptr @P3_is_marked, align 4
+  br label %640
 
-648:                                              ; preds = %631, %627, %623, %619, %616, %613
-  %649 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %650 = icmp sgt i32 %649, 3
-  br i1 %650, label %651, label %683
+640:                                              ; preds = %617, %611
+  br label %641
 
-651:                                              ; preds = %648
-  %652 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %653 = icmp slt i32 %652, 4
-  br i1 %653, label %654, label %683
+641:                                              ; preds = %640, %607, %603, %600
+  %642 = load volatile i32, ptr @P2_is_marked, align 4
+  %643 = icmp sge i32 %642, 4
+  br i1 %643, label %644, label %686
 
-654:                                              ; preds = %651
-  %655 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %656 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %657 = icmp eq i64 %655, %656
-  br i1 %657, label %658, label %683
+644:                                              ; preds = %641
+  %645 = load volatile i32, ptr @P3_is_marked, align 4
+  %646 = add nsw i32 %645, 3
+  %647 = icmp sle i32 %646, 6
+  br i1 %647, label %648, label %686
 
-658:                                              ; preds = %654
-  %659 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %660 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %661 = icmp eq i64 %659, %660
-  br i1 %661, label %662, label %683
+648:                                              ; preds = %644
+  %649 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %650 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %651 = icmp eq i64 %649, %650
+  br i1 %651, label %652, label %686
 
-662:                                              ; preds = %658
-  %663 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %664 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %665 = icmp sgt i64 %664, %663
-  br i1 %665, label %666, label %683
+652:                                              ; preds = %648
+  %653 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %654 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %655 = icmp eq i64 %653, %654
+  br i1 %655, label %656, label %686
 
-666:                                              ; preds = %662
-  %667 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %668 = add nsw i32 %667, -4
-  store volatile i32 %668, ptr @P2_is_marked, align 4, !tbaa !5
-  %669 = add nsw i64 %664, %663
-  %670 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+656:                                              ; preds = %652
+  %657 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %657, ptr %26, align 8
+  %658 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %658, ptr %27, align 8
+  %659 = load i64, ptr %27, align 8
+  %660 = load i64, ptr %26, align 8
+  %661 = icmp sgt i64 %659, %660
+  br i1 %661, label %662, label %685
+
+662:                                              ; preds = %656
+  %663 = load volatile i32, ptr @P2_is_marked, align 4
+  %664 = sub nsw i32 %663, 4
+  store volatile i32 %664, ptr @P2_is_marked, align 4
+  %665 = load i64, ptr %26, align 8
+  %666 = load i64, ptr %27, align 8
+  %667 = add nsw i64 %665, %666
+  store i64 %667, ptr %28, align 8
+  %668 = load i64, ptr %26, align 8
+  %669 = load volatile i32, ptr @P3_is_marked, align 4
+  %670 = add nsw i32 %669, 0
   %671 = sext i32 %670 to i64
   %672 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %671
-  store volatile i64 %663, ptr %672, align 8, !tbaa !9
-  %673 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %674 = add nsw i32 %673, 1
-  %675 = sext i32 %674 to i64
-  %676 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %675
-  store volatile i64 %664, ptr %676, align 8, !tbaa !9
-  %677 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %678 = add nsw i32 %677, 2
-  %679 = sext i32 %678 to i64
-  %680 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %679
-  store volatile i64 %669, ptr %680, align 8, !tbaa !9
-  %681 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %682 = add nsw i32 %681, 3
-  store volatile i32 %682, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %683
+  store volatile i64 %668, ptr %672, align 8
+  %673 = load i64, ptr %27, align 8
+  %674 = load volatile i32, ptr @P3_is_marked, align 4
+  %675 = add nsw i32 %674, 1
+  %676 = sext i32 %675 to i64
+  %677 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %676
+  store volatile i64 %673, ptr %677, align 8
+  %678 = load i64, ptr %28, align 8
+  %679 = load volatile i32, ptr @P3_is_marked, align 4
+  %680 = add nsw i32 %679, 2
+  %681 = sext i32 %680 to i64
+  %682 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %681
+  store volatile i64 %678, ptr %682, align 8
+  %683 = load volatile i32, ptr @P3_is_marked, align 4
+  %684 = add nsw i32 %683, 3
+  store volatile i32 %684, ptr @P3_is_marked, align 4
+  br label %685
 
-683:                                              ; preds = %666, %662, %658, %654, %651, %648
-  %684 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %685 = icmp sgt i32 %684, 3
-  br i1 %685, label %686, label %718
+685:                                              ; preds = %662, %656
+  br label %686
 
-686:                                              ; preds = %683
-  %687 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %688 = icmp slt i32 %687, 4
-  br i1 %688, label %689, label %718
+686:                                              ; preds = %685, %652, %648, %644, %641
+  %687 = load volatile i32, ptr @P2_is_marked, align 4
+  %688 = icmp sge i32 %687, 4
+  br i1 %688, label %689, label %731
 
 689:                                              ; preds = %686
-  %690 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %691 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %692 = icmp eq i64 %690, %691
-  br i1 %692, label %693, label %718
+  %690 = load volatile i32, ptr @P3_is_marked, align 4
+  %691 = add nsw i32 %690, 3
+  %692 = icmp sle i32 %691, 6
+  br i1 %692, label %693, label %731
 
 693:                                              ; preds = %689
-  %694 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %695 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
+  %694 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %695 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
   %696 = icmp eq i64 %694, %695
-  br i1 %696, label %697, label %718
+  br i1 %696, label %697, label %731
 
 697:                                              ; preds = %693
-  %698 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %699 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %700 = icmp sgt i64 %699, %698
-  br i1 %700, label %701, label %718
+  %698 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %699 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %700 = icmp eq i64 %698, %699
+  br i1 %700, label %701, label %731
 
 701:                                              ; preds = %697
-  %702 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %703 = add nsw i32 %702, -4
-  store volatile i32 %703, ptr @P2_is_marked, align 4, !tbaa !5
-  %704 = add nsw i64 %699, %698
-  %705 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %706 = sext i32 %705 to i64
-  %707 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %706
-  store volatile i64 %698, ptr %707, align 8, !tbaa !9
-  %708 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %709 = add nsw i32 %708, 1
-  %710 = sext i32 %709 to i64
-  %711 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %710
-  store volatile i64 %699, ptr %711, align 8, !tbaa !9
-  %712 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %713 = add nsw i32 %712, 2
-  %714 = sext i32 %713 to i64
-  %715 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %714
-  store volatile i64 %704, ptr %715, align 8, !tbaa !9
-  %716 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %717 = add nsw i32 %716, 3
-  store volatile i32 %717, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %718
+  %702 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %702, ptr %29, align 8
+  %703 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %703, ptr %30, align 8
+  %704 = load i64, ptr %30, align 8
+  %705 = load i64, ptr %29, align 8
+  %706 = icmp sgt i64 %704, %705
+  br i1 %706, label %707, label %730
 
-718:                                              ; preds = %701, %697, %693, %689, %686, %683
-  %719 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %720 = icmp sgt i32 %719, 3
-  br i1 %720, label %721, label %753
+707:                                              ; preds = %701
+  %708 = load volatile i32, ptr @P2_is_marked, align 4
+  %709 = sub nsw i32 %708, 4
+  store volatile i32 %709, ptr @P2_is_marked, align 4
+  %710 = load i64, ptr %29, align 8
+  %711 = load i64, ptr %30, align 8
+  %712 = add nsw i64 %710, %711
+  store i64 %712, ptr %31, align 8
+  %713 = load i64, ptr %29, align 8
+  %714 = load volatile i32, ptr @P3_is_marked, align 4
+  %715 = add nsw i32 %714, 0
+  %716 = sext i32 %715 to i64
+  %717 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %716
+  store volatile i64 %713, ptr %717, align 8
+  %718 = load i64, ptr %30, align 8
+  %719 = load volatile i32, ptr @P3_is_marked, align 4
+  %720 = add nsw i32 %719, 1
+  %721 = sext i32 %720 to i64
+  %722 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %721
+  store volatile i64 %718, ptr %722, align 8
+  %723 = load i64, ptr %31, align 8
+  %724 = load volatile i32, ptr @P3_is_marked, align 4
+  %725 = add nsw i32 %724, 2
+  %726 = sext i32 %725 to i64
+  %727 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %726
+  store volatile i64 %723, ptr %727, align 8
+  %728 = load volatile i32, ptr @P3_is_marked, align 4
+  %729 = add nsw i32 %728, 3
+  store volatile i32 %729, ptr @P3_is_marked, align 4
+  br label %730
 
-721:                                              ; preds = %718
-  %722 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %723 = icmp slt i32 %722, 4
-  br i1 %723, label %724, label %753
+730:                                              ; preds = %707, %701
+  br label %731
 
-724:                                              ; preds = %721
-  %725 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %726 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %727 = icmp eq i64 %725, %726
-  br i1 %727, label %728, label %753
+731:                                              ; preds = %730, %697, %693, %689, %686
+  %732 = load volatile i32, ptr @P2_is_marked, align 4
+  %733 = icmp sge i32 %732, 4
+  br i1 %733, label %734, label %776
 
-728:                                              ; preds = %724
-  %729 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %730 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %731 = icmp eq i64 %729, %730
-  br i1 %731, label %732, label %753
+734:                                              ; preds = %731
+  %735 = load volatile i32, ptr @P3_is_marked, align 4
+  %736 = add nsw i32 %735, 3
+  %737 = icmp sle i32 %736, 6
+  br i1 %737, label %738, label %776
 
-732:                                              ; preds = %728
-  %733 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %734 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %735 = icmp sgt i64 %734, %733
-  br i1 %735, label %736, label %753
+738:                                              ; preds = %734
+  %739 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %740 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %741 = icmp eq i64 %739, %740
+  br i1 %741, label %742, label %776
 
-736:                                              ; preds = %732
-  %737 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %738 = add nsw i32 %737, -4
-  store volatile i32 %738, ptr @P2_is_marked, align 4, !tbaa !5
-  %739 = add nsw i64 %734, %733
-  %740 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %741 = sext i32 %740 to i64
-  %742 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %741
-  store volatile i64 %733, ptr %742, align 8, !tbaa !9
-  %743 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %744 = add nsw i32 %743, 1
-  %745 = sext i32 %744 to i64
-  %746 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %745
-  store volatile i64 %734, ptr %746, align 8, !tbaa !9
-  %747 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %748 = add nsw i32 %747, 2
-  %749 = sext i32 %748 to i64
-  %750 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %749
-  store volatile i64 %739, ptr %750, align 8, !tbaa !9
-  %751 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %752 = add nsw i32 %751, 3
-  store volatile i32 %752, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %753
+742:                                              ; preds = %738
+  %743 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %744 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %745 = icmp eq i64 %743, %744
+  br i1 %745, label %746, label %776
 
-753:                                              ; preds = %736, %732, %728, %724, %721, %718
-  %754 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %755 = icmp sgt i32 %754, 3
-  br i1 %755, label %756, label %788
+746:                                              ; preds = %742
+  %747 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %747, ptr %32, align 8
+  %748 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %748, ptr %33, align 8
+  %749 = load i64, ptr %33, align 8
+  %750 = load i64, ptr %32, align 8
+  %751 = icmp sgt i64 %749, %750
+  br i1 %751, label %752, label %775
 
-756:                                              ; preds = %753
-  %757 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %758 = icmp slt i32 %757, 4
-  br i1 %758, label %759, label %788
+752:                                              ; preds = %746
+  %753 = load volatile i32, ptr @P2_is_marked, align 4
+  %754 = sub nsw i32 %753, 4
+  store volatile i32 %754, ptr @P2_is_marked, align 4
+  %755 = load i64, ptr %32, align 8
+  %756 = load i64, ptr %33, align 8
+  %757 = add nsw i64 %755, %756
+  store i64 %757, ptr %34, align 8
+  %758 = load i64, ptr %32, align 8
+  %759 = load volatile i32, ptr @P3_is_marked, align 4
+  %760 = add nsw i32 %759, 0
+  %761 = sext i32 %760 to i64
+  %762 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %761
+  store volatile i64 %758, ptr %762, align 8
+  %763 = load i64, ptr %33, align 8
+  %764 = load volatile i32, ptr @P3_is_marked, align 4
+  %765 = add nsw i32 %764, 1
+  %766 = sext i32 %765 to i64
+  %767 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %766
+  store volatile i64 %763, ptr %767, align 8
+  %768 = load i64, ptr %34, align 8
+  %769 = load volatile i32, ptr @P3_is_marked, align 4
+  %770 = add nsw i32 %769, 2
+  %771 = sext i32 %770 to i64
+  %772 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %771
+  store volatile i64 %768, ptr %772, align 8
+  %773 = load volatile i32, ptr @P3_is_marked, align 4
+  %774 = add nsw i32 %773, 3
+  store volatile i32 %774, ptr @P3_is_marked, align 4
+  br label %775
 
-759:                                              ; preds = %756
-  %760 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %761 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %762 = icmp eq i64 %760, %761
-  br i1 %762, label %763, label %788
+775:                                              ; preds = %752, %746
+  br label %776
 
-763:                                              ; preds = %759
-  %764 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %765 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %766 = icmp eq i64 %764, %765
-  br i1 %766, label %767, label %788
+776:                                              ; preds = %775, %742, %738, %734, %731
+  %777 = load volatile i32, ptr @P2_is_marked, align 4
+  %778 = icmp sge i32 %777, 4
+  br i1 %778, label %779, label %821
 
-767:                                              ; preds = %763
-  %768 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %769 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %770 = icmp sgt i64 %769, %768
-  br i1 %770, label %771, label %788
+779:                                              ; preds = %776
+  %780 = load volatile i32, ptr @P3_is_marked, align 4
+  %781 = add nsw i32 %780, 3
+  %782 = icmp sle i32 %781, 6
+  br i1 %782, label %783, label %821
 
-771:                                              ; preds = %767
-  %772 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %773 = add nsw i32 %772, -4
-  store volatile i32 %773, ptr @P2_is_marked, align 4, !tbaa !5
-  %774 = add nsw i64 %769, %768
-  %775 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %776 = sext i32 %775 to i64
-  %777 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %776
-  store volatile i64 %768, ptr %777, align 8, !tbaa !9
-  %778 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %779 = add nsw i32 %778, 1
-  %780 = sext i32 %779 to i64
-  %781 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %780
-  store volatile i64 %769, ptr %781, align 8, !tbaa !9
-  %782 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %783 = add nsw i32 %782, 2
-  %784 = sext i32 %783 to i64
-  %785 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %784
-  store volatile i64 %774, ptr %785, align 8, !tbaa !9
-  %786 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %787 = add nsw i32 %786, 3
-  store volatile i32 %787, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %788
+783:                                              ; preds = %779
+  %784 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %785 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %786 = icmp eq i64 %784, %785
+  br i1 %786, label %787, label %821
 
-788:                                              ; preds = %771, %767, %763, %759, %756, %753
-  %789 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %790 = icmp sgt i32 %789, 3
-  br i1 %790, label %791, label %823
+787:                                              ; preds = %783
+  %788 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %789 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %790 = icmp eq i64 %788, %789
+  br i1 %790, label %791, label %821
 
-791:                                              ; preds = %788
-  %792 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %793 = icmp slt i32 %792, 4
-  br i1 %793, label %794, label %823
+791:                                              ; preds = %787
+  %792 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %792, ptr %35, align 8
+  %793 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %793, ptr %36, align 8
+  %794 = load i64, ptr %36, align 8
+  %795 = load i64, ptr %35, align 8
+  %796 = icmp sgt i64 %794, %795
+  br i1 %796, label %797, label %820
 
-794:                                              ; preds = %791
-  %795 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %796 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %797 = icmp eq i64 %795, %796
-  br i1 %797, label %798, label %823
-
-798:                                              ; preds = %794
-  %799 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %800 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %801 = icmp eq i64 %799, %800
-  br i1 %801, label %802, label %823
-
-802:                                              ; preds = %798
-  %803 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %804 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %805 = icmp sgt i64 %804, %803
-  br i1 %805, label %806, label %823
-
-806:                                              ; preds = %802
-  %807 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %808 = add nsw i32 %807, -4
-  store volatile i32 %808, ptr @P2_is_marked, align 4, !tbaa !5
-  %809 = add nsw i64 %804, %803
-  %810 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+797:                                              ; preds = %791
+  %798 = load volatile i32, ptr @P2_is_marked, align 4
+  %799 = sub nsw i32 %798, 4
+  store volatile i32 %799, ptr @P2_is_marked, align 4
+  %800 = load i64, ptr %35, align 8
+  %801 = load i64, ptr %36, align 8
+  %802 = add nsw i64 %800, %801
+  store i64 %802, ptr %37, align 8
+  %803 = load i64, ptr %35, align 8
+  %804 = load volatile i32, ptr @P3_is_marked, align 4
+  %805 = add nsw i32 %804, 0
+  %806 = sext i32 %805 to i64
+  %807 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %806
+  store volatile i64 %803, ptr %807, align 8
+  %808 = load i64, ptr %36, align 8
+  %809 = load volatile i32, ptr @P3_is_marked, align 4
+  %810 = add nsw i32 %809, 1
   %811 = sext i32 %810 to i64
   %812 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %811
-  store volatile i64 %803, ptr %812, align 8, !tbaa !9
-  %813 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %814 = add nsw i32 %813, 1
-  %815 = sext i32 %814 to i64
-  %816 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %815
-  store volatile i64 %804, ptr %816, align 8, !tbaa !9
-  %817 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %818 = add nsw i32 %817, 2
-  %819 = sext i32 %818 to i64
-  %820 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %819
-  store volatile i64 %809, ptr %820, align 8, !tbaa !9
-  %821 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %822 = add nsw i32 %821, 3
-  store volatile i32 %822, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %823
+  store volatile i64 %808, ptr %812, align 8
+  %813 = load i64, ptr %37, align 8
+  %814 = load volatile i32, ptr @P3_is_marked, align 4
+  %815 = add nsw i32 %814, 2
+  %816 = sext i32 %815 to i64
+  %817 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %816
+  store volatile i64 %813, ptr %817, align 8
+  %818 = load volatile i32, ptr @P3_is_marked, align 4
+  %819 = add nsw i32 %818, 3
+  store volatile i32 %819, ptr @P3_is_marked, align 4
+  br label %820
 
-823:                                              ; preds = %806, %802, %798, %794, %791, %788
-  %824 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %825 = icmp sgt i32 %824, 3
-  br i1 %825, label %826, label %858
+820:                                              ; preds = %797, %791
+  br label %821
 
-826:                                              ; preds = %823
-  %827 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %828 = icmp slt i32 %827, 4
-  br i1 %828, label %829, label %858
+821:                                              ; preds = %820, %787, %783, %779, %776
+  %822 = load volatile i32, ptr @P2_is_marked, align 4
+  %823 = icmp sge i32 %822, 4
+  br i1 %823, label %824, label %866
 
-829:                                              ; preds = %826
-  %830 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %831 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %832 = icmp eq i64 %830, %831
-  br i1 %832, label %833, label %858
+824:                                              ; preds = %821
+  %825 = load volatile i32, ptr @P3_is_marked, align 4
+  %826 = add nsw i32 %825, 3
+  %827 = icmp sle i32 %826, 6
+  br i1 %827, label %828, label %866
 
-833:                                              ; preds = %829
-  %834 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %835 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %836 = icmp eq i64 %834, %835
-  br i1 %836, label %837, label %858
+828:                                              ; preds = %824
+  %829 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %830 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %831 = icmp eq i64 %829, %830
+  br i1 %831, label %832, label %866
 
-837:                                              ; preds = %833
-  %838 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %839 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %840 = icmp sgt i64 %839, %838
-  br i1 %840, label %841, label %858
+832:                                              ; preds = %828
+  %833 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %834 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %835 = icmp eq i64 %833, %834
+  br i1 %835, label %836, label %866
 
-841:                                              ; preds = %837
-  %842 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %843 = add nsw i32 %842, -4
-  store volatile i32 %843, ptr @P2_is_marked, align 4, !tbaa !5
-  %844 = add nsw i64 %839, %838
-  %845 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %846 = sext i32 %845 to i64
-  %847 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %846
-  store volatile i64 %838, ptr %847, align 8, !tbaa !9
-  %848 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %849 = add nsw i32 %848, 1
-  %850 = sext i32 %849 to i64
-  %851 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %850
-  store volatile i64 %839, ptr %851, align 8, !tbaa !9
-  %852 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %853 = add nsw i32 %852, 2
-  %854 = sext i32 %853 to i64
-  %855 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %854
-  store volatile i64 %844, ptr %855, align 8, !tbaa !9
-  %856 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %857 = add nsw i32 %856, 3
-  store volatile i32 %857, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %858
+836:                                              ; preds = %832
+  %837 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %837, ptr %38, align 8
+  %838 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %838, ptr %39, align 8
+  %839 = load i64, ptr %39, align 8
+  %840 = load i64, ptr %38, align 8
+  %841 = icmp sgt i64 %839, %840
+  br i1 %841, label %842, label %865
 
-858:                                              ; preds = %841, %837, %833, %829, %826, %823
-  %859 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %860 = icmp sgt i32 %859, 3
-  br i1 %860, label %861, label %893
+842:                                              ; preds = %836
+  %843 = load volatile i32, ptr @P2_is_marked, align 4
+  %844 = sub nsw i32 %843, 4
+  store volatile i32 %844, ptr @P2_is_marked, align 4
+  %845 = load i64, ptr %38, align 8
+  %846 = load i64, ptr %39, align 8
+  %847 = add nsw i64 %845, %846
+  store i64 %847, ptr %40, align 8
+  %848 = load i64, ptr %38, align 8
+  %849 = load volatile i32, ptr @P3_is_marked, align 4
+  %850 = add nsw i32 %849, 0
+  %851 = sext i32 %850 to i64
+  %852 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %851
+  store volatile i64 %848, ptr %852, align 8
+  %853 = load i64, ptr %39, align 8
+  %854 = load volatile i32, ptr @P3_is_marked, align 4
+  %855 = add nsw i32 %854, 1
+  %856 = sext i32 %855 to i64
+  %857 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %856
+  store volatile i64 %853, ptr %857, align 8
+  %858 = load i64, ptr %40, align 8
+  %859 = load volatile i32, ptr @P3_is_marked, align 4
+  %860 = add nsw i32 %859, 2
+  %861 = sext i32 %860 to i64
+  %862 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %861
+  store volatile i64 %858, ptr %862, align 8
+  %863 = load volatile i32, ptr @P3_is_marked, align 4
+  %864 = add nsw i32 %863, 3
+  store volatile i32 %864, ptr @P3_is_marked, align 4
+  br label %865
 
-861:                                              ; preds = %858
-  %862 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %863 = icmp slt i32 %862, 4
-  br i1 %863, label %864, label %893
+865:                                              ; preds = %842, %836
+  br label %866
 
-864:                                              ; preds = %861
-  %865 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %866 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %867 = icmp eq i64 %865, %866
-  br i1 %867, label %868, label %893
+866:                                              ; preds = %865, %832, %828, %824, %821
+  %867 = load volatile i32, ptr @P2_is_marked, align 4
+  %868 = icmp sge i32 %867, 4
+  br i1 %868, label %869, label %911
 
-868:                                              ; preds = %864
-  %869 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %870 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %871 = icmp eq i64 %869, %870
-  br i1 %871, label %872, label %893
+869:                                              ; preds = %866
+  %870 = load volatile i32, ptr @P3_is_marked, align 4
+  %871 = add nsw i32 %870, 3
+  %872 = icmp sle i32 %871, 6
+  br i1 %872, label %873, label %911
 
-872:                                              ; preds = %868
-  %873 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %874 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %875 = icmp sgt i64 %874, %873
-  br i1 %875, label %876, label %893
+873:                                              ; preds = %869
+  %874 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %875 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %876 = icmp eq i64 %874, %875
+  br i1 %876, label %877, label %911
 
-876:                                              ; preds = %872
-  %877 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %878 = add nsw i32 %877, -4
-  store volatile i32 %878, ptr @P2_is_marked, align 4, !tbaa !5
-  %879 = add nsw i64 %874, %873
-  %880 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %881 = sext i32 %880 to i64
-  %882 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %881
-  store volatile i64 %873, ptr %882, align 8, !tbaa !9
-  %883 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %884 = add nsw i32 %883, 1
-  %885 = sext i32 %884 to i64
-  %886 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %885
-  store volatile i64 %874, ptr %886, align 8, !tbaa !9
-  %887 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %888 = add nsw i32 %887, 2
-  %889 = sext i32 %888 to i64
-  %890 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %889
-  store volatile i64 %879, ptr %890, align 8, !tbaa !9
-  %891 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %892 = add nsw i32 %891, 3
-  store volatile i32 %892, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %893
+877:                                              ; preds = %873
+  %878 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %879 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %880 = icmp eq i64 %878, %879
+  br i1 %880, label %881, label %911
 
-893:                                              ; preds = %876, %872, %868, %864, %861, %858
-  %894 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %895 = icmp sgt i32 %894, 3
-  br i1 %895, label %896, label %928
+881:                                              ; preds = %877
+  %882 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %882, ptr %41, align 8
+  %883 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %883, ptr %42, align 8
+  %884 = load i64, ptr %42, align 8
+  %885 = load i64, ptr %41, align 8
+  %886 = icmp sgt i64 %884, %885
+  br i1 %886, label %887, label %910
 
-896:                                              ; preds = %893
-  %897 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %898 = icmp slt i32 %897, 4
-  br i1 %898, label %899, label %928
+887:                                              ; preds = %881
+  %888 = load volatile i32, ptr @P2_is_marked, align 4
+  %889 = sub nsw i32 %888, 4
+  store volatile i32 %889, ptr @P2_is_marked, align 4
+  %890 = load i64, ptr %41, align 8
+  %891 = load i64, ptr %42, align 8
+  %892 = add nsw i64 %890, %891
+  store i64 %892, ptr %43, align 8
+  %893 = load i64, ptr %41, align 8
+  %894 = load volatile i32, ptr @P3_is_marked, align 4
+  %895 = add nsw i32 %894, 0
+  %896 = sext i32 %895 to i64
+  %897 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %896
+  store volatile i64 %893, ptr %897, align 8
+  %898 = load i64, ptr %42, align 8
+  %899 = load volatile i32, ptr @P3_is_marked, align 4
+  %900 = add nsw i32 %899, 1
+  %901 = sext i32 %900 to i64
+  %902 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %901
+  store volatile i64 %898, ptr %902, align 8
+  %903 = load i64, ptr %43, align 8
+  %904 = load volatile i32, ptr @P3_is_marked, align 4
+  %905 = add nsw i32 %904, 2
+  %906 = sext i32 %905 to i64
+  %907 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %906
+  store volatile i64 %903, ptr %907, align 8
+  %908 = load volatile i32, ptr @P3_is_marked, align 4
+  %909 = add nsw i32 %908, 3
+  store volatile i32 %909, ptr @P3_is_marked, align 4
+  br label %910
 
-899:                                              ; preds = %896
-  %900 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %901 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %902 = icmp eq i64 %900, %901
-  br i1 %902, label %903, label %928
+910:                                              ; preds = %887, %881
+  br label %911
 
-903:                                              ; preds = %899
-  %904 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %905 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %906 = icmp eq i64 %904, %905
-  br i1 %906, label %907, label %928
+911:                                              ; preds = %910, %877, %873, %869, %866
+  %912 = load volatile i32, ptr @P2_is_marked, align 4
+  %913 = icmp sge i32 %912, 4
+  br i1 %913, label %914, label %956
 
-907:                                              ; preds = %903
-  %908 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %909 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %910 = icmp sgt i64 %909, %908
-  br i1 %910, label %911, label %928
+914:                                              ; preds = %911
+  %915 = load volatile i32, ptr @P3_is_marked, align 4
+  %916 = add nsw i32 %915, 3
+  %917 = icmp sle i32 %916, 6
+  br i1 %917, label %918, label %956
 
-911:                                              ; preds = %907
-  %912 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %913 = add nsw i32 %912, -4
-  store volatile i32 %913, ptr @P2_is_marked, align 4, !tbaa !5
-  %914 = add nsw i64 %909, %908
-  %915 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %916 = sext i32 %915 to i64
-  %917 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %916
-  store volatile i64 %908, ptr %917, align 8, !tbaa !9
-  %918 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %919 = add nsw i32 %918, 1
-  %920 = sext i32 %919 to i64
-  %921 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %920
-  store volatile i64 %909, ptr %921, align 8, !tbaa !9
-  %922 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %923 = add nsw i32 %922, 2
-  %924 = sext i32 %923 to i64
-  %925 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %924
-  store volatile i64 %914, ptr %925, align 8, !tbaa !9
-  %926 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %927 = add nsw i32 %926, 3
-  store volatile i32 %927, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %928
+918:                                              ; preds = %914
+  %919 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %920 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %921 = icmp eq i64 %919, %920
+  br i1 %921, label %922, label %956
 
-928:                                              ; preds = %911, %907, %903, %899, %896, %893
-  %929 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %930 = icmp sgt i32 %929, 3
-  br i1 %930, label %931, label %963
+922:                                              ; preds = %918
+  %923 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %924 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %925 = icmp eq i64 %923, %924
+  br i1 %925, label %926, label %956
 
-931:                                              ; preds = %928
-  %932 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %933 = icmp slt i32 %932, 4
-  br i1 %933, label %934, label %963
+926:                                              ; preds = %922
+  %927 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %927, ptr %44, align 8
+  %928 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %928, ptr %45, align 8
+  %929 = load i64, ptr %45, align 8
+  %930 = load i64, ptr %44, align 8
+  %931 = icmp sgt i64 %929, %930
+  br i1 %931, label %932, label %955
 
-934:                                              ; preds = %931
-  %935 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %936 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %937 = icmp eq i64 %935, %936
-  br i1 %937, label %938, label %963
-
-938:                                              ; preds = %934
-  %939 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %940 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %941 = icmp eq i64 %939, %940
-  br i1 %941, label %942, label %963
-
-942:                                              ; preds = %938
-  %943 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %944 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %945 = icmp sgt i64 %944, %943
-  br i1 %945, label %946, label %963
-
-946:                                              ; preds = %942
-  %947 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %948 = add nsw i32 %947, -4
-  store volatile i32 %948, ptr @P2_is_marked, align 4, !tbaa !5
-  %949 = add nsw i64 %944, %943
-  %950 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+932:                                              ; preds = %926
+  %933 = load volatile i32, ptr @P2_is_marked, align 4
+  %934 = sub nsw i32 %933, 4
+  store volatile i32 %934, ptr @P2_is_marked, align 4
+  %935 = load i64, ptr %44, align 8
+  %936 = load i64, ptr %45, align 8
+  %937 = add nsw i64 %935, %936
+  store i64 %937, ptr %46, align 8
+  %938 = load i64, ptr %44, align 8
+  %939 = load volatile i32, ptr @P3_is_marked, align 4
+  %940 = add nsw i32 %939, 0
+  %941 = sext i32 %940 to i64
+  %942 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %941
+  store volatile i64 %938, ptr %942, align 8
+  %943 = load i64, ptr %45, align 8
+  %944 = load volatile i32, ptr @P3_is_marked, align 4
+  %945 = add nsw i32 %944, 1
+  %946 = sext i32 %945 to i64
+  %947 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %946
+  store volatile i64 %943, ptr %947, align 8
+  %948 = load i64, ptr %46, align 8
+  %949 = load volatile i32, ptr @P3_is_marked, align 4
+  %950 = add nsw i32 %949, 2
   %951 = sext i32 %950 to i64
   %952 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %951
-  store volatile i64 %943, ptr %952, align 8, !tbaa !9
-  %953 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %954 = add nsw i32 %953, 1
-  %955 = sext i32 %954 to i64
-  %956 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %955
-  store volatile i64 %944, ptr %956, align 8, !tbaa !9
-  %957 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %958 = add nsw i32 %957, 2
-  %959 = sext i32 %958 to i64
-  %960 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %959
-  store volatile i64 %949, ptr %960, align 8, !tbaa !9
-  %961 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %962 = add nsw i32 %961, 3
-  store volatile i32 %962, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %963
+  store volatile i64 %948, ptr %952, align 8
+  %953 = load volatile i32, ptr @P3_is_marked, align 4
+  %954 = add nsw i32 %953, 3
+  store volatile i32 %954, ptr @P3_is_marked, align 4
+  br label %955
 
-963:                                              ; preds = %946, %942, %938, %934, %931, %928
-  %964 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %965 = icmp sgt i32 %964, 3
-  br i1 %965, label %966, label %998
+955:                                              ; preds = %932, %926
+  br label %956
 
-966:                                              ; preds = %963
-  %967 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %968 = icmp slt i32 %967, 4
-  br i1 %968, label %969, label %998
+956:                                              ; preds = %955, %922, %918, %914, %911
+  %957 = load volatile i32, ptr @P2_is_marked, align 4
+  %958 = icmp sge i32 %957, 4
+  br i1 %958, label %959, label %1001
 
-969:                                              ; preds = %966
-  %970 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %971 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %972 = icmp eq i64 %970, %971
-  br i1 %972, label %973, label %998
+959:                                              ; preds = %956
+  %960 = load volatile i32, ptr @P3_is_marked, align 4
+  %961 = add nsw i32 %960, 3
+  %962 = icmp sle i32 %961, 6
+  br i1 %962, label %963, label %1001
 
-973:                                              ; preds = %969
-  %974 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %975 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %976 = icmp eq i64 %974, %975
-  br i1 %976, label %977, label %998
+963:                                              ; preds = %959
+  %964 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %965 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %966 = icmp eq i64 %964, %965
+  br i1 %966, label %967, label %1001
 
-977:                                              ; preds = %973
-  %978 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %979 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %980 = icmp sgt i64 %979, %978
-  br i1 %980, label %981, label %998
+967:                                              ; preds = %963
+  %968 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %969 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %970 = icmp eq i64 %968, %969
+  br i1 %970, label %971, label %1001
 
-981:                                              ; preds = %977
-  %982 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %983 = add nsw i32 %982, -4
-  store volatile i32 %983, ptr @P2_is_marked, align 4, !tbaa !5
-  %984 = add nsw i64 %979, %978
-  %985 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+971:                                              ; preds = %967
+  %972 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %972, ptr %47, align 8
+  %973 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %973, ptr %48, align 8
+  %974 = load i64, ptr %48, align 8
+  %975 = load i64, ptr %47, align 8
+  %976 = icmp sgt i64 %974, %975
+  br i1 %976, label %977, label %1000
+
+977:                                              ; preds = %971
+  %978 = load volatile i32, ptr @P2_is_marked, align 4
+  %979 = sub nsw i32 %978, 4
+  store volatile i32 %979, ptr @P2_is_marked, align 4
+  %980 = load i64, ptr %47, align 8
+  %981 = load i64, ptr %48, align 8
+  %982 = add nsw i64 %980, %981
+  store i64 %982, ptr %49, align 8
+  %983 = load i64, ptr %47, align 8
+  %984 = load volatile i32, ptr @P3_is_marked, align 4
+  %985 = add nsw i32 %984, 0
   %986 = sext i32 %985 to i64
   %987 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %986
-  store volatile i64 %978, ptr %987, align 8, !tbaa !9
-  %988 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %989 = add nsw i32 %988, 1
-  %990 = sext i32 %989 to i64
-  %991 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %990
-  store volatile i64 %979, ptr %991, align 8, !tbaa !9
-  %992 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %993 = add nsw i32 %992, 2
-  %994 = sext i32 %993 to i64
-  %995 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %994
-  store volatile i64 %984, ptr %995, align 8, !tbaa !9
-  %996 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %997 = add nsw i32 %996, 3
-  store volatile i32 %997, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %998
+  store volatile i64 %983, ptr %987, align 8
+  %988 = load i64, ptr %48, align 8
+  %989 = load volatile i32, ptr @P3_is_marked, align 4
+  %990 = add nsw i32 %989, 1
+  %991 = sext i32 %990 to i64
+  %992 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %991
+  store volatile i64 %988, ptr %992, align 8
+  %993 = load i64, ptr %49, align 8
+  %994 = load volatile i32, ptr @P3_is_marked, align 4
+  %995 = add nsw i32 %994, 2
+  %996 = sext i32 %995 to i64
+  %997 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %996
+  store volatile i64 %993, ptr %997, align 8
+  %998 = load volatile i32, ptr @P3_is_marked, align 4
+  %999 = add nsw i32 %998, 3
+  store volatile i32 %999, ptr @P3_is_marked, align 4
+  br label %1000
 
-998:                                              ; preds = %981, %977, %973, %969, %966, %963
-  %999 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1000 = icmp sgt i32 %999, 3
-  br i1 %1000, label %1001, label %1033
+1000:                                             ; preds = %977, %971
+  br label %1001
 
-1001:                                             ; preds = %998
-  %1002 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1003 = icmp slt i32 %1002, 4
-  br i1 %1003, label %1004, label %1033
+1001:                                             ; preds = %1000, %967, %963, %959, %956
+  %1002 = load volatile i32, ptr @P2_is_marked, align 4
+  %1003 = icmp sge i32 %1002, 4
+  br i1 %1003, label %1004, label %1046
 
 1004:                                             ; preds = %1001
-  %1005 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1006 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1007 = icmp eq i64 %1005, %1006
-  br i1 %1007, label %1008, label %1033
+  %1005 = load volatile i32, ptr @P3_is_marked, align 4
+  %1006 = add nsw i32 %1005, 3
+  %1007 = icmp sle i32 %1006, 6
+  br i1 %1007, label %1008, label %1046
 
 1008:                                             ; preds = %1004
-  %1009 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1010 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
+  %1009 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1010 = load volatile i64, ptr @P2_marking_member_0, align 16
   %1011 = icmp eq i64 %1009, %1010
-  br i1 %1011, label %1012, label %1033
+  br i1 %1011, label %1012, label %1046
 
 1012:                                             ; preds = %1008
-  %1013 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1014 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1015 = icmp sgt i64 %1014, %1013
-  br i1 %1015, label %1016, label %1033
+  %1013 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1014 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1015 = icmp eq i64 %1013, %1014
+  br i1 %1015, label %1016, label %1046
 
 1016:                                             ; preds = %1012
-  %1017 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1018 = add nsw i32 %1017, -4
-  store volatile i32 %1018, ptr @P2_is_marked, align 4, !tbaa !5
-  %1019 = add nsw i64 %1014, %1013
-  %1020 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1021 = sext i32 %1020 to i64
-  %1022 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1021
-  store volatile i64 %1013, ptr %1022, align 8, !tbaa !9
-  %1023 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1024 = add nsw i32 %1023, 1
-  %1025 = sext i32 %1024 to i64
-  %1026 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1025
-  store volatile i64 %1014, ptr %1026, align 8, !tbaa !9
-  %1027 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1028 = add nsw i32 %1027, 2
-  %1029 = sext i32 %1028 to i64
-  %1030 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1029
-  store volatile i64 %1019, ptr %1030, align 8, !tbaa !9
-  %1031 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1032 = add nsw i32 %1031, 3
-  store volatile i32 %1032, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1033
+  %1017 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1017, ptr %50, align 8
+  %1018 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1018, ptr %51, align 8
+  %1019 = load i64, ptr %51, align 8
+  %1020 = load i64, ptr %50, align 8
+  %1021 = icmp sgt i64 %1019, %1020
+  br i1 %1021, label %1022, label %1045
 
-1033:                                             ; preds = %1016, %1012, %1008, %1004, %1001, %998
-  %1034 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1035 = icmp sgt i32 %1034, 4
-  br i1 %1035, label %1036, label %1069
+1022:                                             ; preds = %1016
+  %1023 = load volatile i32, ptr @P2_is_marked, align 4
+  %1024 = sub nsw i32 %1023, 4
+  store volatile i32 %1024, ptr @P2_is_marked, align 4
+  %1025 = load i64, ptr %50, align 8
+  %1026 = load i64, ptr %51, align 8
+  %1027 = add nsw i64 %1025, %1026
+  store i64 %1027, ptr %52, align 8
+  %1028 = load i64, ptr %50, align 8
+  %1029 = load volatile i32, ptr @P3_is_marked, align 4
+  %1030 = add nsw i32 %1029, 0
+  %1031 = sext i32 %1030 to i64
+  %1032 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1031
+  store volatile i64 %1028, ptr %1032, align 8
+  %1033 = load i64, ptr %51, align 8
+  %1034 = load volatile i32, ptr @P3_is_marked, align 4
+  %1035 = add nsw i32 %1034, 1
+  %1036 = sext i32 %1035 to i64
+  %1037 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1036
+  store volatile i64 %1033, ptr %1037, align 8
+  %1038 = load i64, ptr %52, align 8
+  %1039 = load volatile i32, ptr @P3_is_marked, align 4
+  %1040 = add nsw i32 %1039, 2
+  %1041 = sext i32 %1040 to i64
+  %1042 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1041
+  store volatile i64 %1038, ptr %1042, align 8
+  %1043 = load volatile i32, ptr @P3_is_marked, align 4
+  %1044 = add nsw i32 %1043, 3
+  store volatile i32 %1044, ptr @P3_is_marked, align 4
+  br label %1045
 
-1036:                                             ; preds = %1033
-  %1037 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1038 = icmp slt i32 %1037, 4
-  br i1 %1038, label %1039, label %1069
+1045:                                             ; preds = %1022, %1016
+  br label %1046
 
-1039:                                             ; preds = %1036
-  %1040 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1041 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1042 = icmp eq i64 %1040, %1041
-  br i1 %1042, label %1043, label %1069
+1046:                                             ; preds = %1045, %1012, %1008, %1004, %1001
+  %1047 = load volatile i32, ptr @P2_is_marked, align 4
+  %1048 = icmp sge i32 %1047, 4
+  br i1 %1048, label %1049, label %1091
 
-1043:                                             ; preds = %1039
-  %1044 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1045 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1046 = icmp eq i64 %1044, %1045
-  br i1 %1046, label %1047, label %1069
+1049:                                             ; preds = %1046
+  %1050 = load volatile i32, ptr @P3_is_marked, align 4
+  %1051 = add nsw i32 %1050, 3
+  %1052 = icmp sle i32 %1051, 6
+  br i1 %1052, label %1053, label %1091
 
-1047:                                             ; preds = %1043
-  %1048 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1049 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1050 = icmp sgt i64 %1049, %1048
-  br i1 %1050, label %1051, label %1069
+1053:                                             ; preds = %1049
+  %1054 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1055 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1056 = icmp eq i64 %1054, %1055
+  br i1 %1056, label %1057, label %1091
 
-1051:                                             ; preds = %1047
-  %1052 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1052, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1053 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1054 = add nsw i32 %1053, -4
-  store volatile i32 %1054, ptr @P2_is_marked, align 4, !tbaa !5
-  %1055 = add nsw i64 %1049, %1048
-  %1056 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1057 = sext i32 %1056 to i64
-  %1058 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1057
-  store volatile i64 %1048, ptr %1058, align 8, !tbaa !9
-  %1059 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1060 = add nsw i32 %1059, 1
-  %1061 = sext i32 %1060 to i64
-  %1062 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1061
-  store volatile i64 %1049, ptr %1062, align 8, !tbaa !9
-  %1063 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1064 = add nsw i32 %1063, 2
-  %1065 = sext i32 %1064 to i64
-  %1066 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1065
-  store volatile i64 %1055, ptr %1066, align 8, !tbaa !9
-  %1067 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1068 = add nsw i32 %1067, 3
-  store volatile i32 %1068, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1069
+1057:                                             ; preds = %1053
+  %1058 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1059 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1060 = icmp eq i64 %1058, %1059
+  br i1 %1060, label %1061, label %1091
 
-1069:                                             ; preds = %1051, %1047, %1043, %1039, %1036, %1033
-  %1070 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1071 = icmp sgt i32 %1070, 4
-  br i1 %1071, label %1072, label %1105
+1061:                                             ; preds = %1057
+  %1062 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1062, ptr %53, align 8
+  %1063 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1063, ptr %54, align 8
+  %1064 = load i64, ptr %54, align 8
+  %1065 = load i64, ptr %53, align 8
+  %1066 = icmp sgt i64 %1064, %1065
+  br i1 %1066, label %1067, label %1090
 
-1072:                                             ; preds = %1069
-  %1073 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1074 = icmp slt i32 %1073, 4
-  br i1 %1074, label %1075, label %1105
+1067:                                             ; preds = %1061
+  %1068 = load volatile i32, ptr @P2_is_marked, align 4
+  %1069 = sub nsw i32 %1068, 4
+  store volatile i32 %1069, ptr @P2_is_marked, align 4
+  %1070 = load i64, ptr %53, align 8
+  %1071 = load i64, ptr %54, align 8
+  %1072 = add nsw i64 %1070, %1071
+  store i64 %1072, ptr %55, align 8
+  %1073 = load i64, ptr %53, align 8
+  %1074 = load volatile i32, ptr @P3_is_marked, align 4
+  %1075 = add nsw i32 %1074, 0
+  %1076 = sext i32 %1075 to i64
+  %1077 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1076
+  store volatile i64 %1073, ptr %1077, align 8
+  %1078 = load i64, ptr %54, align 8
+  %1079 = load volatile i32, ptr @P3_is_marked, align 4
+  %1080 = add nsw i32 %1079, 1
+  %1081 = sext i32 %1080 to i64
+  %1082 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1081
+  store volatile i64 %1078, ptr %1082, align 8
+  %1083 = load i64, ptr %55, align 8
+  %1084 = load volatile i32, ptr @P3_is_marked, align 4
+  %1085 = add nsw i32 %1084, 2
+  %1086 = sext i32 %1085 to i64
+  %1087 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1086
+  store volatile i64 %1083, ptr %1087, align 8
+  %1088 = load volatile i32, ptr @P3_is_marked, align 4
+  %1089 = add nsw i32 %1088, 3
+  store volatile i32 %1089, ptr @P3_is_marked, align 4
+  br label %1090
 
-1075:                                             ; preds = %1072
-  %1076 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1077 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1078 = icmp eq i64 %1076, %1077
-  br i1 %1078, label %1079, label %1105
+1090:                                             ; preds = %1067, %1061
+  br label %1091
 
-1079:                                             ; preds = %1075
-  %1080 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1081 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1082 = icmp eq i64 %1080, %1081
-  br i1 %1082, label %1083, label %1105
+1091:                                             ; preds = %1090, %1057, %1053, %1049, %1046
+  %1092 = load volatile i32, ptr @P2_is_marked, align 4
+  %1093 = icmp sge i32 %1092, 4
+  br i1 %1093, label %1094, label %1136
 
-1083:                                             ; preds = %1079
-  %1084 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1085 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1086 = icmp sgt i64 %1085, %1084
-  br i1 %1086, label %1087, label %1105
+1094:                                             ; preds = %1091
+  %1095 = load volatile i32, ptr @P3_is_marked, align 4
+  %1096 = add nsw i32 %1095, 3
+  %1097 = icmp sle i32 %1096, 6
+  br i1 %1097, label %1098, label %1136
 
-1087:                                             ; preds = %1083
-  %1088 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1088, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1089 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1090 = add nsw i32 %1089, -4
-  store volatile i32 %1090, ptr @P2_is_marked, align 4, !tbaa !5
-  %1091 = add nsw i64 %1085, %1084
-  %1092 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1093 = sext i32 %1092 to i64
-  %1094 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1093
-  store volatile i64 %1084, ptr %1094, align 8, !tbaa !9
-  %1095 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1096 = add nsw i32 %1095, 1
-  %1097 = sext i32 %1096 to i64
-  %1098 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1097
-  store volatile i64 %1085, ptr %1098, align 8, !tbaa !9
-  %1099 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1100 = add nsw i32 %1099, 2
-  %1101 = sext i32 %1100 to i64
-  %1102 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1101
-  store volatile i64 %1091, ptr %1102, align 8, !tbaa !9
-  %1103 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1104 = add nsw i32 %1103, 3
-  store volatile i32 %1104, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1105
+1098:                                             ; preds = %1094
+  %1099 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1100 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1101 = icmp eq i64 %1099, %1100
+  br i1 %1101, label %1102, label %1136
 
-1105:                                             ; preds = %1087, %1083, %1079, %1075, %1072, %1069
-  %1106 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1107 = icmp sgt i32 %1106, 4
-  br i1 %1107, label %1108, label %1141
+1102:                                             ; preds = %1098
+  %1103 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1104 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1105 = icmp eq i64 %1103, %1104
+  br i1 %1105, label %1106, label %1136
 
-1108:                                             ; preds = %1105
-  %1109 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1110 = icmp slt i32 %1109, 4
-  br i1 %1110, label %1111, label %1141
+1106:                                             ; preds = %1102
+  %1107 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1107, ptr %56, align 8
+  %1108 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1108, ptr %57, align 8
+  %1109 = load i64, ptr %57, align 8
+  %1110 = load i64, ptr %56, align 8
+  %1111 = icmp sgt i64 %1109, %1110
+  br i1 %1111, label %1112, label %1135
 
-1111:                                             ; preds = %1108
-  %1112 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1113 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1114 = icmp eq i64 %1112, %1113
-  br i1 %1114, label %1115, label %1141
+1112:                                             ; preds = %1106
+  %1113 = load volatile i32, ptr @P2_is_marked, align 4
+  %1114 = sub nsw i32 %1113, 4
+  store volatile i32 %1114, ptr @P2_is_marked, align 4
+  %1115 = load i64, ptr %56, align 8
+  %1116 = load i64, ptr %57, align 8
+  %1117 = add nsw i64 %1115, %1116
+  store i64 %1117, ptr %58, align 8
+  %1118 = load i64, ptr %56, align 8
+  %1119 = load volatile i32, ptr @P3_is_marked, align 4
+  %1120 = add nsw i32 %1119, 0
+  %1121 = sext i32 %1120 to i64
+  %1122 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1121
+  store volatile i64 %1118, ptr %1122, align 8
+  %1123 = load i64, ptr %57, align 8
+  %1124 = load volatile i32, ptr @P3_is_marked, align 4
+  %1125 = add nsw i32 %1124, 1
+  %1126 = sext i32 %1125 to i64
+  %1127 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1126
+  store volatile i64 %1123, ptr %1127, align 8
+  %1128 = load i64, ptr %58, align 8
+  %1129 = load volatile i32, ptr @P3_is_marked, align 4
+  %1130 = add nsw i32 %1129, 2
+  %1131 = sext i32 %1130 to i64
+  %1132 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1131
+  store volatile i64 %1128, ptr %1132, align 8
+  %1133 = load volatile i32, ptr @P3_is_marked, align 4
+  %1134 = add nsw i32 %1133, 3
+  store volatile i32 %1134, ptr @P3_is_marked, align 4
+  br label %1135
 
-1115:                                             ; preds = %1111
-  %1116 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1117 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1118 = icmp eq i64 %1116, %1117
-  br i1 %1118, label %1119, label %1141
+1135:                                             ; preds = %1112, %1106
+  br label %1136
 
-1119:                                             ; preds = %1115
-  %1120 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1121 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1122 = icmp sgt i64 %1121, %1120
-  br i1 %1122, label %1123, label %1141
+1136:                                             ; preds = %1135, %1102, %1098, %1094, %1091
+  %1137 = load volatile i32, ptr @P2_is_marked, align 4
+  %1138 = icmp sge i32 %1137, 4
+  br i1 %1138, label %1139, label %1181
 
-1123:                                             ; preds = %1119
-  %1124 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1124, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1125 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1126 = add nsw i32 %1125, -4
-  store volatile i32 %1126, ptr @P2_is_marked, align 4, !tbaa !5
-  %1127 = add nsw i64 %1121, %1120
-  %1128 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1129 = sext i32 %1128 to i64
-  %1130 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1129
-  store volatile i64 %1120, ptr %1130, align 8, !tbaa !9
-  %1131 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1132 = add nsw i32 %1131, 1
-  %1133 = sext i32 %1132 to i64
-  %1134 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1133
-  store volatile i64 %1121, ptr %1134, align 8, !tbaa !9
-  %1135 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1136 = add nsw i32 %1135, 2
-  %1137 = sext i32 %1136 to i64
-  %1138 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1137
-  store volatile i64 %1127, ptr %1138, align 8, !tbaa !9
-  %1139 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1140 = add nsw i32 %1139, 3
-  store volatile i32 %1140, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1141
+1139:                                             ; preds = %1136
+  %1140 = load volatile i32, ptr @P3_is_marked, align 4
+  %1141 = add nsw i32 %1140, 3
+  %1142 = icmp sle i32 %1141, 6
+  br i1 %1142, label %1143, label %1181
 
-1141:                                             ; preds = %1123, %1119, %1115, %1111, %1108, %1105
-  %1142 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1143 = icmp sgt i32 %1142, 4
-  br i1 %1143, label %1144, label %1177
+1143:                                             ; preds = %1139
+  %1144 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1145 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1146 = icmp eq i64 %1144, %1145
+  br i1 %1146, label %1147, label %1181
 
-1144:                                             ; preds = %1141
-  %1145 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1146 = icmp slt i32 %1145, 4
-  br i1 %1146, label %1147, label %1177
-
-1147:                                             ; preds = %1144
-  %1148 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1149 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
+1147:                                             ; preds = %1143
+  %1148 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1149 = load volatile i64, ptr @P2_marking_member_0, align 16
   %1150 = icmp eq i64 %1148, %1149
-  br i1 %1150, label %1151, label %1177
+  br i1 %1150, label %1151, label %1181
 
 1151:                                             ; preds = %1147
-  %1152 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1153 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1154 = icmp eq i64 %1152, %1153
-  br i1 %1154, label %1155, label %1177
+  %1152 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1152, ptr %59, align 8
+  %1153 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1153, ptr %60, align 8
+  %1154 = load i64, ptr %60, align 8
+  %1155 = load i64, ptr %59, align 8
+  %1156 = icmp sgt i64 %1154, %1155
+  br i1 %1156, label %1157, label %1180
 
-1155:                                             ; preds = %1151
-  %1156 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1157 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1158 = icmp sgt i64 %1157, %1156
-  br i1 %1158, label %1159, label %1177
+1157:                                             ; preds = %1151
+  %1158 = load volatile i32, ptr @P2_is_marked, align 4
+  %1159 = sub nsw i32 %1158, 4
+  store volatile i32 %1159, ptr @P2_is_marked, align 4
+  %1160 = load i64, ptr %59, align 8
+  %1161 = load i64, ptr %60, align 8
+  %1162 = add nsw i64 %1160, %1161
+  store i64 %1162, ptr %61, align 8
+  %1163 = load i64, ptr %59, align 8
+  %1164 = load volatile i32, ptr @P3_is_marked, align 4
+  %1165 = add nsw i32 %1164, 0
+  %1166 = sext i32 %1165 to i64
+  %1167 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1166
+  store volatile i64 %1163, ptr %1167, align 8
+  %1168 = load i64, ptr %60, align 8
+  %1169 = load volatile i32, ptr @P3_is_marked, align 4
+  %1170 = add nsw i32 %1169, 1
+  %1171 = sext i32 %1170 to i64
+  %1172 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1171
+  store volatile i64 %1168, ptr %1172, align 8
+  %1173 = load i64, ptr %61, align 8
+  %1174 = load volatile i32, ptr @P3_is_marked, align 4
+  %1175 = add nsw i32 %1174, 2
+  %1176 = sext i32 %1175 to i64
+  %1177 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1176
+  store volatile i64 %1173, ptr %1177, align 8
+  %1178 = load volatile i32, ptr @P3_is_marked, align 4
+  %1179 = add nsw i32 %1178, 3
+  store volatile i32 %1179, ptr @P3_is_marked, align 4
+  br label %1180
 
-1159:                                             ; preds = %1155
-  %1160 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1160, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1161 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1162 = add nsw i32 %1161, -4
-  store volatile i32 %1162, ptr @P2_is_marked, align 4, !tbaa !5
-  %1163 = add nsw i64 %1157, %1156
-  %1164 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1165 = sext i32 %1164 to i64
-  %1166 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1165
-  store volatile i64 %1156, ptr %1166, align 8, !tbaa !9
-  %1167 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1168 = add nsw i32 %1167, 1
-  %1169 = sext i32 %1168 to i64
-  %1170 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1169
-  store volatile i64 %1157, ptr %1170, align 8, !tbaa !9
-  %1171 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1172 = add nsw i32 %1171, 2
-  %1173 = sext i32 %1172 to i64
-  %1174 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1173
-  store volatile i64 %1163, ptr %1174, align 8, !tbaa !9
-  %1175 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1176 = add nsw i32 %1175, 3
-  store volatile i32 %1176, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1177
+1180:                                             ; preds = %1157, %1151
+  br label %1181
 
-1177:                                             ; preds = %1159, %1155, %1151, %1147, %1144, %1141
-  %1178 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1179 = icmp sgt i32 %1178, 4
-  br i1 %1179, label %1180, label %1213
+1181:                                             ; preds = %1180, %1147, %1143, %1139, %1136
+  %1182 = load volatile i32, ptr @P2_is_marked, align 4
+  %1183 = icmp sge i32 %1182, 4
+  br i1 %1183, label %1184, label %1226
 
-1180:                                             ; preds = %1177
-  %1181 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1182 = icmp slt i32 %1181, 4
-  br i1 %1182, label %1183, label %1213
+1184:                                             ; preds = %1181
+  %1185 = load volatile i32, ptr @P3_is_marked, align 4
+  %1186 = add nsw i32 %1185, 3
+  %1187 = icmp sle i32 %1186, 6
+  br i1 %1187, label %1188, label %1226
 
-1183:                                             ; preds = %1180
-  %1184 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1185 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1186 = icmp eq i64 %1184, %1185
-  br i1 %1186, label %1187, label %1213
+1188:                                             ; preds = %1184
+  %1189 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1190 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1191 = icmp eq i64 %1189, %1190
+  br i1 %1191, label %1192, label %1226
 
-1187:                                             ; preds = %1183
-  %1188 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1189 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1190 = icmp eq i64 %1188, %1189
-  br i1 %1190, label %1191, label %1213
+1192:                                             ; preds = %1188
+  %1193 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1194 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1195 = icmp eq i64 %1193, %1194
+  br i1 %1195, label %1196, label %1226
 
-1191:                                             ; preds = %1187
-  %1192 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1193 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1194 = icmp sgt i64 %1193, %1192
-  br i1 %1194, label %1195, label %1213
+1196:                                             ; preds = %1192
+  %1197 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1197, ptr %62, align 8
+  %1198 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1198, ptr %63, align 8
+  %1199 = load i64, ptr %63, align 8
+  %1200 = load i64, ptr %62, align 8
+  %1201 = icmp sgt i64 %1199, %1200
+  br i1 %1201, label %1202, label %1225
 
-1195:                                             ; preds = %1191
-  %1196 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1196, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1197 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1198 = add nsw i32 %1197, -4
-  store volatile i32 %1198, ptr @P2_is_marked, align 4, !tbaa !5
-  %1199 = add nsw i64 %1193, %1192
-  %1200 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1201 = sext i32 %1200 to i64
-  %1202 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1201
-  store volatile i64 %1192, ptr %1202, align 8, !tbaa !9
-  %1203 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1204 = add nsw i32 %1203, 1
-  %1205 = sext i32 %1204 to i64
-  %1206 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1205
-  store volatile i64 %1193, ptr %1206, align 8, !tbaa !9
-  %1207 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1208 = add nsw i32 %1207, 2
-  %1209 = sext i32 %1208 to i64
-  %1210 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1209
-  store volatile i64 %1199, ptr %1210, align 8, !tbaa !9
-  %1211 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1212 = add nsw i32 %1211, 3
-  store volatile i32 %1212, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1213
+1202:                                             ; preds = %1196
+  %1203 = load volatile i32, ptr @P2_is_marked, align 4
+  %1204 = sub nsw i32 %1203, 4
+  store volatile i32 %1204, ptr @P2_is_marked, align 4
+  %1205 = load i64, ptr %62, align 8
+  %1206 = load i64, ptr %63, align 8
+  %1207 = add nsw i64 %1205, %1206
+  store i64 %1207, ptr %64, align 8
+  %1208 = load i64, ptr %62, align 8
+  %1209 = load volatile i32, ptr @P3_is_marked, align 4
+  %1210 = add nsw i32 %1209, 0
+  %1211 = sext i32 %1210 to i64
+  %1212 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1211
+  store volatile i64 %1208, ptr %1212, align 8
+  %1213 = load i64, ptr %63, align 8
+  %1214 = load volatile i32, ptr @P3_is_marked, align 4
+  %1215 = add nsw i32 %1214, 1
+  %1216 = sext i32 %1215 to i64
+  %1217 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1216
+  store volatile i64 %1213, ptr %1217, align 8
+  %1218 = load i64, ptr %64, align 8
+  %1219 = load volatile i32, ptr @P3_is_marked, align 4
+  %1220 = add nsw i32 %1219, 2
+  %1221 = sext i32 %1220 to i64
+  %1222 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1221
+  store volatile i64 %1218, ptr %1222, align 8
+  %1223 = load volatile i32, ptr @P3_is_marked, align 4
+  %1224 = add nsw i32 %1223, 3
+  store volatile i32 %1224, ptr @P3_is_marked, align 4
+  br label %1225
 
-1213:                                             ; preds = %1195, %1191, %1187, %1183, %1180, %1177
-  %1214 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1215 = icmp sgt i32 %1214, 4
-  br i1 %1215, label %1216, label %1249
+1225:                                             ; preds = %1202, %1196
+  br label %1226
 
-1216:                                             ; preds = %1213
-  %1217 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1218 = icmp slt i32 %1217, 4
-  br i1 %1218, label %1219, label %1249
+1226:                                             ; preds = %1225, %1192, %1188, %1184, %1181
+  %1227 = load volatile i32, ptr @P2_is_marked, align 4
+  %1228 = icmp sge i32 %1227, 4
+  br i1 %1228, label %1229, label %1271
 
-1219:                                             ; preds = %1216
-  %1220 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1221 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1222 = icmp eq i64 %1220, %1221
-  br i1 %1222, label %1223, label %1249
+1229:                                             ; preds = %1226
+  %1230 = load volatile i32, ptr @P3_is_marked, align 4
+  %1231 = add nsw i32 %1230, 3
+  %1232 = icmp sle i32 %1231, 6
+  br i1 %1232, label %1233, label %1271
 
-1223:                                             ; preds = %1219
-  %1224 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1225 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1226 = icmp eq i64 %1224, %1225
-  br i1 %1226, label %1227, label %1249
+1233:                                             ; preds = %1229
+  %1234 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1235 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1236 = icmp eq i64 %1234, %1235
+  br i1 %1236, label %1237, label %1271
 
-1227:                                             ; preds = %1223
-  %1228 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1229 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1230 = icmp sgt i64 %1229, %1228
-  br i1 %1230, label %1231, label %1249
+1237:                                             ; preds = %1233
+  %1238 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1239 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1240 = icmp eq i64 %1238, %1239
+  br i1 %1240, label %1241, label %1271
 
-1231:                                             ; preds = %1227
-  %1232 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %1232, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1233 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1234 = add nsw i32 %1233, -4
-  store volatile i32 %1234, ptr @P2_is_marked, align 4, !tbaa !5
-  %1235 = add nsw i64 %1229, %1228
-  %1236 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1237 = sext i32 %1236 to i64
-  %1238 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1237
-  store volatile i64 %1228, ptr %1238, align 8, !tbaa !9
-  %1239 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1240 = add nsw i32 %1239, 1
-  %1241 = sext i32 %1240 to i64
-  %1242 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1241
-  store volatile i64 %1229, ptr %1242, align 8, !tbaa !9
-  %1243 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1244 = add nsw i32 %1243, 2
-  %1245 = sext i32 %1244 to i64
-  %1246 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1245
-  store volatile i64 %1235, ptr %1246, align 8, !tbaa !9
-  %1247 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1248 = add nsw i32 %1247, 3
-  store volatile i32 %1248, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1249
+1241:                                             ; preds = %1237
+  %1242 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1242, ptr %65, align 8
+  %1243 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1243, ptr %66, align 8
+  %1244 = load i64, ptr %66, align 8
+  %1245 = load i64, ptr %65, align 8
+  %1246 = icmp sgt i64 %1244, %1245
+  br i1 %1246, label %1247, label %1270
 
-1249:                                             ; preds = %1231, %1227, %1223, %1219, %1216, %1213
-  %1250 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1251 = icmp sgt i32 %1250, 4
-  br i1 %1251, label %1252, label %1285
+1247:                                             ; preds = %1241
+  %1248 = load volatile i32, ptr @P2_is_marked, align 4
+  %1249 = sub nsw i32 %1248, 4
+  store volatile i32 %1249, ptr @P2_is_marked, align 4
+  %1250 = load i64, ptr %65, align 8
+  %1251 = load i64, ptr %66, align 8
+  %1252 = add nsw i64 %1250, %1251
+  store i64 %1252, ptr %67, align 8
+  %1253 = load i64, ptr %65, align 8
+  %1254 = load volatile i32, ptr @P3_is_marked, align 4
+  %1255 = add nsw i32 %1254, 0
+  %1256 = sext i32 %1255 to i64
+  %1257 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1256
+  store volatile i64 %1253, ptr %1257, align 8
+  %1258 = load i64, ptr %66, align 8
+  %1259 = load volatile i32, ptr @P3_is_marked, align 4
+  %1260 = add nsw i32 %1259, 1
+  %1261 = sext i32 %1260 to i64
+  %1262 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1261
+  store volatile i64 %1258, ptr %1262, align 8
+  %1263 = load i64, ptr %67, align 8
+  %1264 = load volatile i32, ptr @P3_is_marked, align 4
+  %1265 = add nsw i32 %1264, 2
+  %1266 = sext i32 %1265 to i64
+  %1267 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1266
+  store volatile i64 %1263, ptr %1267, align 8
+  %1268 = load volatile i32, ptr @P3_is_marked, align 4
+  %1269 = add nsw i32 %1268, 3
+  store volatile i32 %1269, ptr @P3_is_marked, align 4
+  br label %1270
 
-1252:                                             ; preds = %1249
-  %1253 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1254 = icmp slt i32 %1253, 4
-  br i1 %1254, label %1255, label %1285
+1270:                                             ; preds = %1247, %1241
+  br label %1271
 
-1255:                                             ; preds = %1252
-  %1256 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1257 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1258 = icmp eq i64 %1256, %1257
-  br i1 %1258, label %1259, label %1285
+1271:                                             ; preds = %1270, %1237, %1233, %1229, %1226
+  %1272 = load volatile i32, ptr @P2_is_marked, align 4
+  %1273 = icmp sge i32 %1272, 4
+  br i1 %1273, label %1274, label %1316
 
-1259:                                             ; preds = %1255
-  %1260 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1261 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1262 = icmp eq i64 %1260, %1261
-  br i1 %1262, label %1263, label %1285
+1274:                                             ; preds = %1271
+  %1275 = load volatile i32, ptr @P3_is_marked, align 4
+  %1276 = add nsw i32 %1275, 3
+  %1277 = icmp sle i32 %1276, 6
+  br i1 %1277, label %1278, label %1316
 
-1263:                                             ; preds = %1259
-  %1264 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1265 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1266 = icmp sgt i64 %1265, %1264
-  br i1 %1266, label %1267, label %1285
+1278:                                             ; preds = %1274
+  %1279 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1280 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1281 = icmp eq i64 %1279, %1280
+  br i1 %1281, label %1282, label %1316
 
-1267:                                             ; preds = %1263
-  %1268 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1268, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1269 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1270 = add nsw i32 %1269, -4
-  store volatile i32 %1270, ptr @P2_is_marked, align 4, !tbaa !5
-  %1271 = add nsw i64 %1265, %1264
-  %1272 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1273 = sext i32 %1272 to i64
-  %1274 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1273
-  store volatile i64 %1264, ptr %1274, align 8, !tbaa !9
-  %1275 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1276 = add nsw i32 %1275, 1
-  %1277 = sext i32 %1276 to i64
-  %1278 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1277
-  store volatile i64 %1265, ptr %1278, align 8, !tbaa !9
-  %1279 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1280 = add nsw i32 %1279, 2
-  %1281 = sext i32 %1280 to i64
-  %1282 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1281
-  store volatile i64 %1271, ptr %1282, align 8, !tbaa !9
-  %1283 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1284 = add nsw i32 %1283, 3
-  store volatile i32 %1284, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1285
+1282:                                             ; preds = %1278
+  %1283 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1284 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1285 = icmp eq i64 %1283, %1284
+  br i1 %1285, label %1286, label %1316
 
-1285:                                             ; preds = %1267, %1263, %1259, %1255, %1252, %1249
-  %1286 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1287 = icmp sgt i32 %1286, 4
-  br i1 %1287, label %1288, label %1321
+1286:                                             ; preds = %1282
+  %1287 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1287, ptr %68, align 8
+  %1288 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1288, ptr %69, align 8
+  %1289 = load i64, ptr %69, align 8
+  %1290 = load i64, ptr %68, align 8
+  %1291 = icmp sgt i64 %1289, %1290
+  br i1 %1291, label %1292, label %1315
 
-1288:                                             ; preds = %1285
-  %1289 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1290 = icmp slt i32 %1289, 4
-  br i1 %1290, label %1291, label %1321
+1292:                                             ; preds = %1286
+  %1293 = load volatile i32, ptr @P2_is_marked, align 4
+  %1294 = sub nsw i32 %1293, 4
+  store volatile i32 %1294, ptr @P2_is_marked, align 4
+  %1295 = load i64, ptr %68, align 8
+  %1296 = load i64, ptr %69, align 8
+  %1297 = add nsw i64 %1295, %1296
+  store i64 %1297, ptr %70, align 8
+  %1298 = load i64, ptr %68, align 8
+  %1299 = load volatile i32, ptr @P3_is_marked, align 4
+  %1300 = add nsw i32 %1299, 0
+  %1301 = sext i32 %1300 to i64
+  %1302 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1301
+  store volatile i64 %1298, ptr %1302, align 8
+  %1303 = load i64, ptr %69, align 8
+  %1304 = load volatile i32, ptr @P3_is_marked, align 4
+  %1305 = add nsw i32 %1304, 1
+  %1306 = sext i32 %1305 to i64
+  %1307 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1306
+  store volatile i64 %1303, ptr %1307, align 8
+  %1308 = load i64, ptr %70, align 8
+  %1309 = load volatile i32, ptr @P3_is_marked, align 4
+  %1310 = add nsw i32 %1309, 2
+  %1311 = sext i32 %1310 to i64
+  %1312 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1311
+  store volatile i64 %1308, ptr %1312, align 8
+  %1313 = load volatile i32, ptr @P3_is_marked, align 4
+  %1314 = add nsw i32 %1313, 3
+  store volatile i32 %1314, ptr @P3_is_marked, align 4
+  br label %1315
 
-1291:                                             ; preds = %1288
-  %1292 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1293 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1294 = icmp eq i64 %1292, %1293
-  br i1 %1294, label %1295, label %1321
+1315:                                             ; preds = %1292, %1286
+  br label %1316
 
-1295:                                             ; preds = %1291
-  %1296 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1297 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1298 = icmp eq i64 %1296, %1297
-  br i1 %1298, label %1299, label %1321
+1316:                                             ; preds = %1315, %1282, %1278, %1274, %1271
+  %1317 = load volatile i32, ptr @P2_is_marked, align 4
+  %1318 = icmp sge i32 %1317, 4
+  br i1 %1318, label %1319, label %1361
 
-1299:                                             ; preds = %1295
-  %1300 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1301 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1302 = icmp sgt i64 %1301, %1300
-  br i1 %1302, label %1303, label %1321
+1319:                                             ; preds = %1316
+  %1320 = load volatile i32, ptr @P3_is_marked, align 4
+  %1321 = add nsw i32 %1320, 3
+  %1322 = icmp sle i32 %1321, 6
+  br i1 %1322, label %1323, label %1361
 
-1303:                                             ; preds = %1299
-  %1304 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %1304, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1305 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1306 = add nsw i32 %1305, -4
-  store volatile i32 %1306, ptr @P2_is_marked, align 4, !tbaa !5
-  %1307 = add nsw i64 %1301, %1300
-  %1308 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1309 = sext i32 %1308 to i64
-  %1310 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1309
-  store volatile i64 %1300, ptr %1310, align 8, !tbaa !9
-  %1311 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1312 = add nsw i32 %1311, 1
-  %1313 = sext i32 %1312 to i64
-  %1314 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1313
-  store volatile i64 %1301, ptr %1314, align 8, !tbaa !9
-  %1315 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1316 = add nsw i32 %1315, 2
-  %1317 = sext i32 %1316 to i64
-  %1318 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1317
-  store volatile i64 %1307, ptr %1318, align 8, !tbaa !9
-  %1319 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1320 = add nsw i32 %1319, 3
-  store volatile i32 %1320, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1321
+1323:                                             ; preds = %1319
+  %1324 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1325 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1326 = icmp eq i64 %1324, %1325
+  br i1 %1326, label %1327, label %1361
 
-1321:                                             ; preds = %1303, %1299, %1295, %1291, %1288, %1285
-  %1322 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1323 = icmp sgt i32 %1322, 4
-  br i1 %1323, label %1324, label %1357
-
-1324:                                             ; preds = %1321
-  %1325 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1326 = icmp slt i32 %1325, 4
-  br i1 %1326, label %1327, label %1357
-
-1327:                                             ; preds = %1324
-  %1328 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1329 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
+1327:                                             ; preds = %1323
+  %1328 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1329 = load volatile i64, ptr @P2_marking_member_0, align 16
   %1330 = icmp eq i64 %1328, %1329
-  br i1 %1330, label %1331, label %1357
+  br i1 %1330, label %1331, label %1361
 
 1331:                                             ; preds = %1327
-  %1332 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1333 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1334 = icmp eq i64 %1332, %1333
-  br i1 %1334, label %1335, label %1357
+  %1332 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1332, ptr %71, align 8
+  %1333 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1333, ptr %72, align 8
+  %1334 = load i64, ptr %72, align 8
+  %1335 = load i64, ptr %71, align 8
+  %1336 = icmp sgt i64 %1334, %1335
+  br i1 %1336, label %1337, label %1360
 
-1335:                                             ; preds = %1331
-  %1336 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1337 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1338 = icmp sgt i64 %1337, %1336
-  br i1 %1338, label %1339, label %1357
+1337:                                             ; preds = %1331
+  %1338 = load volatile i32, ptr @P2_is_marked, align 4
+  %1339 = sub nsw i32 %1338, 4
+  store volatile i32 %1339, ptr @P2_is_marked, align 4
+  %1340 = load i64, ptr %71, align 8
+  %1341 = load i64, ptr %72, align 8
+  %1342 = add nsw i64 %1340, %1341
+  store i64 %1342, ptr %73, align 8
+  %1343 = load i64, ptr %71, align 8
+  %1344 = load volatile i32, ptr @P3_is_marked, align 4
+  %1345 = add nsw i32 %1344, 0
+  %1346 = sext i32 %1345 to i64
+  %1347 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1346
+  store volatile i64 %1343, ptr %1347, align 8
+  %1348 = load i64, ptr %72, align 8
+  %1349 = load volatile i32, ptr @P3_is_marked, align 4
+  %1350 = add nsw i32 %1349, 1
+  %1351 = sext i32 %1350 to i64
+  %1352 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1351
+  store volatile i64 %1348, ptr %1352, align 8
+  %1353 = load i64, ptr %73, align 8
+  %1354 = load volatile i32, ptr @P3_is_marked, align 4
+  %1355 = add nsw i32 %1354, 2
+  %1356 = sext i32 %1355 to i64
+  %1357 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1356
+  store volatile i64 %1353, ptr %1357, align 8
+  %1358 = load volatile i32, ptr @P3_is_marked, align 4
+  %1359 = add nsw i32 %1358, 3
+  store volatile i32 %1359, ptr @P3_is_marked, align 4
+  br label %1360
 
-1339:                                             ; preds = %1335
-  %1340 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1340, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1341 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1342 = add nsw i32 %1341, -4
-  store volatile i32 %1342, ptr @P2_is_marked, align 4, !tbaa !5
-  %1343 = add nsw i64 %1337, %1336
-  %1344 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1345 = sext i32 %1344 to i64
-  %1346 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1345
-  store volatile i64 %1336, ptr %1346, align 8, !tbaa !9
-  %1347 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1348 = add nsw i32 %1347, 1
-  %1349 = sext i32 %1348 to i64
-  %1350 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1349
-  store volatile i64 %1337, ptr %1350, align 8, !tbaa !9
-  %1351 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1352 = add nsw i32 %1351, 2
-  %1353 = sext i32 %1352 to i64
-  %1354 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1353
-  store volatile i64 %1343, ptr %1354, align 8, !tbaa !9
-  %1355 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1356 = add nsw i32 %1355, 3
-  store volatile i32 %1356, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1357
+1360:                                             ; preds = %1337, %1331
+  br label %1361
 
-1357:                                             ; preds = %1339, %1335, %1331, %1327, %1324, %1321
-  %1358 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1359 = icmp sgt i32 %1358, 4
-  br i1 %1359, label %1360, label %1393
+1361:                                             ; preds = %1360, %1327, %1323, %1319, %1316
+  %1362 = load volatile i32, ptr @P2_is_marked, align 4
+  %1363 = icmp sge i32 %1362, 4
+  br i1 %1363, label %1364, label %1406
 
-1360:                                             ; preds = %1357
-  %1361 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1362 = icmp slt i32 %1361, 4
-  br i1 %1362, label %1363, label %1393
+1364:                                             ; preds = %1361
+  %1365 = load volatile i32, ptr @P3_is_marked, align 4
+  %1366 = add nsw i32 %1365, 3
+  %1367 = icmp sle i32 %1366, 6
+  br i1 %1367, label %1368, label %1406
 
-1363:                                             ; preds = %1360
-  %1364 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1365 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1366 = icmp eq i64 %1364, %1365
-  br i1 %1366, label %1367, label %1393
+1368:                                             ; preds = %1364
+  %1369 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1370 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1371 = icmp eq i64 %1369, %1370
+  br i1 %1371, label %1372, label %1406
 
-1367:                                             ; preds = %1363
-  %1368 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1369 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1370 = icmp eq i64 %1368, %1369
-  br i1 %1370, label %1371, label %1393
+1372:                                             ; preds = %1368
+  %1373 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1374 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1375 = icmp eq i64 %1373, %1374
+  br i1 %1375, label %1376, label %1406
 
-1371:                                             ; preds = %1367
-  %1372 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1373 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1374 = icmp sgt i64 %1373, %1372
-  br i1 %1374, label %1375, label %1393
+1376:                                             ; preds = %1372
+  %1377 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1377, ptr %74, align 8
+  %1378 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1378, ptr %75, align 8
+  %1379 = load i64, ptr %75, align 8
+  %1380 = load i64, ptr %74, align 8
+  %1381 = icmp sgt i64 %1379, %1380
+  br i1 %1381, label %1382, label %1405
 
-1375:                                             ; preds = %1371
-  %1376 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %1376, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1377 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1378 = add nsw i32 %1377, -4
-  store volatile i32 %1378, ptr @P2_is_marked, align 4, !tbaa !5
-  %1379 = add nsw i64 %1373, %1372
-  %1380 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1381 = sext i32 %1380 to i64
-  %1382 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1381
-  store volatile i64 %1372, ptr %1382, align 8, !tbaa !9
-  %1383 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1384 = add nsw i32 %1383, 1
-  %1385 = sext i32 %1384 to i64
-  %1386 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1385
-  store volatile i64 %1373, ptr %1386, align 8, !tbaa !9
-  %1387 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1388 = add nsw i32 %1387, 2
-  %1389 = sext i32 %1388 to i64
-  %1390 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1389
-  store volatile i64 %1379, ptr %1390, align 8, !tbaa !9
-  %1391 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1392 = add nsw i32 %1391, 3
-  store volatile i32 %1392, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1393
+1382:                                             ; preds = %1376
+  %1383 = load volatile i32, ptr @P2_is_marked, align 4
+  %1384 = sub nsw i32 %1383, 4
+  store volatile i32 %1384, ptr @P2_is_marked, align 4
+  %1385 = load i64, ptr %74, align 8
+  %1386 = load i64, ptr %75, align 8
+  %1387 = add nsw i64 %1385, %1386
+  store i64 %1387, ptr %76, align 8
+  %1388 = load i64, ptr %74, align 8
+  %1389 = load volatile i32, ptr @P3_is_marked, align 4
+  %1390 = add nsw i32 %1389, 0
+  %1391 = sext i32 %1390 to i64
+  %1392 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1391
+  store volatile i64 %1388, ptr %1392, align 8
+  %1393 = load i64, ptr %75, align 8
+  %1394 = load volatile i32, ptr @P3_is_marked, align 4
+  %1395 = add nsw i32 %1394, 1
+  %1396 = sext i32 %1395 to i64
+  %1397 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1396
+  store volatile i64 %1393, ptr %1397, align 8
+  %1398 = load i64, ptr %76, align 8
+  %1399 = load volatile i32, ptr @P3_is_marked, align 4
+  %1400 = add nsw i32 %1399, 2
+  %1401 = sext i32 %1400 to i64
+  %1402 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1401
+  store volatile i64 %1398, ptr %1402, align 8
+  %1403 = load volatile i32, ptr @P3_is_marked, align 4
+  %1404 = add nsw i32 %1403, 3
+  store volatile i32 %1404, ptr @P3_is_marked, align 4
+  br label %1405
 
-1393:                                             ; preds = %1375, %1371, %1367, %1363, %1360, %1357
-  %1394 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1395 = icmp sgt i32 %1394, 4
-  br i1 %1395, label %1396, label %1429
+1405:                                             ; preds = %1382, %1376
+  br label %1406
 
-1396:                                             ; preds = %1393
-  %1397 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1398 = icmp slt i32 %1397, 4
-  br i1 %1398, label %1399, label %1429
+1406:                                             ; preds = %1405, %1372, %1368, %1364, %1361
+  %1407 = load volatile i32, ptr @P2_is_marked, align 4
+  %1408 = icmp sge i32 %1407, 4
+  br i1 %1408, label %1409, label %1451
 
-1399:                                             ; preds = %1396
-  %1400 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1401 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1402 = icmp eq i64 %1400, %1401
-  br i1 %1402, label %1403, label %1429
+1409:                                             ; preds = %1406
+  %1410 = load volatile i32, ptr @P3_is_marked, align 4
+  %1411 = add nsw i32 %1410, 3
+  %1412 = icmp sle i32 %1411, 6
+  br i1 %1412, label %1413, label %1451
 
-1403:                                             ; preds = %1399
-  %1404 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1405 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1406 = icmp eq i64 %1404, %1405
-  br i1 %1406, label %1407, label %1429
+1413:                                             ; preds = %1409
+  %1414 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1415 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1416 = icmp eq i64 %1414, %1415
+  br i1 %1416, label %1417, label %1451
 
-1407:                                             ; preds = %1403
-  %1408 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1409 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1410 = icmp sgt i64 %1409, %1408
-  br i1 %1410, label %1411, label %1429
+1417:                                             ; preds = %1413
+  %1418 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1419 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1420 = icmp eq i64 %1418, %1419
+  br i1 %1420, label %1421, label %1451
 
-1411:                                             ; preds = %1407
-  %1412 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1412, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1413 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1414 = add nsw i32 %1413, -4
-  store volatile i32 %1414, ptr @P2_is_marked, align 4, !tbaa !5
-  %1415 = add nsw i64 %1409, %1408
-  %1416 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1417 = sext i32 %1416 to i64
-  %1418 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1417
-  store volatile i64 %1408, ptr %1418, align 8, !tbaa !9
-  %1419 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1420 = add nsw i32 %1419, 1
-  %1421 = sext i32 %1420 to i64
-  %1422 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1421
-  store volatile i64 %1409, ptr %1422, align 8, !tbaa !9
-  %1423 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1424 = add nsw i32 %1423, 2
-  %1425 = sext i32 %1424 to i64
-  %1426 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1425
-  store volatile i64 %1415, ptr %1426, align 8, !tbaa !9
-  %1427 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1428 = add nsw i32 %1427, 3
-  store volatile i32 %1428, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1429
+1421:                                             ; preds = %1417
+  %1422 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1422, ptr %77, align 8
+  %1423 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1423, ptr %78, align 8
+  %1424 = load i64, ptr %78, align 8
+  %1425 = load i64, ptr %77, align 8
+  %1426 = icmp sgt i64 %1424, %1425
+  br i1 %1426, label %1427, label %1450
 
-1429:                                             ; preds = %1411, %1407, %1403, %1399, %1396, %1393
-  %1430 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1431 = icmp sgt i32 %1430, 4
-  br i1 %1431, label %1432, label %1465
+1427:                                             ; preds = %1421
+  %1428 = load volatile i32, ptr @P2_is_marked, align 4
+  %1429 = sub nsw i32 %1428, 4
+  store volatile i32 %1429, ptr @P2_is_marked, align 4
+  %1430 = load i64, ptr %77, align 8
+  %1431 = load i64, ptr %78, align 8
+  %1432 = add nsw i64 %1430, %1431
+  store i64 %1432, ptr %79, align 8
+  %1433 = load i64, ptr %77, align 8
+  %1434 = load volatile i32, ptr @P3_is_marked, align 4
+  %1435 = add nsw i32 %1434, 0
+  %1436 = sext i32 %1435 to i64
+  %1437 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1436
+  store volatile i64 %1433, ptr %1437, align 8
+  %1438 = load i64, ptr %78, align 8
+  %1439 = load volatile i32, ptr @P3_is_marked, align 4
+  %1440 = add nsw i32 %1439, 1
+  %1441 = sext i32 %1440 to i64
+  %1442 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1441
+  store volatile i64 %1438, ptr %1442, align 8
+  %1443 = load i64, ptr %79, align 8
+  %1444 = load volatile i32, ptr @P3_is_marked, align 4
+  %1445 = add nsw i32 %1444, 2
+  %1446 = sext i32 %1445 to i64
+  %1447 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1446
+  store volatile i64 %1443, ptr %1447, align 8
+  %1448 = load volatile i32, ptr @P3_is_marked, align 4
+  %1449 = add nsw i32 %1448, 3
+  store volatile i32 %1449, ptr @P3_is_marked, align 4
+  br label %1450
 
-1432:                                             ; preds = %1429
-  %1433 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1434 = icmp slt i32 %1433, 4
-  br i1 %1434, label %1435, label %1465
+1450:                                             ; preds = %1427, %1421
+  br label %1451
 
-1435:                                             ; preds = %1432
-  %1436 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1437 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1438 = icmp eq i64 %1436, %1437
-  br i1 %1438, label %1439, label %1465
+1451:                                             ; preds = %1450, %1417, %1413, %1409, %1406
+  %1452 = load volatile i32, ptr @P2_is_marked, align 4
+  %1453 = icmp sge i32 %1452, 4
+  br i1 %1453, label %1454, label %1496
 
-1439:                                             ; preds = %1435
-  %1440 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1441 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1442 = icmp eq i64 %1440, %1441
-  br i1 %1442, label %1443, label %1465
+1454:                                             ; preds = %1451
+  %1455 = load volatile i32, ptr @P3_is_marked, align 4
+  %1456 = add nsw i32 %1455, 3
+  %1457 = icmp sle i32 %1456, 6
+  br i1 %1457, label %1458, label %1496
 
-1443:                                             ; preds = %1439
-  %1444 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1445 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1446 = icmp sgt i64 %1445, %1444
-  br i1 %1446, label %1447, label %1465
+1458:                                             ; preds = %1454
+  %1459 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1460 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1461 = icmp eq i64 %1459, %1460
+  br i1 %1461, label %1462, label %1496
 
-1447:                                             ; preds = %1443
-  %1448 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %1448, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1449 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1450 = add nsw i32 %1449, -4
-  store volatile i32 %1450, ptr @P2_is_marked, align 4, !tbaa !5
-  %1451 = add nsw i64 %1445, %1444
-  %1452 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1453 = sext i32 %1452 to i64
-  %1454 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1453
-  store volatile i64 %1444, ptr %1454, align 8, !tbaa !9
-  %1455 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1456 = add nsw i32 %1455, 1
-  %1457 = sext i32 %1456 to i64
-  %1458 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1457
-  store volatile i64 %1445, ptr %1458, align 8, !tbaa !9
-  %1459 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1460 = add nsw i32 %1459, 2
-  %1461 = sext i32 %1460 to i64
-  %1462 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1461
-  store volatile i64 %1451, ptr %1462, align 8, !tbaa !9
-  %1463 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1464 = add nsw i32 %1463, 3
-  store volatile i32 %1464, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1465
+1462:                                             ; preds = %1458
+  %1463 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1464 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1465 = icmp eq i64 %1463, %1464
+  br i1 %1465, label %1466, label %1496
 
-1465:                                             ; preds = %1447, %1443, %1439, %1435, %1432, %1429
-  %1466 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1467 = icmp sgt i32 %1466, 4
-  br i1 %1467, label %1468, label %1501
+1466:                                             ; preds = %1462
+  %1467 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1467, ptr %80, align 8
+  %1468 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1468, ptr %81, align 8
+  %1469 = load i64, ptr %81, align 8
+  %1470 = load i64, ptr %80, align 8
+  %1471 = icmp sgt i64 %1469, %1470
+  br i1 %1471, label %1472, label %1495
 
-1468:                                             ; preds = %1465
-  %1469 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1470 = icmp slt i32 %1469, 4
-  br i1 %1470, label %1471, label %1501
+1472:                                             ; preds = %1466
+  %1473 = load volatile i32, ptr @P2_is_marked, align 4
+  %1474 = sub nsw i32 %1473, 4
+  store volatile i32 %1474, ptr @P2_is_marked, align 4
+  %1475 = load i64, ptr %80, align 8
+  %1476 = load i64, ptr %81, align 8
+  %1477 = add nsw i64 %1475, %1476
+  store i64 %1477, ptr %82, align 8
+  %1478 = load i64, ptr %80, align 8
+  %1479 = load volatile i32, ptr @P3_is_marked, align 4
+  %1480 = add nsw i32 %1479, 0
+  %1481 = sext i32 %1480 to i64
+  %1482 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1481
+  store volatile i64 %1478, ptr %1482, align 8
+  %1483 = load i64, ptr %81, align 8
+  %1484 = load volatile i32, ptr @P3_is_marked, align 4
+  %1485 = add nsw i32 %1484, 1
+  %1486 = sext i32 %1485 to i64
+  %1487 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1486
+  store volatile i64 %1483, ptr %1487, align 8
+  %1488 = load i64, ptr %82, align 8
+  %1489 = load volatile i32, ptr @P3_is_marked, align 4
+  %1490 = add nsw i32 %1489, 2
+  %1491 = sext i32 %1490 to i64
+  %1492 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1491
+  store volatile i64 %1488, ptr %1492, align 8
+  %1493 = load volatile i32, ptr @P3_is_marked, align 4
+  %1494 = add nsw i32 %1493, 3
+  store volatile i32 %1494, ptr @P3_is_marked, align 4
+  br label %1495
 
-1471:                                             ; preds = %1468
-  %1472 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1473 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1474 = icmp eq i64 %1472, %1473
-  br i1 %1474, label %1475, label %1501
+1495:                                             ; preds = %1472, %1466
+  br label %1496
 
-1475:                                             ; preds = %1471
-  %1476 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1477 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1478 = icmp eq i64 %1476, %1477
-  br i1 %1478, label %1479, label %1501
+1496:                                             ; preds = %1495, %1462, %1458, %1454, %1451
+  %1497 = load volatile i32, ptr @P2_is_marked, align 4
+  %1498 = icmp sge i32 %1497, 4
+  br i1 %1498, label %1499, label %1541
 
-1479:                                             ; preds = %1475
-  %1480 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1481 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1482 = icmp sgt i64 %1481, %1480
-  br i1 %1482, label %1483, label %1501
+1499:                                             ; preds = %1496
+  %1500 = load volatile i32, ptr @P3_is_marked, align 4
+  %1501 = add nsw i32 %1500, 3
+  %1502 = icmp sle i32 %1501, 6
+  br i1 %1502, label %1503, label %1541
 
-1483:                                             ; preds = %1479
-  %1484 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1484, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1485 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1486 = add nsw i32 %1485, -4
-  store volatile i32 %1486, ptr @P2_is_marked, align 4, !tbaa !5
-  %1487 = add nsw i64 %1481, %1480
-  %1488 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1489 = sext i32 %1488 to i64
-  %1490 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1489
-  store volatile i64 %1480, ptr %1490, align 8, !tbaa !9
-  %1491 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1492 = add nsw i32 %1491, 1
-  %1493 = sext i32 %1492 to i64
-  %1494 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1493
-  store volatile i64 %1481, ptr %1494, align 8, !tbaa !9
-  %1495 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1496 = add nsw i32 %1495, 2
-  %1497 = sext i32 %1496 to i64
-  %1498 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1497
-  store volatile i64 %1487, ptr %1498, align 8, !tbaa !9
-  %1499 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1500 = add nsw i32 %1499, 3
-  store volatile i32 %1500, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1501
+1503:                                             ; preds = %1499
+  %1504 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1505 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1506 = icmp eq i64 %1504, %1505
+  br i1 %1506, label %1507, label %1541
 
-1501:                                             ; preds = %1483, %1479, %1475, %1471, %1468, %1465
-  %1502 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1503 = icmp sgt i32 %1502, 4
-  br i1 %1503, label %1504, label %1537
-
-1504:                                             ; preds = %1501
-  %1505 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1506 = icmp slt i32 %1505, 4
-  br i1 %1506, label %1507, label %1537
-
-1507:                                             ; preds = %1504
-  %1508 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1509 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
+1507:                                             ; preds = %1503
+  %1508 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1509 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
   %1510 = icmp eq i64 %1508, %1509
-  br i1 %1510, label %1511, label %1537
+  br i1 %1510, label %1511, label %1541
 
 1511:                                             ; preds = %1507
-  %1512 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1513 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1514 = icmp eq i64 %1512, %1513
-  br i1 %1514, label %1515, label %1537
+  %1512 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1512, ptr %83, align 8
+  %1513 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1513, ptr %84, align 8
+  %1514 = load i64, ptr %84, align 8
+  %1515 = load i64, ptr %83, align 8
+  %1516 = icmp sgt i64 %1514, %1515
+  br i1 %1516, label %1517, label %1540
 
-1515:                                             ; preds = %1511
-  %1516 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1517 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1518 = icmp sgt i64 %1517, %1516
-  br i1 %1518, label %1519, label %1537
+1517:                                             ; preds = %1511
+  %1518 = load volatile i32, ptr @P2_is_marked, align 4
+  %1519 = sub nsw i32 %1518, 4
+  store volatile i32 %1519, ptr @P2_is_marked, align 4
+  %1520 = load i64, ptr %83, align 8
+  %1521 = load i64, ptr %84, align 8
+  %1522 = add nsw i64 %1520, %1521
+  store i64 %1522, ptr %85, align 8
+  %1523 = load i64, ptr %83, align 8
+  %1524 = load volatile i32, ptr @P3_is_marked, align 4
+  %1525 = add nsw i32 %1524, 0
+  %1526 = sext i32 %1525 to i64
+  %1527 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1526
+  store volatile i64 %1523, ptr %1527, align 8
+  %1528 = load i64, ptr %84, align 8
+  %1529 = load volatile i32, ptr @P3_is_marked, align 4
+  %1530 = add nsw i32 %1529, 1
+  %1531 = sext i32 %1530 to i64
+  %1532 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1531
+  store volatile i64 %1528, ptr %1532, align 8
+  %1533 = load i64, ptr %85, align 8
+  %1534 = load volatile i32, ptr @P3_is_marked, align 4
+  %1535 = add nsw i32 %1534, 2
+  %1536 = sext i32 %1535 to i64
+  %1537 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1536
+  store volatile i64 %1533, ptr %1537, align 8
+  %1538 = load volatile i32, ptr @P3_is_marked, align 4
+  %1539 = add nsw i32 %1538, 3
+  store volatile i32 %1539, ptr @P3_is_marked, align 4
+  br label %1540
 
-1519:                                             ; preds = %1515
-  %1520 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1520, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1521 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1522 = add nsw i32 %1521, -4
-  store volatile i32 %1522, ptr @P2_is_marked, align 4, !tbaa !5
-  %1523 = add nsw i64 %1517, %1516
-  %1524 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1525 = sext i32 %1524 to i64
-  %1526 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1525
-  store volatile i64 %1516, ptr %1526, align 8, !tbaa !9
-  %1527 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1528 = add nsw i32 %1527, 1
-  %1529 = sext i32 %1528 to i64
-  %1530 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1529
-  store volatile i64 %1517, ptr %1530, align 8, !tbaa !9
-  %1531 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1532 = add nsw i32 %1531, 2
-  %1533 = sext i32 %1532 to i64
-  %1534 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1533
-  store volatile i64 %1523, ptr %1534, align 8, !tbaa !9
-  %1535 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1536 = add nsw i32 %1535, 3
-  store volatile i32 %1536, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1537
+1540:                                             ; preds = %1517, %1511
+  br label %1541
 
-1537:                                             ; preds = %1519, %1515, %1511, %1507, %1504, %1501
-  %1538 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1539 = icmp sgt i32 %1538, 4
-  br i1 %1539, label %1540, label %1573
+1541:                                             ; preds = %1540, %1507, %1503, %1499, %1496
+  %1542 = load volatile i32, ptr @P2_is_marked, align 4
+  %1543 = icmp sge i32 %1542, 4
+  br i1 %1543, label %1544, label %1586
 
-1540:                                             ; preds = %1537
-  %1541 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1542 = icmp slt i32 %1541, 4
-  br i1 %1542, label %1543, label %1573
+1544:                                             ; preds = %1541
+  %1545 = load volatile i32, ptr @P3_is_marked, align 4
+  %1546 = add nsw i32 %1545, 3
+  %1547 = icmp sle i32 %1546, 6
+  br i1 %1547, label %1548, label %1586
 
-1543:                                             ; preds = %1540
-  %1544 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1545 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1546 = icmp eq i64 %1544, %1545
-  br i1 %1546, label %1547, label %1573
+1548:                                             ; preds = %1544
+  %1549 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1550 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1551 = icmp eq i64 %1549, %1550
+  br i1 %1551, label %1552, label %1586
 
-1547:                                             ; preds = %1543
-  %1548 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1549 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1550 = icmp eq i64 %1548, %1549
-  br i1 %1550, label %1551, label %1573
+1552:                                             ; preds = %1548
+  %1553 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1554 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1555 = icmp eq i64 %1553, %1554
+  br i1 %1555, label %1556, label %1586
 
-1551:                                             ; preds = %1547
-  %1552 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1553 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1554 = icmp sgt i64 %1553, %1552
-  br i1 %1554, label %1555, label %1573
+1556:                                             ; preds = %1552
+  %1557 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1557, ptr %86, align 8
+  %1558 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1558, ptr %87, align 8
+  %1559 = load i64, ptr %87, align 8
+  %1560 = load i64, ptr %86, align 8
+  %1561 = icmp sgt i64 %1559, %1560
+  br i1 %1561, label %1562, label %1585
 
-1555:                                             ; preds = %1551
-  %1556 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1556, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1557 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1558 = add nsw i32 %1557, -4
-  store volatile i32 %1558, ptr @P2_is_marked, align 4, !tbaa !5
-  %1559 = add nsw i64 %1553, %1552
-  %1560 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1561 = sext i32 %1560 to i64
-  %1562 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1561
-  store volatile i64 %1552, ptr %1562, align 8, !tbaa !9
-  %1563 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1564 = add nsw i32 %1563, 1
-  %1565 = sext i32 %1564 to i64
-  %1566 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1565
-  store volatile i64 %1553, ptr %1566, align 8, !tbaa !9
-  %1567 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1568 = add nsw i32 %1567, 2
-  %1569 = sext i32 %1568 to i64
-  %1570 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1569
-  store volatile i64 %1559, ptr %1570, align 8, !tbaa !9
-  %1571 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1572 = add nsw i32 %1571, 3
-  store volatile i32 %1572, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1573
+1562:                                             ; preds = %1556
+  %1563 = load volatile i32, ptr @P2_is_marked, align 4
+  %1564 = sub nsw i32 %1563, 4
+  store volatile i32 %1564, ptr @P2_is_marked, align 4
+  %1565 = load i64, ptr %86, align 8
+  %1566 = load i64, ptr %87, align 8
+  %1567 = add nsw i64 %1565, %1566
+  store i64 %1567, ptr %88, align 8
+  %1568 = load i64, ptr %86, align 8
+  %1569 = load volatile i32, ptr @P3_is_marked, align 4
+  %1570 = add nsw i32 %1569, 0
+  %1571 = sext i32 %1570 to i64
+  %1572 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1571
+  store volatile i64 %1568, ptr %1572, align 8
+  %1573 = load i64, ptr %87, align 8
+  %1574 = load volatile i32, ptr @P3_is_marked, align 4
+  %1575 = add nsw i32 %1574, 1
+  %1576 = sext i32 %1575 to i64
+  %1577 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1576
+  store volatile i64 %1573, ptr %1577, align 8
+  %1578 = load i64, ptr %88, align 8
+  %1579 = load volatile i32, ptr @P3_is_marked, align 4
+  %1580 = add nsw i32 %1579, 2
+  %1581 = sext i32 %1580 to i64
+  %1582 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1581
+  store volatile i64 %1578, ptr %1582, align 8
+  %1583 = load volatile i32, ptr @P3_is_marked, align 4
+  %1584 = add nsw i32 %1583, 3
+  store volatile i32 %1584, ptr @P3_is_marked, align 4
+  br label %1585
 
-1573:                                             ; preds = %1555, %1551, %1547, %1543, %1540, %1537
-  %1574 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1575 = icmp sgt i32 %1574, 4
-  br i1 %1575, label %1576, label %1609
+1585:                                             ; preds = %1562, %1556
+  br label %1586
 
-1576:                                             ; preds = %1573
-  %1577 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1578 = icmp slt i32 %1577, 4
-  br i1 %1578, label %1579, label %1609
+1586:                                             ; preds = %1585, %1552, %1548, %1544, %1541
+  %1587 = load volatile i32, ptr @P2_is_marked, align 4
+  %1588 = icmp sge i32 %1587, 4
+  br i1 %1588, label %1589, label %1631
 
-1579:                                             ; preds = %1576
-  %1580 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1581 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1582 = icmp eq i64 %1580, %1581
-  br i1 %1582, label %1583, label %1609
+1589:                                             ; preds = %1586
+  %1590 = load volatile i32, ptr @P3_is_marked, align 4
+  %1591 = add nsw i32 %1590, 3
+  %1592 = icmp sle i32 %1591, 6
+  br i1 %1592, label %1593, label %1631
 
-1583:                                             ; preds = %1579
-  %1584 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1585 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1586 = icmp eq i64 %1584, %1585
-  br i1 %1586, label %1587, label %1609
+1593:                                             ; preds = %1589
+  %1594 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1595 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1596 = icmp eq i64 %1594, %1595
+  br i1 %1596, label %1597, label %1631
 
-1587:                                             ; preds = %1583
-  %1588 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1589 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1590 = icmp sgt i64 %1589, %1588
-  br i1 %1590, label %1591, label %1609
+1597:                                             ; preds = %1593
+  %1598 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1599 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1600 = icmp eq i64 %1598, %1599
+  br i1 %1600, label %1601, label %1631
 
-1591:                                             ; preds = %1587
-  %1592 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %1592, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1593 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1594 = add nsw i32 %1593, -4
-  store volatile i32 %1594, ptr @P2_is_marked, align 4, !tbaa !5
-  %1595 = add nsw i64 %1589, %1588
-  %1596 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1597 = sext i32 %1596 to i64
-  %1598 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1597
-  store volatile i64 %1588, ptr %1598, align 8, !tbaa !9
-  %1599 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1600 = add nsw i32 %1599, 1
-  %1601 = sext i32 %1600 to i64
-  %1602 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1601
-  store volatile i64 %1589, ptr %1602, align 8, !tbaa !9
-  %1603 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1604 = add nsw i32 %1603, 2
-  %1605 = sext i32 %1604 to i64
-  %1606 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1605
-  store volatile i64 %1595, ptr %1606, align 8, !tbaa !9
-  %1607 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1608 = add nsw i32 %1607, 3
-  store volatile i32 %1608, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1609
+1601:                                             ; preds = %1597
+  %1602 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1602, ptr %89, align 8
+  %1603 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1603, ptr %90, align 8
+  %1604 = load i64, ptr %90, align 8
+  %1605 = load i64, ptr %89, align 8
+  %1606 = icmp sgt i64 %1604, %1605
+  br i1 %1606, label %1607, label %1630
 
-1609:                                             ; preds = %1591, %1587, %1583, %1579, %1576, %1573
-  %1610 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1611 = icmp sgt i32 %1610, 4
-  br i1 %1611, label %1612, label %1645
+1607:                                             ; preds = %1601
+  %1608 = load volatile i32, ptr @P2_is_marked, align 4
+  %1609 = sub nsw i32 %1608, 4
+  store volatile i32 %1609, ptr @P2_is_marked, align 4
+  %1610 = load i64, ptr %89, align 8
+  %1611 = load i64, ptr %90, align 8
+  %1612 = add nsw i64 %1610, %1611
+  store i64 %1612, ptr %91, align 8
+  %1613 = load i64, ptr %89, align 8
+  %1614 = load volatile i32, ptr @P3_is_marked, align 4
+  %1615 = add nsw i32 %1614, 0
+  %1616 = sext i32 %1615 to i64
+  %1617 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1616
+  store volatile i64 %1613, ptr %1617, align 8
+  %1618 = load i64, ptr %90, align 8
+  %1619 = load volatile i32, ptr @P3_is_marked, align 4
+  %1620 = add nsw i32 %1619, 1
+  %1621 = sext i32 %1620 to i64
+  %1622 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1621
+  store volatile i64 %1618, ptr %1622, align 8
+  %1623 = load i64, ptr %91, align 8
+  %1624 = load volatile i32, ptr @P3_is_marked, align 4
+  %1625 = add nsw i32 %1624, 2
+  %1626 = sext i32 %1625 to i64
+  %1627 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1626
+  store volatile i64 %1623, ptr %1627, align 8
+  %1628 = load volatile i32, ptr @P3_is_marked, align 4
+  %1629 = add nsw i32 %1628, 3
+  store volatile i32 %1629, ptr @P3_is_marked, align 4
+  br label %1630
 
-1612:                                             ; preds = %1609
-  %1613 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1614 = icmp slt i32 %1613, 4
-  br i1 %1614, label %1615, label %1645
+1630:                                             ; preds = %1607, %1601
+  br label %1631
 
-1615:                                             ; preds = %1612
-  %1616 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1617 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1618 = icmp eq i64 %1616, %1617
-  br i1 %1618, label %1619, label %1645
+1631:                                             ; preds = %1630, %1597, %1593, %1589, %1586
+  %1632 = load volatile i32, ptr @P2_is_marked, align 4
+  %1633 = icmp sge i32 %1632, 4
+  br i1 %1633, label %1634, label %1676
 
-1619:                                             ; preds = %1615
-  %1620 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1621 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1622 = icmp eq i64 %1620, %1621
-  br i1 %1622, label %1623, label %1645
+1634:                                             ; preds = %1631
+  %1635 = load volatile i32, ptr @P3_is_marked, align 4
+  %1636 = add nsw i32 %1635, 3
+  %1637 = icmp sle i32 %1636, 6
+  br i1 %1637, label %1638, label %1676
 
-1623:                                             ; preds = %1619
-  %1624 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1625 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1626 = icmp sgt i64 %1625, %1624
-  br i1 %1626, label %1627, label %1645
+1638:                                             ; preds = %1634
+  %1639 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1640 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %1641 = icmp eq i64 %1639, %1640
+  br i1 %1641, label %1642, label %1676
 
-1627:                                             ; preds = %1623
-  %1628 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1628, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1629 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1630 = add nsw i32 %1629, -4
-  store volatile i32 %1630, ptr @P2_is_marked, align 4, !tbaa !5
-  %1631 = add nsw i64 %1625, %1624
-  %1632 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1633 = sext i32 %1632 to i64
-  %1634 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1633
-  store volatile i64 %1624, ptr %1634, align 8, !tbaa !9
-  %1635 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1636 = add nsw i32 %1635, 1
-  %1637 = sext i32 %1636 to i64
-  %1638 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1637
-  store volatile i64 %1625, ptr %1638, align 8, !tbaa !9
-  %1639 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1640 = add nsw i32 %1639, 2
-  %1641 = sext i32 %1640 to i64
-  %1642 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1641
-  store volatile i64 %1631, ptr %1642, align 8, !tbaa !9
-  %1643 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1644 = add nsw i32 %1643, 3
-  store volatile i32 %1644, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1645
+1642:                                             ; preds = %1638
+  %1643 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1644 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1645 = icmp eq i64 %1643, %1644
+  br i1 %1645, label %1646, label %1676
 
-1645:                                             ; preds = %1627, %1623, %1619, %1615, %1612, %1609
-  %1646 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1647 = icmp sgt i32 %1646, 4
-  br i1 %1647, label %1648, label %1681
+1646:                                             ; preds = %1642
+  %1647 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1647, ptr %92, align 8
+  %1648 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1648, ptr %93, align 8
+  %1649 = load i64, ptr %93, align 8
+  %1650 = load i64, ptr %92, align 8
+  %1651 = icmp sgt i64 %1649, %1650
+  br i1 %1651, label %1652, label %1675
 
-1648:                                             ; preds = %1645
-  %1649 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1650 = icmp slt i32 %1649, 4
-  br i1 %1650, label %1651, label %1681
+1652:                                             ; preds = %1646
+  %1653 = load volatile i32, ptr @P2_is_marked, align 4
+  %1654 = sub nsw i32 %1653, 4
+  store volatile i32 %1654, ptr @P2_is_marked, align 4
+  %1655 = load i64, ptr %92, align 8
+  %1656 = load i64, ptr %93, align 8
+  %1657 = add nsw i64 %1655, %1656
+  store i64 %1657, ptr %94, align 8
+  %1658 = load i64, ptr %92, align 8
+  %1659 = load volatile i32, ptr @P3_is_marked, align 4
+  %1660 = add nsw i32 %1659, 0
+  %1661 = sext i32 %1660 to i64
+  %1662 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1661
+  store volatile i64 %1658, ptr %1662, align 8
+  %1663 = load i64, ptr %93, align 8
+  %1664 = load volatile i32, ptr @P3_is_marked, align 4
+  %1665 = add nsw i32 %1664, 1
+  %1666 = sext i32 %1665 to i64
+  %1667 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1666
+  store volatile i64 %1663, ptr %1667, align 8
+  %1668 = load i64, ptr %94, align 8
+  %1669 = load volatile i32, ptr @P3_is_marked, align 4
+  %1670 = add nsw i32 %1669, 2
+  %1671 = sext i32 %1670 to i64
+  %1672 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1671
+  store volatile i64 %1668, ptr %1672, align 8
+  %1673 = load volatile i32, ptr @P3_is_marked, align 4
+  %1674 = add nsw i32 %1673, 3
+  store volatile i32 %1674, ptr @P3_is_marked, align 4
+  br label %1675
 
-1651:                                             ; preds = %1648
-  %1652 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1653 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1654 = icmp eq i64 %1652, %1653
-  br i1 %1654, label %1655, label %1681
+1675:                                             ; preds = %1652, %1646
+  br label %1676
 
-1655:                                             ; preds = %1651
-  %1656 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1657 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1658 = icmp eq i64 %1656, %1657
-  br i1 %1658, label %1659, label %1681
+1676:                                             ; preds = %1675, %1642, %1638, %1634, %1631
+  %1677 = load volatile i32, ptr @P2_is_marked, align 4
+  %1678 = icmp sge i32 %1677, 4
+  br i1 %1678, label %1679, label %1721
 
-1659:                                             ; preds = %1655
-  %1660 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1661 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1662 = icmp sgt i64 %1661, %1660
-  br i1 %1662, label %1663, label %1681
+1679:                                             ; preds = %1676
+  %1680 = load volatile i32, ptr @P3_is_marked, align 4
+  %1681 = add nsw i32 %1680, 3
+  %1682 = icmp sle i32 %1681, 6
+  br i1 %1682, label %1683, label %1721
 
-1663:                                             ; preds = %1659
-  %1664 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %1664, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1665 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1666 = add nsw i32 %1665, -4
-  store volatile i32 %1666, ptr @P2_is_marked, align 4, !tbaa !5
-  %1667 = add nsw i64 %1661, %1660
-  %1668 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1669 = sext i32 %1668 to i64
-  %1670 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1669
-  store volatile i64 %1660, ptr %1670, align 8, !tbaa !9
-  %1671 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1672 = add nsw i32 %1671, 1
-  %1673 = sext i32 %1672 to i64
-  %1674 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1673
-  store volatile i64 %1661, ptr %1674, align 8, !tbaa !9
-  %1675 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1676 = add nsw i32 %1675, 2
-  %1677 = sext i32 %1676 to i64
-  %1678 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1677
-  store volatile i64 %1667, ptr %1678, align 8, !tbaa !9
-  %1679 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1680 = add nsw i32 %1679, 3
-  store volatile i32 %1680, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1681
+1683:                                             ; preds = %1679
+  %1684 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1685 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1686 = icmp eq i64 %1684, %1685
+  br i1 %1686, label %1687, label %1721
 
-1681:                                             ; preds = %1663, %1659, %1655, %1651, %1648, %1645
-  %1682 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1683 = icmp sgt i32 %1682, 4
-  br i1 %1683, label %1684, label %1717
-
-1684:                                             ; preds = %1681
-  %1685 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1686 = icmp slt i32 %1685, 4
-  br i1 %1686, label %1687, label %1717
-
-1687:                                             ; preds = %1684
-  %1688 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1689 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
+1687:                                             ; preds = %1683
+  %1688 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1689 = load volatile i64, ptr @P2_marking_member_0, align 16
   %1690 = icmp eq i64 %1688, %1689
-  br i1 %1690, label %1691, label %1717
+  br i1 %1690, label %1691, label %1721
 
 1691:                                             ; preds = %1687
-  %1692 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1693 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1694 = icmp eq i64 %1692, %1693
-  br i1 %1694, label %1695, label %1717
+  %1692 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %1692, ptr %95, align 8
+  %1693 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1693, ptr %96, align 8
+  %1694 = load i64, ptr %96, align 8
+  %1695 = load i64, ptr %95, align 8
+  %1696 = icmp sgt i64 %1694, %1695
+  br i1 %1696, label %1697, label %1720
 
-1695:                                             ; preds = %1691
-  %1696 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1697 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1698 = icmp sgt i64 %1697, %1696
-  br i1 %1698, label %1699, label %1717
+1697:                                             ; preds = %1691
+  %1698 = load volatile i32, ptr @P2_is_marked, align 4
+  %1699 = sub nsw i32 %1698, 4
+  store volatile i32 %1699, ptr @P2_is_marked, align 4
+  %1700 = load i64, ptr %95, align 8
+  %1701 = load i64, ptr %96, align 8
+  %1702 = add nsw i64 %1700, %1701
+  store i64 %1702, ptr %97, align 8
+  %1703 = load i64, ptr %95, align 8
+  %1704 = load volatile i32, ptr @P3_is_marked, align 4
+  %1705 = add nsw i32 %1704, 0
+  %1706 = sext i32 %1705 to i64
+  %1707 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1706
+  store volatile i64 %1703, ptr %1707, align 8
+  %1708 = load i64, ptr %96, align 8
+  %1709 = load volatile i32, ptr @P3_is_marked, align 4
+  %1710 = add nsw i32 %1709, 1
+  %1711 = sext i32 %1710 to i64
+  %1712 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1711
+  store volatile i64 %1708, ptr %1712, align 8
+  %1713 = load i64, ptr %97, align 8
+  %1714 = load volatile i32, ptr @P3_is_marked, align 4
+  %1715 = add nsw i32 %1714, 2
+  %1716 = sext i32 %1715 to i64
+  %1717 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1716
+  store volatile i64 %1713, ptr %1717, align 8
+  %1718 = load volatile i32, ptr @P3_is_marked, align 4
+  %1719 = add nsw i32 %1718, 3
+  store volatile i32 %1719, ptr @P3_is_marked, align 4
+  br label %1720
 
-1699:                                             ; preds = %1695
-  %1700 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1700, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1701 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1702 = add nsw i32 %1701, -4
-  store volatile i32 %1702, ptr @P2_is_marked, align 4, !tbaa !5
-  %1703 = add nsw i64 %1697, %1696
-  %1704 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1705 = sext i32 %1704 to i64
-  %1706 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1705
-  store volatile i64 %1696, ptr %1706, align 8, !tbaa !9
-  %1707 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1708 = add nsw i32 %1707, 1
-  %1709 = sext i32 %1708 to i64
-  %1710 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1709
-  store volatile i64 %1697, ptr %1710, align 8, !tbaa !9
-  %1711 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1712 = add nsw i32 %1711, 2
-  %1713 = sext i32 %1712 to i64
-  %1714 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1713
-  store volatile i64 %1703, ptr %1714, align 8, !tbaa !9
-  %1715 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1716 = add nsw i32 %1715, 3
-  store volatile i32 %1716, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1717
+1720:                                             ; preds = %1697, %1691
+  br label %1721
 
-1717:                                             ; preds = %1699, %1695, %1691, %1687, %1684, %1681
-  %1718 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1719 = icmp sgt i32 %1718, 4
-  br i1 %1719, label %1720, label %1753
+1721:                                             ; preds = %1720, %1687, %1683, %1679, %1676
+  %1722 = load volatile i32, ptr @P2_is_marked, align 4
+  %1723 = icmp sge i32 %1722, 5
+  br i1 %1723, label %1724, label %1767
 
-1720:                                             ; preds = %1717
-  %1721 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1722 = icmp slt i32 %1721, 4
-  br i1 %1722, label %1723, label %1753
+1724:                                             ; preds = %1721
+  %1725 = load volatile i32, ptr @P3_is_marked, align 4
+  %1726 = add nsw i32 %1725, 3
+  %1727 = icmp sle i32 %1726, 6
+  br i1 %1727, label %1728, label %1767
 
-1723:                                             ; preds = %1720
-  %1724 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1725 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1726 = icmp eq i64 %1724, %1725
-  br i1 %1726, label %1727, label %1753
+1728:                                             ; preds = %1724
+  %1729 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1730 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1731 = icmp eq i64 %1729, %1730
+  br i1 %1731, label %1732, label %1767
 
-1727:                                             ; preds = %1723
-  %1728 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1729 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1730 = icmp eq i64 %1728, %1729
-  br i1 %1730, label %1731, label %1753
+1732:                                             ; preds = %1728
+  %1733 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1734 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %1735 = icmp eq i64 %1733, %1734
+  br i1 %1735, label %1736, label %1767
 
-1731:                                             ; preds = %1727
-  %1732 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1733 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1734 = icmp sgt i64 %1733, %1732
-  br i1 %1734, label %1735, label %1753
+1736:                                             ; preds = %1732
+  %1737 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1737, ptr %98, align 8
+  %1738 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1738, ptr %99, align 8
+  %1739 = load i64, ptr %99, align 8
+  %1740 = load i64, ptr %98, align 8
+  %1741 = icmp sgt i64 %1739, %1740
+  br i1 %1741, label %1742, label %1766
 
-1735:                                             ; preds = %1731
-  %1736 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1736, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1737 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1738 = add nsw i32 %1737, -4
-  store volatile i32 %1738, ptr @P2_is_marked, align 4, !tbaa !5
-  %1739 = add nsw i64 %1733, %1732
-  %1740 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1741 = sext i32 %1740 to i64
-  %1742 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1741
-  store volatile i64 %1732, ptr %1742, align 8, !tbaa !9
-  %1743 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1744 = add nsw i32 %1743, 1
-  %1745 = sext i32 %1744 to i64
-  %1746 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1745
-  store volatile i64 %1733, ptr %1746, align 8, !tbaa !9
-  %1747 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1748 = add nsw i32 %1747, 2
-  %1749 = sext i32 %1748 to i64
-  %1750 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1749
-  store volatile i64 %1739, ptr %1750, align 8, !tbaa !9
-  %1751 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1752 = add nsw i32 %1751, 3
-  store volatile i32 %1752, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1753
+1742:                                             ; preds = %1736
+  %1743 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %1743, ptr @P2_marking_member_0, align 16
+  %1744 = load volatile i32, ptr @P2_is_marked, align 4
+  %1745 = sub nsw i32 %1744, 4
+  store volatile i32 %1745, ptr @P2_is_marked, align 4
+  %1746 = load i64, ptr %98, align 8
+  %1747 = load i64, ptr %99, align 8
+  %1748 = add nsw i64 %1746, %1747
+  store i64 %1748, ptr %100, align 8
+  %1749 = load i64, ptr %98, align 8
+  %1750 = load volatile i32, ptr @P3_is_marked, align 4
+  %1751 = add nsw i32 %1750, 0
+  %1752 = sext i32 %1751 to i64
+  %1753 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1752
+  store volatile i64 %1749, ptr %1753, align 8
+  %1754 = load i64, ptr %99, align 8
+  %1755 = load volatile i32, ptr @P3_is_marked, align 4
+  %1756 = add nsw i32 %1755, 1
+  %1757 = sext i32 %1756 to i64
+  %1758 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1757
+  store volatile i64 %1754, ptr %1758, align 8
+  %1759 = load i64, ptr %100, align 8
+  %1760 = load volatile i32, ptr @P3_is_marked, align 4
+  %1761 = add nsw i32 %1760, 2
+  %1762 = sext i32 %1761 to i64
+  %1763 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1762
+  store volatile i64 %1759, ptr %1763, align 8
+  %1764 = load volatile i32, ptr @P3_is_marked, align 4
+  %1765 = add nsw i32 %1764, 3
+  store volatile i32 %1765, ptr @P3_is_marked, align 4
+  br label %1766
 
-1753:                                             ; preds = %1735, %1731, %1727, %1723, %1720, %1717
-  %1754 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1755 = icmp sgt i32 %1754, 4
-  br i1 %1755, label %1756, label %1789
+1766:                                             ; preds = %1742, %1736
+  br label %1767
 
-1756:                                             ; preds = %1753
-  %1757 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1758 = icmp slt i32 %1757, 4
-  br i1 %1758, label %1759, label %1789
+1767:                                             ; preds = %1766, %1732, %1728, %1724, %1721
+  %1768 = load volatile i32, ptr @P2_is_marked, align 4
+  %1769 = icmp sge i32 %1768, 5
+  br i1 %1769, label %1770, label %1813
 
-1759:                                             ; preds = %1756
-  %1760 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1761 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1762 = icmp eq i64 %1760, %1761
-  br i1 %1762, label %1763, label %1789
+1770:                                             ; preds = %1767
+  %1771 = load volatile i32, ptr @P3_is_marked, align 4
+  %1772 = add nsw i32 %1771, 3
+  %1773 = icmp sle i32 %1772, 6
+  br i1 %1773, label %1774, label %1813
 
-1763:                                             ; preds = %1759
-  %1764 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1765 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1766 = icmp eq i64 %1764, %1765
-  br i1 %1766, label %1767, label %1789
+1774:                                             ; preds = %1770
+  %1775 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1776 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1777 = icmp eq i64 %1775, %1776
+  br i1 %1777, label %1778, label %1813
 
-1767:                                             ; preds = %1763
-  %1768 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1769 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1770 = icmp sgt i64 %1769, %1768
-  br i1 %1770, label %1771, label %1789
+1778:                                             ; preds = %1774
+  %1779 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1780 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %1781 = icmp eq i64 %1779, %1780
+  br i1 %1781, label %1782, label %1813
 
-1771:                                             ; preds = %1767
-  %1772 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1772, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1773 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1774 = add nsw i32 %1773, -4
-  store volatile i32 %1774, ptr @P2_is_marked, align 4, !tbaa !5
-  %1775 = add nsw i64 %1769, %1768
-  %1776 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1777 = sext i32 %1776 to i64
-  %1778 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1777
-  store volatile i64 %1768, ptr %1778, align 8, !tbaa !9
-  %1779 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1780 = add nsw i32 %1779, 1
-  %1781 = sext i32 %1780 to i64
-  %1782 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1781
-  store volatile i64 %1769, ptr %1782, align 8, !tbaa !9
-  %1783 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1784 = add nsw i32 %1783, 2
-  %1785 = sext i32 %1784 to i64
-  %1786 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1785
-  store volatile i64 %1775, ptr %1786, align 8, !tbaa !9
-  %1787 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1788 = add nsw i32 %1787, 3
-  store volatile i32 %1788, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1789
+1782:                                             ; preds = %1778
+  %1783 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1783, ptr %101, align 8
+  %1784 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1784, ptr %102, align 8
+  %1785 = load i64, ptr %102, align 8
+  %1786 = load i64, ptr %101, align 8
+  %1787 = icmp sgt i64 %1785, %1786
+  br i1 %1787, label %1788, label %1812
 
-1789:                                             ; preds = %1771, %1767, %1763, %1759, %1756, %1753
-  %1790 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1791 = icmp sgt i32 %1790, 4
-  br i1 %1791, label %1792, label %1825
+1788:                                             ; preds = %1782
+  %1789 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %1789, ptr @P2_marking_member_0, align 16
+  %1790 = load volatile i32, ptr @P2_is_marked, align 4
+  %1791 = sub nsw i32 %1790, 4
+  store volatile i32 %1791, ptr @P2_is_marked, align 4
+  %1792 = load i64, ptr %101, align 8
+  %1793 = load i64, ptr %102, align 8
+  %1794 = add nsw i64 %1792, %1793
+  store i64 %1794, ptr %103, align 8
+  %1795 = load i64, ptr %101, align 8
+  %1796 = load volatile i32, ptr @P3_is_marked, align 4
+  %1797 = add nsw i32 %1796, 0
+  %1798 = sext i32 %1797 to i64
+  %1799 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1798
+  store volatile i64 %1795, ptr %1799, align 8
+  %1800 = load i64, ptr %102, align 8
+  %1801 = load volatile i32, ptr @P3_is_marked, align 4
+  %1802 = add nsw i32 %1801, 1
+  %1803 = sext i32 %1802 to i64
+  %1804 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1803
+  store volatile i64 %1800, ptr %1804, align 8
+  %1805 = load i64, ptr %103, align 8
+  %1806 = load volatile i32, ptr @P3_is_marked, align 4
+  %1807 = add nsw i32 %1806, 2
+  %1808 = sext i32 %1807 to i64
+  %1809 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1808
+  store volatile i64 %1805, ptr %1809, align 8
+  %1810 = load volatile i32, ptr @P3_is_marked, align 4
+  %1811 = add nsw i32 %1810, 3
+  store volatile i32 %1811, ptr @P3_is_marked, align 4
+  br label %1812
 
-1792:                                             ; preds = %1789
-  %1793 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1794 = icmp slt i32 %1793, 4
-  br i1 %1794, label %1795, label %1825
+1812:                                             ; preds = %1788, %1782
+  br label %1813
 
-1795:                                             ; preds = %1792
-  %1796 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1797 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1798 = icmp eq i64 %1796, %1797
-  br i1 %1798, label %1799, label %1825
+1813:                                             ; preds = %1812, %1778, %1774, %1770, %1767
+  %1814 = load volatile i32, ptr @P2_is_marked, align 4
+  %1815 = icmp sge i32 %1814, 5
+  br i1 %1815, label %1816, label %1859
 
-1799:                                             ; preds = %1795
-  %1800 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1801 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1802 = icmp eq i64 %1800, %1801
-  br i1 %1802, label %1803, label %1825
+1816:                                             ; preds = %1813
+  %1817 = load volatile i32, ptr @P3_is_marked, align 4
+  %1818 = add nsw i32 %1817, 3
+  %1819 = icmp sle i32 %1818, 6
+  br i1 %1819, label %1820, label %1859
 
-1803:                                             ; preds = %1799
-  %1804 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1805 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1806 = icmp sgt i64 %1805, %1804
-  br i1 %1806, label %1807, label %1825
+1820:                                             ; preds = %1816
+  %1821 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1822 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %1823 = icmp eq i64 %1821, %1822
+  br i1 %1823, label %1824, label %1859
 
-1807:                                             ; preds = %1803
-  %1808 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1808, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1809 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1810 = add nsw i32 %1809, -4
-  store volatile i32 %1810, ptr @P2_is_marked, align 4, !tbaa !5
-  %1811 = add nsw i64 %1805, %1804
-  %1812 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1813 = sext i32 %1812 to i64
-  %1814 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1813
-  store volatile i64 %1804, ptr %1814, align 8, !tbaa !9
-  %1815 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1816 = add nsw i32 %1815, 1
-  %1817 = sext i32 %1816 to i64
-  %1818 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1817
-  store volatile i64 %1805, ptr %1818, align 8, !tbaa !9
-  %1819 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1820 = add nsw i32 %1819, 2
-  %1821 = sext i32 %1820 to i64
-  %1822 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1821
-  store volatile i64 %1811, ptr %1822, align 8, !tbaa !9
-  %1823 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1824 = add nsw i32 %1823, 3
-  store volatile i32 %1824, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1825
+1824:                                             ; preds = %1820
+  %1825 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1826 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1827 = icmp eq i64 %1825, %1826
+  br i1 %1827, label %1828, label %1859
 
-1825:                                             ; preds = %1807, %1803, %1799, %1795, %1792, %1789
-  %1826 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1827 = icmp sgt i32 %1826, 4
-  br i1 %1827, label %1828, label %1861
+1828:                                             ; preds = %1824
+  %1829 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1829, ptr %104, align 8
+  %1830 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1830, ptr %105, align 8
+  %1831 = load i64, ptr %105, align 8
+  %1832 = load i64, ptr %104, align 8
+  %1833 = icmp sgt i64 %1831, %1832
+  br i1 %1833, label %1834, label %1858
 
-1828:                                             ; preds = %1825
-  %1829 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1830 = icmp slt i32 %1829, 4
-  br i1 %1830, label %1831, label %1861
-
-1831:                                             ; preds = %1828
-  %1832 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1833 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1834 = icmp eq i64 %1832, %1833
-  br i1 %1834, label %1835, label %1861
-
-1835:                                             ; preds = %1831
-  %1836 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1837 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1838 = icmp eq i64 %1836, %1837
-  br i1 %1838, label %1839, label %1861
-
-1839:                                             ; preds = %1835
-  %1840 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1841 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1842 = icmp sgt i64 %1841, %1840
-  br i1 %1842, label %1843, label %1861
-
-1843:                                             ; preds = %1839
-  %1844 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1844, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1845 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1846 = add nsw i32 %1845, -4
-  store volatile i32 %1846, ptr @P2_is_marked, align 4, !tbaa !5
-  %1847 = add nsw i64 %1841, %1840
-  %1848 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+1834:                                             ; preds = %1828
+  %1835 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %1835, ptr @P2_marking_member_0, align 16
+  %1836 = load volatile i32, ptr @P2_is_marked, align 4
+  %1837 = sub nsw i32 %1836, 4
+  store volatile i32 %1837, ptr @P2_is_marked, align 4
+  %1838 = load i64, ptr %104, align 8
+  %1839 = load i64, ptr %105, align 8
+  %1840 = add nsw i64 %1838, %1839
+  store i64 %1840, ptr %106, align 8
+  %1841 = load i64, ptr %104, align 8
+  %1842 = load volatile i32, ptr @P3_is_marked, align 4
+  %1843 = add nsw i32 %1842, 0
+  %1844 = sext i32 %1843 to i64
+  %1845 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1844
+  store volatile i64 %1841, ptr %1845, align 8
+  %1846 = load i64, ptr %105, align 8
+  %1847 = load volatile i32, ptr @P3_is_marked, align 4
+  %1848 = add nsw i32 %1847, 1
   %1849 = sext i32 %1848 to i64
   %1850 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1849
-  store volatile i64 %1840, ptr %1850, align 8, !tbaa !9
-  %1851 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1852 = add nsw i32 %1851, 1
-  %1853 = sext i32 %1852 to i64
-  %1854 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1853
-  store volatile i64 %1841, ptr %1854, align 8, !tbaa !9
-  %1855 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1856 = add nsw i32 %1855, 2
-  %1857 = sext i32 %1856 to i64
-  %1858 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1857
-  store volatile i64 %1847, ptr %1858, align 8, !tbaa !9
-  %1859 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1860 = add nsw i32 %1859, 3
-  store volatile i32 %1860, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1861
+  store volatile i64 %1846, ptr %1850, align 8
+  %1851 = load i64, ptr %106, align 8
+  %1852 = load volatile i32, ptr @P3_is_marked, align 4
+  %1853 = add nsw i32 %1852, 2
+  %1854 = sext i32 %1853 to i64
+  %1855 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1854
+  store volatile i64 %1851, ptr %1855, align 8
+  %1856 = load volatile i32, ptr @P3_is_marked, align 4
+  %1857 = add nsw i32 %1856, 3
+  store volatile i32 %1857, ptr @P3_is_marked, align 4
+  br label %1858
 
-1861:                                             ; preds = %1843, %1839, %1835, %1831, %1828, %1825
-  %1862 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1863 = icmp sgt i32 %1862, 4
-  br i1 %1863, label %1864, label %1896
+1858:                                             ; preds = %1834, %1828
+  br label %1859
 
-1864:                                             ; preds = %1861
-  %1865 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1866 = icmp slt i32 %1865, 4
-  br i1 %1866, label %1867, label %1896
+1859:                                             ; preds = %1858, %1824, %1820, %1816, %1813
+  %1860 = load volatile i32, ptr @P2_is_marked, align 4
+  %1861 = icmp sge i32 %1860, 5
+  br i1 %1861, label %1862, label %1905
 
-1867:                                             ; preds = %1864
-  %1868 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1869 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1870 = icmp eq i64 %1868, %1869
-  br i1 %1870, label %1871, label %1896
+1862:                                             ; preds = %1859
+  %1863 = load volatile i32, ptr @P3_is_marked, align 4
+  %1864 = add nsw i32 %1863, 3
+  %1865 = icmp sle i32 %1864, 6
+  br i1 %1865, label %1866, label %1905
 
-1871:                                             ; preds = %1867
-  %1872 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1873 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1874 = icmp eq i64 %1872, %1873
-  br i1 %1874, label %1875, label %1896
+1866:                                             ; preds = %1862
+  %1867 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1868 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %1869 = icmp eq i64 %1867, %1868
+  br i1 %1869, label %1870, label %1905
 
-1875:                                             ; preds = %1871
-  %1876 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1877 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1878 = icmp sgt i64 %1877, %1876
-  br i1 %1878, label %1879, label %1896
+1870:                                             ; preds = %1866
+  %1871 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1872 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1873 = icmp eq i64 %1871, %1872
+  br i1 %1873, label %1874, label %1905
 
-1879:                                             ; preds = %1875
-  %1880 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1881 = add nsw i32 %1880, -4
-  store volatile i32 %1881, ptr @P2_is_marked, align 4, !tbaa !5
-  %1882 = add nsw i64 %1877, %1876
-  %1883 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1884 = sext i32 %1883 to i64
-  %1885 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1884
-  store volatile i64 %1876, ptr %1885, align 8, !tbaa !9
-  %1886 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1887 = add nsw i32 %1886, 1
-  %1888 = sext i32 %1887 to i64
-  %1889 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1888
-  store volatile i64 %1877, ptr %1889, align 8, !tbaa !9
-  %1890 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1891 = add nsw i32 %1890, 2
-  %1892 = sext i32 %1891 to i64
-  %1893 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1892
-  store volatile i64 %1882, ptr %1893, align 8, !tbaa !9
-  %1894 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1895 = add nsw i32 %1894, 3
-  store volatile i32 %1895, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1896
+1874:                                             ; preds = %1870
+  %1875 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1875, ptr %107, align 8
+  %1876 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %1876, ptr %108, align 8
+  %1877 = load i64, ptr %108, align 8
+  %1878 = load i64, ptr %107, align 8
+  %1879 = icmp sgt i64 %1877, %1878
+  br i1 %1879, label %1880, label %1904
 
-1896:                                             ; preds = %1879, %1875, %1871, %1867, %1864, %1861
-  %1897 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1898 = icmp sgt i32 %1897, 4
-  br i1 %1898, label %1899, label %1932
+1880:                                             ; preds = %1874
+  %1881 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %1881, ptr @P2_marking_member_0, align 16
+  %1882 = load volatile i32, ptr @P2_is_marked, align 4
+  %1883 = sub nsw i32 %1882, 4
+  store volatile i32 %1883, ptr @P2_is_marked, align 4
+  %1884 = load i64, ptr %107, align 8
+  %1885 = load i64, ptr %108, align 8
+  %1886 = add nsw i64 %1884, %1885
+  store i64 %1886, ptr %109, align 8
+  %1887 = load i64, ptr %107, align 8
+  %1888 = load volatile i32, ptr @P3_is_marked, align 4
+  %1889 = add nsw i32 %1888, 0
+  %1890 = sext i32 %1889 to i64
+  %1891 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1890
+  store volatile i64 %1887, ptr %1891, align 8
+  %1892 = load i64, ptr %108, align 8
+  %1893 = load volatile i32, ptr @P3_is_marked, align 4
+  %1894 = add nsw i32 %1893, 1
+  %1895 = sext i32 %1894 to i64
+  %1896 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1895
+  store volatile i64 %1892, ptr %1896, align 8
+  %1897 = load i64, ptr %109, align 8
+  %1898 = load volatile i32, ptr @P3_is_marked, align 4
+  %1899 = add nsw i32 %1898, 2
+  %1900 = sext i32 %1899 to i64
+  %1901 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1900
+  store volatile i64 %1897, ptr %1901, align 8
+  %1902 = load volatile i32, ptr @P3_is_marked, align 4
+  %1903 = add nsw i32 %1902, 3
+  store volatile i32 %1903, ptr @P3_is_marked, align 4
+  br label %1904
 
-1899:                                             ; preds = %1896
-  %1900 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1901 = icmp slt i32 %1900, 4
-  br i1 %1901, label %1902, label %1932
+1904:                                             ; preds = %1880, %1874
+  br label %1905
 
-1902:                                             ; preds = %1899
-  %1903 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1904 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1905 = icmp eq i64 %1903, %1904
-  br i1 %1905, label %1906, label %1932
+1905:                                             ; preds = %1904, %1870, %1866, %1862, %1859
+  %1906 = load volatile i32, ptr @P2_is_marked, align 4
+  %1907 = icmp sge i32 %1906, 5
+  br i1 %1907, label %1908, label %1951
 
-1906:                                             ; preds = %1902
-  %1907 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1908 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1909 = icmp eq i64 %1907, %1908
-  br i1 %1909, label %1910, label %1932
+1908:                                             ; preds = %1905
+  %1909 = load volatile i32, ptr @P3_is_marked, align 4
+  %1910 = add nsw i32 %1909, 3
+  %1911 = icmp sle i32 %1910, 6
+  br i1 %1911, label %1912, label %1951
 
-1910:                                             ; preds = %1906
-  %1911 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1912 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1913 = icmp sgt i64 %1912, %1911
-  br i1 %1913, label %1914, label %1932
+1912:                                             ; preds = %1908
+  %1913 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1914 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %1915 = icmp eq i64 %1913, %1914
+  br i1 %1915, label %1916, label %1951
 
-1914:                                             ; preds = %1910
-  %1915 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %1915, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1916 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1917 = add nsw i32 %1916, -4
-  store volatile i32 %1917, ptr @P2_is_marked, align 4, !tbaa !5
-  %1918 = add nsw i64 %1912, %1911
-  %1919 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1920 = sext i32 %1919 to i64
-  %1921 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1920
-  store volatile i64 %1911, ptr %1921, align 8, !tbaa !9
-  %1922 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1923 = add nsw i32 %1922, 1
-  %1924 = sext i32 %1923 to i64
-  %1925 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1924
-  store volatile i64 %1912, ptr %1925, align 8, !tbaa !9
-  %1926 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1927 = add nsw i32 %1926, 2
-  %1928 = sext i32 %1927 to i64
-  %1929 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1928
-  store volatile i64 %1918, ptr %1929, align 8, !tbaa !9
-  %1930 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1931 = add nsw i32 %1930, 3
-  store volatile i32 %1931, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1932
+1916:                                             ; preds = %1912
+  %1917 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1918 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %1919 = icmp eq i64 %1917, %1918
+  br i1 %1919, label %1920, label %1951
 
-1932:                                             ; preds = %1914, %1910, %1906, %1902, %1899, %1896
-  %1933 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1934 = icmp sgt i32 %1933, 4
-  br i1 %1934, label %1935, label %1967
+1920:                                             ; preds = %1916
+  %1921 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1921, ptr %110, align 8
+  %1922 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1922, ptr %111, align 8
+  %1923 = load i64, ptr %111, align 8
+  %1924 = load i64, ptr %110, align 8
+  %1925 = icmp sgt i64 %1923, %1924
+  br i1 %1925, label %1926, label %1950
 
-1935:                                             ; preds = %1932
-  %1936 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1937 = icmp slt i32 %1936, 4
-  br i1 %1937, label %1938, label %1967
+1926:                                             ; preds = %1920
+  %1927 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %1927, ptr @P2_marking_member_0, align 16
+  %1928 = load volatile i32, ptr @P2_is_marked, align 4
+  %1929 = sub nsw i32 %1928, 4
+  store volatile i32 %1929, ptr @P2_is_marked, align 4
+  %1930 = load i64, ptr %110, align 8
+  %1931 = load i64, ptr %111, align 8
+  %1932 = add nsw i64 %1930, %1931
+  store i64 %1932, ptr %112, align 8
+  %1933 = load i64, ptr %110, align 8
+  %1934 = load volatile i32, ptr @P3_is_marked, align 4
+  %1935 = add nsw i32 %1934, 0
+  %1936 = sext i32 %1935 to i64
+  %1937 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1936
+  store volatile i64 %1933, ptr %1937, align 8
+  %1938 = load i64, ptr %111, align 8
+  %1939 = load volatile i32, ptr @P3_is_marked, align 4
+  %1940 = add nsw i32 %1939, 1
+  %1941 = sext i32 %1940 to i64
+  %1942 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1941
+  store volatile i64 %1938, ptr %1942, align 8
+  %1943 = load i64, ptr %112, align 8
+  %1944 = load volatile i32, ptr @P3_is_marked, align 4
+  %1945 = add nsw i32 %1944, 2
+  %1946 = sext i32 %1945 to i64
+  %1947 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1946
+  store volatile i64 %1943, ptr %1947, align 8
+  %1948 = load volatile i32, ptr @P3_is_marked, align 4
+  %1949 = add nsw i32 %1948, 3
+  store volatile i32 %1949, ptr @P3_is_marked, align 4
+  br label %1950
 
-1938:                                             ; preds = %1935
-  %1939 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1940 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1941 = icmp eq i64 %1939, %1940
-  br i1 %1941, label %1942, label %1967
+1950:                                             ; preds = %1926, %1920
+  br label %1951
 
-1942:                                             ; preds = %1938
-  %1943 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1944 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1945 = icmp eq i64 %1943, %1944
-  br i1 %1945, label %1946, label %1967
+1951:                                             ; preds = %1950, %1916, %1912, %1908, %1905
+  %1952 = load volatile i32, ptr @P2_is_marked, align 4
+  %1953 = icmp sge i32 %1952, 5
+  br i1 %1953, label %1954, label %1997
 
-1946:                                             ; preds = %1942
-  %1947 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1948 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %1949 = icmp sgt i64 %1948, %1947
-  br i1 %1949, label %1950, label %1967
+1954:                                             ; preds = %1951
+  %1955 = load volatile i32, ptr @P3_is_marked, align 4
+  %1956 = add nsw i32 %1955, 3
+  %1957 = icmp sle i32 %1956, 6
+  br i1 %1957, label %1958, label %1997
 
-1950:                                             ; preds = %1946
-  %1951 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1952 = add nsw i32 %1951, -4
-  store volatile i32 %1952, ptr @P2_is_marked, align 4, !tbaa !5
-  %1953 = add nsw i64 %1948, %1947
-  %1954 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1955 = sext i32 %1954 to i64
-  %1956 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1955
-  store volatile i64 %1947, ptr %1956, align 8, !tbaa !9
-  %1957 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1958 = add nsw i32 %1957, 1
-  %1959 = sext i32 %1958 to i64
-  %1960 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1959
-  store volatile i64 %1948, ptr %1960, align 8, !tbaa !9
-  %1961 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1962 = add nsw i32 %1961, 2
-  %1963 = sext i32 %1962 to i64
-  %1964 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1963
-  store volatile i64 %1953, ptr %1964, align 8, !tbaa !9
-  %1965 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1966 = add nsw i32 %1965, 3
-  store volatile i32 %1966, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %1967
+1958:                                             ; preds = %1954
+  %1959 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1960 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %1961 = icmp eq i64 %1959, %1960
+  br i1 %1961, label %1962, label %1997
 
-1967:                                             ; preds = %1950, %1946, %1942, %1938, %1935, %1932
-  %1968 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1969 = icmp sgt i32 %1968, 4
-  br i1 %1969, label %1970, label %2003
+1962:                                             ; preds = %1958
+  %1963 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %1964 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %1965 = icmp eq i64 %1963, %1964
+  br i1 %1965, label %1966, label %1997
 
-1970:                                             ; preds = %1967
-  %1971 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1972 = icmp slt i32 %1971, 4
-  br i1 %1972, label %1973, label %2003
+1966:                                             ; preds = %1962
+  %1967 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %1967, ptr %113, align 8
+  %1968 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %1968, ptr %114, align 8
+  %1969 = load i64, ptr %114, align 8
+  %1970 = load i64, ptr %113, align 8
+  %1971 = icmp sgt i64 %1969, %1970
+  br i1 %1971, label %1972, label %1996
 
-1973:                                             ; preds = %1970
-  %1974 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1975 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1976 = icmp eq i64 %1974, %1975
-  br i1 %1976, label %1977, label %2003
+1972:                                             ; preds = %1966
+  %1973 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %1973, ptr @P2_marking_member_0, align 16
+  %1974 = load volatile i32, ptr @P2_is_marked, align 4
+  %1975 = sub nsw i32 %1974, 4
+  store volatile i32 %1975, ptr @P2_is_marked, align 4
+  %1976 = load i64, ptr %113, align 8
+  %1977 = load i64, ptr %114, align 8
+  %1978 = add nsw i64 %1976, %1977
+  store i64 %1978, ptr %115, align 8
+  %1979 = load i64, ptr %113, align 8
+  %1980 = load volatile i32, ptr @P3_is_marked, align 4
+  %1981 = add nsw i32 %1980, 0
+  %1982 = sext i32 %1981 to i64
+  %1983 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1982
+  store volatile i64 %1979, ptr %1983, align 8
+  %1984 = load i64, ptr %114, align 8
+  %1985 = load volatile i32, ptr @P3_is_marked, align 4
+  %1986 = add nsw i32 %1985, 1
+  %1987 = sext i32 %1986 to i64
+  %1988 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1987
+  store volatile i64 %1984, ptr %1988, align 8
+  %1989 = load i64, ptr %115, align 8
+  %1990 = load volatile i32, ptr @P3_is_marked, align 4
+  %1991 = add nsw i32 %1990, 2
+  %1992 = sext i32 %1991 to i64
+  %1993 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1992
+  store volatile i64 %1989, ptr %1993, align 8
+  %1994 = load volatile i32, ptr @P3_is_marked, align 4
+  %1995 = add nsw i32 %1994, 3
+  store volatile i32 %1995, ptr @P3_is_marked, align 4
+  br label %1996
 
-1977:                                             ; preds = %1973
-  %1978 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1979 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %1980 = icmp eq i64 %1978, %1979
-  br i1 %1980, label %1981, label %2003
+1996:                                             ; preds = %1972, %1966
+  br label %1997
 
-1981:                                             ; preds = %1977
-  %1982 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %1983 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %1984 = icmp sgt i64 %1983, %1982
-  br i1 %1984, label %1985, label %2003
+1997:                                             ; preds = %1996, %1962, %1958, %1954, %1951
+  %1998 = load volatile i32, ptr @P2_is_marked, align 4
+  %1999 = icmp sge i32 %1998, 5
+  br i1 %1999, label %2000, label %2043
 
-1985:                                             ; preds = %1981
-  %1986 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %1986, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %1987 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %1988 = add nsw i32 %1987, -4
-  store volatile i32 %1988, ptr @P2_is_marked, align 4, !tbaa !5
-  %1989 = add nsw i64 %1983, %1982
-  %1990 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1991 = sext i32 %1990 to i64
-  %1992 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1991
-  store volatile i64 %1982, ptr %1992, align 8, !tbaa !9
-  %1993 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1994 = add nsw i32 %1993, 1
-  %1995 = sext i32 %1994 to i64
-  %1996 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1995
-  store volatile i64 %1983, ptr %1996, align 8, !tbaa !9
-  %1997 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %1998 = add nsw i32 %1997, 2
-  %1999 = sext i32 %1998 to i64
-  %2000 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %1999
-  store volatile i64 %1989, ptr %2000, align 8, !tbaa !9
-  %2001 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+2000:                                             ; preds = %1997
+  %2001 = load volatile i32, ptr @P3_is_marked, align 4
   %2002 = add nsw i32 %2001, 3
-  store volatile i32 %2002, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2003
+  %2003 = icmp sle i32 %2002, 6
+  br i1 %2003, label %2004, label %2043
 
-2003:                                             ; preds = %1985, %1981, %1977, %1973, %1970, %1967
-  %2004 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2005 = icmp sgt i32 %2004, 4
-  br i1 %2005, label %2006, label %2038
+2004:                                             ; preds = %2000
+  %2005 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2006 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2007 = icmp eq i64 %2005, %2006
+  br i1 %2007, label %2008, label %2043
 
-2006:                                             ; preds = %2003
-  %2007 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2008 = icmp slt i32 %2007, 4
-  br i1 %2008, label %2009, label %2038
+2008:                                             ; preds = %2004
+  %2009 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2010 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2011 = icmp eq i64 %2009, %2010
+  br i1 %2011, label %2012, label %2043
 
-2009:                                             ; preds = %2006
-  %2010 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2011 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2012 = icmp eq i64 %2010, %2011
-  br i1 %2012, label %2013, label %2038
+2012:                                             ; preds = %2008
+  %2013 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2013, ptr %116, align 8
+  %2014 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %2014, ptr %117, align 8
+  %2015 = load i64, ptr %117, align 8
+  %2016 = load i64, ptr %116, align 8
+  %2017 = icmp sgt i64 %2015, %2016
+  br i1 %2017, label %2018, label %2042
 
-2013:                                             ; preds = %2009
-  %2014 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2015 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2016 = icmp eq i64 %2014, %2015
-  br i1 %2016, label %2017, label %2038
+2018:                                             ; preds = %2012
+  %2019 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2019, ptr @P2_marking_member_0, align 16
+  %2020 = load volatile i32, ptr @P2_is_marked, align 4
+  %2021 = sub nsw i32 %2020, 4
+  store volatile i32 %2021, ptr @P2_is_marked, align 4
+  %2022 = load i64, ptr %116, align 8
+  %2023 = load i64, ptr %117, align 8
+  %2024 = add nsw i64 %2022, %2023
+  store i64 %2024, ptr %118, align 8
+  %2025 = load i64, ptr %116, align 8
+  %2026 = load volatile i32, ptr @P3_is_marked, align 4
+  %2027 = add nsw i32 %2026, 0
+  %2028 = sext i32 %2027 to i64
+  %2029 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2028
+  store volatile i64 %2025, ptr %2029, align 8
+  %2030 = load i64, ptr %117, align 8
+  %2031 = load volatile i32, ptr @P3_is_marked, align 4
+  %2032 = add nsw i32 %2031, 1
+  %2033 = sext i32 %2032 to i64
+  %2034 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2033
+  store volatile i64 %2030, ptr %2034, align 8
+  %2035 = load i64, ptr %118, align 8
+  %2036 = load volatile i32, ptr @P3_is_marked, align 4
+  %2037 = add nsw i32 %2036, 2
+  %2038 = sext i32 %2037 to i64
+  %2039 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2038
+  store volatile i64 %2035, ptr %2039, align 8
+  %2040 = load volatile i32, ptr @P3_is_marked, align 4
+  %2041 = add nsw i32 %2040, 3
+  store volatile i32 %2041, ptr @P3_is_marked, align 4
+  br label %2042
 
-2017:                                             ; preds = %2013
-  %2018 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2019 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2020 = icmp sgt i64 %2019, %2018
-  br i1 %2020, label %2021, label %2038
+2042:                                             ; preds = %2018, %2012
+  br label %2043
 
-2021:                                             ; preds = %2017
-  %2022 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2023 = add nsw i32 %2022, -4
-  store volatile i32 %2023, ptr @P2_is_marked, align 4, !tbaa !5
-  %2024 = add nsw i64 %2019, %2018
-  %2025 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2026 = sext i32 %2025 to i64
-  %2027 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2026
-  store volatile i64 %2018, ptr %2027, align 8, !tbaa !9
-  %2028 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2029 = add nsw i32 %2028, 1
-  %2030 = sext i32 %2029 to i64
-  %2031 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2030
-  store volatile i64 %2019, ptr %2031, align 8, !tbaa !9
-  %2032 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2033 = add nsw i32 %2032, 2
-  %2034 = sext i32 %2033 to i64
-  %2035 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2034
-  store volatile i64 %2024, ptr %2035, align 8, !tbaa !9
-  %2036 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2037 = add nsw i32 %2036, 3
-  store volatile i32 %2037, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2038
+2043:                                             ; preds = %2042, %2008, %2004, %2000, %1997
+  %2044 = load volatile i32, ptr @P2_is_marked, align 4
+  %2045 = icmp sge i32 %2044, 5
+  br i1 %2045, label %2046, label %2089
 
-2038:                                             ; preds = %2021, %2017, %2013, %2009, %2006, %2003
-  %2039 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2040 = icmp sgt i32 %2039, 4
-  br i1 %2040, label %2041, label %2074
+2046:                                             ; preds = %2043
+  %2047 = load volatile i32, ptr @P3_is_marked, align 4
+  %2048 = add nsw i32 %2047, 3
+  %2049 = icmp sle i32 %2048, 6
+  br i1 %2049, label %2050, label %2089
 
-2041:                                             ; preds = %2038
-  %2042 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2043 = icmp slt i32 %2042, 4
-  br i1 %2043, label %2044, label %2074
+2050:                                             ; preds = %2046
+  %2051 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2052 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2053 = icmp eq i64 %2051, %2052
+  br i1 %2053, label %2054, label %2089
 
-2044:                                             ; preds = %2041
-  %2045 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2046 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2047 = icmp eq i64 %2045, %2046
-  br i1 %2047, label %2048, label %2074
+2054:                                             ; preds = %2050
+  %2055 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2056 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2057 = icmp eq i64 %2055, %2056
+  br i1 %2057, label %2058, label %2089
 
-2048:                                             ; preds = %2044
-  %2049 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2050 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2051 = icmp eq i64 %2049, %2050
-  br i1 %2051, label %2052, label %2074
+2058:                                             ; preds = %2054
+  %2059 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2059, ptr %119, align 8
+  %2060 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %2060, ptr %120, align 8
+  %2061 = load i64, ptr %120, align 8
+  %2062 = load i64, ptr %119, align 8
+  %2063 = icmp sgt i64 %2061, %2062
+  br i1 %2063, label %2064, label %2088
 
-2052:                                             ; preds = %2048
-  %2053 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2054 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2055 = icmp sgt i64 %2054, %2053
-  br i1 %2055, label %2056, label %2074
+2064:                                             ; preds = %2058
+  %2065 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %2065, ptr @P2_marking_member_0, align 16
+  %2066 = load volatile i32, ptr @P2_is_marked, align 4
+  %2067 = sub nsw i32 %2066, 4
+  store volatile i32 %2067, ptr @P2_is_marked, align 4
+  %2068 = load i64, ptr %119, align 8
+  %2069 = load i64, ptr %120, align 8
+  %2070 = add nsw i64 %2068, %2069
+  store i64 %2070, ptr %121, align 8
+  %2071 = load i64, ptr %119, align 8
+  %2072 = load volatile i32, ptr @P3_is_marked, align 4
+  %2073 = add nsw i32 %2072, 0
+  %2074 = sext i32 %2073 to i64
+  %2075 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2074
+  store volatile i64 %2071, ptr %2075, align 8
+  %2076 = load i64, ptr %120, align 8
+  %2077 = load volatile i32, ptr @P3_is_marked, align 4
+  %2078 = add nsw i32 %2077, 1
+  %2079 = sext i32 %2078 to i64
+  %2080 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2079
+  store volatile i64 %2076, ptr %2080, align 8
+  %2081 = load i64, ptr %121, align 8
+  %2082 = load volatile i32, ptr @P3_is_marked, align 4
+  %2083 = add nsw i32 %2082, 2
+  %2084 = sext i32 %2083 to i64
+  %2085 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2084
+  store volatile i64 %2081, ptr %2085, align 8
+  %2086 = load volatile i32, ptr @P3_is_marked, align 4
+  %2087 = add nsw i32 %2086, 3
+  store volatile i32 %2087, ptr @P3_is_marked, align 4
+  br label %2088
 
-2056:                                             ; preds = %2052
-  %2057 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %2057, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2058 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2059 = add nsw i32 %2058, -4
-  store volatile i32 %2059, ptr @P2_is_marked, align 4, !tbaa !5
-  %2060 = add nsw i64 %2054, %2053
-  %2061 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2062 = sext i32 %2061 to i64
-  %2063 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2062
-  store volatile i64 %2053, ptr %2063, align 8, !tbaa !9
-  %2064 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2065 = add nsw i32 %2064, 1
-  %2066 = sext i32 %2065 to i64
-  %2067 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2066
-  store volatile i64 %2054, ptr %2067, align 8, !tbaa !9
-  %2068 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2069 = add nsw i32 %2068, 2
-  %2070 = sext i32 %2069 to i64
-  %2071 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2070
-  store volatile i64 %2060, ptr %2071, align 8, !tbaa !9
-  %2072 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2073 = add nsw i32 %2072, 3
-  store volatile i32 %2073, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2074
+2088:                                             ; preds = %2064, %2058
+  br label %2089
 
-2074:                                             ; preds = %2056, %2052, %2048, %2044, %2041, %2038
-  %2075 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2076 = icmp sgt i32 %2075, 4
-  br i1 %2076, label %2077, label %2109
+2089:                                             ; preds = %2088, %2054, %2050, %2046, %2043
+  %2090 = load volatile i32, ptr @P2_is_marked, align 4
+  %2091 = icmp sge i32 %2090, 5
+  br i1 %2091, label %2092, label %2135
 
-2077:                                             ; preds = %2074
-  %2078 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2079 = icmp slt i32 %2078, 4
-  br i1 %2079, label %2080, label %2109
+2092:                                             ; preds = %2089
+  %2093 = load volatile i32, ptr @P3_is_marked, align 4
+  %2094 = add nsw i32 %2093, 3
+  %2095 = icmp sle i32 %2094, 6
+  br i1 %2095, label %2096, label %2135
 
-2080:                                             ; preds = %2077
-  %2081 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2082 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2083 = icmp eq i64 %2081, %2082
-  br i1 %2083, label %2084, label %2109
+2096:                                             ; preds = %2092
+  %2097 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2098 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2099 = icmp eq i64 %2097, %2098
+  br i1 %2099, label %2100, label %2135
 
-2084:                                             ; preds = %2080
-  %2085 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2086 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2087 = icmp eq i64 %2085, %2086
-  br i1 %2087, label %2088, label %2109
+2100:                                             ; preds = %2096
+  %2101 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2102 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2103 = icmp eq i64 %2101, %2102
+  br i1 %2103, label %2104, label %2135
 
-2088:                                             ; preds = %2084
-  %2089 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2090 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2091 = icmp sgt i64 %2090, %2089
-  br i1 %2091, label %2092, label %2109
+2104:                                             ; preds = %2100
+  %2105 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2105, ptr %122, align 8
+  %2106 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %2106, ptr %123, align 8
+  %2107 = load i64, ptr %123, align 8
+  %2108 = load i64, ptr %122, align 8
+  %2109 = icmp sgt i64 %2107, %2108
+  br i1 %2109, label %2110, label %2134
 
-2092:                                             ; preds = %2088
-  %2093 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2094 = add nsw i32 %2093, -4
-  store volatile i32 %2094, ptr @P2_is_marked, align 4, !tbaa !5
-  %2095 = add nsw i64 %2090, %2089
-  %2096 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2097 = sext i32 %2096 to i64
-  %2098 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2097
-  store volatile i64 %2089, ptr %2098, align 8, !tbaa !9
-  %2099 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2100 = add nsw i32 %2099, 1
-  %2101 = sext i32 %2100 to i64
-  %2102 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2101
-  store volatile i64 %2090, ptr %2102, align 8, !tbaa !9
-  %2103 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2104 = add nsw i32 %2103, 2
-  %2105 = sext i32 %2104 to i64
-  %2106 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2105
-  store volatile i64 %2095, ptr %2106, align 8, !tbaa !9
-  %2107 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2108 = add nsw i32 %2107, 3
-  store volatile i32 %2108, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2109
+2110:                                             ; preds = %2104
+  %2111 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2111, ptr @P2_marking_member_0, align 16
+  %2112 = load volatile i32, ptr @P2_is_marked, align 4
+  %2113 = sub nsw i32 %2112, 4
+  store volatile i32 %2113, ptr @P2_is_marked, align 4
+  %2114 = load i64, ptr %122, align 8
+  %2115 = load i64, ptr %123, align 8
+  %2116 = add nsw i64 %2114, %2115
+  store i64 %2116, ptr %124, align 8
+  %2117 = load i64, ptr %122, align 8
+  %2118 = load volatile i32, ptr @P3_is_marked, align 4
+  %2119 = add nsw i32 %2118, 0
+  %2120 = sext i32 %2119 to i64
+  %2121 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2120
+  store volatile i64 %2117, ptr %2121, align 8
+  %2122 = load i64, ptr %123, align 8
+  %2123 = load volatile i32, ptr @P3_is_marked, align 4
+  %2124 = add nsw i32 %2123, 1
+  %2125 = sext i32 %2124 to i64
+  %2126 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2125
+  store volatile i64 %2122, ptr %2126, align 8
+  %2127 = load i64, ptr %124, align 8
+  %2128 = load volatile i32, ptr @P3_is_marked, align 4
+  %2129 = add nsw i32 %2128, 2
+  %2130 = sext i32 %2129 to i64
+  %2131 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2130
+  store volatile i64 %2127, ptr %2131, align 8
+  %2132 = load volatile i32, ptr @P3_is_marked, align 4
+  %2133 = add nsw i32 %2132, 3
+  store volatile i32 %2133, ptr @P3_is_marked, align 4
+  br label %2134
 
-2109:                                             ; preds = %2092, %2088, %2084, %2080, %2077, %2074
-  %2110 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2111 = icmp sgt i32 %2110, 4
-  br i1 %2111, label %2112, label %2145
+2134:                                             ; preds = %2110, %2104
+  br label %2135
 
-2112:                                             ; preds = %2109
-  %2113 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2114 = icmp slt i32 %2113, 4
-  br i1 %2114, label %2115, label %2145
+2135:                                             ; preds = %2134, %2100, %2096, %2092, %2089
+  %2136 = load volatile i32, ptr @P2_is_marked, align 4
+  %2137 = icmp sge i32 %2136, 5
+  br i1 %2137, label %2138, label %2181
 
-2115:                                             ; preds = %2112
-  %2116 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2117 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2118 = icmp eq i64 %2116, %2117
-  br i1 %2118, label %2119, label %2145
+2138:                                             ; preds = %2135
+  %2139 = load volatile i32, ptr @P3_is_marked, align 4
+  %2140 = add nsw i32 %2139, 3
+  %2141 = icmp sle i32 %2140, 6
+  br i1 %2141, label %2142, label %2181
 
-2119:                                             ; preds = %2115
-  %2120 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2121 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2122 = icmp eq i64 %2120, %2121
-  br i1 %2122, label %2123, label %2145
+2142:                                             ; preds = %2138
+  %2143 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2144 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2145 = icmp eq i64 %2143, %2144
+  br i1 %2145, label %2146, label %2181
 
-2123:                                             ; preds = %2119
-  %2124 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2125 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2126 = icmp sgt i64 %2125, %2124
-  br i1 %2126, label %2127, label %2145
+2146:                                             ; preds = %2142
+  %2147 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2148 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2149 = icmp eq i64 %2147, %2148
+  br i1 %2149, label %2150, label %2181
 
-2127:                                             ; preds = %2123
-  %2128 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2128, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2129 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2130 = add nsw i32 %2129, -4
-  store volatile i32 %2130, ptr @P2_is_marked, align 4, !tbaa !5
-  %2131 = add nsw i64 %2125, %2124
-  %2132 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2133 = sext i32 %2132 to i64
-  %2134 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2133
-  store volatile i64 %2124, ptr %2134, align 8, !tbaa !9
-  %2135 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2136 = add nsw i32 %2135, 1
-  %2137 = sext i32 %2136 to i64
-  %2138 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2137
-  store volatile i64 %2125, ptr %2138, align 8, !tbaa !9
-  %2139 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2140 = add nsw i32 %2139, 2
-  %2141 = sext i32 %2140 to i64
-  %2142 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2141
-  store volatile i64 %2131, ptr %2142, align 8, !tbaa !9
-  %2143 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2144 = add nsw i32 %2143, 3
-  store volatile i32 %2144, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2145
+2150:                                             ; preds = %2146
+  %2151 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2151, ptr %125, align 8
+  %2152 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %2152, ptr %126, align 8
+  %2153 = load i64, ptr %126, align 8
+  %2154 = load i64, ptr %125, align 8
+  %2155 = icmp sgt i64 %2153, %2154
+  br i1 %2155, label %2156, label %2180
 
-2145:                                             ; preds = %2127, %2123, %2119, %2115, %2112, %2109
-  %2146 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2147 = icmp sgt i32 %2146, 4
-  br i1 %2147, label %2148, label %2181
+2156:                                             ; preds = %2150
+  %2157 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %2157, ptr @P2_marking_member_0, align 16
+  %2158 = load volatile i32, ptr @P2_is_marked, align 4
+  %2159 = sub nsw i32 %2158, 4
+  store volatile i32 %2159, ptr @P2_is_marked, align 4
+  %2160 = load i64, ptr %125, align 8
+  %2161 = load i64, ptr %126, align 8
+  %2162 = add nsw i64 %2160, %2161
+  store i64 %2162, ptr %127, align 8
+  %2163 = load i64, ptr %125, align 8
+  %2164 = load volatile i32, ptr @P3_is_marked, align 4
+  %2165 = add nsw i32 %2164, 0
+  %2166 = sext i32 %2165 to i64
+  %2167 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2166
+  store volatile i64 %2163, ptr %2167, align 8
+  %2168 = load i64, ptr %126, align 8
+  %2169 = load volatile i32, ptr @P3_is_marked, align 4
+  %2170 = add nsw i32 %2169, 1
+  %2171 = sext i32 %2170 to i64
+  %2172 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2171
+  store volatile i64 %2168, ptr %2172, align 8
+  %2173 = load i64, ptr %127, align 8
+  %2174 = load volatile i32, ptr @P3_is_marked, align 4
+  %2175 = add nsw i32 %2174, 2
+  %2176 = sext i32 %2175 to i64
+  %2177 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2176
+  store volatile i64 %2173, ptr %2177, align 8
+  %2178 = load volatile i32, ptr @P3_is_marked, align 4
+  %2179 = add nsw i32 %2178, 3
+  store volatile i32 %2179, ptr @P3_is_marked, align 4
+  br label %2180
 
-2148:                                             ; preds = %2145
-  %2149 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2150 = icmp slt i32 %2149, 4
-  br i1 %2150, label %2151, label %2181
-
-2151:                                             ; preds = %2148
-  %2152 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2153 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2154 = icmp eq i64 %2152, %2153
-  br i1 %2154, label %2155, label %2181
-
-2155:                                             ; preds = %2151
-  %2156 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2157 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2158 = icmp eq i64 %2156, %2157
-  br i1 %2158, label %2159, label %2181
-
-2159:                                             ; preds = %2155
-  %2160 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2161 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2162 = icmp sgt i64 %2161, %2160
-  br i1 %2162, label %2163, label %2181
-
-2163:                                             ; preds = %2159
-  %2164 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %2164, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2165 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2166 = add nsw i32 %2165, -4
-  store volatile i32 %2166, ptr @P2_is_marked, align 4, !tbaa !5
-  %2167 = add nsw i64 %2161, %2160
-  %2168 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2169 = sext i32 %2168 to i64
-  %2170 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2169
-  store volatile i64 %2160, ptr %2170, align 8, !tbaa !9
-  %2171 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2172 = add nsw i32 %2171, 1
-  %2173 = sext i32 %2172 to i64
-  %2174 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2173
-  store volatile i64 %2161, ptr %2174, align 8, !tbaa !9
-  %2175 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2176 = add nsw i32 %2175, 2
-  %2177 = sext i32 %2176 to i64
-  %2178 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2177
-  store volatile i64 %2167, ptr %2178, align 8, !tbaa !9
-  %2179 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2180 = add nsw i32 %2179, 3
-  store volatile i32 %2180, ptr @P3_is_marked, align 4, !tbaa !5
+2180:                                             ; preds = %2156, %2150
   br label %2181
 
-2181:                                             ; preds = %2163, %2159, %2155, %2151, %2148, %2145
-  %2182 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2183 = icmp sgt i32 %2182, 4
-  br i1 %2183, label %2184, label %2217
+2181:                                             ; preds = %2180, %2146, %2142, %2138, %2135
+  %2182 = load volatile i32, ptr @P2_is_marked, align 4
+  %2183 = icmp sge i32 %2182, 5
+  br i1 %2183, label %2184, label %2227
 
 2184:                                             ; preds = %2181
-  %2185 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2186 = icmp slt i32 %2185, 4
-  br i1 %2186, label %2187, label %2217
+  %2185 = load volatile i32, ptr @P3_is_marked, align 4
+  %2186 = add nsw i32 %2185, 3
+  %2187 = icmp sle i32 %2186, 6
+  br i1 %2187, label %2188, label %2227
 
-2187:                                             ; preds = %2184
-  %2188 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2189 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2190 = icmp eq i64 %2188, %2189
-  br i1 %2190, label %2191, label %2217
+2188:                                             ; preds = %2184
+  %2189 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2190 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2191 = icmp eq i64 %2189, %2190
+  br i1 %2191, label %2192, label %2227
 
-2191:                                             ; preds = %2187
-  %2192 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2193 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2194 = icmp eq i64 %2192, %2193
-  br i1 %2194, label %2195, label %2217
+2192:                                             ; preds = %2188
+  %2193 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2194 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2195 = icmp eq i64 %2193, %2194
+  br i1 %2195, label %2196, label %2227
 
-2195:                                             ; preds = %2191
-  %2196 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2197 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2198 = icmp sgt i64 %2197, %2196
-  br i1 %2198, label %2199, label %2217
+2196:                                             ; preds = %2192
+  %2197 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2197, ptr %128, align 8
+  %2198 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %2198, ptr %129, align 8
+  %2199 = load i64, ptr %129, align 8
+  %2200 = load i64, ptr %128, align 8
+  %2201 = icmp sgt i64 %2199, %2200
+  br i1 %2201, label %2202, label %2226
 
-2199:                                             ; preds = %2195
-  %2200 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2200, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2201 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2202 = add nsw i32 %2201, -4
-  store volatile i32 %2202, ptr @P2_is_marked, align 4, !tbaa !5
-  %2203 = add nsw i64 %2197, %2196
-  %2204 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2205 = sext i32 %2204 to i64
-  %2206 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2205
-  store volatile i64 %2196, ptr %2206, align 8, !tbaa !9
-  %2207 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2208 = add nsw i32 %2207, 1
-  %2209 = sext i32 %2208 to i64
-  %2210 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2209
-  store volatile i64 %2197, ptr %2210, align 8, !tbaa !9
-  %2211 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2212 = add nsw i32 %2211, 2
-  %2213 = sext i32 %2212 to i64
-  %2214 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2213
-  store volatile i64 %2203, ptr %2214, align 8, !tbaa !9
-  %2215 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2216 = add nsw i32 %2215, 3
-  store volatile i32 %2216, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2217
+2202:                                             ; preds = %2196
+  %2203 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2203, ptr @P2_marking_member_0, align 16
+  %2204 = load volatile i32, ptr @P2_is_marked, align 4
+  %2205 = sub nsw i32 %2204, 4
+  store volatile i32 %2205, ptr @P2_is_marked, align 4
+  %2206 = load i64, ptr %128, align 8
+  %2207 = load i64, ptr %129, align 8
+  %2208 = add nsw i64 %2206, %2207
+  store i64 %2208, ptr %130, align 8
+  %2209 = load i64, ptr %128, align 8
+  %2210 = load volatile i32, ptr @P3_is_marked, align 4
+  %2211 = add nsw i32 %2210, 0
+  %2212 = sext i32 %2211 to i64
+  %2213 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2212
+  store volatile i64 %2209, ptr %2213, align 8
+  %2214 = load i64, ptr %129, align 8
+  %2215 = load volatile i32, ptr @P3_is_marked, align 4
+  %2216 = add nsw i32 %2215, 1
+  %2217 = sext i32 %2216 to i64
+  %2218 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2217
+  store volatile i64 %2214, ptr %2218, align 8
+  %2219 = load i64, ptr %130, align 8
+  %2220 = load volatile i32, ptr @P3_is_marked, align 4
+  %2221 = add nsw i32 %2220, 2
+  %2222 = sext i32 %2221 to i64
+  %2223 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2222
+  store volatile i64 %2219, ptr %2223, align 8
+  %2224 = load volatile i32, ptr @P3_is_marked, align 4
+  %2225 = add nsw i32 %2224, 3
+  store volatile i32 %2225, ptr @P3_is_marked, align 4
+  br label %2226
 
-2217:                                             ; preds = %2199, %2195, %2191, %2187, %2184, %2181
-  %2218 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2219 = icmp sgt i32 %2218, 4
-  br i1 %2219, label %2220, label %2252
+2226:                                             ; preds = %2202, %2196
+  br label %2227
 
-2220:                                             ; preds = %2217
-  %2221 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2222 = icmp slt i32 %2221, 4
-  br i1 %2222, label %2223, label %2252
+2227:                                             ; preds = %2226, %2192, %2188, %2184, %2181
+  %2228 = load volatile i32, ptr @P2_is_marked, align 4
+  %2229 = icmp sge i32 %2228, 5
+  br i1 %2229, label %2230, label %2273
 
-2223:                                             ; preds = %2220
-  %2224 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2225 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2226 = icmp eq i64 %2224, %2225
-  br i1 %2226, label %2227, label %2252
+2230:                                             ; preds = %2227
+  %2231 = load volatile i32, ptr @P3_is_marked, align 4
+  %2232 = add nsw i32 %2231, 3
+  %2233 = icmp sle i32 %2232, 6
+  br i1 %2233, label %2234, label %2273
 
-2227:                                             ; preds = %2223
-  %2228 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2229 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2230 = icmp eq i64 %2228, %2229
-  br i1 %2230, label %2231, label %2252
+2234:                                             ; preds = %2230
+  %2235 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2236 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2237 = icmp eq i64 %2235, %2236
+  br i1 %2237, label %2238, label %2273
 
-2231:                                             ; preds = %2227
-  %2232 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2233 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2234 = icmp sgt i64 %2233, %2232
-  br i1 %2234, label %2235, label %2252
+2238:                                             ; preds = %2234
+  %2239 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2240 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2241 = icmp eq i64 %2239, %2240
+  br i1 %2241, label %2242, label %2273
 
-2235:                                             ; preds = %2231
-  %2236 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2237 = add nsw i32 %2236, -4
-  store volatile i32 %2237, ptr @P2_is_marked, align 4, !tbaa !5
-  %2238 = add nsw i64 %2233, %2232
-  %2239 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2240 = sext i32 %2239 to i64
-  %2241 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2240
-  store volatile i64 %2232, ptr %2241, align 8, !tbaa !9
-  %2242 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2243 = add nsw i32 %2242, 1
-  %2244 = sext i32 %2243 to i64
-  %2245 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2244
-  store volatile i64 %2233, ptr %2245, align 8, !tbaa !9
-  %2246 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2247 = add nsw i32 %2246, 2
-  %2248 = sext i32 %2247 to i64
-  %2249 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2248
-  store volatile i64 %2238, ptr %2249, align 8, !tbaa !9
-  %2250 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2251 = add nsw i32 %2250, 3
-  store volatile i32 %2251, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2252
+2242:                                             ; preds = %2238
+  %2243 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2243, ptr %131, align 8
+  %2244 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %2244, ptr %132, align 8
+  %2245 = load i64, ptr %132, align 8
+  %2246 = load i64, ptr %131, align 8
+  %2247 = icmp sgt i64 %2245, %2246
+  br i1 %2247, label %2248, label %2272
 
-2252:                                             ; preds = %2235, %2231, %2227, %2223, %2220, %2217
-  %2253 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2254 = icmp sgt i32 %2253, 4
-  br i1 %2254, label %2255, label %2288
+2248:                                             ; preds = %2242
+  %2249 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %2249, ptr @P2_marking_member_0, align 16
+  %2250 = load volatile i32, ptr @P2_is_marked, align 4
+  %2251 = sub nsw i32 %2250, 4
+  store volatile i32 %2251, ptr @P2_is_marked, align 4
+  %2252 = load i64, ptr %131, align 8
+  %2253 = load i64, ptr %132, align 8
+  %2254 = add nsw i64 %2252, %2253
+  store i64 %2254, ptr %133, align 8
+  %2255 = load i64, ptr %131, align 8
+  %2256 = load volatile i32, ptr @P3_is_marked, align 4
+  %2257 = add nsw i32 %2256, 0
+  %2258 = sext i32 %2257 to i64
+  %2259 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2258
+  store volatile i64 %2255, ptr %2259, align 8
+  %2260 = load i64, ptr %132, align 8
+  %2261 = load volatile i32, ptr @P3_is_marked, align 4
+  %2262 = add nsw i32 %2261, 1
+  %2263 = sext i32 %2262 to i64
+  %2264 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2263
+  store volatile i64 %2260, ptr %2264, align 8
+  %2265 = load i64, ptr %133, align 8
+  %2266 = load volatile i32, ptr @P3_is_marked, align 4
+  %2267 = add nsw i32 %2266, 2
+  %2268 = sext i32 %2267 to i64
+  %2269 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2268
+  store volatile i64 %2265, ptr %2269, align 8
+  %2270 = load volatile i32, ptr @P3_is_marked, align 4
+  %2271 = add nsw i32 %2270, 3
+  store volatile i32 %2271, ptr @P3_is_marked, align 4
+  br label %2272
 
-2255:                                             ; preds = %2252
-  %2256 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2257 = icmp slt i32 %2256, 4
-  br i1 %2257, label %2258, label %2288
+2272:                                             ; preds = %2248, %2242
+  br label %2273
 
-2258:                                             ; preds = %2255
-  %2259 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2260 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2261 = icmp eq i64 %2259, %2260
-  br i1 %2261, label %2262, label %2288
+2273:                                             ; preds = %2272, %2238, %2234, %2230, %2227
+  %2274 = load volatile i32, ptr @P2_is_marked, align 4
+  %2275 = icmp sge i32 %2274, 5
+  br i1 %2275, label %2276, label %2319
 
-2262:                                             ; preds = %2258
-  %2263 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2264 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2265 = icmp eq i64 %2263, %2264
-  br i1 %2265, label %2266, label %2288
+2276:                                             ; preds = %2273
+  %2277 = load volatile i32, ptr @P3_is_marked, align 4
+  %2278 = add nsw i32 %2277, 3
+  %2279 = icmp sle i32 %2278, 6
+  br i1 %2279, label %2280, label %2319
 
-2266:                                             ; preds = %2262
-  %2267 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2268 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2269 = icmp sgt i64 %2268, %2267
-  br i1 %2269, label %2270, label %2288
+2280:                                             ; preds = %2276
+  %2281 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2282 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2283 = icmp eq i64 %2281, %2282
+  br i1 %2283, label %2284, label %2319
 
-2270:                                             ; preds = %2266
-  %2271 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %2271, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2272 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2273 = add nsw i32 %2272, -4
-  store volatile i32 %2273, ptr @P2_is_marked, align 4, !tbaa !5
-  %2274 = add nsw i64 %2268, %2267
-  %2275 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2276 = sext i32 %2275 to i64
-  %2277 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2276
-  store volatile i64 %2267, ptr %2277, align 8, !tbaa !9
-  %2278 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2279 = add nsw i32 %2278, 1
-  %2280 = sext i32 %2279 to i64
-  %2281 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2280
-  store volatile i64 %2268, ptr %2281, align 8, !tbaa !9
-  %2282 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2283 = add nsw i32 %2282, 2
-  %2284 = sext i32 %2283 to i64
-  %2285 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2284
-  store volatile i64 %2274, ptr %2285, align 8, !tbaa !9
-  %2286 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2287 = add nsw i32 %2286, 3
-  store volatile i32 %2287, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2288
+2284:                                             ; preds = %2280
+  %2285 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2286 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2287 = icmp eq i64 %2285, %2286
+  br i1 %2287, label %2288, label %2319
 
-2288:                                             ; preds = %2270, %2266, %2262, %2258, %2255, %2252
-  %2289 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2290 = icmp sgt i32 %2289, 4
-  br i1 %2290, label %2291, label %2323
+2288:                                             ; preds = %2284
+  %2289 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2289, ptr %134, align 8
+  %2290 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %2290, ptr %135, align 8
+  %2291 = load i64, ptr %135, align 8
+  %2292 = load i64, ptr %134, align 8
+  %2293 = icmp sgt i64 %2291, %2292
+  br i1 %2293, label %2294, label %2318
 
-2291:                                             ; preds = %2288
-  %2292 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2293 = icmp slt i32 %2292, 4
-  br i1 %2293, label %2294, label %2323
+2294:                                             ; preds = %2288
+  %2295 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2295, ptr @P2_marking_member_0, align 16
+  %2296 = load volatile i32, ptr @P2_is_marked, align 4
+  %2297 = sub nsw i32 %2296, 4
+  store volatile i32 %2297, ptr @P2_is_marked, align 4
+  %2298 = load i64, ptr %134, align 8
+  %2299 = load i64, ptr %135, align 8
+  %2300 = add nsw i64 %2298, %2299
+  store i64 %2300, ptr %136, align 8
+  %2301 = load i64, ptr %134, align 8
+  %2302 = load volatile i32, ptr @P3_is_marked, align 4
+  %2303 = add nsw i32 %2302, 0
+  %2304 = sext i32 %2303 to i64
+  %2305 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2304
+  store volatile i64 %2301, ptr %2305, align 8
+  %2306 = load i64, ptr %135, align 8
+  %2307 = load volatile i32, ptr @P3_is_marked, align 4
+  %2308 = add nsw i32 %2307, 1
+  %2309 = sext i32 %2308 to i64
+  %2310 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2309
+  store volatile i64 %2306, ptr %2310, align 8
+  %2311 = load i64, ptr %136, align 8
+  %2312 = load volatile i32, ptr @P3_is_marked, align 4
+  %2313 = add nsw i32 %2312, 2
+  %2314 = sext i32 %2313 to i64
+  %2315 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2314
+  store volatile i64 %2311, ptr %2315, align 8
+  %2316 = load volatile i32, ptr @P3_is_marked, align 4
+  %2317 = add nsw i32 %2316, 3
+  store volatile i32 %2317, ptr @P3_is_marked, align 4
+  br label %2318
 
-2294:                                             ; preds = %2291
-  %2295 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2296 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2297 = icmp eq i64 %2295, %2296
-  br i1 %2297, label %2298, label %2323
+2318:                                             ; preds = %2294, %2288
+  br label %2319
 
-2298:                                             ; preds = %2294
-  %2299 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2300 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2301 = icmp eq i64 %2299, %2300
-  br i1 %2301, label %2302, label %2323
+2319:                                             ; preds = %2318, %2284, %2280, %2276, %2273
+  %2320 = load volatile i32, ptr @P2_is_marked, align 4
+  %2321 = icmp sge i32 %2320, 5
+  br i1 %2321, label %2322, label %2365
 
-2302:                                             ; preds = %2298
-  %2303 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2304 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2305 = icmp sgt i64 %2304, %2303
-  br i1 %2305, label %2306, label %2323
+2322:                                             ; preds = %2319
+  %2323 = load volatile i32, ptr @P3_is_marked, align 4
+  %2324 = add nsw i32 %2323, 3
+  %2325 = icmp sle i32 %2324, 6
+  br i1 %2325, label %2326, label %2365
 
-2306:                                             ; preds = %2302
-  %2307 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2308 = add nsw i32 %2307, -4
-  store volatile i32 %2308, ptr @P2_is_marked, align 4, !tbaa !5
-  %2309 = add nsw i64 %2304, %2303
-  %2310 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2311 = sext i32 %2310 to i64
-  %2312 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2311
-  store volatile i64 %2303, ptr %2312, align 8, !tbaa !9
-  %2313 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2314 = add nsw i32 %2313, 1
-  %2315 = sext i32 %2314 to i64
-  %2316 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2315
-  store volatile i64 %2304, ptr %2316, align 8, !tbaa !9
-  %2317 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2318 = add nsw i32 %2317, 2
-  %2319 = sext i32 %2318 to i64
-  %2320 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2319
-  store volatile i64 %2309, ptr %2320, align 8, !tbaa !9
-  %2321 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2322 = add nsw i32 %2321, 3
-  store volatile i32 %2322, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2323
+2326:                                             ; preds = %2322
+  %2327 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2328 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2329 = icmp eq i64 %2327, %2328
+  br i1 %2329, label %2330, label %2365
 
-2323:                                             ; preds = %2306, %2302, %2298, %2294, %2291, %2288
-  %2324 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2325 = icmp sgt i32 %2324, 4
-  br i1 %2325, label %2326, label %2359
+2330:                                             ; preds = %2326
+  %2331 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2332 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2333 = icmp eq i64 %2331, %2332
+  br i1 %2333, label %2334, label %2365
 
-2326:                                             ; preds = %2323
-  %2327 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2328 = icmp slt i32 %2327, 4
-  br i1 %2328, label %2329, label %2359
+2334:                                             ; preds = %2330
+  %2335 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2335, ptr %137, align 8
+  %2336 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %2336, ptr %138, align 8
+  %2337 = load i64, ptr %138, align 8
+  %2338 = load i64, ptr %137, align 8
+  %2339 = icmp sgt i64 %2337, %2338
+  br i1 %2339, label %2340, label %2364
 
-2329:                                             ; preds = %2326
-  %2330 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2331 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2332 = icmp eq i64 %2330, %2331
-  br i1 %2332, label %2333, label %2359
-
-2333:                                             ; preds = %2329
-  %2334 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2335 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2336 = icmp eq i64 %2334, %2335
-  br i1 %2336, label %2337, label %2359
-
-2337:                                             ; preds = %2333
-  %2338 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2339 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2340 = icmp sgt i64 %2339, %2338
-  br i1 %2340, label %2341, label %2359
-
-2341:                                             ; preds = %2337
-  %2342 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2342, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2343 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2344 = add nsw i32 %2343, -4
-  store volatile i32 %2344, ptr @P2_is_marked, align 4, !tbaa !5
-  %2345 = add nsw i64 %2339, %2338
-  %2346 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2347 = sext i32 %2346 to i64
-  %2348 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2347
-  store volatile i64 %2338, ptr %2348, align 8, !tbaa !9
-  %2349 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2350 = add nsw i32 %2349, 1
-  %2351 = sext i32 %2350 to i64
-  %2352 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2351
-  store volatile i64 %2339, ptr %2352, align 8, !tbaa !9
-  %2353 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2354 = add nsw i32 %2353, 2
+2340:                                             ; preds = %2334
+  %2341 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2341, ptr @P2_marking_member_0, align 16
+  %2342 = load volatile i32, ptr @P2_is_marked, align 4
+  %2343 = sub nsw i32 %2342, 4
+  store volatile i32 %2343, ptr @P2_is_marked, align 4
+  %2344 = load i64, ptr %137, align 8
+  %2345 = load i64, ptr %138, align 8
+  %2346 = add nsw i64 %2344, %2345
+  store i64 %2346, ptr %139, align 8
+  %2347 = load i64, ptr %137, align 8
+  %2348 = load volatile i32, ptr @P3_is_marked, align 4
+  %2349 = add nsw i32 %2348, 0
+  %2350 = sext i32 %2349 to i64
+  %2351 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2350
+  store volatile i64 %2347, ptr %2351, align 8
+  %2352 = load i64, ptr %138, align 8
+  %2353 = load volatile i32, ptr @P3_is_marked, align 4
+  %2354 = add nsw i32 %2353, 1
   %2355 = sext i32 %2354 to i64
   %2356 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2355
-  store volatile i64 %2345, ptr %2356, align 8, !tbaa !9
-  %2357 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2358 = add nsw i32 %2357, 3
-  store volatile i32 %2358, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2359
+  store volatile i64 %2352, ptr %2356, align 8
+  %2357 = load i64, ptr %139, align 8
+  %2358 = load volatile i32, ptr @P3_is_marked, align 4
+  %2359 = add nsw i32 %2358, 2
+  %2360 = sext i32 %2359 to i64
+  %2361 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2360
+  store volatile i64 %2357, ptr %2361, align 8
+  %2362 = load volatile i32, ptr @P3_is_marked, align 4
+  %2363 = add nsw i32 %2362, 3
+  store volatile i32 %2363, ptr @P3_is_marked, align 4
+  br label %2364
 
-2359:                                             ; preds = %2341, %2337, %2333, %2329, %2326, %2323
-  %2360 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2361 = icmp sgt i32 %2360, 4
-  br i1 %2361, label %2362, label %2395
+2364:                                             ; preds = %2340, %2334
+  br label %2365
 
-2362:                                             ; preds = %2359
-  %2363 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2364 = icmp slt i32 %2363, 4
-  br i1 %2364, label %2365, label %2395
+2365:                                             ; preds = %2364, %2330, %2326, %2322, %2319
+  %2366 = load volatile i32, ptr @P2_is_marked, align 4
+  %2367 = icmp sge i32 %2366, 5
+  br i1 %2367, label %2368, label %2411
 
-2365:                                             ; preds = %2362
-  %2366 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2367 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2368 = icmp eq i64 %2366, %2367
-  br i1 %2368, label %2369, label %2395
+2368:                                             ; preds = %2365
+  %2369 = load volatile i32, ptr @P3_is_marked, align 4
+  %2370 = add nsw i32 %2369, 3
+  %2371 = icmp sle i32 %2370, 6
+  br i1 %2371, label %2372, label %2411
 
-2369:                                             ; preds = %2365
-  %2370 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2371 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2372 = icmp eq i64 %2370, %2371
-  br i1 %2372, label %2373, label %2395
+2372:                                             ; preds = %2368
+  %2373 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2374 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2375 = icmp eq i64 %2373, %2374
+  br i1 %2375, label %2376, label %2411
 
-2373:                                             ; preds = %2369
-  %2374 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2375 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2376 = icmp sgt i64 %2375, %2374
-  br i1 %2376, label %2377, label %2395
+2376:                                             ; preds = %2372
+  %2377 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2378 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2379 = icmp eq i64 %2377, %2378
+  br i1 %2379, label %2380, label %2411
 
-2377:                                             ; preds = %2373
-  %2378 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %2378, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2379 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2380 = add nsw i32 %2379, -4
-  store volatile i32 %2380, ptr @P2_is_marked, align 4, !tbaa !5
-  %2381 = add nsw i64 %2375, %2374
-  %2382 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2383 = sext i32 %2382 to i64
-  %2384 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2383
-  store volatile i64 %2374, ptr %2384, align 8, !tbaa !9
-  %2385 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2386 = add nsw i32 %2385, 1
-  %2387 = sext i32 %2386 to i64
-  %2388 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2387
-  store volatile i64 %2375, ptr %2388, align 8, !tbaa !9
-  %2389 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2390 = add nsw i32 %2389, 2
-  %2391 = sext i32 %2390 to i64
-  %2392 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2391
-  store volatile i64 %2381, ptr %2392, align 8, !tbaa !9
-  %2393 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2394 = add nsw i32 %2393, 3
-  store volatile i32 %2394, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2395
+2380:                                             ; preds = %2376
+  %2381 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2381, ptr %140, align 8
+  %2382 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %2382, ptr %141, align 8
+  %2383 = load i64, ptr %141, align 8
+  %2384 = load i64, ptr %140, align 8
+  %2385 = icmp sgt i64 %2383, %2384
+  br i1 %2385, label %2386, label %2410
 
-2395:                                             ; preds = %2377, %2373, %2369, %2365, %2362, %2359
-  %2396 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2397 = icmp sgt i32 %2396, 4
-  br i1 %2397, label %2398, label %2431
+2386:                                             ; preds = %2380
+  %2387 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2387, ptr @P2_marking_member_0, align 16
+  %2388 = load volatile i32, ptr @P2_is_marked, align 4
+  %2389 = sub nsw i32 %2388, 4
+  store volatile i32 %2389, ptr @P2_is_marked, align 4
+  %2390 = load i64, ptr %140, align 8
+  %2391 = load i64, ptr %141, align 8
+  %2392 = add nsw i64 %2390, %2391
+  store i64 %2392, ptr %142, align 8
+  %2393 = load i64, ptr %140, align 8
+  %2394 = load volatile i32, ptr @P3_is_marked, align 4
+  %2395 = add nsw i32 %2394, 0
+  %2396 = sext i32 %2395 to i64
+  %2397 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2396
+  store volatile i64 %2393, ptr %2397, align 8
+  %2398 = load i64, ptr %141, align 8
+  %2399 = load volatile i32, ptr @P3_is_marked, align 4
+  %2400 = add nsw i32 %2399, 1
+  %2401 = sext i32 %2400 to i64
+  %2402 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2401
+  store volatile i64 %2398, ptr %2402, align 8
+  %2403 = load i64, ptr %142, align 8
+  %2404 = load volatile i32, ptr @P3_is_marked, align 4
+  %2405 = add nsw i32 %2404, 2
+  %2406 = sext i32 %2405 to i64
+  %2407 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2406
+  store volatile i64 %2403, ptr %2407, align 8
+  %2408 = load volatile i32, ptr @P3_is_marked, align 4
+  %2409 = add nsw i32 %2408, 3
+  store volatile i32 %2409, ptr @P3_is_marked, align 4
+  br label %2410
 
-2398:                                             ; preds = %2395
-  %2399 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2400 = icmp slt i32 %2399, 4
-  br i1 %2400, label %2401, label %2431
+2410:                                             ; preds = %2386, %2380
+  br label %2411
 
-2401:                                             ; preds = %2398
-  %2402 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2403 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2404 = icmp eq i64 %2402, %2403
-  br i1 %2404, label %2405, label %2431
+2411:                                             ; preds = %2410, %2376, %2372, %2368, %2365
+  %2412 = load volatile i32, ptr @P2_is_marked, align 4
+  %2413 = icmp sge i32 %2412, 5
+  br i1 %2413, label %2414, label %2457
 
-2405:                                             ; preds = %2401
-  %2406 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2407 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2408 = icmp eq i64 %2406, %2407
-  br i1 %2408, label %2409, label %2431
+2414:                                             ; preds = %2411
+  %2415 = load volatile i32, ptr @P3_is_marked, align 4
+  %2416 = add nsw i32 %2415, 3
+  %2417 = icmp sle i32 %2416, 6
+  br i1 %2417, label %2418, label %2457
 
-2409:                                             ; preds = %2405
-  %2410 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2411 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2412 = icmp sgt i64 %2411, %2410
-  br i1 %2412, label %2413, label %2431
+2418:                                             ; preds = %2414
+  %2419 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2420 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2421 = icmp eq i64 %2419, %2420
+  br i1 %2421, label %2422, label %2457
 
-2413:                                             ; preds = %2409
-  %2414 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2414, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2415 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2416 = add nsw i32 %2415, -4
-  store volatile i32 %2416, ptr @P2_is_marked, align 4, !tbaa !5
-  %2417 = add nsw i64 %2411, %2410
-  %2418 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2419 = sext i32 %2418 to i64
-  %2420 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2419
-  store volatile i64 %2410, ptr %2420, align 8, !tbaa !9
-  %2421 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2422 = add nsw i32 %2421, 1
-  %2423 = sext i32 %2422 to i64
-  %2424 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2423
-  store volatile i64 %2411, ptr %2424, align 8, !tbaa !9
-  %2425 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2426 = add nsw i32 %2425, 2
-  %2427 = sext i32 %2426 to i64
-  %2428 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2427
-  store volatile i64 %2417, ptr %2428, align 8, !tbaa !9
-  %2429 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2430 = add nsw i32 %2429, 3
-  store volatile i32 %2430, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2431
+2422:                                             ; preds = %2418
+  %2423 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2424 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2425 = icmp eq i64 %2423, %2424
+  br i1 %2425, label %2426, label %2457
 
-2431:                                             ; preds = %2413, %2409, %2405, %2401, %2398, %2395
-  %2432 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2433 = icmp sgt i32 %2432, 4
-  br i1 %2433, label %2434, label %2467
+2426:                                             ; preds = %2422
+  %2427 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2427, ptr %143, align 8
+  %2428 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %2428, ptr %144, align 8
+  %2429 = load i64, ptr %144, align 8
+  %2430 = load i64, ptr %143, align 8
+  %2431 = icmp sgt i64 %2429, %2430
+  br i1 %2431, label %2432, label %2456
 
-2434:                                             ; preds = %2431
-  %2435 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2436 = icmp slt i32 %2435, 4
-  br i1 %2436, label %2437, label %2467
+2432:                                             ; preds = %2426
+  %2433 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %2433, ptr @P2_marking_member_0, align 16
+  %2434 = load volatile i32, ptr @P2_is_marked, align 4
+  %2435 = sub nsw i32 %2434, 4
+  store volatile i32 %2435, ptr @P2_is_marked, align 4
+  %2436 = load i64, ptr %143, align 8
+  %2437 = load i64, ptr %144, align 8
+  %2438 = add nsw i64 %2436, %2437
+  store i64 %2438, ptr %145, align 8
+  %2439 = load i64, ptr %143, align 8
+  %2440 = load volatile i32, ptr @P3_is_marked, align 4
+  %2441 = add nsw i32 %2440, 0
+  %2442 = sext i32 %2441 to i64
+  %2443 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2442
+  store volatile i64 %2439, ptr %2443, align 8
+  %2444 = load i64, ptr %144, align 8
+  %2445 = load volatile i32, ptr @P3_is_marked, align 4
+  %2446 = add nsw i32 %2445, 1
+  %2447 = sext i32 %2446 to i64
+  %2448 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2447
+  store volatile i64 %2444, ptr %2448, align 8
+  %2449 = load i64, ptr %145, align 8
+  %2450 = load volatile i32, ptr @P3_is_marked, align 4
+  %2451 = add nsw i32 %2450, 2
+  %2452 = sext i32 %2451 to i64
+  %2453 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2452
+  store volatile i64 %2449, ptr %2453, align 8
+  %2454 = load volatile i32, ptr @P3_is_marked, align 4
+  %2455 = add nsw i32 %2454, 3
+  store volatile i32 %2455, ptr @P3_is_marked, align 4
+  br label %2456
 
-2437:                                             ; preds = %2434
-  %2438 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2439 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2440 = icmp eq i64 %2438, %2439
-  br i1 %2440, label %2441, label %2467
+2456:                                             ; preds = %2432, %2426
+  br label %2457
 
-2441:                                             ; preds = %2437
-  %2442 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2443 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2444 = icmp eq i64 %2442, %2443
-  br i1 %2444, label %2445, label %2467
+2457:                                             ; preds = %2456, %2422, %2418, %2414, %2411
+  %2458 = load volatile i32, ptr @P2_is_marked, align 4
+  %2459 = icmp sge i32 %2458, 5
+  br i1 %2459, label %2460, label %2503
 
-2445:                                             ; preds = %2441
-  %2446 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2447 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2448 = icmp sgt i64 %2447, %2446
-  br i1 %2448, label %2449, label %2467
+2460:                                             ; preds = %2457
+  %2461 = load volatile i32, ptr @P3_is_marked, align 4
+  %2462 = add nsw i32 %2461, 3
+  %2463 = icmp sle i32 %2462, 6
+  br i1 %2463, label %2464, label %2503
 
-2449:                                             ; preds = %2445
-  %2450 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %2450, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2451 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2452 = add nsw i32 %2451, -4
-  store volatile i32 %2452, ptr @P2_is_marked, align 4, !tbaa !5
-  %2453 = add nsw i64 %2447, %2446
-  %2454 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2455 = sext i32 %2454 to i64
-  %2456 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2455
-  store volatile i64 %2446, ptr %2456, align 8, !tbaa !9
-  %2457 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2458 = add nsw i32 %2457, 1
-  %2459 = sext i32 %2458 to i64
-  %2460 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2459
-  store volatile i64 %2447, ptr %2460, align 8, !tbaa !9
-  %2461 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2462 = add nsw i32 %2461, 2
-  %2463 = sext i32 %2462 to i64
-  %2464 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2463
-  store volatile i64 %2453, ptr %2464, align 8, !tbaa !9
-  %2465 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2466 = add nsw i32 %2465, 3
-  store volatile i32 %2466, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2467
+2464:                                             ; preds = %2460
+  %2465 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2466 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2467 = icmp eq i64 %2465, %2466
+  br i1 %2467, label %2468, label %2503
 
-2467:                                             ; preds = %2449, %2445, %2441, %2437, %2434, %2431
-  %2468 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2469 = icmp sgt i32 %2468, 4
-  br i1 %2469, label %2470, label %2503
+2468:                                             ; preds = %2464
+  %2469 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2470 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %2471 = icmp eq i64 %2469, %2470
+  br i1 %2471, label %2472, label %2503
 
-2470:                                             ; preds = %2467
-  %2471 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2472 = icmp slt i32 %2471, 4
-  br i1 %2472, label %2473, label %2503
+2472:                                             ; preds = %2468
+  %2473 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2473, ptr %146, align 8
+  %2474 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %2474, ptr %147, align 8
+  %2475 = load i64, ptr %147, align 8
+  %2476 = load i64, ptr %146, align 8
+  %2477 = icmp sgt i64 %2475, %2476
+  br i1 %2477, label %2478, label %2502
 
-2473:                                             ; preds = %2470
-  %2474 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2475 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2476 = icmp eq i64 %2474, %2475
-  br i1 %2476, label %2477, label %2503
+2478:                                             ; preds = %2472
+  %2479 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2479, ptr @P2_marking_member_0, align 16
+  %2480 = load volatile i32, ptr @P2_is_marked, align 4
+  %2481 = sub nsw i32 %2480, 4
+  store volatile i32 %2481, ptr @P2_is_marked, align 4
+  %2482 = load i64, ptr %146, align 8
+  %2483 = load i64, ptr %147, align 8
+  %2484 = add nsw i64 %2482, %2483
+  store i64 %2484, ptr %148, align 8
+  %2485 = load i64, ptr %146, align 8
+  %2486 = load volatile i32, ptr @P3_is_marked, align 4
+  %2487 = add nsw i32 %2486, 0
+  %2488 = sext i32 %2487 to i64
+  %2489 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2488
+  store volatile i64 %2485, ptr %2489, align 8
+  %2490 = load i64, ptr %147, align 8
+  %2491 = load volatile i32, ptr @P3_is_marked, align 4
+  %2492 = add nsw i32 %2491, 1
+  %2493 = sext i32 %2492 to i64
+  %2494 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2493
+  store volatile i64 %2490, ptr %2494, align 8
+  %2495 = load i64, ptr %148, align 8
+  %2496 = load volatile i32, ptr @P3_is_marked, align 4
+  %2497 = add nsw i32 %2496, 2
+  %2498 = sext i32 %2497 to i64
+  %2499 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2498
+  store volatile i64 %2495, ptr %2499, align 8
+  %2500 = load volatile i32, ptr @P3_is_marked, align 4
+  %2501 = add nsw i32 %2500, 3
+  store volatile i32 %2501, ptr @P3_is_marked, align 4
+  br label %2502
 
-2477:                                             ; preds = %2473
-  %2478 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2479 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2480 = icmp eq i64 %2478, %2479
-  br i1 %2480, label %2481, label %2503
-
-2481:                                             ; preds = %2477
-  %2482 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2483 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2484 = icmp sgt i64 %2483, %2482
-  br i1 %2484, label %2485, label %2503
-
-2485:                                             ; preds = %2481
-  %2486 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2486, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2487 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2488 = add nsw i32 %2487, -4
-  store volatile i32 %2488, ptr @P2_is_marked, align 4, !tbaa !5
-  %2489 = add nsw i64 %2483, %2482
-  %2490 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2491 = sext i32 %2490 to i64
-  %2492 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2491
-  store volatile i64 %2482, ptr %2492, align 8, !tbaa !9
-  %2493 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2494 = add nsw i32 %2493, 1
-  %2495 = sext i32 %2494 to i64
-  %2496 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2495
-  store volatile i64 %2483, ptr %2496, align 8, !tbaa !9
-  %2497 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2498 = add nsw i32 %2497, 2
-  %2499 = sext i32 %2498 to i64
-  %2500 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2499
-  store volatile i64 %2489, ptr %2500, align 8, !tbaa !9
-  %2501 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2502 = add nsw i32 %2501, 3
-  store volatile i32 %2502, ptr @P3_is_marked, align 4, !tbaa !5
+2502:                                             ; preds = %2478, %2472
   br label %2503
 
-2503:                                             ; preds = %2485, %2481, %2477, %2473, %2470, %2467
-  %2504 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2505 = icmp sgt i32 %2504, 4
-  br i1 %2505, label %2506, label %2538
+2503:                                             ; preds = %2502, %2468, %2464, %2460, %2457
+  %2504 = load volatile i32, ptr @P2_is_marked, align 4
+  %2505 = icmp sge i32 %2504, 5
+  br i1 %2505, label %2506, label %2549
 
 2506:                                             ; preds = %2503
-  %2507 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2508 = icmp slt i32 %2507, 4
-  br i1 %2508, label %2509, label %2538
+  %2507 = load volatile i32, ptr @P3_is_marked, align 4
+  %2508 = add nsw i32 %2507, 3
+  %2509 = icmp sle i32 %2508, 6
+  br i1 %2509, label %2510, label %2549
 
-2509:                                             ; preds = %2506
-  %2510 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2511 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2512 = icmp eq i64 %2510, %2511
-  br i1 %2512, label %2513, label %2538
+2510:                                             ; preds = %2506
+  %2511 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2512 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2513 = icmp eq i64 %2511, %2512
+  br i1 %2513, label %2514, label %2549
 
-2513:                                             ; preds = %2509
-  %2514 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2515 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2516 = icmp eq i64 %2514, %2515
-  br i1 %2516, label %2517, label %2538
+2514:                                             ; preds = %2510
+  %2515 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2516 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2517 = icmp eq i64 %2515, %2516
+  br i1 %2517, label %2518, label %2549
 
-2517:                                             ; preds = %2513
-  %2518 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2519 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2520 = icmp sgt i64 %2519, %2518
-  br i1 %2520, label %2521, label %2538
+2518:                                             ; preds = %2514
+  %2519 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2519, ptr %149, align 8
+  %2520 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %2520, ptr %150, align 8
+  %2521 = load i64, ptr %150, align 8
+  %2522 = load i64, ptr %149, align 8
+  %2523 = icmp sgt i64 %2521, %2522
+  br i1 %2523, label %2524, label %2548
 
-2521:                                             ; preds = %2517
-  %2522 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2523 = add nsw i32 %2522, -4
-  store volatile i32 %2523, ptr @P2_is_marked, align 4, !tbaa !5
-  %2524 = add nsw i64 %2519, %2518
-  %2525 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2526 = sext i32 %2525 to i64
-  %2527 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2526
-  store volatile i64 %2518, ptr %2527, align 8, !tbaa !9
-  %2528 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2529 = add nsw i32 %2528, 1
-  %2530 = sext i32 %2529 to i64
-  %2531 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2530
-  store volatile i64 %2519, ptr %2531, align 8, !tbaa !9
-  %2532 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2533 = add nsw i32 %2532, 2
+2524:                                             ; preds = %2518
+  %2525 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %2525, ptr @P2_marking_member_0, align 16
+  %2526 = load volatile i32, ptr @P2_is_marked, align 4
+  %2527 = sub nsw i32 %2526, 4
+  store volatile i32 %2527, ptr @P2_is_marked, align 4
+  %2528 = load i64, ptr %149, align 8
+  %2529 = load i64, ptr %150, align 8
+  %2530 = add nsw i64 %2528, %2529
+  store i64 %2530, ptr %151, align 8
+  %2531 = load i64, ptr %149, align 8
+  %2532 = load volatile i32, ptr @P3_is_marked, align 4
+  %2533 = add nsw i32 %2532, 0
   %2534 = sext i32 %2533 to i64
   %2535 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2534
-  store volatile i64 %2524, ptr %2535, align 8, !tbaa !9
-  %2536 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2537 = add nsw i32 %2536, 3
-  store volatile i32 %2537, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2538
+  store volatile i64 %2531, ptr %2535, align 8
+  %2536 = load i64, ptr %150, align 8
+  %2537 = load volatile i32, ptr @P3_is_marked, align 4
+  %2538 = add nsw i32 %2537, 1
+  %2539 = sext i32 %2538 to i64
+  %2540 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2539
+  store volatile i64 %2536, ptr %2540, align 8
+  %2541 = load i64, ptr %151, align 8
+  %2542 = load volatile i32, ptr @P3_is_marked, align 4
+  %2543 = add nsw i32 %2542, 2
+  %2544 = sext i32 %2543 to i64
+  %2545 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2544
+  store volatile i64 %2541, ptr %2545, align 8
+  %2546 = load volatile i32, ptr @P3_is_marked, align 4
+  %2547 = add nsw i32 %2546, 3
+  store volatile i32 %2547, ptr @P3_is_marked, align 4
+  br label %2548
 
-2538:                                             ; preds = %2521, %2517, %2513, %2509, %2506, %2503
-  %2539 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2540 = icmp sgt i32 %2539, 4
-  br i1 %2540, label %2541, label %2574
+2548:                                             ; preds = %2524, %2518
+  br label %2549
 
-2541:                                             ; preds = %2538
-  %2542 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2543 = icmp slt i32 %2542, 4
-  br i1 %2543, label %2544, label %2574
+2549:                                             ; preds = %2548, %2514, %2510, %2506, %2503
+  %2550 = load volatile i32, ptr @P2_is_marked, align 4
+  %2551 = icmp sge i32 %2550, 5
+  br i1 %2551, label %2552, label %2595
 
-2544:                                             ; preds = %2541
-  %2545 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2546 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2547 = icmp eq i64 %2545, %2546
-  br i1 %2547, label %2548, label %2574
-
-2548:                                             ; preds = %2544
-  %2549 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2550 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2551 = icmp eq i64 %2549, %2550
-  br i1 %2551, label %2552, label %2574
-
-2552:                                             ; preds = %2548
-  %2553 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2554 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2555 = icmp sgt i64 %2554, %2553
-  br i1 %2555, label %2556, label %2574
+2552:                                             ; preds = %2549
+  %2553 = load volatile i32, ptr @P3_is_marked, align 4
+  %2554 = add nsw i32 %2553, 3
+  %2555 = icmp sle i32 %2554, 6
+  br i1 %2555, label %2556, label %2595
 
 2556:                                             ; preds = %2552
-  %2557 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2557, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2558 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2559 = add nsw i32 %2558, -4
-  store volatile i32 %2559, ptr @P2_is_marked, align 4, !tbaa !5
-  %2560 = add nsw i64 %2554, %2553
-  %2561 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2562 = sext i32 %2561 to i64
-  %2563 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2562
-  store volatile i64 %2553, ptr %2563, align 8, !tbaa !9
-  %2564 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2565 = add nsw i32 %2564, 1
-  %2566 = sext i32 %2565 to i64
-  %2567 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2566
-  store volatile i64 %2554, ptr %2567, align 8, !tbaa !9
-  %2568 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2569 = add nsw i32 %2568, 2
-  %2570 = sext i32 %2569 to i64
-  %2571 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2570
-  store volatile i64 %2560, ptr %2571, align 8, !tbaa !9
-  %2572 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2573 = add nsw i32 %2572, 3
-  store volatile i32 %2573, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2574
+  %2557 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2558 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2559 = icmp eq i64 %2557, %2558
+  br i1 %2559, label %2560, label %2595
 
-2574:                                             ; preds = %2556, %2552, %2548, %2544, %2541, %2538
-  %2575 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2576 = icmp sgt i32 %2575, 4
-  br i1 %2576, label %2577, label %2609
+2560:                                             ; preds = %2556
+  %2561 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2562 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2563 = icmp eq i64 %2561, %2562
+  br i1 %2563, label %2564, label %2595
 
-2577:                                             ; preds = %2574
-  %2578 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2579 = icmp slt i32 %2578, 4
-  br i1 %2579, label %2580, label %2609
+2564:                                             ; preds = %2560
+  %2565 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2565, ptr %152, align 8
+  %2566 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2566, ptr %153, align 8
+  %2567 = load i64, ptr %153, align 8
+  %2568 = load i64, ptr %152, align 8
+  %2569 = icmp sgt i64 %2567, %2568
+  br i1 %2569, label %2570, label %2594
 
-2580:                                             ; preds = %2577
-  %2581 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2582 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2583 = icmp eq i64 %2581, %2582
-  br i1 %2583, label %2584, label %2609
+2570:                                             ; preds = %2564
+  %2571 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2571, ptr @P2_marking_member_0, align 16
+  %2572 = load volatile i32, ptr @P2_is_marked, align 4
+  %2573 = sub nsw i32 %2572, 4
+  store volatile i32 %2573, ptr @P2_is_marked, align 4
+  %2574 = load i64, ptr %152, align 8
+  %2575 = load i64, ptr %153, align 8
+  %2576 = add nsw i64 %2574, %2575
+  store i64 %2576, ptr %154, align 8
+  %2577 = load i64, ptr %152, align 8
+  %2578 = load volatile i32, ptr @P3_is_marked, align 4
+  %2579 = add nsw i32 %2578, 0
+  %2580 = sext i32 %2579 to i64
+  %2581 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2580
+  store volatile i64 %2577, ptr %2581, align 8
+  %2582 = load i64, ptr %153, align 8
+  %2583 = load volatile i32, ptr @P3_is_marked, align 4
+  %2584 = add nsw i32 %2583, 1
+  %2585 = sext i32 %2584 to i64
+  %2586 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2585
+  store volatile i64 %2582, ptr %2586, align 8
+  %2587 = load i64, ptr %154, align 8
+  %2588 = load volatile i32, ptr @P3_is_marked, align 4
+  %2589 = add nsw i32 %2588, 2
+  %2590 = sext i32 %2589 to i64
+  %2591 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2590
+  store volatile i64 %2587, ptr %2591, align 8
+  %2592 = load volatile i32, ptr @P3_is_marked, align 4
+  %2593 = add nsw i32 %2592, 3
+  store volatile i32 %2593, ptr @P3_is_marked, align 4
+  br label %2594
 
-2584:                                             ; preds = %2580
-  %2585 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2586 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2587 = icmp eq i64 %2585, %2586
-  br i1 %2587, label %2588, label %2609
+2594:                                             ; preds = %2570, %2564
+  br label %2595
 
-2588:                                             ; preds = %2584
-  %2589 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2590 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2591 = icmp sgt i64 %2590, %2589
-  br i1 %2591, label %2592, label %2609
+2595:                                             ; preds = %2594, %2560, %2556, %2552, %2549
+  %2596 = load volatile i32, ptr @P2_is_marked, align 4
+  %2597 = icmp sge i32 %2596, 5
+  br i1 %2597, label %2598, label %2641
 
-2592:                                             ; preds = %2588
-  %2593 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2594 = add nsw i32 %2593, -4
-  store volatile i32 %2594, ptr @P2_is_marked, align 4, !tbaa !5
-  %2595 = add nsw i64 %2590, %2589
-  %2596 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2597 = sext i32 %2596 to i64
-  %2598 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2597
-  store volatile i64 %2589, ptr %2598, align 8, !tbaa !9
-  %2599 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2600 = add nsw i32 %2599, 1
-  %2601 = sext i32 %2600 to i64
-  %2602 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2601
-  store volatile i64 %2590, ptr %2602, align 8, !tbaa !9
-  %2603 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2604 = add nsw i32 %2603, 2
-  %2605 = sext i32 %2604 to i64
-  %2606 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2605
-  store volatile i64 %2595, ptr %2606, align 8, !tbaa !9
-  %2607 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2608 = add nsw i32 %2607, 3
-  store volatile i32 %2608, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2609
+2598:                                             ; preds = %2595
+  %2599 = load volatile i32, ptr @P3_is_marked, align 4
+  %2600 = add nsw i32 %2599, 3
+  %2601 = icmp sle i32 %2600, 6
+  br i1 %2601, label %2602, label %2641
 
-2609:                                             ; preds = %2592, %2588, %2584, %2580, %2577, %2574
-  %2610 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2611 = icmp sgt i32 %2610, 4
-  br i1 %2611, label %2612, label %2645
+2602:                                             ; preds = %2598
+  %2603 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2604 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2605 = icmp eq i64 %2603, %2604
+  br i1 %2605, label %2606, label %2641
 
-2612:                                             ; preds = %2609
-  %2613 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2614 = icmp slt i32 %2613, 4
-  br i1 %2614, label %2615, label %2645
+2606:                                             ; preds = %2602
+  %2607 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2608 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2609 = icmp eq i64 %2607, %2608
+  br i1 %2609, label %2610, label %2641
 
-2615:                                             ; preds = %2612
-  %2616 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2617 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2618 = icmp eq i64 %2616, %2617
-  br i1 %2618, label %2619, label %2645
+2610:                                             ; preds = %2606
+  %2611 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2611, ptr %155, align 8
+  %2612 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2612, ptr %156, align 8
+  %2613 = load i64, ptr %156, align 8
+  %2614 = load i64, ptr %155, align 8
+  %2615 = icmp sgt i64 %2613, %2614
+  br i1 %2615, label %2616, label %2640
 
-2619:                                             ; preds = %2615
-  %2620 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2621 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2622 = icmp eq i64 %2620, %2621
-  br i1 %2622, label %2623, label %2645
+2616:                                             ; preds = %2610
+  %2617 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2617, ptr @P2_marking_member_0, align 16
+  %2618 = load volatile i32, ptr @P2_is_marked, align 4
+  %2619 = sub nsw i32 %2618, 4
+  store volatile i32 %2619, ptr @P2_is_marked, align 4
+  %2620 = load i64, ptr %155, align 8
+  %2621 = load i64, ptr %156, align 8
+  %2622 = add nsw i64 %2620, %2621
+  store i64 %2622, ptr %157, align 8
+  %2623 = load i64, ptr %155, align 8
+  %2624 = load volatile i32, ptr @P3_is_marked, align 4
+  %2625 = add nsw i32 %2624, 0
+  %2626 = sext i32 %2625 to i64
+  %2627 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2626
+  store volatile i64 %2623, ptr %2627, align 8
+  %2628 = load i64, ptr %156, align 8
+  %2629 = load volatile i32, ptr @P3_is_marked, align 4
+  %2630 = add nsw i32 %2629, 1
+  %2631 = sext i32 %2630 to i64
+  %2632 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2631
+  store volatile i64 %2628, ptr %2632, align 8
+  %2633 = load i64, ptr %157, align 8
+  %2634 = load volatile i32, ptr @P3_is_marked, align 4
+  %2635 = add nsw i32 %2634, 2
+  %2636 = sext i32 %2635 to i64
+  %2637 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2636
+  store volatile i64 %2633, ptr %2637, align 8
+  %2638 = load volatile i32, ptr @P3_is_marked, align 4
+  %2639 = add nsw i32 %2638, 3
+  store volatile i32 %2639, ptr @P3_is_marked, align 4
+  br label %2640
 
-2623:                                             ; preds = %2619
-  %2624 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2625 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2626 = icmp sgt i64 %2625, %2624
-  br i1 %2626, label %2627, label %2645
+2640:                                             ; preds = %2616, %2610
+  br label %2641
 
-2627:                                             ; preds = %2623
-  %2628 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %2628, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2629 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2630 = add nsw i32 %2629, -4
-  store volatile i32 %2630, ptr @P2_is_marked, align 4, !tbaa !5
-  %2631 = add nsw i64 %2625, %2624
-  %2632 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2633 = sext i32 %2632 to i64
-  %2634 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2633
-  store volatile i64 %2624, ptr %2634, align 8, !tbaa !9
-  %2635 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2636 = add nsw i32 %2635, 1
-  %2637 = sext i32 %2636 to i64
-  %2638 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2637
-  store volatile i64 %2625, ptr %2638, align 8, !tbaa !9
-  %2639 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2640 = add nsw i32 %2639, 2
-  %2641 = sext i32 %2640 to i64
-  %2642 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2641
-  store volatile i64 %2631, ptr %2642, align 8, !tbaa !9
-  %2643 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2644 = add nsw i32 %2643, 3
-  store volatile i32 %2644, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2645
+2641:                                             ; preds = %2640, %2606, %2602, %2598, %2595
+  %2642 = load volatile i32, ptr @P2_is_marked, align 4
+  %2643 = icmp sge i32 %2642, 5
+  br i1 %2643, label %2644, label %2687
 
-2645:                                             ; preds = %2627, %2623, %2619, %2615, %2612, %2609
-  %2646 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2647 = icmp sgt i32 %2646, 4
-  br i1 %2647, label %2648, label %2680
+2644:                                             ; preds = %2641
+  %2645 = load volatile i32, ptr @P3_is_marked, align 4
+  %2646 = add nsw i32 %2645, 3
+  %2647 = icmp sle i32 %2646, 6
+  br i1 %2647, label %2648, label %2687
 
-2648:                                             ; preds = %2645
-  %2649 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2650 = icmp slt i32 %2649, 4
-  br i1 %2650, label %2651, label %2680
+2648:                                             ; preds = %2644
+  %2649 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2650 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2651 = icmp eq i64 %2649, %2650
+  br i1 %2651, label %2652, label %2687
 
-2651:                                             ; preds = %2648
-  %2652 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2653 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2654 = icmp eq i64 %2652, %2653
-  br i1 %2654, label %2655, label %2680
+2652:                                             ; preds = %2648
+  %2653 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2654 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2655 = icmp eq i64 %2653, %2654
+  br i1 %2655, label %2656, label %2687
 
-2655:                                             ; preds = %2651
-  %2656 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2657 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2658 = icmp eq i64 %2656, %2657
-  br i1 %2658, label %2659, label %2680
+2656:                                             ; preds = %2652
+  %2657 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2657, ptr %158, align 8
+  %2658 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2658, ptr %159, align 8
+  %2659 = load i64, ptr %159, align 8
+  %2660 = load i64, ptr %158, align 8
+  %2661 = icmp sgt i64 %2659, %2660
+  br i1 %2661, label %2662, label %2686
 
-2659:                                             ; preds = %2655
-  %2660 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2661 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2662 = icmp sgt i64 %2661, %2660
-  br i1 %2662, label %2663, label %2680
-
-2663:                                             ; preds = %2659
-  %2664 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2665 = add nsw i32 %2664, -4
-  store volatile i32 %2665, ptr @P2_is_marked, align 4, !tbaa !5
-  %2666 = add nsw i64 %2661, %2660
-  %2667 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2668 = sext i32 %2667 to i64
-  %2669 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2668
-  store volatile i64 %2660, ptr %2669, align 8, !tbaa !9
-  %2670 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2671 = add nsw i32 %2670, 1
+2662:                                             ; preds = %2656
+  %2663 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2663, ptr @P2_marking_member_0, align 16
+  %2664 = load volatile i32, ptr @P2_is_marked, align 4
+  %2665 = sub nsw i32 %2664, 4
+  store volatile i32 %2665, ptr @P2_is_marked, align 4
+  %2666 = load i64, ptr %158, align 8
+  %2667 = load i64, ptr %159, align 8
+  %2668 = add nsw i64 %2666, %2667
+  store i64 %2668, ptr %160, align 8
+  %2669 = load i64, ptr %158, align 8
+  %2670 = load volatile i32, ptr @P3_is_marked, align 4
+  %2671 = add nsw i32 %2670, 0
   %2672 = sext i32 %2671 to i64
   %2673 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2672
-  store volatile i64 %2661, ptr %2673, align 8, !tbaa !9
-  %2674 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2675 = add nsw i32 %2674, 2
-  %2676 = sext i32 %2675 to i64
-  %2677 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2676
-  store volatile i64 %2666, ptr %2677, align 8, !tbaa !9
-  %2678 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2679 = add nsw i32 %2678, 3
-  store volatile i32 %2679, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2680
+  store volatile i64 %2669, ptr %2673, align 8
+  %2674 = load i64, ptr %159, align 8
+  %2675 = load volatile i32, ptr @P3_is_marked, align 4
+  %2676 = add nsw i32 %2675, 1
+  %2677 = sext i32 %2676 to i64
+  %2678 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2677
+  store volatile i64 %2674, ptr %2678, align 8
+  %2679 = load i64, ptr %160, align 8
+  %2680 = load volatile i32, ptr @P3_is_marked, align 4
+  %2681 = add nsw i32 %2680, 2
+  %2682 = sext i32 %2681 to i64
+  %2683 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2682
+  store volatile i64 %2679, ptr %2683, align 8
+  %2684 = load volatile i32, ptr @P3_is_marked, align 4
+  %2685 = add nsw i32 %2684, 3
+  store volatile i32 %2685, ptr @P3_is_marked, align 4
+  br label %2686
 
-2680:                                             ; preds = %2663, %2659, %2655, %2651, %2648, %2645
-  %2681 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2682 = icmp sgt i32 %2681, 4
-  br i1 %2682, label %2683, label %2716
+2686:                                             ; preds = %2662, %2656
+  br label %2687
 
-2683:                                             ; preds = %2680
-  %2684 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2685 = icmp slt i32 %2684, 4
-  br i1 %2685, label %2686, label %2716
+2687:                                             ; preds = %2686, %2652, %2648, %2644, %2641
+  %2688 = load volatile i32, ptr @P2_is_marked, align 4
+  %2689 = icmp sge i32 %2688, 5
+  br i1 %2689, label %2690, label %2733
 
-2686:                                             ; preds = %2683
-  %2687 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2688 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2689 = icmp eq i64 %2687, %2688
-  br i1 %2689, label %2690, label %2716
-
-2690:                                             ; preds = %2686
-  %2691 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2692 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2693 = icmp eq i64 %2691, %2692
-  br i1 %2693, label %2694, label %2716
+2690:                                             ; preds = %2687
+  %2691 = load volatile i32, ptr @P3_is_marked, align 4
+  %2692 = add nsw i32 %2691, 3
+  %2693 = icmp sle i32 %2692, 6
+  br i1 %2693, label %2694, label %2733
 
 2694:                                             ; preds = %2690
-  %2695 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2696 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2697 = icmp sgt i64 %2696, %2695
-  br i1 %2697, label %2698, label %2716
+  %2695 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2696 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2697 = icmp eq i64 %2695, %2696
+  br i1 %2697, label %2698, label %2733
 
 2698:                                             ; preds = %2694
-  %2699 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %2699, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2700 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2701 = add nsw i32 %2700, -4
-  store volatile i32 %2701, ptr @P2_is_marked, align 4, !tbaa !5
-  %2702 = add nsw i64 %2696, %2695
-  %2703 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2704 = sext i32 %2703 to i64
-  %2705 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2704
-  store volatile i64 %2695, ptr %2705, align 8, !tbaa !9
-  %2706 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2707 = add nsw i32 %2706, 1
-  %2708 = sext i32 %2707 to i64
-  %2709 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2708
-  store volatile i64 %2696, ptr %2709, align 8, !tbaa !9
-  %2710 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2711 = add nsw i32 %2710, 2
-  %2712 = sext i32 %2711 to i64
-  %2713 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2712
-  store volatile i64 %2702, ptr %2713, align 8, !tbaa !9
-  %2714 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2715 = add nsw i32 %2714, 3
-  store volatile i32 %2715, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2716
+  %2699 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2700 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2701 = icmp eq i64 %2699, %2700
+  br i1 %2701, label %2702, label %2733
 
-2716:                                             ; preds = %2698, %2694, %2690, %2686, %2683, %2680
-  %2717 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2718 = icmp sgt i32 %2717, 4
-  br i1 %2718, label %2719, label %2751
+2702:                                             ; preds = %2698
+  %2703 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2703, ptr %161, align 8
+  %2704 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %2704, ptr %162, align 8
+  %2705 = load i64, ptr %162, align 8
+  %2706 = load i64, ptr %161, align 8
+  %2707 = icmp sgt i64 %2705, %2706
+  br i1 %2707, label %2708, label %2732
 
-2719:                                             ; preds = %2716
-  %2720 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2721 = icmp slt i32 %2720, 4
-  br i1 %2721, label %2722, label %2751
+2708:                                             ; preds = %2702
+  %2709 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2709, ptr @P2_marking_member_0, align 16
+  %2710 = load volatile i32, ptr @P2_is_marked, align 4
+  %2711 = sub nsw i32 %2710, 4
+  store volatile i32 %2711, ptr @P2_is_marked, align 4
+  %2712 = load i64, ptr %161, align 8
+  %2713 = load i64, ptr %162, align 8
+  %2714 = add nsw i64 %2712, %2713
+  store i64 %2714, ptr %163, align 8
+  %2715 = load i64, ptr %161, align 8
+  %2716 = load volatile i32, ptr @P3_is_marked, align 4
+  %2717 = add nsw i32 %2716, 0
+  %2718 = sext i32 %2717 to i64
+  %2719 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2718
+  store volatile i64 %2715, ptr %2719, align 8
+  %2720 = load i64, ptr %162, align 8
+  %2721 = load volatile i32, ptr @P3_is_marked, align 4
+  %2722 = add nsw i32 %2721, 1
+  %2723 = sext i32 %2722 to i64
+  %2724 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2723
+  store volatile i64 %2720, ptr %2724, align 8
+  %2725 = load i64, ptr %163, align 8
+  %2726 = load volatile i32, ptr @P3_is_marked, align 4
+  %2727 = add nsw i32 %2726, 2
+  %2728 = sext i32 %2727 to i64
+  %2729 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2728
+  store volatile i64 %2725, ptr %2729, align 8
+  %2730 = load volatile i32, ptr @P3_is_marked, align 4
+  %2731 = add nsw i32 %2730, 3
+  store volatile i32 %2731, ptr @P3_is_marked, align 4
+  br label %2732
 
-2722:                                             ; preds = %2719
-  %2723 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2724 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2725 = icmp eq i64 %2723, %2724
-  br i1 %2725, label %2726, label %2751
+2732:                                             ; preds = %2708, %2702
+  br label %2733
 
-2726:                                             ; preds = %2722
-  %2727 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2728 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2729 = icmp eq i64 %2727, %2728
-  br i1 %2729, label %2730, label %2751
+2733:                                             ; preds = %2732, %2698, %2694, %2690, %2687
+  %2734 = load volatile i32, ptr @P2_is_marked, align 4
+  %2735 = icmp sge i32 %2734, 5
+  br i1 %2735, label %2736, label %2779
 
-2730:                                             ; preds = %2726
-  %2731 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2732 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2733 = icmp sgt i64 %2732, %2731
-  br i1 %2733, label %2734, label %2751
+2736:                                             ; preds = %2733
+  %2737 = load volatile i32, ptr @P3_is_marked, align 4
+  %2738 = add nsw i32 %2737, 3
+  %2739 = icmp sle i32 %2738, 6
+  br i1 %2739, label %2740, label %2779
 
-2734:                                             ; preds = %2730
-  %2735 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2736 = add nsw i32 %2735, -4
-  store volatile i32 %2736, ptr @P2_is_marked, align 4, !tbaa !5
-  %2737 = add nsw i64 %2732, %2731
-  %2738 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2739 = sext i32 %2738 to i64
-  %2740 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2739
-  store volatile i64 %2731, ptr %2740, align 8, !tbaa !9
-  %2741 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2742 = add nsw i32 %2741, 1
-  %2743 = sext i32 %2742 to i64
-  %2744 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2743
-  store volatile i64 %2732, ptr %2744, align 8, !tbaa !9
-  %2745 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2746 = add nsw i32 %2745, 2
-  %2747 = sext i32 %2746 to i64
-  %2748 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2747
-  store volatile i64 %2737, ptr %2748, align 8, !tbaa !9
-  %2749 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2750 = add nsw i32 %2749, 3
-  store volatile i32 %2750, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2751
+2740:                                             ; preds = %2736
+  %2741 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2742 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2743 = icmp eq i64 %2741, %2742
+  br i1 %2743, label %2744, label %2779
 
-2751:                                             ; preds = %2734, %2730, %2726, %2722, %2719, %2716
-  %2752 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2753 = icmp sgt i32 %2752, 4
-  br i1 %2753, label %2754, label %2787
+2744:                                             ; preds = %2740
+  %2745 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2746 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2747 = icmp eq i64 %2745, %2746
+  br i1 %2747, label %2748, label %2779
 
-2754:                                             ; preds = %2751
-  %2755 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2756 = icmp slt i32 %2755, 4
-  br i1 %2756, label %2757, label %2787
+2748:                                             ; preds = %2744
+  %2749 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2749, ptr %164, align 8
+  %2750 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %2750, ptr %165, align 8
+  %2751 = load i64, ptr %165, align 8
+  %2752 = load i64, ptr %164, align 8
+  %2753 = icmp sgt i64 %2751, %2752
+  br i1 %2753, label %2754, label %2778
 
-2757:                                             ; preds = %2754
-  %2758 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2759 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2760 = icmp eq i64 %2758, %2759
-  br i1 %2760, label %2761, label %2787
+2754:                                             ; preds = %2748
+  %2755 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2755, ptr @P2_marking_member_0, align 16
+  %2756 = load volatile i32, ptr @P2_is_marked, align 4
+  %2757 = sub nsw i32 %2756, 4
+  store volatile i32 %2757, ptr @P2_is_marked, align 4
+  %2758 = load i64, ptr %164, align 8
+  %2759 = load i64, ptr %165, align 8
+  %2760 = add nsw i64 %2758, %2759
+  store i64 %2760, ptr %166, align 8
+  %2761 = load i64, ptr %164, align 8
+  %2762 = load volatile i32, ptr @P3_is_marked, align 4
+  %2763 = add nsw i32 %2762, 0
+  %2764 = sext i32 %2763 to i64
+  %2765 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2764
+  store volatile i64 %2761, ptr %2765, align 8
+  %2766 = load i64, ptr %165, align 8
+  %2767 = load volatile i32, ptr @P3_is_marked, align 4
+  %2768 = add nsw i32 %2767, 1
+  %2769 = sext i32 %2768 to i64
+  %2770 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2769
+  store volatile i64 %2766, ptr %2770, align 8
+  %2771 = load i64, ptr %166, align 8
+  %2772 = load volatile i32, ptr @P3_is_marked, align 4
+  %2773 = add nsw i32 %2772, 2
+  %2774 = sext i32 %2773 to i64
+  %2775 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2774
+  store volatile i64 %2771, ptr %2775, align 8
+  %2776 = load volatile i32, ptr @P3_is_marked, align 4
+  %2777 = add nsw i32 %2776, 3
+  store volatile i32 %2777, ptr @P3_is_marked, align 4
+  br label %2778
 
-2761:                                             ; preds = %2757
-  %2762 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2763 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2764 = icmp eq i64 %2762, %2763
-  br i1 %2764, label %2765, label %2787
+2778:                                             ; preds = %2754, %2748
+  br label %2779
 
-2765:                                             ; preds = %2761
-  %2766 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2767 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2768 = icmp sgt i64 %2767, %2766
-  br i1 %2768, label %2769, label %2787
+2779:                                             ; preds = %2778, %2744, %2740, %2736, %2733
+  %2780 = load volatile i32, ptr @P2_is_marked, align 4
+  %2781 = icmp sge i32 %2780, 5
+  br i1 %2781, label %2782, label %2824
 
-2769:                                             ; preds = %2765
-  %2770 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2770, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2771 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2772 = add nsw i32 %2771, -4
-  store volatile i32 %2772, ptr @P2_is_marked, align 4, !tbaa !5
-  %2773 = add nsw i64 %2767, %2766
-  %2774 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2775 = sext i32 %2774 to i64
-  %2776 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2775
-  store volatile i64 %2766, ptr %2776, align 8, !tbaa !9
-  %2777 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2778 = add nsw i32 %2777, 1
-  %2779 = sext i32 %2778 to i64
-  %2780 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2779
-  store volatile i64 %2767, ptr %2780, align 8, !tbaa !9
-  %2781 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2782 = add nsw i32 %2781, 2
-  %2783 = sext i32 %2782 to i64
-  %2784 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2783
-  store volatile i64 %2773, ptr %2784, align 8, !tbaa !9
-  %2785 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2786 = add nsw i32 %2785, 3
-  store volatile i32 %2786, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2787
+2782:                                             ; preds = %2779
+  %2783 = load volatile i32, ptr @P3_is_marked, align 4
+  %2784 = add nsw i32 %2783, 3
+  %2785 = icmp sle i32 %2784, 6
+  br i1 %2785, label %2786, label %2824
 
-2787:                                             ; preds = %2769, %2765, %2761, %2757, %2754, %2751
-  %2788 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2789 = icmp sgt i32 %2788, 4
-  br i1 %2789, label %2790, label %2823
+2786:                                             ; preds = %2782
+  %2787 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2788 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2789 = icmp eq i64 %2787, %2788
+  br i1 %2789, label %2790, label %2824
 
-2790:                                             ; preds = %2787
-  %2791 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2792 = icmp slt i32 %2791, 4
-  br i1 %2792, label %2793, label %2823
+2790:                                             ; preds = %2786
+  %2791 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2792 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2793 = icmp eq i64 %2791, %2792
+  br i1 %2793, label %2794, label %2824
 
-2793:                                             ; preds = %2790
-  %2794 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2795 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2796 = icmp eq i64 %2794, %2795
-  br i1 %2796, label %2797, label %2823
+2794:                                             ; preds = %2790
+  %2795 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2795, ptr %167, align 8
+  %2796 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %2796, ptr %168, align 8
+  %2797 = load i64, ptr %168, align 8
+  %2798 = load i64, ptr %167, align 8
+  %2799 = icmp sgt i64 %2797, %2798
+  br i1 %2799, label %2800, label %2823
 
-2797:                                             ; preds = %2793
-  %2798 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2799 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2800 = icmp eq i64 %2798, %2799
-  br i1 %2800, label %2801, label %2823
-
-2801:                                             ; preds = %2797
-  %2802 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2803 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2804 = icmp sgt i64 %2803, %2802
-  br i1 %2804, label %2805, label %2823
-
-2805:                                             ; preds = %2801
-  %2806 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %2806, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2807 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2808 = add nsw i32 %2807, -4
-  store volatile i32 %2808, ptr @P2_is_marked, align 4, !tbaa !5
-  %2809 = add nsw i64 %2803, %2802
-  %2810 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2811 = sext i32 %2810 to i64
-  %2812 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2811
-  store volatile i64 %2802, ptr %2812, align 8, !tbaa !9
-  %2813 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2814 = add nsw i32 %2813, 1
-  %2815 = sext i32 %2814 to i64
-  %2816 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2815
-  store volatile i64 %2803, ptr %2816, align 8, !tbaa !9
-  %2817 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+2800:                                             ; preds = %2794
+  %2801 = load volatile i32, ptr @P2_is_marked, align 4
+  %2802 = sub nsw i32 %2801, 4
+  store volatile i32 %2802, ptr @P2_is_marked, align 4
+  %2803 = load i64, ptr %167, align 8
+  %2804 = load i64, ptr %168, align 8
+  %2805 = add nsw i64 %2803, %2804
+  store i64 %2805, ptr %169, align 8
+  %2806 = load i64, ptr %167, align 8
+  %2807 = load volatile i32, ptr @P3_is_marked, align 4
+  %2808 = add nsw i32 %2807, 0
+  %2809 = sext i32 %2808 to i64
+  %2810 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2809
+  store volatile i64 %2806, ptr %2810, align 8
+  %2811 = load i64, ptr %168, align 8
+  %2812 = load volatile i32, ptr @P3_is_marked, align 4
+  %2813 = add nsw i32 %2812, 1
+  %2814 = sext i32 %2813 to i64
+  %2815 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2814
+  store volatile i64 %2811, ptr %2815, align 8
+  %2816 = load i64, ptr %169, align 8
+  %2817 = load volatile i32, ptr @P3_is_marked, align 4
   %2818 = add nsw i32 %2817, 2
   %2819 = sext i32 %2818 to i64
   %2820 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2819
-  store volatile i64 %2809, ptr %2820, align 8, !tbaa !9
-  %2821 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+  store volatile i64 %2816, ptr %2820, align 8
+  %2821 = load volatile i32, ptr @P3_is_marked, align 4
   %2822 = add nsw i32 %2821, 3
-  store volatile i32 %2822, ptr @P3_is_marked, align 4, !tbaa !5
+  store volatile i32 %2822, ptr @P3_is_marked, align 4
   br label %2823
 
-2823:                                             ; preds = %2805, %2801, %2797, %2793, %2790, %2787
-  %2824 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2825 = icmp sgt i32 %2824, 4
-  br i1 %2825, label %2826, label %2859
+2823:                                             ; preds = %2800, %2794
+  br label %2824
 
-2826:                                             ; preds = %2823
-  %2827 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2828 = icmp slt i32 %2827, 4
-  br i1 %2828, label %2829, label %2859
+2824:                                             ; preds = %2823, %2790, %2786, %2782, %2779
+  %2825 = load volatile i32, ptr @P2_is_marked, align 4
+  %2826 = icmp sge i32 %2825, 5
+  br i1 %2826, label %2827, label %2870
 
-2829:                                             ; preds = %2826
-  %2830 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2831 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2832 = icmp eq i64 %2830, %2831
-  br i1 %2832, label %2833, label %2859
+2827:                                             ; preds = %2824
+  %2828 = load volatile i32, ptr @P3_is_marked, align 4
+  %2829 = add nsw i32 %2828, 3
+  %2830 = icmp sle i32 %2829, 6
+  br i1 %2830, label %2831, label %2870
 
-2833:                                             ; preds = %2829
-  %2834 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2835 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2836 = icmp eq i64 %2834, %2835
-  br i1 %2836, label %2837, label %2859
+2831:                                             ; preds = %2827
+  %2832 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2833 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2834 = icmp eq i64 %2832, %2833
+  br i1 %2834, label %2835, label %2870
 
-2837:                                             ; preds = %2833
-  %2838 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2839 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2840 = icmp sgt i64 %2839, %2838
-  br i1 %2840, label %2841, label %2859
+2835:                                             ; preds = %2831
+  %2836 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2837 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2838 = icmp eq i64 %2836, %2837
+  br i1 %2838, label %2839, label %2870
 
-2841:                                             ; preds = %2837
-  %2842 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %2842, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2843 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2844 = add nsw i32 %2843, -4
-  store volatile i32 %2844, ptr @P2_is_marked, align 4, !tbaa !5
-  %2845 = add nsw i64 %2839, %2838
-  %2846 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2847 = sext i32 %2846 to i64
-  %2848 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2847
-  store volatile i64 %2838, ptr %2848, align 8, !tbaa !9
-  %2849 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2850 = add nsw i32 %2849, 1
-  %2851 = sext i32 %2850 to i64
-  %2852 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2851
-  store volatile i64 %2839, ptr %2852, align 8, !tbaa !9
-  %2853 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2854 = add nsw i32 %2853, 2
+2839:                                             ; preds = %2835
+  %2840 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2840, ptr %170, align 8
+  %2841 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %2841, ptr %171, align 8
+  %2842 = load i64, ptr %171, align 8
+  %2843 = load i64, ptr %170, align 8
+  %2844 = icmp sgt i64 %2842, %2843
+  br i1 %2844, label %2845, label %2869
+
+2845:                                             ; preds = %2839
+  %2846 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %2846, ptr @P2_marking_member_0, align 16
+  %2847 = load volatile i32, ptr @P2_is_marked, align 4
+  %2848 = sub nsw i32 %2847, 4
+  store volatile i32 %2848, ptr @P2_is_marked, align 4
+  %2849 = load i64, ptr %170, align 8
+  %2850 = load i64, ptr %171, align 8
+  %2851 = add nsw i64 %2849, %2850
+  store i64 %2851, ptr %172, align 8
+  %2852 = load i64, ptr %170, align 8
+  %2853 = load volatile i32, ptr @P3_is_marked, align 4
+  %2854 = add nsw i32 %2853, 0
   %2855 = sext i32 %2854 to i64
   %2856 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2855
-  store volatile i64 %2845, ptr %2856, align 8, !tbaa !9
-  %2857 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2858 = add nsw i32 %2857, 3
-  store volatile i32 %2858, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2859
+  store volatile i64 %2852, ptr %2856, align 8
+  %2857 = load i64, ptr %171, align 8
+  %2858 = load volatile i32, ptr @P3_is_marked, align 4
+  %2859 = add nsw i32 %2858, 1
+  %2860 = sext i32 %2859 to i64
+  %2861 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2860
+  store volatile i64 %2857, ptr %2861, align 8
+  %2862 = load i64, ptr %172, align 8
+  %2863 = load volatile i32, ptr @P3_is_marked, align 4
+  %2864 = add nsw i32 %2863, 2
+  %2865 = sext i32 %2864 to i64
+  %2866 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2865
+  store volatile i64 %2862, ptr %2866, align 8
+  %2867 = load volatile i32, ptr @P3_is_marked, align 4
+  %2868 = add nsw i32 %2867, 3
+  store volatile i32 %2868, ptr @P3_is_marked, align 4
+  br label %2869
 
-2859:                                             ; preds = %2841, %2837, %2833, %2829, %2826, %2823
-  %2860 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2861 = icmp sgt i32 %2860, 4
-  br i1 %2861, label %2862, label %2894
+2869:                                             ; preds = %2845, %2839
+  br label %2870
 
-2862:                                             ; preds = %2859
-  %2863 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2864 = icmp slt i32 %2863, 4
-  br i1 %2864, label %2865, label %2894
+2870:                                             ; preds = %2869, %2835, %2831, %2827, %2824
+  %2871 = load volatile i32, ptr @P2_is_marked, align 4
+  %2872 = icmp sge i32 %2871, 5
+  br i1 %2872, label %2873, label %2915
 
-2865:                                             ; preds = %2862
-  %2866 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2867 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2868 = icmp eq i64 %2866, %2867
-  br i1 %2868, label %2869, label %2894
-
-2869:                                             ; preds = %2865
-  %2870 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2871 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2872 = icmp eq i64 %2870, %2871
-  br i1 %2872, label %2873, label %2894
-
-2873:                                             ; preds = %2869
-  %2874 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2875 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2876 = icmp sgt i64 %2875, %2874
-  br i1 %2876, label %2877, label %2894
+2873:                                             ; preds = %2870
+  %2874 = load volatile i32, ptr @P3_is_marked, align 4
+  %2875 = add nsw i32 %2874, 3
+  %2876 = icmp sle i32 %2875, 6
+  br i1 %2876, label %2877, label %2915
 
 2877:                                             ; preds = %2873
-  %2878 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2879 = add nsw i32 %2878, -4
-  store volatile i32 %2879, ptr @P2_is_marked, align 4, !tbaa !5
-  %2880 = add nsw i64 %2875, %2874
-  %2881 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2882 = sext i32 %2881 to i64
-  %2883 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2882
-  store volatile i64 %2874, ptr %2883, align 8, !tbaa !9
-  %2884 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2885 = add nsw i32 %2884, 1
-  %2886 = sext i32 %2885 to i64
-  %2887 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2886
-  store volatile i64 %2875, ptr %2887, align 8, !tbaa !9
-  %2888 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2889 = add nsw i32 %2888, 2
-  %2890 = sext i32 %2889 to i64
-  %2891 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2890
-  store volatile i64 %2880, ptr %2891, align 8, !tbaa !9
-  %2892 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2893 = add nsw i32 %2892, 3
-  store volatile i32 %2893, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2894
+  %2878 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2879 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2880 = icmp eq i64 %2878, %2879
+  br i1 %2880, label %2881, label %2915
 
-2894:                                             ; preds = %2877, %2873, %2869, %2865, %2862, %2859
-  %2895 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2896 = icmp sgt i32 %2895, 4
-  br i1 %2896, label %2897, label %2930
+2881:                                             ; preds = %2877
+  %2882 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2883 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2884 = icmp eq i64 %2882, %2883
+  br i1 %2884, label %2885, label %2915
 
-2897:                                             ; preds = %2894
-  %2898 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2899 = icmp slt i32 %2898, 4
-  br i1 %2899, label %2900, label %2930
+2885:                                             ; preds = %2881
+  %2886 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2886, ptr %173, align 8
+  %2887 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %2887, ptr %174, align 8
+  %2888 = load i64, ptr %174, align 8
+  %2889 = load i64, ptr %173, align 8
+  %2890 = icmp sgt i64 %2888, %2889
+  br i1 %2890, label %2891, label %2914
 
-2900:                                             ; preds = %2897
-  %2901 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2902 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2903 = icmp eq i64 %2901, %2902
-  br i1 %2903, label %2904, label %2930
+2891:                                             ; preds = %2885
+  %2892 = load volatile i32, ptr @P2_is_marked, align 4
+  %2893 = sub nsw i32 %2892, 4
+  store volatile i32 %2893, ptr @P2_is_marked, align 4
+  %2894 = load i64, ptr %173, align 8
+  %2895 = load i64, ptr %174, align 8
+  %2896 = add nsw i64 %2894, %2895
+  store i64 %2896, ptr %175, align 8
+  %2897 = load i64, ptr %173, align 8
+  %2898 = load volatile i32, ptr @P3_is_marked, align 4
+  %2899 = add nsw i32 %2898, 0
+  %2900 = sext i32 %2899 to i64
+  %2901 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2900
+  store volatile i64 %2897, ptr %2901, align 8
+  %2902 = load i64, ptr %174, align 8
+  %2903 = load volatile i32, ptr @P3_is_marked, align 4
+  %2904 = add nsw i32 %2903, 1
+  %2905 = sext i32 %2904 to i64
+  %2906 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2905
+  store volatile i64 %2902, ptr %2906, align 8
+  %2907 = load i64, ptr %175, align 8
+  %2908 = load volatile i32, ptr @P3_is_marked, align 4
+  %2909 = add nsw i32 %2908, 2
+  %2910 = sext i32 %2909 to i64
+  %2911 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2910
+  store volatile i64 %2907, ptr %2911, align 8
+  %2912 = load volatile i32, ptr @P3_is_marked, align 4
+  %2913 = add nsw i32 %2912, 3
+  store volatile i32 %2913, ptr @P3_is_marked, align 4
+  br label %2914
 
-2904:                                             ; preds = %2900
-  %2905 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2906 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2907 = icmp eq i64 %2905, %2906
-  br i1 %2907, label %2908, label %2930
+2914:                                             ; preds = %2891, %2885
+  br label %2915
 
-2908:                                             ; preds = %2904
-  %2909 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2910 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2911 = icmp sgt i64 %2910, %2909
-  br i1 %2911, label %2912, label %2930
+2915:                                             ; preds = %2914, %2881, %2877, %2873, %2870
+  %2916 = load volatile i32, ptr @P2_is_marked, align 4
+  %2917 = icmp sge i32 %2916, 5
+  br i1 %2917, label %2918, label %2961
 
-2912:                                             ; preds = %2908
-  %2913 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %2913, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2914 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2915 = add nsw i32 %2914, -4
-  store volatile i32 %2915, ptr @P2_is_marked, align 4, !tbaa !5
-  %2916 = add nsw i64 %2910, %2909
-  %2917 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2918 = sext i32 %2917 to i64
-  %2919 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2918
-  store volatile i64 %2909, ptr %2919, align 8, !tbaa !9
-  %2920 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2921 = add nsw i32 %2920, 1
-  %2922 = sext i32 %2921 to i64
-  %2923 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2922
-  store volatile i64 %2910, ptr %2923, align 8, !tbaa !9
-  %2924 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2925 = add nsw i32 %2924, 2
-  %2926 = sext i32 %2925 to i64
-  %2927 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2926
-  store volatile i64 %2916, ptr %2927, align 8, !tbaa !9
-  %2928 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2929 = add nsw i32 %2928, 3
-  store volatile i32 %2929, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2930
+2918:                                             ; preds = %2915
+  %2919 = load volatile i32, ptr @P3_is_marked, align 4
+  %2920 = add nsw i32 %2919, 3
+  %2921 = icmp sle i32 %2920, 6
+  br i1 %2921, label %2922, label %2961
 
-2930:                                             ; preds = %2912, %2908, %2904, %2900, %2897, %2894
-  %2931 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2932 = icmp sgt i32 %2931, 4
-  br i1 %2932, label %2933, label %2965
+2922:                                             ; preds = %2918
+  %2923 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2924 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %2925 = icmp eq i64 %2923, %2924
+  br i1 %2925, label %2926, label %2961
 
-2933:                                             ; preds = %2930
-  %2934 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2935 = icmp slt i32 %2934, 4
-  br i1 %2935, label %2936, label %2965
+2926:                                             ; preds = %2922
+  %2927 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2928 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2929 = icmp eq i64 %2927, %2928
+  br i1 %2929, label %2930, label %2961
 
-2936:                                             ; preds = %2933
-  %2937 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2938 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2939 = icmp eq i64 %2937, %2938
-  br i1 %2939, label %2940, label %2965
+2930:                                             ; preds = %2926
+  %2931 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2931, ptr %176, align 8
+  %2932 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %2932, ptr %177, align 8
+  %2933 = load i64, ptr %177, align 8
+  %2934 = load i64, ptr %176, align 8
+  %2935 = icmp sgt i64 %2933, %2934
+  br i1 %2935, label %2936, label %2960
 
-2940:                                             ; preds = %2936
-  %2941 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2942 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2943 = icmp eq i64 %2941, %2942
-  br i1 %2943, label %2944, label %2965
+2936:                                             ; preds = %2930
+  %2937 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %2937, ptr @P2_marking_member_0, align 16
+  %2938 = load volatile i32, ptr @P2_is_marked, align 4
+  %2939 = sub nsw i32 %2938, 4
+  store volatile i32 %2939, ptr @P2_is_marked, align 4
+  %2940 = load i64, ptr %176, align 8
+  %2941 = load i64, ptr %177, align 8
+  %2942 = add nsw i64 %2940, %2941
+  store i64 %2942, ptr %178, align 8
+  %2943 = load i64, ptr %176, align 8
+  %2944 = load volatile i32, ptr @P3_is_marked, align 4
+  %2945 = add nsw i32 %2944, 0
+  %2946 = sext i32 %2945 to i64
+  %2947 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2946
+  store volatile i64 %2943, ptr %2947, align 8
+  %2948 = load i64, ptr %177, align 8
+  %2949 = load volatile i32, ptr @P3_is_marked, align 4
+  %2950 = add nsw i32 %2949, 1
+  %2951 = sext i32 %2950 to i64
+  %2952 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2951
+  store volatile i64 %2948, ptr %2952, align 8
+  %2953 = load i64, ptr %178, align 8
+  %2954 = load volatile i32, ptr @P3_is_marked, align 4
+  %2955 = add nsw i32 %2954, 2
+  %2956 = sext i32 %2955 to i64
+  %2957 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2956
+  store volatile i64 %2953, ptr %2957, align 8
+  %2958 = load volatile i32, ptr @P3_is_marked, align 4
+  %2959 = add nsw i32 %2958, 3
+  store volatile i32 %2959, ptr @P3_is_marked, align 4
+  br label %2960
 
-2944:                                             ; preds = %2940
-  %2945 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %2946 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2947 = icmp sgt i64 %2946, %2945
-  br i1 %2947, label %2948, label %2965
+2960:                                             ; preds = %2936, %2930
+  br label %2961
 
-2948:                                             ; preds = %2944
-  %2949 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2950 = add nsw i32 %2949, -4
-  store volatile i32 %2950, ptr @P2_is_marked, align 4, !tbaa !5
-  %2951 = add nsw i64 %2946, %2945
-  %2952 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2953 = sext i32 %2952 to i64
-  %2954 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2953
-  store volatile i64 %2945, ptr %2954, align 8, !tbaa !9
-  %2955 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2956 = add nsw i32 %2955, 1
-  %2957 = sext i32 %2956 to i64
-  %2958 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2957
-  store volatile i64 %2946, ptr %2958, align 8, !tbaa !9
-  %2959 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2960 = add nsw i32 %2959, 2
-  %2961 = sext i32 %2960 to i64
-  %2962 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2961
-  store volatile i64 %2951, ptr %2962, align 8, !tbaa !9
-  %2963 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2964 = add nsw i32 %2963, 3
-  store volatile i32 %2964, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %2965
+2961:                                             ; preds = %2960, %2926, %2922, %2918, %2915
+  %2962 = load volatile i32, ptr @P2_is_marked, align 4
+  %2963 = icmp sge i32 %2962, 5
+  br i1 %2963, label %2964, label %3006
 
-2965:                                             ; preds = %2948, %2944, %2940, %2936, %2933, %2930
-  %2966 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2967 = icmp sgt i32 %2966, 4
-  br i1 %2967, label %2968, label %3001
+2964:                                             ; preds = %2961
+  %2965 = load volatile i32, ptr @P3_is_marked, align 4
+  %2966 = add nsw i32 %2965, 3
+  %2967 = icmp sle i32 %2966, 6
+  br i1 %2967, label %2968, label %3006
 
-2968:                                             ; preds = %2965
-  %2969 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2970 = icmp slt i32 %2969, 4
-  br i1 %2970, label %2971, label %3001
+2968:                                             ; preds = %2964
+  %2969 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2970 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %2971 = icmp eq i64 %2969, %2970
+  br i1 %2971, label %2972, label %3006
 
-2971:                                             ; preds = %2968
-  %2972 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2973 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %2974 = icmp eq i64 %2972, %2973
-  br i1 %2974, label %2975, label %3001
+2972:                                             ; preds = %2968
+  %2973 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %2974 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %2975 = icmp eq i64 %2973, %2974
+  br i1 %2975, label %2976, label %3006
 
-2975:                                             ; preds = %2971
-  %2976 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2977 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %2978 = icmp eq i64 %2976, %2977
-  br i1 %2978, label %2979, label %3001
+2976:                                             ; preds = %2972
+  %2977 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %2977, ptr %179, align 8
+  %2978 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %2978, ptr %180, align 8
+  %2979 = load i64, ptr %180, align 8
+  %2980 = load i64, ptr %179, align 8
+  %2981 = icmp sgt i64 %2979, %2980
+  br i1 %2981, label %2982, label %3005
 
-2979:                                             ; preds = %2975
-  %2980 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %2981 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2982 = icmp sgt i64 %2981, %2980
-  br i1 %2982, label %2983, label %3001
+2982:                                             ; preds = %2976
+  %2983 = load volatile i32, ptr @P2_is_marked, align 4
+  %2984 = sub nsw i32 %2983, 4
+  store volatile i32 %2984, ptr @P2_is_marked, align 4
+  %2985 = load i64, ptr %179, align 8
+  %2986 = load i64, ptr %180, align 8
+  %2987 = add nsw i64 %2985, %2986
+  store i64 %2987, ptr %181, align 8
+  %2988 = load i64, ptr %179, align 8
+  %2989 = load volatile i32, ptr @P3_is_marked, align 4
+  %2990 = add nsw i32 %2989, 0
+  %2991 = sext i32 %2990 to i64
+  %2992 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2991
+  store volatile i64 %2988, ptr %2992, align 8
+  %2993 = load i64, ptr %180, align 8
+  %2994 = load volatile i32, ptr @P3_is_marked, align 4
+  %2995 = add nsw i32 %2994, 1
+  %2996 = sext i32 %2995 to i64
+  %2997 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2996
+  store volatile i64 %2993, ptr %2997, align 8
+  %2998 = load i64, ptr %181, align 8
+  %2999 = load volatile i32, ptr @P3_is_marked, align 4
+  %3000 = add nsw i32 %2999, 2
+  %3001 = sext i32 %3000 to i64
+  %3002 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3001
+  store volatile i64 %2998, ptr %3002, align 8
+  %3003 = load volatile i32, ptr @P3_is_marked, align 4
+  %3004 = add nsw i32 %3003, 3
+  store volatile i32 %3004, ptr @P3_is_marked, align 4
+  br label %3005
 
-2983:                                             ; preds = %2979
-  %2984 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %2984, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %2985 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %2986 = add nsw i32 %2985, -4
-  store volatile i32 %2986, ptr @P2_is_marked, align 4, !tbaa !5
-  %2987 = add nsw i64 %2981, %2980
-  %2988 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2989 = sext i32 %2988 to i64
-  %2990 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2989
-  store volatile i64 %2980, ptr %2990, align 8, !tbaa !9
-  %2991 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2992 = add nsw i32 %2991, 1
-  %2993 = sext i32 %2992 to i64
-  %2994 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2993
-  store volatile i64 %2981, ptr %2994, align 8, !tbaa !9
-  %2995 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %2996 = add nsw i32 %2995, 2
-  %2997 = sext i32 %2996 to i64
-  %2998 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %2997
-  store volatile i64 %2987, ptr %2998, align 8, !tbaa !9
-  %2999 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3000 = add nsw i32 %2999, 3
-  store volatile i32 %3000, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3001
+3005:                                             ; preds = %2982, %2976
+  br label %3006
 
-3001:                                             ; preds = %2983, %2979, %2975, %2971, %2968, %2965
-  %3002 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3003 = icmp sgt i32 %3002, 4
-  br i1 %3003, label %3004, label %3037
+3006:                                             ; preds = %3005, %2972, %2968, %2964, %2961
+  %3007 = load volatile i32, ptr @P2_is_marked, align 4
+  %3008 = icmp sge i32 %3007, 5
+  br i1 %3008, label %3009, label %3052
 
-3004:                                             ; preds = %3001
-  %3005 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3006 = icmp slt i32 %3005, 4
-  br i1 %3006, label %3007, label %3037
+3009:                                             ; preds = %3006
+  %3010 = load volatile i32, ptr @P3_is_marked, align 4
+  %3011 = add nsw i32 %3010, 3
+  %3012 = icmp sle i32 %3011, 6
+  br i1 %3012, label %3013, label %3052
 
-3007:                                             ; preds = %3004
-  %3008 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3009 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3010 = icmp eq i64 %3008, %3009
-  br i1 %3010, label %3011, label %3037
+3013:                                             ; preds = %3009
+  %3014 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3015 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3016 = icmp eq i64 %3014, %3015
+  br i1 %3016, label %3017, label %3052
 
-3011:                                             ; preds = %3007
-  %3012 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3013 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3014 = icmp eq i64 %3012, %3013
-  br i1 %3014, label %3015, label %3037
+3017:                                             ; preds = %3013
+  %3018 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3019 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3020 = icmp eq i64 %3018, %3019
+  br i1 %3020, label %3021, label %3052
 
-3015:                                             ; preds = %3011
-  %3016 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3017 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3018 = icmp sgt i64 %3017, %3016
-  br i1 %3018, label %3019, label %3037
+3021:                                             ; preds = %3017
+  %3022 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3022, ptr %182, align 8
+  %3023 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %3023, ptr %183, align 8
+  %3024 = load i64, ptr %183, align 8
+  %3025 = load i64, ptr %182, align 8
+  %3026 = icmp sgt i64 %3024, %3025
+  br i1 %3026, label %3027, label %3051
 
-3019:                                             ; preds = %3015
-  %3020 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3020, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3021 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3022 = add nsw i32 %3021, -4
-  store volatile i32 %3022, ptr @P2_is_marked, align 4, !tbaa !5
-  %3023 = add nsw i64 %3017, %3016
-  %3024 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3025 = sext i32 %3024 to i64
-  %3026 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3025
-  store volatile i64 %3016, ptr %3026, align 8, !tbaa !9
-  %3027 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3028 = add nsw i32 %3027, 1
-  %3029 = sext i32 %3028 to i64
-  %3030 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3029
-  store volatile i64 %3017, ptr %3030, align 8, !tbaa !9
-  %3031 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3032 = add nsw i32 %3031, 2
-  %3033 = sext i32 %3032 to i64
-  %3034 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3033
-  store volatile i64 %3023, ptr %3034, align 8, !tbaa !9
-  %3035 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3036 = add nsw i32 %3035, 3
-  store volatile i32 %3036, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3037
+3027:                                             ; preds = %3021
+  %3028 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %3028, ptr @P2_marking_member_0, align 16
+  %3029 = load volatile i32, ptr @P2_is_marked, align 4
+  %3030 = sub nsw i32 %3029, 4
+  store volatile i32 %3030, ptr @P2_is_marked, align 4
+  %3031 = load i64, ptr %182, align 8
+  %3032 = load i64, ptr %183, align 8
+  %3033 = add nsw i64 %3031, %3032
+  store i64 %3033, ptr %184, align 8
+  %3034 = load i64, ptr %182, align 8
+  %3035 = load volatile i32, ptr @P3_is_marked, align 4
+  %3036 = add nsw i32 %3035, 0
+  %3037 = sext i32 %3036 to i64
+  %3038 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3037
+  store volatile i64 %3034, ptr %3038, align 8
+  %3039 = load i64, ptr %183, align 8
+  %3040 = load volatile i32, ptr @P3_is_marked, align 4
+  %3041 = add nsw i32 %3040, 1
+  %3042 = sext i32 %3041 to i64
+  %3043 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3042
+  store volatile i64 %3039, ptr %3043, align 8
+  %3044 = load i64, ptr %184, align 8
+  %3045 = load volatile i32, ptr @P3_is_marked, align 4
+  %3046 = add nsw i32 %3045, 2
+  %3047 = sext i32 %3046 to i64
+  %3048 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3047
+  store volatile i64 %3044, ptr %3048, align 8
+  %3049 = load volatile i32, ptr @P3_is_marked, align 4
+  %3050 = add nsw i32 %3049, 3
+  store volatile i32 %3050, ptr @P3_is_marked, align 4
+  br label %3051
 
-3037:                                             ; preds = %3019, %3015, %3011, %3007, %3004, %3001
-  %3038 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3039 = icmp sgt i32 %3038, 4
-  br i1 %3039, label %3040, label %3073
+3051:                                             ; preds = %3027, %3021
+  br label %3052
 
-3040:                                             ; preds = %3037
-  %3041 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3042 = icmp slt i32 %3041, 4
-  br i1 %3042, label %3043, label %3073
+3052:                                             ; preds = %3051, %3017, %3013, %3009, %3006
+  %3053 = load volatile i32, ptr @P2_is_marked, align 4
+  %3054 = icmp sge i32 %3053, 5
+  br i1 %3054, label %3055, label %3097
 
-3043:                                             ; preds = %3040
-  %3044 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3045 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3046 = icmp eq i64 %3044, %3045
-  br i1 %3046, label %3047, label %3073
+3055:                                             ; preds = %3052
+  %3056 = load volatile i32, ptr @P3_is_marked, align 4
+  %3057 = add nsw i32 %3056, 3
+  %3058 = icmp sle i32 %3057, 6
+  br i1 %3058, label %3059, label %3097
 
-3047:                                             ; preds = %3043
-  %3048 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3049 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3050 = icmp eq i64 %3048, %3049
-  br i1 %3050, label %3051, label %3073
+3059:                                             ; preds = %3055
+  %3060 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3061 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3062 = icmp eq i64 %3060, %3061
+  br i1 %3062, label %3063, label %3097
 
-3051:                                             ; preds = %3047
-  %3052 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3053 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3054 = icmp sgt i64 %3053, %3052
-  br i1 %3054, label %3055, label %3073
+3063:                                             ; preds = %3059
+  %3064 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3065 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %3066 = icmp eq i64 %3064, %3065
+  br i1 %3066, label %3067, label %3097
 
-3055:                                             ; preds = %3051
-  %3056 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3056, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3057 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3058 = add nsw i32 %3057, -4
-  store volatile i32 %3058, ptr @P2_is_marked, align 4, !tbaa !5
-  %3059 = add nsw i64 %3053, %3052
-  %3060 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3061 = sext i32 %3060 to i64
-  %3062 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3061
-  store volatile i64 %3052, ptr %3062, align 8, !tbaa !9
-  %3063 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3064 = add nsw i32 %3063, 1
-  %3065 = sext i32 %3064 to i64
-  %3066 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3065
-  store volatile i64 %3053, ptr %3066, align 8, !tbaa !9
-  %3067 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3068 = add nsw i32 %3067, 2
-  %3069 = sext i32 %3068 to i64
-  %3070 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3069
-  store volatile i64 %3059, ptr %3070, align 8, !tbaa !9
-  %3071 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3072 = add nsw i32 %3071, 3
-  store volatile i32 %3072, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3073
+3067:                                             ; preds = %3063
+  %3068 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3068, ptr %185, align 8
+  %3069 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %3069, ptr %186, align 8
+  %3070 = load i64, ptr %186, align 8
+  %3071 = load i64, ptr %185, align 8
+  %3072 = icmp sgt i64 %3070, %3071
+  br i1 %3072, label %3073, label %3096
 
-3073:                                             ; preds = %3055, %3051, %3047, %3043, %3040, %3037
-  %3074 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3075 = icmp sgt i32 %3074, 4
-  br i1 %3075, label %3076, label %3109
+3073:                                             ; preds = %3067
+  %3074 = load volatile i32, ptr @P2_is_marked, align 4
+  %3075 = sub nsw i32 %3074, 4
+  store volatile i32 %3075, ptr @P2_is_marked, align 4
+  %3076 = load i64, ptr %185, align 8
+  %3077 = load i64, ptr %186, align 8
+  %3078 = add nsw i64 %3076, %3077
+  store i64 %3078, ptr %187, align 8
+  %3079 = load i64, ptr %185, align 8
+  %3080 = load volatile i32, ptr @P3_is_marked, align 4
+  %3081 = add nsw i32 %3080, 0
+  %3082 = sext i32 %3081 to i64
+  %3083 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3082
+  store volatile i64 %3079, ptr %3083, align 8
+  %3084 = load i64, ptr %186, align 8
+  %3085 = load volatile i32, ptr @P3_is_marked, align 4
+  %3086 = add nsw i32 %3085, 1
+  %3087 = sext i32 %3086 to i64
+  %3088 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3087
+  store volatile i64 %3084, ptr %3088, align 8
+  %3089 = load i64, ptr %187, align 8
+  %3090 = load volatile i32, ptr @P3_is_marked, align 4
+  %3091 = add nsw i32 %3090, 2
+  %3092 = sext i32 %3091 to i64
+  %3093 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3092
+  store volatile i64 %3089, ptr %3093, align 8
+  %3094 = load volatile i32, ptr @P3_is_marked, align 4
+  %3095 = add nsw i32 %3094, 3
+  store volatile i32 %3095, ptr @P3_is_marked, align 4
+  br label %3096
 
-3076:                                             ; preds = %3073
-  %3077 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3078 = icmp slt i32 %3077, 4
-  br i1 %3078, label %3079, label %3109
+3096:                                             ; preds = %3073, %3067
+  br label %3097
 
-3079:                                             ; preds = %3076
-  %3080 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3081 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3082 = icmp eq i64 %3080, %3081
-  br i1 %3082, label %3083, label %3109
+3097:                                             ; preds = %3096, %3063, %3059, %3055, %3052
+  %3098 = load volatile i32, ptr @P2_is_marked, align 4
+  %3099 = icmp sge i32 %3098, 5
+  br i1 %3099, label %3100, label %3143
 
-3083:                                             ; preds = %3079
-  %3084 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3085 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3086 = icmp eq i64 %3084, %3085
-  br i1 %3086, label %3087, label %3109
+3100:                                             ; preds = %3097
+  %3101 = load volatile i32, ptr @P3_is_marked, align 4
+  %3102 = add nsw i32 %3101, 3
+  %3103 = icmp sle i32 %3102, 6
+  br i1 %3103, label %3104, label %3143
 
-3087:                                             ; preds = %3083
-  %3088 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3089 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3090 = icmp sgt i64 %3089, %3088
-  br i1 %3090, label %3091, label %3109
+3104:                                             ; preds = %3100
+  %3105 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3106 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3107 = icmp eq i64 %3105, %3106
+  br i1 %3107, label %3108, label %3143
 
-3091:                                             ; preds = %3087
-  %3092 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3092, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3093 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3094 = add nsw i32 %3093, -4
-  store volatile i32 %3094, ptr @P2_is_marked, align 4, !tbaa !5
-  %3095 = add nsw i64 %3089, %3088
-  %3096 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3097 = sext i32 %3096 to i64
-  %3098 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3097
-  store volatile i64 %3088, ptr %3098, align 8, !tbaa !9
-  %3099 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3100 = add nsw i32 %3099, 1
-  %3101 = sext i32 %3100 to i64
-  %3102 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3101
-  store volatile i64 %3089, ptr %3102, align 8, !tbaa !9
-  %3103 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3104 = add nsw i32 %3103, 2
-  %3105 = sext i32 %3104 to i64
-  %3106 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3105
-  store volatile i64 %3095, ptr %3106, align 8, !tbaa !9
-  %3107 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3108 = add nsw i32 %3107, 3
-  store volatile i32 %3108, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3109
+3108:                                             ; preds = %3104
+  %3109 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3110 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %3111 = icmp eq i64 %3109, %3110
+  br i1 %3111, label %3112, label %3143
 
-3109:                                             ; preds = %3091, %3087, %3083, %3079, %3076, %3073
-  %3110 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3111 = icmp sgt i32 %3110, 4
-  br i1 %3111, label %3112, label %3145
+3112:                                             ; preds = %3108
+  %3113 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3113, ptr %188, align 8
+  %3114 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3114, ptr %189, align 8
+  %3115 = load i64, ptr %189, align 8
+  %3116 = load i64, ptr %188, align 8
+  %3117 = icmp sgt i64 %3115, %3116
+  br i1 %3117, label %3118, label %3142
 
-3112:                                             ; preds = %3109
-  %3113 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3114 = icmp slt i32 %3113, 4
-  br i1 %3114, label %3115, label %3145
-
-3115:                                             ; preds = %3112
-  %3116 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3117 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3118 = icmp eq i64 %3116, %3117
-  br i1 %3118, label %3119, label %3145
-
-3119:                                             ; preds = %3115
-  %3120 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3121 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3122 = icmp eq i64 %3120, %3121
-  br i1 %3122, label %3123, label %3145
-
-3123:                                             ; preds = %3119
-  %3124 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3125 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3126 = icmp sgt i64 %3125, %3124
-  br i1 %3126, label %3127, label %3145
-
-3127:                                             ; preds = %3123
-  %3128 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3128, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3129 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3130 = add nsw i32 %3129, -4
-  store volatile i32 %3130, ptr @P2_is_marked, align 4, !tbaa !5
-  %3131 = add nsw i64 %3125, %3124
-  %3132 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+3118:                                             ; preds = %3112
+  %3119 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3119, ptr @P2_marking_member_0, align 16
+  %3120 = load volatile i32, ptr @P2_is_marked, align 4
+  %3121 = sub nsw i32 %3120, 4
+  store volatile i32 %3121, ptr @P2_is_marked, align 4
+  %3122 = load i64, ptr %188, align 8
+  %3123 = load i64, ptr %189, align 8
+  %3124 = add nsw i64 %3122, %3123
+  store i64 %3124, ptr %190, align 8
+  %3125 = load i64, ptr %188, align 8
+  %3126 = load volatile i32, ptr @P3_is_marked, align 4
+  %3127 = add nsw i32 %3126, 0
+  %3128 = sext i32 %3127 to i64
+  %3129 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3128
+  store volatile i64 %3125, ptr %3129, align 8
+  %3130 = load i64, ptr %189, align 8
+  %3131 = load volatile i32, ptr @P3_is_marked, align 4
+  %3132 = add nsw i32 %3131, 1
   %3133 = sext i32 %3132 to i64
   %3134 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3133
-  store volatile i64 %3124, ptr %3134, align 8, !tbaa !9
-  %3135 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3136 = add nsw i32 %3135, 1
-  %3137 = sext i32 %3136 to i64
-  %3138 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3137
-  store volatile i64 %3125, ptr %3138, align 8, !tbaa !9
-  %3139 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3140 = add nsw i32 %3139, 2
-  %3141 = sext i32 %3140 to i64
-  %3142 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3141
-  store volatile i64 %3131, ptr %3142, align 8, !tbaa !9
-  %3143 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3144 = add nsw i32 %3143, 3
-  store volatile i32 %3144, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3145
+  store volatile i64 %3130, ptr %3134, align 8
+  %3135 = load i64, ptr %190, align 8
+  %3136 = load volatile i32, ptr @P3_is_marked, align 4
+  %3137 = add nsw i32 %3136, 2
+  %3138 = sext i32 %3137 to i64
+  %3139 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3138
+  store volatile i64 %3135, ptr %3139, align 8
+  %3140 = load volatile i32, ptr @P3_is_marked, align 4
+  %3141 = add nsw i32 %3140, 3
+  store volatile i32 %3141, ptr @P3_is_marked, align 4
+  br label %3142
 
-3145:                                             ; preds = %3127, %3123, %3119, %3115, %3112, %3109
-  %3146 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3147 = icmp sgt i32 %3146, 4
-  br i1 %3147, label %3148, label %3180
+3142:                                             ; preds = %3118, %3112
+  br label %3143
 
-3148:                                             ; preds = %3145
-  %3149 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3150 = icmp slt i32 %3149, 4
-  br i1 %3150, label %3151, label %3180
+3143:                                             ; preds = %3142, %3108, %3104, %3100, %3097
+  %3144 = load volatile i32, ptr @P2_is_marked, align 4
+  %3145 = icmp sge i32 %3144, 5
+  br i1 %3145, label %3146, label %3189
 
-3151:                                             ; preds = %3148
-  %3152 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3153 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3154 = icmp eq i64 %3152, %3153
-  br i1 %3154, label %3155, label %3180
+3146:                                             ; preds = %3143
+  %3147 = load volatile i32, ptr @P3_is_marked, align 4
+  %3148 = add nsw i32 %3147, 3
+  %3149 = icmp sle i32 %3148, 6
+  br i1 %3149, label %3150, label %3189
 
-3155:                                             ; preds = %3151
-  %3156 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3157 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3158 = icmp eq i64 %3156, %3157
-  br i1 %3158, label %3159, label %3180
+3150:                                             ; preds = %3146
+  %3151 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3152 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3153 = icmp eq i64 %3151, %3152
+  br i1 %3153, label %3154, label %3189
 
-3159:                                             ; preds = %3155
-  %3160 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3161 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3162 = icmp sgt i64 %3161, %3160
-  br i1 %3162, label %3163, label %3180
+3154:                                             ; preds = %3150
+  %3155 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3156 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3157 = icmp eq i64 %3155, %3156
+  br i1 %3157, label %3158, label %3189
 
-3163:                                             ; preds = %3159
-  %3164 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3165 = add nsw i32 %3164, -4
-  store volatile i32 %3165, ptr @P2_is_marked, align 4, !tbaa !5
-  %3166 = add nsw i64 %3161, %3160
-  %3167 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3168 = sext i32 %3167 to i64
-  %3169 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3168
-  store volatile i64 %3160, ptr %3169, align 8, !tbaa !9
-  %3170 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3171 = add nsw i32 %3170, 1
-  %3172 = sext i32 %3171 to i64
-  %3173 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3172
-  store volatile i64 %3161, ptr %3173, align 8, !tbaa !9
-  %3174 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3175 = add nsw i32 %3174, 2
-  %3176 = sext i32 %3175 to i64
-  %3177 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3176
-  store volatile i64 %3166, ptr %3177, align 8, !tbaa !9
-  %3178 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3179 = add nsw i32 %3178, 3
-  store volatile i32 %3179, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3180
+3158:                                             ; preds = %3154
+  %3159 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3159, ptr %191, align 8
+  %3160 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3160, ptr %192, align 8
+  %3161 = load i64, ptr %192, align 8
+  %3162 = load i64, ptr %191, align 8
+  %3163 = icmp sgt i64 %3161, %3162
+  br i1 %3163, label %3164, label %3188
 
-3180:                                             ; preds = %3163, %3159, %3155, %3151, %3148, %3145
-  %3181 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3182 = icmp sgt i32 %3181, 4
-  br i1 %3182, label %3183, label %3216
+3164:                                             ; preds = %3158
+  %3165 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %3165, ptr @P2_marking_member_0, align 16
+  %3166 = load volatile i32, ptr @P2_is_marked, align 4
+  %3167 = sub nsw i32 %3166, 4
+  store volatile i32 %3167, ptr @P2_is_marked, align 4
+  %3168 = load i64, ptr %191, align 8
+  %3169 = load i64, ptr %192, align 8
+  %3170 = add nsw i64 %3168, %3169
+  store i64 %3170, ptr %193, align 8
+  %3171 = load i64, ptr %191, align 8
+  %3172 = load volatile i32, ptr @P3_is_marked, align 4
+  %3173 = add nsw i32 %3172, 0
+  %3174 = sext i32 %3173 to i64
+  %3175 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3174
+  store volatile i64 %3171, ptr %3175, align 8
+  %3176 = load i64, ptr %192, align 8
+  %3177 = load volatile i32, ptr @P3_is_marked, align 4
+  %3178 = add nsw i32 %3177, 1
+  %3179 = sext i32 %3178 to i64
+  %3180 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3179
+  store volatile i64 %3176, ptr %3180, align 8
+  %3181 = load i64, ptr %193, align 8
+  %3182 = load volatile i32, ptr @P3_is_marked, align 4
+  %3183 = add nsw i32 %3182, 2
+  %3184 = sext i32 %3183 to i64
+  %3185 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3184
+  store volatile i64 %3181, ptr %3185, align 8
+  %3186 = load volatile i32, ptr @P3_is_marked, align 4
+  %3187 = add nsw i32 %3186, 3
+  store volatile i32 %3187, ptr @P3_is_marked, align 4
+  br label %3188
 
-3183:                                             ; preds = %3180
-  %3184 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3185 = icmp slt i32 %3184, 4
-  br i1 %3185, label %3186, label %3216
+3188:                                             ; preds = %3164, %3158
+  br label %3189
 
-3186:                                             ; preds = %3183
-  %3187 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3188 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3189 = icmp eq i64 %3187, %3188
-  br i1 %3189, label %3190, label %3216
+3189:                                             ; preds = %3188, %3154, %3150, %3146, %3143
+  %3190 = load volatile i32, ptr @P2_is_marked, align 4
+  %3191 = icmp sge i32 %3190, 5
+  br i1 %3191, label %3192, label %3235
 
-3190:                                             ; preds = %3186
-  %3191 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3192 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3193 = icmp eq i64 %3191, %3192
-  br i1 %3193, label %3194, label %3216
+3192:                                             ; preds = %3189
+  %3193 = load volatile i32, ptr @P3_is_marked, align 4
+  %3194 = add nsw i32 %3193, 3
+  %3195 = icmp sle i32 %3194, 6
+  br i1 %3195, label %3196, label %3235
 
-3194:                                             ; preds = %3190
-  %3195 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3196 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3197 = icmp sgt i64 %3196, %3195
-  br i1 %3197, label %3198, label %3216
+3196:                                             ; preds = %3192
+  %3197 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3198 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %3199 = icmp eq i64 %3197, %3198
+  br i1 %3199, label %3200, label %3235
 
-3198:                                             ; preds = %3194
-  %3199 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3199, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3200 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3201 = add nsw i32 %3200, -4
-  store volatile i32 %3201, ptr @P2_is_marked, align 4, !tbaa !5
-  %3202 = add nsw i64 %3196, %3195
-  %3203 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3204 = sext i32 %3203 to i64
-  %3205 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3204
-  store volatile i64 %3195, ptr %3205, align 8, !tbaa !9
-  %3206 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3207 = add nsw i32 %3206, 1
-  %3208 = sext i32 %3207 to i64
-  %3209 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3208
-  store volatile i64 %3196, ptr %3209, align 8, !tbaa !9
-  %3210 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3211 = add nsw i32 %3210, 2
-  %3212 = sext i32 %3211 to i64
-  %3213 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3212
-  store volatile i64 %3202, ptr %3213, align 8, !tbaa !9
-  %3214 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3215 = add nsw i32 %3214, 3
-  store volatile i32 %3215, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3216
+3200:                                             ; preds = %3196
+  %3201 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3202 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3203 = icmp eq i64 %3201, %3202
+  br i1 %3203, label %3204, label %3235
 
-3216:                                             ; preds = %3198, %3194, %3190, %3186, %3183, %3180
-  %3217 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3218 = icmp sgt i32 %3217, 4
-  br i1 %3218, label %3219, label %3251
+3204:                                             ; preds = %3200
+  %3205 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3205, ptr %194, align 8
+  %3206 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3206, ptr %195, align 8
+  %3207 = load i64, ptr %195, align 8
+  %3208 = load i64, ptr %194, align 8
+  %3209 = icmp sgt i64 %3207, %3208
+  br i1 %3209, label %3210, label %3234
 
-3219:                                             ; preds = %3216
-  %3220 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3221 = icmp slt i32 %3220, 4
-  br i1 %3221, label %3222, label %3251
+3210:                                             ; preds = %3204
+  %3211 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3211, ptr @P2_marking_member_0, align 16
+  %3212 = load volatile i32, ptr @P2_is_marked, align 4
+  %3213 = sub nsw i32 %3212, 4
+  store volatile i32 %3213, ptr @P2_is_marked, align 4
+  %3214 = load i64, ptr %194, align 8
+  %3215 = load i64, ptr %195, align 8
+  %3216 = add nsw i64 %3214, %3215
+  store i64 %3216, ptr %196, align 8
+  %3217 = load i64, ptr %194, align 8
+  %3218 = load volatile i32, ptr @P3_is_marked, align 4
+  %3219 = add nsw i32 %3218, 0
+  %3220 = sext i32 %3219 to i64
+  %3221 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3220
+  store volatile i64 %3217, ptr %3221, align 8
+  %3222 = load i64, ptr %195, align 8
+  %3223 = load volatile i32, ptr @P3_is_marked, align 4
+  %3224 = add nsw i32 %3223, 1
+  %3225 = sext i32 %3224 to i64
+  %3226 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3225
+  store volatile i64 %3222, ptr %3226, align 8
+  %3227 = load i64, ptr %196, align 8
+  %3228 = load volatile i32, ptr @P3_is_marked, align 4
+  %3229 = add nsw i32 %3228, 2
+  %3230 = sext i32 %3229 to i64
+  %3231 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3230
+  store volatile i64 %3227, ptr %3231, align 8
+  %3232 = load volatile i32, ptr @P3_is_marked, align 4
+  %3233 = add nsw i32 %3232, 3
+  store volatile i32 %3233, ptr @P3_is_marked, align 4
+  br label %3234
 
-3222:                                             ; preds = %3219
-  %3223 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3224 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3225 = icmp eq i64 %3223, %3224
-  br i1 %3225, label %3226, label %3251
+3234:                                             ; preds = %3210, %3204
+  br label %3235
 
-3226:                                             ; preds = %3222
-  %3227 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3228 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3229 = icmp eq i64 %3227, %3228
-  br i1 %3229, label %3230, label %3251
+3235:                                             ; preds = %3234, %3200, %3196, %3192, %3189
+  %3236 = load volatile i32, ptr @P2_is_marked, align 4
+  %3237 = icmp sge i32 %3236, 5
+  br i1 %3237, label %3238, label %3280
 
-3230:                                             ; preds = %3226
-  %3231 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3232 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3233 = icmp sgt i64 %3232, %3231
-  br i1 %3233, label %3234, label %3251
+3238:                                             ; preds = %3235
+  %3239 = load volatile i32, ptr @P3_is_marked, align 4
+  %3240 = add nsw i32 %3239, 3
+  %3241 = icmp sle i32 %3240, 6
+  br i1 %3241, label %3242, label %3280
 
-3234:                                             ; preds = %3230
-  %3235 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3236 = add nsw i32 %3235, -4
-  store volatile i32 %3236, ptr @P2_is_marked, align 4, !tbaa !5
-  %3237 = add nsw i64 %3232, %3231
-  %3238 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3239 = sext i32 %3238 to i64
-  %3240 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3239
-  store volatile i64 %3231, ptr %3240, align 8, !tbaa !9
-  %3241 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3242 = add nsw i32 %3241, 1
-  %3243 = sext i32 %3242 to i64
-  %3244 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3243
-  store volatile i64 %3232, ptr %3244, align 8, !tbaa !9
-  %3245 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3246 = add nsw i32 %3245, 2
-  %3247 = sext i32 %3246 to i64
-  %3248 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3247
-  store volatile i64 %3237, ptr %3248, align 8, !tbaa !9
-  %3249 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3250 = add nsw i32 %3249, 3
-  store volatile i32 %3250, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3251
+3242:                                             ; preds = %3238
+  %3243 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3244 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %3245 = icmp eq i64 %3243, %3244
+  br i1 %3245, label %3246, label %3280
 
-3251:                                             ; preds = %3234, %3230, %3226, %3222, %3219, %3216
-  %3252 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3253 = icmp sgt i32 %3252, 4
-  br i1 %3253, label %3254, label %3287
+3246:                                             ; preds = %3242
+  %3247 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3248 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3249 = icmp eq i64 %3247, %3248
+  br i1 %3249, label %3250, label %3280
 
-3254:                                             ; preds = %3251
-  %3255 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3256 = icmp slt i32 %3255, 4
-  br i1 %3256, label %3257, label %3287
+3250:                                             ; preds = %3246
+  %3251 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3251, ptr %197, align 8
+  %3252 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3252, ptr %198, align 8
+  %3253 = load i64, ptr %198, align 8
+  %3254 = load i64, ptr %197, align 8
+  %3255 = icmp sgt i64 %3253, %3254
+  br i1 %3255, label %3256, label %3279
 
-3257:                                             ; preds = %3254
-  %3258 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3259 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3260 = icmp eq i64 %3258, %3259
-  br i1 %3260, label %3261, label %3287
-
-3261:                                             ; preds = %3257
-  %3262 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3263 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3264 = icmp eq i64 %3262, %3263
-  br i1 %3264, label %3265, label %3287
-
-3265:                                             ; preds = %3261
-  %3266 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3267 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3268 = icmp sgt i64 %3267, %3266
-  br i1 %3268, label %3269, label %3287
-
-3269:                                             ; preds = %3265
-  %3270 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3270, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3271 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3272 = add nsw i32 %3271, -4
-  store volatile i32 %3272, ptr @P2_is_marked, align 4, !tbaa !5
-  %3273 = add nsw i64 %3267, %3266
-  %3274 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+3256:                                             ; preds = %3250
+  %3257 = load volatile i32, ptr @P2_is_marked, align 4
+  %3258 = sub nsw i32 %3257, 4
+  store volatile i32 %3258, ptr @P2_is_marked, align 4
+  %3259 = load i64, ptr %197, align 8
+  %3260 = load i64, ptr %198, align 8
+  %3261 = add nsw i64 %3259, %3260
+  store i64 %3261, ptr %199, align 8
+  %3262 = load i64, ptr %197, align 8
+  %3263 = load volatile i32, ptr @P3_is_marked, align 4
+  %3264 = add nsw i32 %3263, 0
+  %3265 = sext i32 %3264 to i64
+  %3266 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3265
+  store volatile i64 %3262, ptr %3266, align 8
+  %3267 = load i64, ptr %198, align 8
+  %3268 = load volatile i32, ptr @P3_is_marked, align 4
+  %3269 = add nsw i32 %3268, 1
+  %3270 = sext i32 %3269 to i64
+  %3271 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3270
+  store volatile i64 %3267, ptr %3271, align 8
+  %3272 = load i64, ptr %199, align 8
+  %3273 = load volatile i32, ptr @P3_is_marked, align 4
+  %3274 = add nsw i32 %3273, 2
   %3275 = sext i32 %3274 to i64
   %3276 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3275
-  store volatile i64 %3266, ptr %3276, align 8, !tbaa !9
-  %3277 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3278 = add nsw i32 %3277, 1
-  %3279 = sext i32 %3278 to i64
-  %3280 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3279
-  store volatile i64 %3267, ptr %3280, align 8, !tbaa !9
-  %3281 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3282 = add nsw i32 %3281, 2
-  %3283 = sext i32 %3282 to i64
-  %3284 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3283
-  store volatile i64 %3273, ptr %3284, align 8, !tbaa !9
-  %3285 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3286 = add nsw i32 %3285, 3
-  store volatile i32 %3286, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3287
+  store volatile i64 %3272, ptr %3276, align 8
+  %3277 = load volatile i32, ptr @P3_is_marked, align 4
+  %3278 = add nsw i32 %3277, 3
+  store volatile i32 %3278, ptr @P3_is_marked, align 4
+  br label %3279
 
-3287:                                             ; preds = %3269, %3265, %3261, %3257, %3254, %3251
-  %3288 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3289 = icmp sgt i32 %3288, 4
-  br i1 %3289, label %3290, label %3322
+3279:                                             ; preds = %3256, %3250
+  br label %3280
 
-3290:                                             ; preds = %3287
-  %3291 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3292 = icmp slt i32 %3291, 4
-  br i1 %3292, label %3293, label %3322
+3280:                                             ; preds = %3279, %3246, %3242, %3238, %3235
+  %3281 = load volatile i32, ptr @P2_is_marked, align 4
+  %3282 = icmp sge i32 %3281, 5
+  br i1 %3282, label %3283, label %3326
 
-3293:                                             ; preds = %3290
-  %3294 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3295 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3296 = icmp eq i64 %3294, %3295
-  br i1 %3296, label %3297, label %3322
+3283:                                             ; preds = %3280
+  %3284 = load volatile i32, ptr @P3_is_marked, align 4
+  %3285 = add nsw i32 %3284, 3
+  %3286 = icmp sle i32 %3285, 6
+  br i1 %3286, label %3287, label %3326
 
-3297:                                             ; preds = %3293
-  %3298 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3299 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3300 = icmp eq i64 %3298, %3299
-  br i1 %3300, label %3301, label %3322
+3287:                                             ; preds = %3283
+  %3288 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3289 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3290 = icmp eq i64 %3288, %3289
+  br i1 %3290, label %3291, label %3326
 
-3301:                                             ; preds = %3297
-  %3302 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3303 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3304 = icmp sgt i64 %3303, %3302
-  br i1 %3304, label %3305, label %3322
+3291:                                             ; preds = %3287
+  %3292 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3293 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3294 = icmp eq i64 %3292, %3293
+  br i1 %3294, label %3295, label %3326
 
-3305:                                             ; preds = %3301
-  %3306 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3307 = add nsw i32 %3306, -4
-  store volatile i32 %3307, ptr @P2_is_marked, align 4, !tbaa !5
-  %3308 = add nsw i64 %3303, %3302
-  %3309 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3310 = sext i32 %3309 to i64
-  %3311 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3310
-  store volatile i64 %3302, ptr %3311, align 8, !tbaa !9
-  %3312 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3313 = add nsw i32 %3312, 1
-  %3314 = sext i32 %3313 to i64
-  %3315 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3314
-  store volatile i64 %3303, ptr %3315, align 8, !tbaa !9
-  %3316 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3317 = add nsw i32 %3316, 2
-  %3318 = sext i32 %3317 to i64
-  %3319 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3318
-  store volatile i64 %3308, ptr %3319, align 8, !tbaa !9
-  %3320 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3321 = add nsw i32 %3320, 3
-  store volatile i32 %3321, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3322
+3295:                                             ; preds = %3291
+  %3296 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3296, ptr %200, align 8
+  %3297 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3297, ptr %201, align 8
+  %3298 = load i64, ptr %201, align 8
+  %3299 = load i64, ptr %200, align 8
+  %3300 = icmp sgt i64 %3298, %3299
+  br i1 %3300, label %3301, label %3325
 
-3322:                                             ; preds = %3305, %3301, %3297, %3293, %3290, %3287
-  %3323 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3324 = icmp sgt i32 %3323, 4
-  br i1 %3324, label %3325, label %3358
+3301:                                             ; preds = %3295
+  %3302 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %3302, ptr @P2_marking_member_0, align 16
+  %3303 = load volatile i32, ptr @P2_is_marked, align 4
+  %3304 = sub nsw i32 %3303, 4
+  store volatile i32 %3304, ptr @P2_is_marked, align 4
+  %3305 = load i64, ptr %200, align 8
+  %3306 = load i64, ptr %201, align 8
+  %3307 = add nsw i64 %3305, %3306
+  store i64 %3307, ptr %202, align 8
+  %3308 = load i64, ptr %200, align 8
+  %3309 = load volatile i32, ptr @P3_is_marked, align 4
+  %3310 = add nsw i32 %3309, 0
+  %3311 = sext i32 %3310 to i64
+  %3312 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3311
+  store volatile i64 %3308, ptr %3312, align 8
+  %3313 = load i64, ptr %201, align 8
+  %3314 = load volatile i32, ptr @P3_is_marked, align 4
+  %3315 = add nsw i32 %3314, 1
+  %3316 = sext i32 %3315 to i64
+  %3317 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3316
+  store volatile i64 %3313, ptr %3317, align 8
+  %3318 = load i64, ptr %202, align 8
+  %3319 = load volatile i32, ptr @P3_is_marked, align 4
+  %3320 = add nsw i32 %3319, 2
+  %3321 = sext i32 %3320 to i64
+  %3322 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3321
+  store volatile i64 %3318, ptr %3322, align 8
+  %3323 = load volatile i32, ptr @P3_is_marked, align 4
+  %3324 = add nsw i32 %3323, 3
+  store volatile i32 %3324, ptr @P3_is_marked, align 4
+  br label %3325
 
-3325:                                             ; preds = %3322
-  %3326 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3327 = icmp slt i32 %3326, 4
-  br i1 %3327, label %3328, label %3358
+3325:                                             ; preds = %3301, %3295
+  br label %3326
 
-3328:                                             ; preds = %3325
-  %3329 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3330 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3331 = icmp eq i64 %3329, %3330
-  br i1 %3331, label %3332, label %3358
+3326:                                             ; preds = %3325, %3291, %3287, %3283, %3280
+  %3327 = load volatile i32, ptr @P2_is_marked, align 4
+  %3328 = icmp sge i32 %3327, 5
+  br i1 %3328, label %3329, label %3371
 
-3332:                                             ; preds = %3328
-  %3333 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3334 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3335 = icmp eq i64 %3333, %3334
-  br i1 %3335, label %3336, label %3358
+3329:                                             ; preds = %3326
+  %3330 = load volatile i32, ptr @P3_is_marked, align 4
+  %3331 = add nsw i32 %3330, 3
+  %3332 = icmp sle i32 %3331, 6
+  br i1 %3332, label %3333, label %3371
 
-3336:                                             ; preds = %3332
-  %3337 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3338 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3339 = icmp sgt i64 %3338, %3337
-  br i1 %3339, label %3340, label %3358
+3333:                                             ; preds = %3329
+  %3334 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3335 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3336 = icmp eq i64 %3334, %3335
+  br i1 %3336, label %3337, label %3371
 
-3340:                                             ; preds = %3336
-  %3341 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3341, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3342 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3343 = add nsw i32 %3342, -4
-  store volatile i32 %3343, ptr @P2_is_marked, align 4, !tbaa !5
-  %3344 = add nsw i64 %3338, %3337
-  %3345 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3346 = sext i32 %3345 to i64
-  %3347 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3346
-  store volatile i64 %3337, ptr %3347, align 8, !tbaa !9
-  %3348 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3349 = add nsw i32 %3348, 1
-  %3350 = sext i32 %3349 to i64
-  %3351 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3350
-  store volatile i64 %3338, ptr %3351, align 8, !tbaa !9
-  %3352 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3353 = add nsw i32 %3352, 2
-  %3354 = sext i32 %3353 to i64
-  %3355 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3354
-  store volatile i64 %3344, ptr %3355, align 8, !tbaa !9
-  %3356 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3357 = add nsw i32 %3356, 3
-  store volatile i32 %3357, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3358
+3337:                                             ; preds = %3333
+  %3338 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3339 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %3340 = icmp eq i64 %3338, %3339
+  br i1 %3340, label %3341, label %3371
 
-3358:                                             ; preds = %3340, %3336, %3332, %3328, %3325, %3322
-  %3359 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3360 = icmp sgt i32 %3359, 4
-  br i1 %3360, label %3361, label %3393
+3341:                                             ; preds = %3337
+  %3342 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3342, ptr %203, align 8
+  %3343 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3343, ptr %204, align 8
+  %3344 = load i64, ptr %204, align 8
+  %3345 = load i64, ptr %203, align 8
+  %3346 = icmp sgt i64 %3344, %3345
+  br i1 %3346, label %3347, label %3370
 
-3361:                                             ; preds = %3358
-  %3362 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3363 = icmp slt i32 %3362, 4
-  br i1 %3363, label %3364, label %3393
+3347:                                             ; preds = %3341
+  %3348 = load volatile i32, ptr @P2_is_marked, align 4
+  %3349 = sub nsw i32 %3348, 4
+  store volatile i32 %3349, ptr @P2_is_marked, align 4
+  %3350 = load i64, ptr %203, align 8
+  %3351 = load i64, ptr %204, align 8
+  %3352 = add nsw i64 %3350, %3351
+  store i64 %3352, ptr %205, align 8
+  %3353 = load i64, ptr %203, align 8
+  %3354 = load volatile i32, ptr @P3_is_marked, align 4
+  %3355 = add nsw i32 %3354, 0
+  %3356 = sext i32 %3355 to i64
+  %3357 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3356
+  store volatile i64 %3353, ptr %3357, align 8
+  %3358 = load i64, ptr %204, align 8
+  %3359 = load volatile i32, ptr @P3_is_marked, align 4
+  %3360 = add nsw i32 %3359, 1
+  %3361 = sext i32 %3360 to i64
+  %3362 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3361
+  store volatile i64 %3358, ptr %3362, align 8
+  %3363 = load i64, ptr %205, align 8
+  %3364 = load volatile i32, ptr @P3_is_marked, align 4
+  %3365 = add nsw i32 %3364, 2
+  %3366 = sext i32 %3365 to i64
+  %3367 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3366
+  store volatile i64 %3363, ptr %3367, align 8
+  %3368 = load volatile i32, ptr @P3_is_marked, align 4
+  %3369 = add nsw i32 %3368, 3
+  store volatile i32 %3369, ptr @P3_is_marked, align 4
+  br label %3370
 
-3364:                                             ; preds = %3361
-  %3365 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3366 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3367 = icmp eq i64 %3365, %3366
-  br i1 %3367, label %3368, label %3393
+3370:                                             ; preds = %3347, %3341
+  br label %3371
 
-3368:                                             ; preds = %3364
-  %3369 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3370 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3371 = icmp eq i64 %3369, %3370
-  br i1 %3371, label %3372, label %3393
+3371:                                             ; preds = %3370, %3337, %3333, %3329, %3326
+  %3372 = load volatile i32, ptr @P2_is_marked, align 4
+  %3373 = icmp sge i32 %3372, 5
+  br i1 %3373, label %3374, label %3417
 
-3372:                                             ; preds = %3368
-  %3373 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3374 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3375 = icmp sgt i64 %3374, %3373
-  br i1 %3375, label %3376, label %3393
+3374:                                             ; preds = %3371
+  %3375 = load volatile i32, ptr @P3_is_marked, align 4
+  %3376 = add nsw i32 %3375, 3
+  %3377 = icmp sle i32 %3376, 6
+  br i1 %3377, label %3378, label %3417
 
-3376:                                             ; preds = %3372
-  %3377 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3378 = add nsw i32 %3377, -4
-  store volatile i32 %3378, ptr @P2_is_marked, align 4, !tbaa !5
-  %3379 = add nsw i64 %3374, %3373
-  %3380 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3381 = sext i32 %3380 to i64
-  %3382 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3381
-  store volatile i64 %3373, ptr %3382, align 8, !tbaa !9
-  %3383 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3384 = add nsw i32 %3383, 1
-  %3385 = sext i32 %3384 to i64
-  %3386 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3385
-  store volatile i64 %3374, ptr %3386, align 8, !tbaa !9
-  %3387 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3388 = add nsw i32 %3387, 2
-  %3389 = sext i32 %3388 to i64
-  %3390 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3389
-  store volatile i64 %3379, ptr %3390, align 8, !tbaa !9
-  %3391 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3392 = add nsw i32 %3391, 3
-  store volatile i32 %3392, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3393
+3378:                                             ; preds = %3374
+  %3379 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3380 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3381 = icmp eq i64 %3379, %3380
+  br i1 %3381, label %3382, label %3417
 
-3393:                                             ; preds = %3376, %3372, %3368, %3364, %3361, %3358
-  %3394 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3395 = icmp sgt i32 %3394, 4
-  br i1 %3395, label %3396, label %3429
+3382:                                             ; preds = %3378
+  %3383 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3384 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3385 = icmp eq i64 %3383, %3384
+  br i1 %3385, label %3386, label %3417
 
-3396:                                             ; preds = %3393
-  %3397 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3398 = icmp slt i32 %3397, 4
-  br i1 %3398, label %3399, label %3429
+3386:                                             ; preds = %3382
+  %3387 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3387, ptr %206, align 8
+  %3388 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %3388, ptr %207, align 8
+  %3389 = load i64, ptr %207, align 8
+  %3390 = load i64, ptr %206, align 8
+  %3391 = icmp sgt i64 %3389, %3390
+  br i1 %3391, label %3392, label %3416
 
-3399:                                             ; preds = %3396
-  %3400 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3401 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3402 = icmp eq i64 %3400, %3401
-  br i1 %3402, label %3403, label %3429
+3392:                                             ; preds = %3386
+  %3393 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3393, ptr @P2_marking_member_0, align 16
+  %3394 = load volatile i32, ptr @P2_is_marked, align 4
+  %3395 = sub nsw i32 %3394, 4
+  store volatile i32 %3395, ptr @P2_is_marked, align 4
+  %3396 = load i64, ptr %206, align 8
+  %3397 = load i64, ptr %207, align 8
+  %3398 = add nsw i64 %3396, %3397
+  store i64 %3398, ptr %208, align 8
+  %3399 = load i64, ptr %206, align 8
+  %3400 = load volatile i32, ptr @P3_is_marked, align 4
+  %3401 = add nsw i32 %3400, 0
+  %3402 = sext i32 %3401 to i64
+  %3403 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3402
+  store volatile i64 %3399, ptr %3403, align 8
+  %3404 = load i64, ptr %207, align 8
+  %3405 = load volatile i32, ptr @P3_is_marked, align 4
+  %3406 = add nsw i32 %3405, 1
+  %3407 = sext i32 %3406 to i64
+  %3408 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3407
+  store volatile i64 %3404, ptr %3408, align 8
+  %3409 = load i64, ptr %208, align 8
+  %3410 = load volatile i32, ptr @P3_is_marked, align 4
+  %3411 = add nsw i32 %3410, 2
+  %3412 = sext i32 %3411 to i64
+  %3413 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3412
+  store volatile i64 %3409, ptr %3413, align 8
+  %3414 = load volatile i32, ptr @P3_is_marked, align 4
+  %3415 = add nsw i32 %3414, 3
+  store volatile i32 %3415, ptr @P3_is_marked, align 4
+  br label %3416
 
-3403:                                             ; preds = %3399
-  %3404 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3405 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3406 = icmp eq i64 %3404, %3405
-  br i1 %3406, label %3407, label %3429
+3416:                                             ; preds = %3392, %3386
+  br label %3417
 
-3407:                                             ; preds = %3403
-  %3408 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3409 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3410 = icmp sgt i64 %3409, %3408
-  br i1 %3410, label %3411, label %3429
+3417:                                             ; preds = %3416, %3382, %3378, %3374, %3371
+  %3418 = load volatile i32, ptr @P2_is_marked, align 4
+  %3419 = icmp sge i32 %3418, 5
+  br i1 %3419, label %3420, label %3463
 
-3411:                                             ; preds = %3407
-  %3412 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3412, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3413 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3414 = add nsw i32 %3413, -4
-  store volatile i32 %3414, ptr @P2_is_marked, align 4, !tbaa !5
-  %3415 = add nsw i64 %3409, %3408
-  %3416 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3417 = sext i32 %3416 to i64
-  %3418 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3417
-  store volatile i64 %3408, ptr %3418, align 8, !tbaa !9
-  %3419 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3420 = add nsw i32 %3419, 1
-  %3421 = sext i32 %3420 to i64
-  %3422 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3421
-  store volatile i64 %3409, ptr %3422, align 8, !tbaa !9
-  %3423 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3424 = add nsw i32 %3423, 2
-  %3425 = sext i32 %3424 to i64
-  %3426 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3425
-  store volatile i64 %3415, ptr %3426, align 8, !tbaa !9
-  %3427 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3428 = add nsw i32 %3427, 3
-  store volatile i32 %3428, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3429
+3420:                                             ; preds = %3417
+  %3421 = load volatile i32, ptr @P3_is_marked, align 4
+  %3422 = add nsw i32 %3421, 3
+  %3423 = icmp sle i32 %3422, 6
+  br i1 %3423, label %3424, label %3463
 
-3429:                                             ; preds = %3411, %3407, %3403, %3399, %3396, %3393
-  %3430 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3431 = icmp sgt i32 %3430, 4
-  br i1 %3431, label %3432, label %3465
+3424:                                             ; preds = %3420
+  %3425 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3426 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3427 = icmp eq i64 %3425, %3426
+  br i1 %3427, label %3428, label %3463
 
-3432:                                             ; preds = %3429
-  %3433 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3434 = icmp slt i32 %3433, 4
-  br i1 %3434, label %3435, label %3465
+3428:                                             ; preds = %3424
+  %3429 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3430 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3431 = icmp eq i64 %3429, %3430
+  br i1 %3431, label %3432, label %3463
 
-3435:                                             ; preds = %3432
-  %3436 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3437 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3438 = icmp eq i64 %3436, %3437
-  br i1 %3438, label %3439, label %3465
+3432:                                             ; preds = %3428
+  %3433 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3433, ptr %209, align 8
+  %3434 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %3434, ptr %210, align 8
+  %3435 = load i64, ptr %210, align 8
+  %3436 = load i64, ptr %209, align 8
+  %3437 = icmp sgt i64 %3435, %3436
+  br i1 %3437, label %3438, label %3462
 
-3439:                                             ; preds = %3435
-  %3440 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3441 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3442 = icmp eq i64 %3440, %3441
-  br i1 %3442, label %3443, label %3465
-
-3443:                                             ; preds = %3439
-  %3444 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3445 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3446 = icmp sgt i64 %3445, %3444
-  br i1 %3446, label %3447, label %3465
-
-3447:                                             ; preds = %3443
-  %3448 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3448, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3449 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3450 = add nsw i32 %3449, -4
-  store volatile i32 %3450, ptr @P2_is_marked, align 4, !tbaa !5
-  %3451 = add nsw i64 %3445, %3444
-  %3452 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+3438:                                             ; preds = %3432
+  %3439 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %3439, ptr @P2_marking_member_0, align 16
+  %3440 = load volatile i32, ptr @P2_is_marked, align 4
+  %3441 = sub nsw i32 %3440, 4
+  store volatile i32 %3441, ptr @P2_is_marked, align 4
+  %3442 = load i64, ptr %209, align 8
+  %3443 = load i64, ptr %210, align 8
+  %3444 = add nsw i64 %3442, %3443
+  store i64 %3444, ptr %211, align 8
+  %3445 = load i64, ptr %209, align 8
+  %3446 = load volatile i32, ptr @P3_is_marked, align 4
+  %3447 = add nsw i32 %3446, 0
+  %3448 = sext i32 %3447 to i64
+  %3449 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3448
+  store volatile i64 %3445, ptr %3449, align 8
+  %3450 = load i64, ptr %210, align 8
+  %3451 = load volatile i32, ptr @P3_is_marked, align 4
+  %3452 = add nsw i32 %3451, 1
   %3453 = sext i32 %3452 to i64
   %3454 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3453
-  store volatile i64 %3444, ptr %3454, align 8, !tbaa !9
-  %3455 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3456 = add nsw i32 %3455, 1
-  %3457 = sext i32 %3456 to i64
-  %3458 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3457
-  store volatile i64 %3445, ptr %3458, align 8, !tbaa !9
-  %3459 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3460 = add nsw i32 %3459, 2
-  %3461 = sext i32 %3460 to i64
-  %3462 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3461
-  store volatile i64 %3451, ptr %3462, align 8, !tbaa !9
-  %3463 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3464 = add nsw i32 %3463, 3
-  store volatile i32 %3464, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3465
+  store volatile i64 %3450, ptr %3454, align 8
+  %3455 = load i64, ptr %211, align 8
+  %3456 = load volatile i32, ptr @P3_is_marked, align 4
+  %3457 = add nsw i32 %3456, 2
+  %3458 = sext i32 %3457 to i64
+  %3459 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3458
+  store volatile i64 %3455, ptr %3459, align 8
+  %3460 = load volatile i32, ptr @P3_is_marked, align 4
+  %3461 = add nsw i32 %3460, 3
+  store volatile i32 %3461, ptr @P3_is_marked, align 4
+  br label %3462
 
-3465:                                             ; preds = %3447, %3443, %3439, %3435, %3432, %3429
-  %3466 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3467 = icmp sgt i32 %3466, 4
-  br i1 %3467, label %3468, label %3501
+3462:                                             ; preds = %3438, %3432
+  br label %3463
 
-3468:                                             ; preds = %3465
-  %3469 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3470 = icmp slt i32 %3469, 4
-  br i1 %3470, label %3471, label %3501
+3463:                                             ; preds = %3462, %3428, %3424, %3420, %3417
+  %3464 = load volatile i32, ptr @P2_is_marked, align 4
+  %3465 = icmp sge i32 %3464, 5
+  br i1 %3465, label %3466, label %3509
 
-3471:                                             ; preds = %3468
-  %3472 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3473 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3474 = icmp eq i64 %3472, %3473
-  br i1 %3474, label %3475, label %3501
+3466:                                             ; preds = %3463
+  %3467 = load volatile i32, ptr @P3_is_marked, align 4
+  %3468 = add nsw i32 %3467, 3
+  %3469 = icmp sle i32 %3468, 6
+  br i1 %3469, label %3470, label %3509
 
-3475:                                             ; preds = %3471
-  %3476 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3477 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3478 = icmp eq i64 %3476, %3477
-  br i1 %3478, label %3479, label %3501
+3470:                                             ; preds = %3466
+  %3471 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3472 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3473 = icmp eq i64 %3471, %3472
+  br i1 %3473, label %3474, label %3509
 
-3479:                                             ; preds = %3475
-  %3480 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3481 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3482 = icmp sgt i64 %3481, %3480
-  br i1 %3482, label %3483, label %3501
+3474:                                             ; preds = %3470
+  %3475 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3476 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3477 = icmp eq i64 %3475, %3476
+  br i1 %3477, label %3478, label %3509
 
-3483:                                             ; preds = %3479
-  %3484 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3484, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3485 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3486 = add nsw i32 %3485, -4
-  store volatile i32 %3486, ptr @P2_is_marked, align 4, !tbaa !5
-  %3487 = add nsw i64 %3481, %3480
-  %3488 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3489 = sext i32 %3488 to i64
-  %3490 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3489
-  store volatile i64 %3480, ptr %3490, align 8, !tbaa !9
-  %3491 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3492 = add nsw i32 %3491, 1
-  %3493 = sext i32 %3492 to i64
-  %3494 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3493
-  store volatile i64 %3481, ptr %3494, align 8, !tbaa !9
-  %3495 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3496 = add nsw i32 %3495, 2
-  %3497 = sext i32 %3496 to i64
-  %3498 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3497
-  store volatile i64 %3487, ptr %3498, align 8, !tbaa !9
-  %3499 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3500 = add nsw i32 %3499, 3
-  store volatile i32 %3500, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3501
+3478:                                             ; preds = %3474
+  %3479 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3479, ptr %212, align 8
+  %3480 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %3480, ptr %213, align 8
+  %3481 = load i64, ptr %213, align 8
+  %3482 = load i64, ptr %212, align 8
+  %3483 = icmp sgt i64 %3481, %3482
+  br i1 %3483, label %3484, label %3508
 
-3501:                                             ; preds = %3483, %3479, %3475, %3471, %3468, %3465
-  %3502 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3503 = icmp sgt i32 %3502, 4
-  br i1 %3503, label %3504, label %3536
+3484:                                             ; preds = %3478
+  %3485 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3485, ptr @P2_marking_member_0, align 16
+  %3486 = load volatile i32, ptr @P2_is_marked, align 4
+  %3487 = sub nsw i32 %3486, 4
+  store volatile i32 %3487, ptr @P2_is_marked, align 4
+  %3488 = load i64, ptr %212, align 8
+  %3489 = load i64, ptr %213, align 8
+  %3490 = add nsw i64 %3488, %3489
+  store i64 %3490, ptr %214, align 8
+  %3491 = load i64, ptr %212, align 8
+  %3492 = load volatile i32, ptr @P3_is_marked, align 4
+  %3493 = add nsw i32 %3492, 0
+  %3494 = sext i32 %3493 to i64
+  %3495 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3494
+  store volatile i64 %3491, ptr %3495, align 8
+  %3496 = load i64, ptr %213, align 8
+  %3497 = load volatile i32, ptr @P3_is_marked, align 4
+  %3498 = add nsw i32 %3497, 1
+  %3499 = sext i32 %3498 to i64
+  %3500 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3499
+  store volatile i64 %3496, ptr %3500, align 8
+  %3501 = load i64, ptr %214, align 8
+  %3502 = load volatile i32, ptr @P3_is_marked, align 4
+  %3503 = add nsw i32 %3502, 2
+  %3504 = sext i32 %3503 to i64
+  %3505 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3504
+  store volatile i64 %3501, ptr %3505, align 8
+  %3506 = load volatile i32, ptr @P3_is_marked, align 4
+  %3507 = add nsw i32 %3506, 3
+  store volatile i32 %3507, ptr @P3_is_marked, align 4
+  br label %3508
 
-3504:                                             ; preds = %3501
-  %3505 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3506 = icmp slt i32 %3505, 4
-  br i1 %3506, label %3507, label %3536
+3508:                                             ; preds = %3484, %3478
+  br label %3509
 
-3507:                                             ; preds = %3504
-  %3508 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3509 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3510 = icmp eq i64 %3508, %3509
-  br i1 %3510, label %3511, label %3536
+3509:                                             ; preds = %3508, %3474, %3470, %3466, %3463
+  %3510 = load volatile i32, ptr @P2_is_marked, align 4
+  %3511 = icmp sge i32 %3510, 5
+  br i1 %3511, label %3512, label %3555
 
-3511:                                             ; preds = %3507
-  %3512 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3513 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3514 = icmp eq i64 %3512, %3513
-  br i1 %3514, label %3515, label %3536
+3512:                                             ; preds = %3509
+  %3513 = load volatile i32, ptr @P3_is_marked, align 4
+  %3514 = add nsw i32 %3513, 3
+  %3515 = icmp sle i32 %3514, 6
+  br i1 %3515, label %3516, label %3555
 
-3515:                                             ; preds = %3511
-  %3516 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3517 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3518 = icmp sgt i64 %3517, %3516
-  br i1 %3518, label %3519, label %3536
+3516:                                             ; preds = %3512
+  %3517 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3518 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3519 = icmp eq i64 %3517, %3518
+  br i1 %3519, label %3520, label %3555
 
-3519:                                             ; preds = %3515
-  %3520 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3521 = add nsw i32 %3520, -4
-  store volatile i32 %3521, ptr @P2_is_marked, align 4, !tbaa !5
-  %3522 = add nsw i64 %3517, %3516
-  %3523 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3524 = sext i32 %3523 to i64
-  %3525 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3524
-  store volatile i64 %3516, ptr %3525, align 8, !tbaa !9
-  %3526 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3527 = add nsw i32 %3526, 1
-  %3528 = sext i32 %3527 to i64
-  %3529 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3528
-  store volatile i64 %3517, ptr %3529, align 8, !tbaa !9
-  %3530 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3531 = add nsw i32 %3530, 2
-  %3532 = sext i32 %3531 to i64
-  %3533 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3532
-  store volatile i64 %3522, ptr %3533, align 8, !tbaa !9
-  %3534 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3535 = add nsw i32 %3534, 3
-  store volatile i32 %3535, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3536
+3520:                                             ; preds = %3516
+  %3521 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3522 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3523 = icmp eq i64 %3521, %3522
+  br i1 %3523, label %3524, label %3555
 
-3536:                                             ; preds = %3519, %3515, %3511, %3507, %3504, %3501
-  %3537 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3538 = icmp sgt i32 %3537, 4
-  br i1 %3538, label %3539, label %3572
+3524:                                             ; preds = %3520
+  %3525 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3525, ptr %215, align 8
+  %3526 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %3526, ptr %216, align 8
+  %3527 = load i64, ptr %216, align 8
+  %3528 = load i64, ptr %215, align 8
+  %3529 = icmp sgt i64 %3527, %3528
+  br i1 %3529, label %3530, label %3554
 
-3539:                                             ; preds = %3536
-  %3540 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3541 = icmp slt i32 %3540, 4
-  br i1 %3541, label %3542, label %3572
+3530:                                             ; preds = %3524
+  %3531 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %3531, ptr @P2_marking_member_0, align 16
+  %3532 = load volatile i32, ptr @P2_is_marked, align 4
+  %3533 = sub nsw i32 %3532, 4
+  store volatile i32 %3533, ptr @P2_is_marked, align 4
+  %3534 = load i64, ptr %215, align 8
+  %3535 = load i64, ptr %216, align 8
+  %3536 = add nsw i64 %3534, %3535
+  store i64 %3536, ptr %217, align 8
+  %3537 = load i64, ptr %215, align 8
+  %3538 = load volatile i32, ptr @P3_is_marked, align 4
+  %3539 = add nsw i32 %3538, 0
+  %3540 = sext i32 %3539 to i64
+  %3541 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3540
+  store volatile i64 %3537, ptr %3541, align 8
+  %3542 = load i64, ptr %216, align 8
+  %3543 = load volatile i32, ptr @P3_is_marked, align 4
+  %3544 = add nsw i32 %3543, 1
+  %3545 = sext i32 %3544 to i64
+  %3546 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3545
+  store volatile i64 %3542, ptr %3546, align 8
+  %3547 = load i64, ptr %217, align 8
+  %3548 = load volatile i32, ptr @P3_is_marked, align 4
+  %3549 = add nsw i32 %3548, 2
+  %3550 = sext i32 %3549 to i64
+  %3551 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3550
+  store volatile i64 %3547, ptr %3551, align 8
+  %3552 = load volatile i32, ptr @P3_is_marked, align 4
+  %3553 = add nsw i32 %3552, 3
+  store volatile i32 %3553, ptr @P3_is_marked, align 4
+  br label %3554
 
-3542:                                             ; preds = %3539
-  %3543 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3544 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3545 = icmp eq i64 %3543, %3544
-  br i1 %3545, label %3546, label %3572
+3554:                                             ; preds = %3530, %3524
+  br label %3555
 
-3546:                                             ; preds = %3542
-  %3547 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3548 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3549 = icmp eq i64 %3547, %3548
-  br i1 %3549, label %3550, label %3572
+3555:                                             ; preds = %3554, %3520, %3516, %3512, %3509
+  %3556 = load volatile i32, ptr @P2_is_marked, align 4
+  %3557 = icmp sge i32 %3556, 5
+  br i1 %3557, label %3558, label %3601
 
-3550:                                             ; preds = %3546
-  %3551 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3552 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3553 = icmp sgt i64 %3552, %3551
-  br i1 %3553, label %3554, label %3572
+3558:                                             ; preds = %3555
+  %3559 = load volatile i32, ptr @P3_is_marked, align 4
+  %3560 = add nsw i32 %3559, 3
+  %3561 = icmp sle i32 %3560, 6
+  br i1 %3561, label %3562, label %3601
 
-3554:                                             ; preds = %3550
-  %3555 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3555, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3556 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3557 = add nsw i32 %3556, -4
-  store volatile i32 %3557, ptr @P2_is_marked, align 4, !tbaa !5
-  %3558 = add nsw i64 %3552, %3551
-  %3559 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3560 = sext i32 %3559 to i64
-  %3561 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3560
-  store volatile i64 %3551, ptr %3561, align 8, !tbaa !9
-  %3562 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3563 = add nsw i32 %3562, 1
-  %3564 = sext i32 %3563 to i64
-  %3565 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3564
-  store volatile i64 %3552, ptr %3565, align 8, !tbaa !9
-  %3566 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3567 = add nsw i32 %3566, 2
-  %3568 = sext i32 %3567 to i64
-  %3569 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3568
-  store volatile i64 %3558, ptr %3569, align 8, !tbaa !9
-  %3570 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3571 = add nsw i32 %3570, 3
-  store volatile i32 %3571, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3572
+3562:                                             ; preds = %3558
+  %3563 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3564 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3565 = icmp eq i64 %3563, %3564
+  br i1 %3565, label %3566, label %3601
 
-3572:                                             ; preds = %3554, %3550, %3546, %3542, %3539, %3536
-  %3573 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3574 = icmp sgt i32 %3573, 4
-  br i1 %3574, label %3575, label %3607
+3566:                                             ; preds = %3562
+  %3567 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3568 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3569 = icmp eq i64 %3567, %3568
+  br i1 %3569, label %3570, label %3601
 
-3575:                                             ; preds = %3572
-  %3576 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3577 = icmp slt i32 %3576, 4
-  br i1 %3577, label %3578, label %3607
+3570:                                             ; preds = %3566
+  %3571 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3571, ptr %218, align 8
+  %3572 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3572, ptr %219, align 8
+  %3573 = load i64, ptr %219, align 8
+  %3574 = load i64, ptr %218, align 8
+  %3575 = icmp sgt i64 %3573, %3574
+  br i1 %3575, label %3576, label %3600
 
-3578:                                             ; preds = %3575
-  %3579 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3580 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3581 = icmp eq i64 %3579, %3580
-  br i1 %3581, label %3582, label %3607
+3576:                                             ; preds = %3570
+  %3577 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3577, ptr @P2_marking_member_0, align 16
+  %3578 = load volatile i32, ptr @P2_is_marked, align 4
+  %3579 = sub nsw i32 %3578, 4
+  store volatile i32 %3579, ptr @P2_is_marked, align 4
+  %3580 = load i64, ptr %218, align 8
+  %3581 = load i64, ptr %219, align 8
+  %3582 = add nsw i64 %3580, %3581
+  store i64 %3582, ptr %220, align 8
+  %3583 = load i64, ptr %218, align 8
+  %3584 = load volatile i32, ptr @P3_is_marked, align 4
+  %3585 = add nsw i32 %3584, 0
+  %3586 = sext i32 %3585 to i64
+  %3587 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3586
+  store volatile i64 %3583, ptr %3587, align 8
+  %3588 = load i64, ptr %219, align 8
+  %3589 = load volatile i32, ptr @P3_is_marked, align 4
+  %3590 = add nsw i32 %3589, 1
+  %3591 = sext i32 %3590 to i64
+  %3592 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3591
+  store volatile i64 %3588, ptr %3592, align 8
+  %3593 = load i64, ptr %220, align 8
+  %3594 = load volatile i32, ptr @P3_is_marked, align 4
+  %3595 = add nsw i32 %3594, 2
+  %3596 = sext i32 %3595 to i64
+  %3597 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3596
+  store volatile i64 %3593, ptr %3597, align 8
+  %3598 = load volatile i32, ptr @P3_is_marked, align 4
+  %3599 = add nsw i32 %3598, 3
+  store volatile i32 %3599, ptr @P3_is_marked, align 4
+  br label %3600
 
-3582:                                             ; preds = %3578
-  %3583 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3584 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3585 = icmp eq i64 %3583, %3584
-  br i1 %3585, label %3586, label %3607
+3600:                                             ; preds = %3576, %3570
+  br label %3601
 
-3586:                                             ; preds = %3582
-  %3587 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3588 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3589 = icmp sgt i64 %3588, %3587
-  br i1 %3589, label %3590, label %3607
+3601:                                             ; preds = %3600, %3566, %3562, %3558, %3555
+  %3602 = load volatile i32, ptr @P2_is_marked, align 4
+  %3603 = icmp sge i32 %3602, 5
+  br i1 %3603, label %3604, label %3646
 
-3590:                                             ; preds = %3586
-  %3591 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3592 = add nsw i32 %3591, -4
-  store volatile i32 %3592, ptr @P2_is_marked, align 4, !tbaa !5
-  %3593 = add nsw i64 %3588, %3587
-  %3594 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3595 = sext i32 %3594 to i64
-  %3596 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3595
-  store volatile i64 %3587, ptr %3596, align 8, !tbaa !9
-  %3597 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3598 = add nsw i32 %3597, 1
-  %3599 = sext i32 %3598 to i64
-  %3600 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3599
-  store volatile i64 %3588, ptr %3600, align 8, !tbaa !9
-  %3601 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3602 = add nsw i32 %3601, 2
-  %3603 = sext i32 %3602 to i64
-  %3604 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3603
-  store volatile i64 %3593, ptr %3604, align 8, !tbaa !9
-  %3605 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+3604:                                             ; preds = %3601
+  %3605 = load volatile i32, ptr @P3_is_marked, align 4
   %3606 = add nsw i32 %3605, 3
-  store volatile i32 %3606, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3607
+  %3607 = icmp sle i32 %3606, 6
+  br i1 %3607, label %3608, label %3646
 
-3607:                                             ; preds = %3590, %3586, %3582, %3578, %3575, %3572
-  %3608 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3609 = icmp sgt i32 %3608, 4
-  br i1 %3609, label %3610, label %3643
+3608:                                             ; preds = %3604
+  %3609 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3610 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3611 = icmp eq i64 %3609, %3610
+  br i1 %3611, label %3612, label %3646
 
-3610:                                             ; preds = %3607
-  %3611 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3612 = icmp slt i32 %3611, 4
-  br i1 %3612, label %3613, label %3643
+3612:                                             ; preds = %3608
+  %3613 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3614 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3615 = icmp eq i64 %3613, %3614
+  br i1 %3615, label %3616, label %3646
 
-3613:                                             ; preds = %3610
-  %3614 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3615 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3616 = icmp eq i64 %3614, %3615
-  br i1 %3616, label %3617, label %3643
+3616:                                             ; preds = %3612
+  %3617 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3617, ptr %221, align 8
+  %3618 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3618, ptr %222, align 8
+  %3619 = load i64, ptr %222, align 8
+  %3620 = load i64, ptr %221, align 8
+  %3621 = icmp sgt i64 %3619, %3620
+  br i1 %3621, label %3622, label %3645
 
-3617:                                             ; preds = %3613
-  %3618 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3619 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3620 = icmp eq i64 %3618, %3619
-  br i1 %3620, label %3621, label %3643
-
-3621:                                             ; preds = %3617
-  %3622 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3623 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3624 = icmp sgt i64 %3623, %3622
-  br i1 %3624, label %3625, label %3643
-
-3625:                                             ; preds = %3621
-  %3626 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %3626, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3627 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3628 = add nsw i32 %3627, -4
-  store volatile i32 %3628, ptr @P2_is_marked, align 4, !tbaa !5
-  %3629 = add nsw i64 %3623, %3622
-  %3630 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+3622:                                             ; preds = %3616
+  %3623 = load volatile i32, ptr @P2_is_marked, align 4
+  %3624 = sub nsw i32 %3623, 4
+  store volatile i32 %3624, ptr @P2_is_marked, align 4
+  %3625 = load i64, ptr %221, align 8
+  %3626 = load i64, ptr %222, align 8
+  %3627 = add nsw i64 %3625, %3626
+  store i64 %3627, ptr %223, align 8
+  %3628 = load i64, ptr %221, align 8
+  %3629 = load volatile i32, ptr @P3_is_marked, align 4
+  %3630 = add nsw i32 %3629, 0
   %3631 = sext i32 %3630 to i64
   %3632 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3631
-  store volatile i64 %3622, ptr %3632, align 8, !tbaa !9
-  %3633 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3634 = add nsw i32 %3633, 1
-  %3635 = sext i32 %3634 to i64
-  %3636 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3635
-  store volatile i64 %3623, ptr %3636, align 8, !tbaa !9
-  %3637 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3638 = add nsw i32 %3637, 2
-  %3639 = sext i32 %3638 to i64
-  %3640 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3639
-  store volatile i64 %3629, ptr %3640, align 8, !tbaa !9
-  %3641 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3642 = add nsw i32 %3641, 3
-  store volatile i32 %3642, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3643
+  store volatile i64 %3628, ptr %3632, align 8
+  %3633 = load i64, ptr %222, align 8
+  %3634 = load volatile i32, ptr @P3_is_marked, align 4
+  %3635 = add nsw i32 %3634, 1
+  %3636 = sext i32 %3635 to i64
+  %3637 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3636
+  store volatile i64 %3633, ptr %3637, align 8
+  %3638 = load i64, ptr %223, align 8
+  %3639 = load volatile i32, ptr @P3_is_marked, align 4
+  %3640 = add nsw i32 %3639, 2
+  %3641 = sext i32 %3640 to i64
+  %3642 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3641
+  store volatile i64 %3638, ptr %3642, align 8
+  %3643 = load volatile i32, ptr @P3_is_marked, align 4
+  %3644 = add nsw i32 %3643, 3
+  store volatile i32 %3644, ptr @P3_is_marked, align 4
+  br label %3645
 
-3643:                                             ; preds = %3625, %3621, %3617, %3613, %3610, %3607
-  %3644 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3645 = icmp sgt i32 %3644, 4
-  br i1 %3645, label %3646, label %3679
+3645:                                             ; preds = %3622, %3616
+  br label %3646
 
-3646:                                             ; preds = %3643
-  %3647 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3648 = icmp slt i32 %3647, 4
-  br i1 %3648, label %3649, label %3679
+3646:                                             ; preds = %3645, %3612, %3608, %3604, %3601
+  %3647 = load volatile i32, ptr @P2_is_marked, align 4
+  %3648 = icmp sge i32 %3647, 5
+  br i1 %3648, label %3649, label %3692
 
 3649:                                             ; preds = %3646
-  %3650 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3651 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3652 = icmp eq i64 %3650, %3651
-  br i1 %3652, label %3653, label %3679
+  %3650 = load volatile i32, ptr @P3_is_marked, align 4
+  %3651 = add nsw i32 %3650, 3
+  %3652 = icmp sle i32 %3651, 6
+  br i1 %3652, label %3653, label %3692
 
 3653:                                             ; preds = %3649
-  %3654 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3655 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
+  %3654 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3655 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
   %3656 = icmp eq i64 %3654, %3655
-  br i1 %3656, label %3657, label %3679
+  br i1 %3656, label %3657, label %3692
 
 3657:                                             ; preds = %3653
-  %3658 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3659 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3660 = icmp sgt i64 %3659, %3658
-  br i1 %3660, label %3661, label %3679
+  %3658 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3659 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3660 = icmp eq i64 %3658, %3659
+  br i1 %3660, label %3661, label %3692
 
 3661:                                             ; preds = %3657
-  %3662 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3662, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3663 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3664 = add nsw i32 %3663, -4
-  store volatile i32 %3664, ptr @P2_is_marked, align 4, !tbaa !5
-  %3665 = add nsw i64 %3659, %3658
-  %3666 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3667 = sext i32 %3666 to i64
-  %3668 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3667
-  store volatile i64 %3658, ptr %3668, align 8, !tbaa !9
-  %3669 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3670 = add nsw i32 %3669, 1
-  %3671 = sext i32 %3670 to i64
-  %3672 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3671
-  store volatile i64 %3659, ptr %3672, align 8, !tbaa !9
-  %3673 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3674 = add nsw i32 %3673, 2
-  %3675 = sext i32 %3674 to i64
-  %3676 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3675
-  store volatile i64 %3665, ptr %3676, align 8, !tbaa !9
-  %3677 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3678 = add nsw i32 %3677, 3
-  store volatile i32 %3678, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3679
+  %3662 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3662, ptr %224, align 8
+  %3663 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3663, ptr %225, align 8
+  %3664 = load i64, ptr %225, align 8
+  %3665 = load i64, ptr %224, align 8
+  %3666 = icmp sgt i64 %3664, %3665
+  br i1 %3666, label %3667, label %3691
 
-3679:                                             ; preds = %3661, %3657, %3653, %3649, %3646, %3643
-  %3680 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3681 = icmp sgt i32 %3680, 4
-  br i1 %3681, label %3682, label %3715
+3667:                                             ; preds = %3661
+  %3668 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3668, ptr @P2_marking_member_0, align 16
+  %3669 = load volatile i32, ptr @P2_is_marked, align 4
+  %3670 = sub nsw i32 %3669, 4
+  store volatile i32 %3670, ptr @P2_is_marked, align 4
+  %3671 = load i64, ptr %224, align 8
+  %3672 = load i64, ptr %225, align 8
+  %3673 = add nsw i64 %3671, %3672
+  store i64 %3673, ptr %226, align 8
+  %3674 = load i64, ptr %224, align 8
+  %3675 = load volatile i32, ptr @P3_is_marked, align 4
+  %3676 = add nsw i32 %3675, 0
+  %3677 = sext i32 %3676 to i64
+  %3678 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3677
+  store volatile i64 %3674, ptr %3678, align 8
+  %3679 = load i64, ptr %225, align 8
+  %3680 = load volatile i32, ptr @P3_is_marked, align 4
+  %3681 = add nsw i32 %3680, 1
+  %3682 = sext i32 %3681 to i64
+  %3683 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3682
+  store volatile i64 %3679, ptr %3683, align 8
+  %3684 = load i64, ptr %226, align 8
+  %3685 = load volatile i32, ptr @P3_is_marked, align 4
+  %3686 = add nsw i32 %3685, 2
+  %3687 = sext i32 %3686 to i64
+  %3688 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3687
+  store volatile i64 %3684, ptr %3688, align 8
+  %3689 = load volatile i32, ptr @P3_is_marked, align 4
+  %3690 = add nsw i32 %3689, 3
+  store volatile i32 %3690, ptr @P3_is_marked, align 4
+  br label %3691
 
-3682:                                             ; preds = %3679
-  %3683 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3684 = icmp slt i32 %3683, 4
-  br i1 %3684, label %3685, label %3715
+3691:                                             ; preds = %3667, %3661
+  br label %3692
 
-3685:                                             ; preds = %3682
-  %3686 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3687 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3688 = icmp eq i64 %3686, %3687
-  br i1 %3688, label %3689, label %3715
+3692:                                             ; preds = %3691, %3657, %3653, %3649, %3646
+  %3693 = load volatile i32, ptr @P2_is_marked, align 4
+  %3694 = icmp sge i32 %3693, 5
+  br i1 %3694, label %3695, label %3737
 
-3689:                                             ; preds = %3685
-  %3690 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3691 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3692 = icmp eq i64 %3690, %3691
-  br i1 %3692, label %3693, label %3715
+3695:                                             ; preds = %3692
+  %3696 = load volatile i32, ptr @P3_is_marked, align 4
+  %3697 = add nsw i32 %3696, 3
+  %3698 = icmp sle i32 %3697, 6
+  br i1 %3698, label %3699, label %3737
 
-3693:                                             ; preds = %3689
-  %3694 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3695 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3696 = icmp sgt i64 %3695, %3694
-  br i1 %3696, label %3697, label %3715
+3699:                                             ; preds = %3695
+  %3700 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3701 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3702 = icmp eq i64 %3700, %3701
+  br i1 %3702, label %3703, label %3737
 
-3697:                                             ; preds = %3693
-  %3698 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %3698, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3699 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3700 = add nsw i32 %3699, -4
-  store volatile i32 %3700, ptr @P2_is_marked, align 4, !tbaa !5
-  %3701 = add nsw i64 %3695, %3694
-  %3702 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3703 = sext i32 %3702 to i64
-  %3704 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3703
-  store volatile i64 %3694, ptr %3704, align 8, !tbaa !9
-  %3705 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3706 = add nsw i32 %3705, 1
-  %3707 = sext i32 %3706 to i64
-  %3708 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3707
-  store volatile i64 %3695, ptr %3708, align 8, !tbaa !9
-  %3709 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3710 = add nsw i32 %3709, 2
-  %3711 = sext i32 %3710 to i64
-  %3712 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3711
-  store volatile i64 %3701, ptr %3712, align 8, !tbaa !9
-  %3713 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3714 = add nsw i32 %3713, 3
-  store volatile i32 %3714, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3715
+3703:                                             ; preds = %3699
+  %3704 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3705 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3706 = icmp eq i64 %3704, %3705
+  br i1 %3706, label %3707, label %3737
 
-3715:                                             ; preds = %3697, %3693, %3689, %3685, %3682, %3679
-  %3716 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3717 = icmp sgt i32 %3716, 4
-  br i1 %3717, label %3718, label %3751
+3707:                                             ; preds = %3703
+  %3708 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3708, ptr %227, align 8
+  %3709 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %3709, ptr %228, align 8
+  %3710 = load i64, ptr %228, align 8
+  %3711 = load i64, ptr %227, align 8
+  %3712 = icmp sgt i64 %3710, %3711
+  br i1 %3712, label %3713, label %3736
 
-3718:                                             ; preds = %3715
-  %3719 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3720 = icmp slt i32 %3719, 4
-  br i1 %3720, label %3721, label %3751
+3713:                                             ; preds = %3707
+  %3714 = load volatile i32, ptr @P2_is_marked, align 4
+  %3715 = sub nsw i32 %3714, 4
+  store volatile i32 %3715, ptr @P2_is_marked, align 4
+  %3716 = load i64, ptr %227, align 8
+  %3717 = load i64, ptr %228, align 8
+  %3718 = add nsw i64 %3716, %3717
+  store i64 %3718, ptr %229, align 8
+  %3719 = load i64, ptr %227, align 8
+  %3720 = load volatile i32, ptr @P3_is_marked, align 4
+  %3721 = add nsw i32 %3720, 0
+  %3722 = sext i32 %3721 to i64
+  %3723 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3722
+  store volatile i64 %3719, ptr %3723, align 8
+  %3724 = load i64, ptr %228, align 8
+  %3725 = load volatile i32, ptr @P3_is_marked, align 4
+  %3726 = add nsw i32 %3725, 1
+  %3727 = sext i32 %3726 to i64
+  %3728 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3727
+  store volatile i64 %3724, ptr %3728, align 8
+  %3729 = load i64, ptr %229, align 8
+  %3730 = load volatile i32, ptr @P3_is_marked, align 4
+  %3731 = add nsw i32 %3730, 2
+  %3732 = sext i32 %3731 to i64
+  %3733 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3732
+  store volatile i64 %3729, ptr %3733, align 8
+  %3734 = load volatile i32, ptr @P3_is_marked, align 4
+  %3735 = add nsw i32 %3734, 3
+  store volatile i32 %3735, ptr @P3_is_marked, align 4
+  br label %3736
 
-3721:                                             ; preds = %3718
-  %3722 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3723 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3724 = icmp eq i64 %3722, %3723
-  br i1 %3724, label %3725, label %3751
+3736:                                             ; preds = %3713, %3707
+  br label %3737
 
-3725:                                             ; preds = %3721
-  %3726 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3727 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3728 = icmp eq i64 %3726, %3727
-  br i1 %3728, label %3729, label %3751
+3737:                                             ; preds = %3736, %3703, %3699, %3695, %3692
+  %3738 = load volatile i32, ptr @P2_is_marked, align 4
+  %3739 = icmp sge i32 %3738, 5
+  br i1 %3739, label %3740, label %3783
 
-3729:                                             ; preds = %3725
-  %3730 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3731 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3732 = icmp sgt i64 %3731, %3730
-  br i1 %3732, label %3733, label %3751
+3740:                                             ; preds = %3737
+  %3741 = load volatile i32, ptr @P3_is_marked, align 4
+  %3742 = add nsw i32 %3741, 3
+  %3743 = icmp sle i32 %3742, 6
+  br i1 %3743, label %3744, label %3783
 
-3733:                                             ; preds = %3729
-  %3734 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3734, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3735 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3736 = add nsw i32 %3735, -4
-  store volatile i32 %3736, ptr @P2_is_marked, align 4, !tbaa !5
-  %3737 = add nsw i64 %3731, %3730
-  %3738 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3739 = sext i32 %3738 to i64
-  %3740 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3739
-  store volatile i64 %3730, ptr %3740, align 8, !tbaa !9
-  %3741 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3742 = add nsw i32 %3741, 1
-  %3743 = sext i32 %3742 to i64
-  %3744 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3743
-  store volatile i64 %3731, ptr %3744, align 8, !tbaa !9
-  %3745 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3746 = add nsw i32 %3745, 2
-  %3747 = sext i32 %3746 to i64
-  %3748 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3747
-  store volatile i64 %3737, ptr %3748, align 8, !tbaa !9
-  %3749 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3750 = add nsw i32 %3749, 3
-  store volatile i32 %3750, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3751
+3744:                                             ; preds = %3740
+  %3745 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3746 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3747 = icmp eq i64 %3745, %3746
+  br i1 %3747, label %3748, label %3783
 
-3751:                                             ; preds = %3733, %3729, %3725, %3721, %3718, %3715
-  %3752 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3753 = icmp sgt i32 %3752, 4
-  br i1 %3753, label %3754, label %3787
+3748:                                             ; preds = %3744
+  %3749 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3750 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3751 = icmp eq i64 %3749, %3750
+  br i1 %3751, label %3752, label %3783
 
-3754:                                             ; preds = %3751
-  %3755 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3756 = icmp slt i32 %3755, 4
-  br i1 %3756, label %3757, label %3787
+3752:                                             ; preds = %3748
+  %3753 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3753, ptr %230, align 8
+  %3754 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %3754, ptr %231, align 8
+  %3755 = load i64, ptr %231, align 8
+  %3756 = load i64, ptr %230, align 8
+  %3757 = icmp sgt i64 %3755, %3756
+  br i1 %3757, label %3758, label %3782
 
-3757:                                             ; preds = %3754
-  %3758 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3759 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3760 = icmp eq i64 %3758, %3759
-  br i1 %3760, label %3761, label %3787
+3758:                                             ; preds = %3752
+  %3759 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %3759, ptr @P2_marking_member_0, align 16
+  %3760 = load volatile i32, ptr @P2_is_marked, align 4
+  %3761 = sub nsw i32 %3760, 4
+  store volatile i32 %3761, ptr @P2_is_marked, align 4
+  %3762 = load i64, ptr %230, align 8
+  %3763 = load i64, ptr %231, align 8
+  %3764 = add nsw i64 %3762, %3763
+  store i64 %3764, ptr %232, align 8
+  %3765 = load i64, ptr %230, align 8
+  %3766 = load volatile i32, ptr @P3_is_marked, align 4
+  %3767 = add nsw i32 %3766, 0
+  %3768 = sext i32 %3767 to i64
+  %3769 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3768
+  store volatile i64 %3765, ptr %3769, align 8
+  %3770 = load i64, ptr %231, align 8
+  %3771 = load volatile i32, ptr @P3_is_marked, align 4
+  %3772 = add nsw i32 %3771, 1
+  %3773 = sext i32 %3772 to i64
+  %3774 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3773
+  store volatile i64 %3770, ptr %3774, align 8
+  %3775 = load i64, ptr %232, align 8
+  %3776 = load volatile i32, ptr @P3_is_marked, align 4
+  %3777 = add nsw i32 %3776, 2
+  %3778 = sext i32 %3777 to i64
+  %3779 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3778
+  store volatile i64 %3775, ptr %3779, align 8
+  %3780 = load volatile i32, ptr @P3_is_marked, align 4
+  %3781 = add nsw i32 %3780, 3
+  store volatile i32 %3781, ptr @P3_is_marked, align 4
+  br label %3782
 
-3761:                                             ; preds = %3757
-  %3762 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3763 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3764 = icmp eq i64 %3762, %3763
-  br i1 %3764, label %3765, label %3787
+3782:                                             ; preds = %3758, %3752
+  br label %3783
 
-3765:                                             ; preds = %3761
-  %3766 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3767 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3768 = icmp sgt i64 %3767, %3766
-  br i1 %3768, label %3769, label %3787
+3783:                                             ; preds = %3782, %3748, %3744, %3740, %3737
+  %3784 = load volatile i32, ptr @P2_is_marked, align 4
+  %3785 = icmp sge i32 %3784, 5
+  br i1 %3785, label %3786, label %3828
 
-3769:                                             ; preds = %3765
-  %3770 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3770, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3771 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3772 = add nsw i32 %3771, -4
-  store volatile i32 %3772, ptr @P2_is_marked, align 4, !tbaa !5
-  %3773 = add nsw i64 %3767, %3766
-  %3774 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3775 = sext i32 %3774 to i64
-  %3776 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3775
-  store volatile i64 %3766, ptr %3776, align 8, !tbaa !9
-  %3777 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3778 = add nsw i32 %3777, 1
-  %3779 = sext i32 %3778 to i64
-  %3780 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3779
-  store volatile i64 %3767, ptr %3780, align 8, !tbaa !9
-  %3781 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3782 = add nsw i32 %3781, 2
-  %3783 = sext i32 %3782 to i64
-  %3784 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3783
-  store volatile i64 %3773, ptr %3784, align 8, !tbaa !9
-  %3785 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3786 = add nsw i32 %3785, 3
-  store volatile i32 %3786, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3787
+3786:                                             ; preds = %3783
+  %3787 = load volatile i32, ptr @P3_is_marked, align 4
+  %3788 = add nsw i32 %3787, 3
+  %3789 = icmp sle i32 %3788, 6
+  br i1 %3789, label %3790, label %3828
 
-3787:                                             ; preds = %3769, %3765, %3761, %3757, %3754, %3751
-  %3788 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3789 = icmp sgt i32 %3788, 4
-  br i1 %3789, label %3790, label %3823
+3790:                                             ; preds = %3786
+  %3791 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3792 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3793 = icmp eq i64 %3791, %3792
+  br i1 %3793, label %3794, label %3828
 
-3790:                                             ; preds = %3787
-  %3791 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3792 = icmp slt i32 %3791, 4
-  br i1 %3792, label %3793, label %3823
+3794:                                             ; preds = %3790
+  %3795 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3796 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3797 = icmp eq i64 %3795, %3796
+  br i1 %3797, label %3798, label %3828
 
-3793:                                             ; preds = %3790
-  %3794 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3795 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3796 = icmp eq i64 %3794, %3795
-  br i1 %3796, label %3797, label %3823
+3798:                                             ; preds = %3794
+  %3799 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3799, ptr %233, align 8
+  %3800 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %3800, ptr %234, align 8
+  %3801 = load i64, ptr %234, align 8
+  %3802 = load i64, ptr %233, align 8
+  %3803 = icmp sgt i64 %3801, %3802
+  br i1 %3803, label %3804, label %3827
 
-3797:                                             ; preds = %3793
-  %3798 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3799 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3800 = icmp eq i64 %3798, %3799
-  br i1 %3800, label %3801, label %3823
+3804:                                             ; preds = %3798
+  %3805 = load volatile i32, ptr @P2_is_marked, align 4
+  %3806 = sub nsw i32 %3805, 4
+  store volatile i32 %3806, ptr @P2_is_marked, align 4
+  %3807 = load i64, ptr %233, align 8
+  %3808 = load i64, ptr %234, align 8
+  %3809 = add nsw i64 %3807, %3808
+  store i64 %3809, ptr %235, align 8
+  %3810 = load i64, ptr %233, align 8
+  %3811 = load volatile i32, ptr @P3_is_marked, align 4
+  %3812 = add nsw i32 %3811, 0
+  %3813 = sext i32 %3812 to i64
+  %3814 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3813
+  store volatile i64 %3810, ptr %3814, align 8
+  %3815 = load i64, ptr %234, align 8
+  %3816 = load volatile i32, ptr @P3_is_marked, align 4
+  %3817 = add nsw i32 %3816, 1
+  %3818 = sext i32 %3817 to i64
+  %3819 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3818
+  store volatile i64 %3815, ptr %3819, align 8
+  %3820 = load i64, ptr %235, align 8
+  %3821 = load volatile i32, ptr @P3_is_marked, align 4
+  %3822 = add nsw i32 %3821, 2
+  %3823 = sext i32 %3822 to i64
+  %3824 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3823
+  store volatile i64 %3820, ptr %3824, align 8
+  %3825 = load volatile i32, ptr @P3_is_marked, align 4
+  %3826 = add nsw i32 %3825, 3
+  store volatile i32 %3826, ptr @P3_is_marked, align 4
+  br label %3827
 
-3801:                                             ; preds = %3797
-  %3802 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3803 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3804 = icmp sgt i64 %3803, %3802
-  br i1 %3804, label %3805, label %3823
+3827:                                             ; preds = %3804, %3798
+  br label %3828
 
-3805:                                             ; preds = %3801
-  %3806 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %3806, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3807 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3808 = add nsw i32 %3807, -4
-  store volatile i32 %3808, ptr @P2_is_marked, align 4, !tbaa !5
-  %3809 = add nsw i64 %3803, %3802
-  %3810 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3811 = sext i32 %3810 to i64
-  %3812 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3811
-  store volatile i64 %3802, ptr %3812, align 8, !tbaa !9
-  %3813 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3814 = add nsw i32 %3813, 1
-  %3815 = sext i32 %3814 to i64
-  %3816 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3815
-  store volatile i64 %3803, ptr %3816, align 8, !tbaa !9
-  %3817 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3818 = add nsw i32 %3817, 2
-  %3819 = sext i32 %3818 to i64
-  %3820 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3819
-  store volatile i64 %3809, ptr %3820, align 8, !tbaa !9
-  %3821 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3822 = add nsw i32 %3821, 3
-  store volatile i32 %3822, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3823
+3828:                                             ; preds = %3827, %3794, %3790, %3786, %3783
+  %3829 = load volatile i32, ptr @P2_is_marked, align 4
+  %3830 = icmp sge i32 %3829, 5
+  br i1 %3830, label %3831, label %3874
 
-3823:                                             ; preds = %3805, %3801, %3797, %3793, %3790, %3787
-  %3824 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3825 = icmp sgt i32 %3824, 4
-  br i1 %3825, label %3826, label %3859
+3831:                                             ; preds = %3828
+  %3832 = load volatile i32, ptr @P3_is_marked, align 4
+  %3833 = add nsw i32 %3832, 3
+  %3834 = icmp sle i32 %3833, 6
+  br i1 %3834, label %3835, label %3874
 
-3826:                                             ; preds = %3823
-  %3827 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3828 = icmp slt i32 %3827, 4
-  br i1 %3828, label %3829, label %3859
+3835:                                             ; preds = %3831
+  %3836 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3837 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3838 = icmp eq i64 %3836, %3837
+  br i1 %3838, label %3839, label %3874
 
-3829:                                             ; preds = %3826
-  %3830 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3831 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3832 = icmp eq i64 %3830, %3831
-  br i1 %3832, label %3833, label %3859
+3839:                                             ; preds = %3835
+  %3840 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3841 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3842 = icmp eq i64 %3840, %3841
+  br i1 %3842, label %3843, label %3874
 
-3833:                                             ; preds = %3829
-  %3834 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3835 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3836 = icmp eq i64 %3834, %3835
-  br i1 %3836, label %3837, label %3859
+3843:                                             ; preds = %3839
+  %3844 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3844, ptr %236, align 8
+  %3845 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %3845, ptr %237, align 8
+  %3846 = load i64, ptr %237, align 8
+  %3847 = load i64, ptr %236, align 8
+  %3848 = icmp sgt i64 %3846, %3847
+  br i1 %3848, label %3849, label %3873
 
-3837:                                             ; preds = %3833
-  %3838 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3839 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3840 = icmp sgt i64 %3839, %3838
-  br i1 %3840, label %3841, label %3859
+3849:                                             ; preds = %3843
+  %3850 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %3850, ptr @P2_marking_member_0, align 16
+  %3851 = load volatile i32, ptr @P2_is_marked, align 4
+  %3852 = sub nsw i32 %3851, 4
+  store volatile i32 %3852, ptr @P2_is_marked, align 4
+  %3853 = load i64, ptr %236, align 8
+  %3854 = load i64, ptr %237, align 8
+  %3855 = add nsw i64 %3853, %3854
+  store i64 %3855, ptr %238, align 8
+  %3856 = load i64, ptr %236, align 8
+  %3857 = load volatile i32, ptr @P3_is_marked, align 4
+  %3858 = add nsw i32 %3857, 0
+  %3859 = sext i32 %3858 to i64
+  %3860 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3859
+  store volatile i64 %3856, ptr %3860, align 8
+  %3861 = load i64, ptr %237, align 8
+  %3862 = load volatile i32, ptr @P3_is_marked, align 4
+  %3863 = add nsw i32 %3862, 1
+  %3864 = sext i32 %3863 to i64
+  %3865 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3864
+  store volatile i64 %3861, ptr %3865, align 8
+  %3866 = load i64, ptr %238, align 8
+  %3867 = load volatile i32, ptr @P3_is_marked, align 4
+  %3868 = add nsw i32 %3867, 2
+  %3869 = sext i32 %3868 to i64
+  %3870 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3869
+  store volatile i64 %3866, ptr %3870, align 8
+  %3871 = load volatile i32, ptr @P3_is_marked, align 4
+  %3872 = add nsw i32 %3871, 3
+  store volatile i32 %3872, ptr @P3_is_marked, align 4
+  br label %3873
 
-3841:                                             ; preds = %3837
-  %3842 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %3842, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3843 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3844 = add nsw i32 %3843, -4
-  store volatile i32 %3844, ptr @P2_is_marked, align 4, !tbaa !5
-  %3845 = add nsw i64 %3839, %3838
-  %3846 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3847 = sext i32 %3846 to i64
-  %3848 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3847
-  store volatile i64 %3838, ptr %3848, align 8, !tbaa !9
-  %3849 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3850 = add nsw i32 %3849, 1
-  %3851 = sext i32 %3850 to i64
-  %3852 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3851
-  store volatile i64 %3839, ptr %3852, align 8, !tbaa !9
-  %3853 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3854 = add nsw i32 %3853, 2
-  %3855 = sext i32 %3854 to i64
-  %3856 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3855
-  store volatile i64 %3845, ptr %3856, align 8, !tbaa !9
-  %3857 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3858 = add nsw i32 %3857, 3
-  store volatile i32 %3858, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3859
+3873:                                             ; preds = %3849, %3843
+  br label %3874
 
-3859:                                             ; preds = %3841, %3837, %3833, %3829, %3826, %3823
-  %3860 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3861 = icmp sgt i32 %3860, 4
-  br i1 %3861, label %3862, label %3895
+3874:                                             ; preds = %3873, %3839, %3835, %3831, %3828
+  %3875 = load volatile i32, ptr @P2_is_marked, align 4
+  %3876 = icmp sge i32 %3875, 5
+  br i1 %3876, label %3877, label %3919
 
-3862:                                             ; preds = %3859
-  %3863 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3864 = icmp slt i32 %3863, 4
-  br i1 %3864, label %3865, label %3895
+3877:                                             ; preds = %3874
+  %3878 = load volatile i32, ptr @P3_is_marked, align 4
+  %3879 = add nsw i32 %3878, 3
+  %3880 = icmp sle i32 %3879, 6
+  br i1 %3880, label %3881, label %3919
 
-3865:                                             ; preds = %3862
-  %3866 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3867 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3868 = icmp eq i64 %3866, %3867
-  br i1 %3868, label %3869, label %3895
+3881:                                             ; preds = %3877
+  %3882 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3883 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3884 = icmp eq i64 %3882, %3883
+  br i1 %3884, label %3885, label %3919
 
-3869:                                             ; preds = %3865
-  %3870 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3871 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3872 = icmp eq i64 %3870, %3871
-  br i1 %3872, label %3873, label %3895
+3885:                                             ; preds = %3881
+  %3886 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %3887 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3888 = icmp eq i64 %3886, %3887
+  br i1 %3888, label %3889, label %3919
 
-3873:                                             ; preds = %3869
-  %3874 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3875 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3876 = icmp sgt i64 %3875, %3874
-  br i1 %3876, label %3877, label %3895
+3889:                                             ; preds = %3885
+  %3890 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3890, ptr %239, align 8
+  %3891 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %3891, ptr %240, align 8
+  %3892 = load i64, ptr %240, align 8
+  %3893 = load i64, ptr %239, align 8
+  %3894 = icmp sgt i64 %3892, %3893
+  br i1 %3894, label %3895, label %3918
 
-3877:                                             ; preds = %3873
-  %3878 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3878, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3879 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3880 = add nsw i32 %3879, -4
-  store volatile i32 %3880, ptr @P2_is_marked, align 4, !tbaa !5
-  %3881 = add nsw i64 %3875, %3874
-  %3882 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3883 = sext i32 %3882 to i64
-  %3884 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3883
-  store volatile i64 %3874, ptr %3884, align 8, !tbaa !9
-  %3885 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3886 = add nsw i32 %3885, 1
-  %3887 = sext i32 %3886 to i64
-  %3888 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3887
-  store volatile i64 %3875, ptr %3888, align 8, !tbaa !9
-  %3889 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3890 = add nsw i32 %3889, 2
-  %3891 = sext i32 %3890 to i64
-  %3892 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3891
-  store volatile i64 %3881, ptr %3892, align 8, !tbaa !9
-  %3893 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3894 = add nsw i32 %3893, 3
-  store volatile i32 %3894, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3895
+3895:                                             ; preds = %3889
+  %3896 = load volatile i32, ptr @P2_is_marked, align 4
+  %3897 = sub nsw i32 %3896, 4
+  store volatile i32 %3897, ptr @P2_is_marked, align 4
+  %3898 = load i64, ptr %239, align 8
+  %3899 = load i64, ptr %240, align 8
+  %3900 = add nsw i64 %3898, %3899
+  store i64 %3900, ptr %241, align 8
+  %3901 = load i64, ptr %239, align 8
+  %3902 = load volatile i32, ptr @P3_is_marked, align 4
+  %3903 = add nsw i32 %3902, 0
+  %3904 = sext i32 %3903 to i64
+  %3905 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3904
+  store volatile i64 %3901, ptr %3905, align 8
+  %3906 = load i64, ptr %240, align 8
+  %3907 = load volatile i32, ptr @P3_is_marked, align 4
+  %3908 = add nsw i32 %3907, 1
+  %3909 = sext i32 %3908 to i64
+  %3910 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3909
+  store volatile i64 %3906, ptr %3910, align 8
+  %3911 = load i64, ptr %241, align 8
+  %3912 = load volatile i32, ptr @P3_is_marked, align 4
+  %3913 = add nsw i32 %3912, 2
+  %3914 = sext i32 %3913 to i64
+  %3915 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3914
+  store volatile i64 %3911, ptr %3915, align 8
+  %3916 = load volatile i32, ptr @P3_is_marked, align 4
+  %3917 = add nsw i32 %3916, 3
+  store volatile i32 %3917, ptr @P3_is_marked, align 4
+  br label %3918
 
-3895:                                             ; preds = %3877, %3873, %3869, %3865, %3862, %3859
-  %3896 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3897 = icmp sgt i32 %3896, 4
-  br i1 %3897, label %3898, label %3931
+3918:                                             ; preds = %3895, %3889
+  br label %3919
 
-3898:                                             ; preds = %3895
-  %3899 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3900 = icmp slt i32 %3899, 4
-  br i1 %3900, label %3901, label %3931
+3919:                                             ; preds = %3918, %3885, %3881, %3877, %3874
+  %3920 = load volatile i32, ptr @P2_is_marked, align 4
+  %3921 = icmp sge i32 %3920, 5
+  br i1 %3921, label %3922, label %3965
 
-3901:                                             ; preds = %3898
-  %3902 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3903 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3904 = icmp eq i64 %3902, %3903
-  br i1 %3904, label %3905, label %3931
+3922:                                             ; preds = %3919
+  %3923 = load volatile i32, ptr @P3_is_marked, align 4
+  %3924 = add nsw i32 %3923, 3
+  %3925 = icmp sle i32 %3924, 6
+  br i1 %3925, label %3926, label %3965
 
-3905:                                             ; preds = %3901
-  %3906 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3907 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3908 = icmp eq i64 %3906, %3907
-  br i1 %3908, label %3909, label %3931
+3926:                                             ; preds = %3922
+  %3927 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3928 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %3929 = icmp eq i64 %3927, %3928
+  br i1 %3929, label %3930, label %3965
 
-3909:                                             ; preds = %3905
-  %3910 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3911 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3912 = icmp sgt i64 %3911, %3910
-  br i1 %3912, label %3913, label %3931
+3930:                                             ; preds = %3926
+  %3931 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3932 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %3933 = icmp eq i64 %3931, %3932
+  br i1 %3933, label %3934, label %3965
 
-3913:                                             ; preds = %3909
-  %3914 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %3914, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3915 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3916 = add nsw i32 %3915, -4
-  store volatile i32 %3916, ptr @P2_is_marked, align 4, !tbaa !5
-  %3917 = add nsw i64 %3911, %3910
-  %3918 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3919 = sext i32 %3918 to i64
-  %3920 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3919
-  store volatile i64 %3910, ptr %3920, align 8, !tbaa !9
-  %3921 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3922 = add nsw i32 %3921, 1
-  %3923 = sext i32 %3922 to i64
-  %3924 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3923
-  store volatile i64 %3911, ptr %3924, align 8, !tbaa !9
-  %3925 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3926 = add nsw i32 %3925, 2
-  %3927 = sext i32 %3926 to i64
-  %3928 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3927
-  store volatile i64 %3917, ptr %3928, align 8, !tbaa !9
-  %3929 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3930 = add nsw i32 %3929, 3
-  store volatile i32 %3930, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3931
+3934:                                             ; preds = %3930
+  %3935 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3935, ptr %242, align 8
+  %3936 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3936, ptr %243, align 8
+  %3937 = load i64, ptr %243, align 8
+  %3938 = load i64, ptr %242, align 8
+  %3939 = icmp sgt i64 %3937, %3938
+  br i1 %3939, label %3940, label %3964
 
-3931:                                             ; preds = %3913, %3909, %3905, %3901, %3898, %3895
-  %3932 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3933 = icmp sgt i32 %3932, 4
-  br i1 %3933, label %3934, label %3966
+3940:                                             ; preds = %3934
+  %3941 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %3941, ptr @P2_marking_member_0, align 16
+  %3942 = load volatile i32, ptr @P2_is_marked, align 4
+  %3943 = sub nsw i32 %3942, 4
+  store volatile i32 %3943, ptr @P2_is_marked, align 4
+  %3944 = load i64, ptr %242, align 8
+  %3945 = load i64, ptr %243, align 8
+  %3946 = add nsw i64 %3944, %3945
+  store i64 %3946, ptr %244, align 8
+  %3947 = load i64, ptr %242, align 8
+  %3948 = load volatile i32, ptr @P3_is_marked, align 4
+  %3949 = add nsw i32 %3948, 0
+  %3950 = sext i32 %3949 to i64
+  %3951 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3950
+  store volatile i64 %3947, ptr %3951, align 8
+  %3952 = load i64, ptr %243, align 8
+  %3953 = load volatile i32, ptr @P3_is_marked, align 4
+  %3954 = add nsw i32 %3953, 1
+  %3955 = sext i32 %3954 to i64
+  %3956 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3955
+  store volatile i64 %3952, ptr %3956, align 8
+  %3957 = load i64, ptr %244, align 8
+  %3958 = load volatile i32, ptr @P3_is_marked, align 4
+  %3959 = add nsw i32 %3958, 2
+  %3960 = sext i32 %3959 to i64
+  %3961 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3960
+  store volatile i64 %3957, ptr %3961, align 8
+  %3962 = load volatile i32, ptr @P3_is_marked, align 4
+  %3963 = add nsw i32 %3962, 3
+  store volatile i32 %3963, ptr @P3_is_marked, align 4
+  br label %3964
 
-3934:                                             ; preds = %3931
-  %3935 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3936 = icmp slt i32 %3935, 4
-  br i1 %3936, label %3937, label %3966
+3964:                                             ; preds = %3940, %3934
+  br label %3965
 
-3937:                                             ; preds = %3934
-  %3938 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3939 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %3940 = icmp eq i64 %3938, %3939
-  br i1 %3940, label %3941, label %3966
+3965:                                             ; preds = %3964, %3930, %3926, %3922, %3919
+  %3966 = load volatile i32, ptr @P2_is_marked, align 4
+  %3967 = icmp sge i32 %3966, 5
+  br i1 %3967, label %3968, label %4011
 
-3941:                                             ; preds = %3937
-  %3942 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3943 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %3944 = icmp eq i64 %3942, %3943
-  br i1 %3944, label %3945, label %3966
+3968:                                             ; preds = %3965
+  %3969 = load volatile i32, ptr @P3_is_marked, align 4
+  %3970 = add nsw i32 %3969, 3
+  %3971 = icmp sle i32 %3970, 6
+  br i1 %3971, label %3972, label %4011
 
-3945:                                             ; preds = %3941
-  %3946 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3947 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3948 = icmp sgt i64 %3947, %3946
-  br i1 %3948, label %3949, label %3966
-
-3949:                                             ; preds = %3945
-  %3950 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3951 = add nsw i32 %3950, -4
-  store volatile i32 %3951, ptr @P2_is_marked, align 4, !tbaa !5
-  %3952 = add nsw i64 %3947, %3946
-  %3953 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3954 = sext i32 %3953 to i64
-  %3955 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3954
-  store volatile i64 %3946, ptr %3955, align 8, !tbaa !9
-  %3956 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3957 = add nsw i32 %3956, 1
-  %3958 = sext i32 %3957 to i64
-  %3959 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3958
-  store volatile i64 %3947, ptr %3959, align 8, !tbaa !9
-  %3960 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3961 = add nsw i32 %3960, 2
-  %3962 = sext i32 %3961 to i64
-  %3963 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3962
-  store volatile i64 %3952, ptr %3963, align 8, !tbaa !9
-  %3964 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3965 = add nsw i32 %3964, 3
-  store volatile i32 %3965, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %3966
-
-3966:                                             ; preds = %3949, %3945, %3941, %3937, %3934, %3931
-  %3967 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3968 = icmp sgt i32 %3967, 4
-  br i1 %3968, label %3969, label %4002
-
-3969:                                             ; preds = %3966
-  %3970 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3971 = icmp slt i32 %3970, 4
-  br i1 %3971, label %3972, label %4002
-
-3972:                                             ; preds = %3969
-  %3973 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3974 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
+3972:                                             ; preds = %3968
+  %3973 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3974 = load volatile i64, ptr @P2_marking_member_0, align 16
   %3975 = icmp eq i64 %3973, %3974
-  br i1 %3975, label %3976, label %4002
+  br i1 %3975, label %3976, label %4011
 
 3976:                                             ; preds = %3972
-  %3977 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3978 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
+  %3977 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %3978 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
   %3979 = icmp eq i64 %3977, %3978
-  br i1 %3979, label %3980, label %4002
+  br i1 %3979, label %3980, label %4011
 
 3980:                                             ; preds = %3976
-  %3981 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %3982 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %3983 = icmp sgt i64 %3982, %3981
-  br i1 %3983, label %3984, label %4002
+  %3981 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %3981, ptr %245, align 8
+  %3982 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %3982, ptr %246, align 8
+  %3983 = load i64, ptr %246, align 8
+  %3984 = load i64, ptr %245, align 8
+  %3985 = icmp sgt i64 %3983, %3984
+  br i1 %3985, label %3986, label %4010
 
-3984:                                             ; preds = %3980
-  %3985 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %3985, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %3986 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %3987 = add nsw i32 %3986, -4
-  store volatile i32 %3987, ptr @P2_is_marked, align 4, !tbaa !5
-  %3988 = add nsw i64 %3982, %3981
-  %3989 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3990 = sext i32 %3989 to i64
-  %3991 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3990
-  store volatile i64 %3981, ptr %3991, align 8, !tbaa !9
-  %3992 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3993 = add nsw i32 %3992, 1
-  %3994 = sext i32 %3993 to i64
-  %3995 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3994
-  store volatile i64 %3982, ptr %3995, align 8, !tbaa !9
-  %3996 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %3997 = add nsw i32 %3996, 2
-  %3998 = sext i32 %3997 to i64
-  %3999 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3998
-  store volatile i64 %3988, ptr %3999, align 8, !tbaa !9
-  %4000 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4001 = add nsw i32 %4000, 3
-  store volatile i32 %4001, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4002
+3986:                                             ; preds = %3980
+  %3987 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %3987, ptr @P2_marking_member_0, align 16
+  %3988 = load volatile i32, ptr @P2_is_marked, align 4
+  %3989 = sub nsw i32 %3988, 4
+  store volatile i32 %3989, ptr @P2_is_marked, align 4
+  %3990 = load i64, ptr %245, align 8
+  %3991 = load i64, ptr %246, align 8
+  %3992 = add nsw i64 %3990, %3991
+  store i64 %3992, ptr %247, align 8
+  %3993 = load i64, ptr %245, align 8
+  %3994 = load volatile i32, ptr @P3_is_marked, align 4
+  %3995 = add nsw i32 %3994, 0
+  %3996 = sext i32 %3995 to i64
+  %3997 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %3996
+  store volatile i64 %3993, ptr %3997, align 8
+  %3998 = load i64, ptr %246, align 8
+  %3999 = load volatile i32, ptr @P3_is_marked, align 4
+  %4000 = add nsw i32 %3999, 1
+  %4001 = sext i32 %4000 to i64
+  %4002 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4001
+  store volatile i64 %3998, ptr %4002, align 8
+  %4003 = load i64, ptr %247, align 8
+  %4004 = load volatile i32, ptr @P3_is_marked, align 4
+  %4005 = add nsw i32 %4004, 2
+  %4006 = sext i32 %4005 to i64
+  %4007 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4006
+  store volatile i64 %4003, ptr %4007, align 8
+  %4008 = load volatile i32, ptr @P3_is_marked, align 4
+  %4009 = add nsw i32 %4008, 3
+  store volatile i32 %4009, ptr @P3_is_marked, align 4
+  br label %4010
 
-4002:                                             ; preds = %3984, %3980, %3976, %3972, %3969, %3966
-  %4003 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4004 = icmp sgt i32 %4003, 4
-  br i1 %4004, label %4005, label %4037
+4010:                                             ; preds = %3986, %3980
+  br label %4011
 
-4005:                                             ; preds = %4002
-  %4006 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4007 = icmp slt i32 %4006, 4
-  br i1 %4007, label %4008, label %4037
+4011:                                             ; preds = %4010, %3976, %3972, %3968, %3965
+  %4012 = load volatile i32, ptr @P2_is_marked, align 4
+  %4013 = icmp sge i32 %4012, 5
+  br i1 %4013, label %4014, label %4057
 
-4008:                                             ; preds = %4005
-  %4009 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4010 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4011 = icmp eq i64 %4009, %4010
-  br i1 %4011, label %4012, label %4037
+4014:                                             ; preds = %4011
+  %4015 = load volatile i32, ptr @P3_is_marked, align 4
+  %4016 = add nsw i32 %4015, 3
+  %4017 = icmp sle i32 %4016, 6
+  br i1 %4017, label %4018, label %4057
 
-4012:                                             ; preds = %4008
-  %4013 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4014 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4015 = icmp eq i64 %4013, %4014
-  br i1 %4015, label %4016, label %4037
+4018:                                             ; preds = %4014
+  %4019 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4020 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4021 = icmp eq i64 %4019, %4020
+  br i1 %4021, label %4022, label %4057
 
-4016:                                             ; preds = %4012
-  %4017 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4018 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4019 = icmp sgt i64 %4018, %4017
-  br i1 %4019, label %4020, label %4037
+4022:                                             ; preds = %4018
+  %4023 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4024 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4025 = icmp eq i64 %4023, %4024
+  br i1 %4025, label %4026, label %4057
 
-4020:                                             ; preds = %4016
-  %4021 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4022 = add nsw i32 %4021, -4
-  store volatile i32 %4022, ptr @P2_is_marked, align 4, !tbaa !5
-  %4023 = add nsw i64 %4018, %4017
-  %4024 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4025 = sext i32 %4024 to i64
-  %4026 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4025
-  store volatile i64 %4017, ptr %4026, align 8, !tbaa !9
-  %4027 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4028 = add nsw i32 %4027, 1
-  %4029 = sext i32 %4028 to i64
-  %4030 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4029
-  store volatile i64 %4018, ptr %4030, align 8, !tbaa !9
-  %4031 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4032 = add nsw i32 %4031, 2
-  %4033 = sext i32 %4032 to i64
-  %4034 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4033
-  store volatile i64 %4023, ptr %4034, align 8, !tbaa !9
-  %4035 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4036 = add nsw i32 %4035, 3
-  store volatile i32 %4036, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4037
+4026:                                             ; preds = %4022
+  %4027 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4027, ptr %248, align 8
+  %4028 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4028, ptr %249, align 8
+  %4029 = load i64, ptr %249, align 8
+  %4030 = load i64, ptr %248, align 8
+  %4031 = icmp sgt i64 %4029, %4030
+  br i1 %4031, label %4032, label %4056
 
-4037:                                             ; preds = %4020, %4016, %4012, %4008, %4005, %4002
-  %4038 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4039 = icmp sgt i32 %4038, 4
-  br i1 %4039, label %4040, label %4073
+4032:                                             ; preds = %4026
+  %4033 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %4033, ptr @P2_marking_member_0, align 16
+  %4034 = load volatile i32, ptr @P2_is_marked, align 4
+  %4035 = sub nsw i32 %4034, 4
+  store volatile i32 %4035, ptr @P2_is_marked, align 4
+  %4036 = load i64, ptr %248, align 8
+  %4037 = load i64, ptr %249, align 8
+  %4038 = add nsw i64 %4036, %4037
+  store i64 %4038, ptr %250, align 8
+  %4039 = load i64, ptr %248, align 8
+  %4040 = load volatile i32, ptr @P3_is_marked, align 4
+  %4041 = add nsw i32 %4040, 0
+  %4042 = sext i32 %4041 to i64
+  %4043 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4042
+  store volatile i64 %4039, ptr %4043, align 8
+  %4044 = load i64, ptr %249, align 8
+  %4045 = load volatile i32, ptr @P3_is_marked, align 4
+  %4046 = add nsw i32 %4045, 1
+  %4047 = sext i32 %4046 to i64
+  %4048 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4047
+  store volatile i64 %4044, ptr %4048, align 8
+  %4049 = load i64, ptr %250, align 8
+  %4050 = load volatile i32, ptr @P3_is_marked, align 4
+  %4051 = add nsw i32 %4050, 2
+  %4052 = sext i32 %4051 to i64
+  %4053 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4052
+  store volatile i64 %4049, ptr %4053, align 8
+  %4054 = load volatile i32, ptr @P3_is_marked, align 4
+  %4055 = add nsw i32 %4054, 3
+  store volatile i32 %4055, ptr @P3_is_marked, align 4
+  br label %4056
 
-4040:                                             ; preds = %4037
-  %4041 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4042 = icmp slt i32 %4041, 4
-  br i1 %4042, label %4043, label %4073
+4056:                                             ; preds = %4032, %4026
+  br label %4057
 
-4043:                                             ; preds = %4040
-  %4044 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4045 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4046 = icmp eq i64 %4044, %4045
-  br i1 %4046, label %4047, label %4073
+4057:                                             ; preds = %4056, %4022, %4018, %4014, %4011
+  %4058 = load volatile i32, ptr @P2_is_marked, align 4
+  %4059 = icmp sge i32 %4058, 5
+  br i1 %4059, label %4060, label %4102
 
-4047:                                             ; preds = %4043
-  %4048 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4049 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4050 = icmp eq i64 %4048, %4049
-  br i1 %4050, label %4051, label %4073
+4060:                                             ; preds = %4057
+  %4061 = load volatile i32, ptr @P3_is_marked, align 4
+  %4062 = add nsw i32 %4061, 3
+  %4063 = icmp sle i32 %4062, 6
+  br i1 %4063, label %4064, label %4102
 
-4051:                                             ; preds = %4047
-  %4052 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4053 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4054 = icmp sgt i64 %4053, %4052
-  br i1 %4054, label %4055, label %4073
+4064:                                             ; preds = %4060
+  %4065 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4066 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4067 = icmp eq i64 %4065, %4066
+  br i1 %4067, label %4068, label %4102
 
-4055:                                             ; preds = %4051
-  %4056 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %4056, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4057 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4058 = add nsw i32 %4057, -4
-  store volatile i32 %4058, ptr @P2_is_marked, align 4, !tbaa !5
-  %4059 = add nsw i64 %4053, %4052
-  %4060 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4061 = sext i32 %4060 to i64
-  %4062 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4061
-  store volatile i64 %4052, ptr %4062, align 8, !tbaa !9
-  %4063 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4064 = add nsw i32 %4063, 1
-  %4065 = sext i32 %4064 to i64
-  %4066 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4065
-  store volatile i64 %4053, ptr %4066, align 8, !tbaa !9
-  %4067 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4068 = add nsw i32 %4067, 2
-  %4069 = sext i32 %4068 to i64
-  %4070 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4069
-  store volatile i64 %4059, ptr %4070, align 8, !tbaa !9
-  %4071 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4072 = add nsw i32 %4071, 3
-  store volatile i32 %4072, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4073
+4068:                                             ; preds = %4064
+  %4069 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4070 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %4071 = icmp eq i64 %4069, %4070
+  br i1 %4071, label %4072, label %4102
 
-4073:                                             ; preds = %4055, %4051, %4047, %4043, %4040, %4037
-  %4074 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4075 = icmp sgt i32 %4074, 4
-  br i1 %4075, label %4076, label %4109
+4072:                                             ; preds = %4068
+  %4073 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4073, ptr %251, align 8
+  %4074 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4074, ptr %252, align 8
+  %4075 = load i64, ptr %252, align 8
+  %4076 = load i64, ptr %251, align 8
+  %4077 = icmp sgt i64 %4075, %4076
+  br i1 %4077, label %4078, label %4101
 
-4076:                                             ; preds = %4073
-  %4077 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4078 = icmp slt i32 %4077, 4
-  br i1 %4078, label %4079, label %4109
-
-4079:                                             ; preds = %4076
-  %4080 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4081 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4082 = icmp eq i64 %4080, %4081
-  br i1 %4082, label %4083, label %4109
-
-4083:                                             ; preds = %4079
-  %4084 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4085 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4086 = icmp eq i64 %4084, %4085
-  br i1 %4086, label %4087, label %4109
-
-4087:                                             ; preds = %4083
-  %4088 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4089 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4090 = icmp sgt i64 %4089, %4088
-  br i1 %4090, label %4091, label %4109
-
-4091:                                             ; preds = %4087
-  %4092 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %4092, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4093 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4094 = add nsw i32 %4093, -4
-  store volatile i32 %4094, ptr @P2_is_marked, align 4, !tbaa !5
-  %4095 = add nsw i64 %4089, %4088
-  %4096 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+4078:                                             ; preds = %4072
+  %4079 = load volatile i32, ptr @P2_is_marked, align 4
+  %4080 = sub nsw i32 %4079, 4
+  store volatile i32 %4080, ptr @P2_is_marked, align 4
+  %4081 = load i64, ptr %251, align 8
+  %4082 = load i64, ptr %252, align 8
+  %4083 = add nsw i64 %4081, %4082
+  store i64 %4083, ptr %253, align 8
+  %4084 = load i64, ptr %251, align 8
+  %4085 = load volatile i32, ptr @P3_is_marked, align 4
+  %4086 = add nsw i32 %4085, 0
+  %4087 = sext i32 %4086 to i64
+  %4088 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4087
+  store volatile i64 %4084, ptr %4088, align 8
+  %4089 = load i64, ptr %252, align 8
+  %4090 = load volatile i32, ptr @P3_is_marked, align 4
+  %4091 = add nsw i32 %4090, 1
+  %4092 = sext i32 %4091 to i64
+  %4093 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4092
+  store volatile i64 %4089, ptr %4093, align 8
+  %4094 = load i64, ptr %253, align 8
+  %4095 = load volatile i32, ptr @P3_is_marked, align 4
+  %4096 = add nsw i32 %4095, 2
   %4097 = sext i32 %4096 to i64
   %4098 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4097
-  store volatile i64 %4088, ptr %4098, align 8, !tbaa !9
-  %4099 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4100 = add nsw i32 %4099, 1
-  %4101 = sext i32 %4100 to i64
-  %4102 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4101
-  store volatile i64 %4089, ptr %4102, align 8, !tbaa !9
-  %4103 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4104 = add nsw i32 %4103, 2
-  %4105 = sext i32 %4104 to i64
-  %4106 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4105
-  store volatile i64 %4095, ptr %4106, align 8, !tbaa !9
-  %4107 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4108 = add nsw i32 %4107, 3
-  store volatile i32 %4108, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4109
+  store volatile i64 %4094, ptr %4098, align 8
+  %4099 = load volatile i32, ptr @P3_is_marked, align 4
+  %4100 = add nsw i32 %4099, 3
+  store volatile i32 %4100, ptr @P3_is_marked, align 4
+  br label %4101
 
-4109:                                             ; preds = %4091, %4087, %4083, %4079, %4076, %4073
-  %4110 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4111 = icmp sgt i32 %4110, 4
-  br i1 %4111, label %4112, label %4145
+4101:                                             ; preds = %4078, %4072
+  br label %4102
 
-4112:                                             ; preds = %4109
-  %4113 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4114 = icmp slt i32 %4113, 4
-  br i1 %4114, label %4115, label %4145
+4102:                                             ; preds = %4101, %4068, %4064, %4060, %4057
+  %4103 = load volatile i32, ptr @P2_is_marked, align 4
+  %4104 = icmp sge i32 %4103, 5
+  br i1 %4104, label %4105, label %4148
 
-4115:                                             ; preds = %4112
-  %4116 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4117 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4118 = icmp eq i64 %4116, %4117
-  br i1 %4118, label %4119, label %4145
+4105:                                             ; preds = %4102
+  %4106 = load volatile i32, ptr @P3_is_marked, align 4
+  %4107 = add nsw i32 %4106, 3
+  %4108 = icmp sle i32 %4107, 6
+  br i1 %4108, label %4109, label %4148
 
-4119:                                             ; preds = %4115
-  %4120 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4121 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4122 = icmp eq i64 %4120, %4121
-  br i1 %4122, label %4123, label %4145
+4109:                                             ; preds = %4105
+  %4110 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4111 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %4112 = icmp eq i64 %4110, %4111
+  br i1 %4112, label %4113, label %4148
 
-4123:                                             ; preds = %4119
-  %4124 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4125 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4126 = icmp sgt i64 %4125, %4124
-  br i1 %4126, label %4127, label %4145
+4113:                                             ; preds = %4109
+  %4114 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4115 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4116 = icmp eq i64 %4114, %4115
+  br i1 %4116, label %4117, label %4148
 
-4127:                                             ; preds = %4123
-  %4128 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  store volatile i64 %4128, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4129 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4130 = add nsw i32 %4129, -4
-  store volatile i32 %4130, ptr @P2_is_marked, align 4, !tbaa !5
-  %4131 = add nsw i64 %4125, %4124
-  %4132 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+4117:                                             ; preds = %4113
+  %4118 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4118, ptr %254, align 8
+  %4119 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4119, ptr %255, align 8
+  %4120 = load i64, ptr %255, align 8
+  %4121 = load i64, ptr %254, align 8
+  %4122 = icmp sgt i64 %4120, %4121
+  br i1 %4122, label %4123, label %4147
+
+4123:                                             ; preds = %4117
+  %4124 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4124, ptr @P2_marking_member_0, align 16
+  %4125 = load volatile i32, ptr @P2_is_marked, align 4
+  %4126 = sub nsw i32 %4125, 4
+  store volatile i32 %4126, ptr @P2_is_marked, align 4
+  %4127 = load i64, ptr %254, align 8
+  %4128 = load i64, ptr %255, align 8
+  %4129 = add nsw i64 %4127, %4128
+  store i64 %4129, ptr %256, align 8
+  %4130 = load i64, ptr %254, align 8
+  %4131 = load volatile i32, ptr @P3_is_marked, align 4
+  %4132 = add nsw i32 %4131, 0
   %4133 = sext i32 %4132 to i64
   %4134 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4133
-  store volatile i64 %4124, ptr %4134, align 8, !tbaa !9
-  %4135 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4136 = add nsw i32 %4135, 1
-  %4137 = sext i32 %4136 to i64
-  %4138 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4137
-  store volatile i64 %4125, ptr %4138, align 8, !tbaa !9
-  %4139 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4140 = add nsw i32 %4139, 2
-  %4141 = sext i32 %4140 to i64
-  %4142 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4141
-  store volatile i64 %4131, ptr %4142, align 8, !tbaa !9
-  %4143 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4144 = add nsw i32 %4143, 3
-  store volatile i32 %4144, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4145
+  store volatile i64 %4130, ptr %4134, align 8
+  %4135 = load i64, ptr %255, align 8
+  %4136 = load volatile i32, ptr @P3_is_marked, align 4
+  %4137 = add nsw i32 %4136, 1
+  %4138 = sext i32 %4137 to i64
+  %4139 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4138
+  store volatile i64 %4135, ptr %4139, align 8
+  %4140 = load i64, ptr %256, align 8
+  %4141 = load volatile i32, ptr @P3_is_marked, align 4
+  %4142 = add nsw i32 %4141, 2
+  %4143 = sext i32 %4142 to i64
+  %4144 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4143
+  store volatile i64 %4140, ptr %4144, align 8
+  %4145 = load volatile i32, ptr @P3_is_marked, align 4
+  %4146 = add nsw i32 %4145, 3
+  store volatile i32 %4146, ptr @P3_is_marked, align 4
+  br label %4147
 
-4145:                                             ; preds = %4127, %4123, %4119, %4115, %4112, %4109
-  %4146 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4147 = icmp sgt i32 %4146, 4
-  br i1 %4147, label %4148, label %4180
+4147:                                             ; preds = %4123, %4117
+  br label %4148
 
-4148:                                             ; preds = %4145
-  %4149 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4150 = icmp slt i32 %4149, 4
-  br i1 %4150, label %4151, label %4180
+4148:                                             ; preds = %4147, %4113, %4109, %4105, %4102
+  %4149 = load volatile i32, ptr @P2_is_marked, align 4
+  %4150 = icmp sge i32 %4149, 5
+  br i1 %4150, label %4151, label %4193
 
 4151:                                             ; preds = %4148
-  %4152 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4153 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4154 = icmp eq i64 %4152, %4153
-  br i1 %4154, label %4155, label %4180
+  %4152 = load volatile i32, ptr @P3_is_marked, align 4
+  %4153 = add nsw i32 %4152, 3
+  %4154 = icmp sle i32 %4153, 6
+  br i1 %4154, label %4155, label %4193
 
 4155:                                             ; preds = %4151
-  %4156 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4157 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
+  %4156 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4157 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
   %4158 = icmp eq i64 %4156, %4157
-  br i1 %4158, label %4159, label %4180
+  br i1 %4158, label %4159, label %4193
 
 4159:                                             ; preds = %4155
-  %4160 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4161 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4162 = icmp sgt i64 %4161, %4160
-  br i1 %4162, label %4163, label %4180
+  %4160 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4161 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4162 = icmp eq i64 %4160, %4161
+  br i1 %4162, label %4163, label %4193
 
 4163:                                             ; preds = %4159
-  %4164 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4165 = add nsw i32 %4164, -4
-  store volatile i32 %4165, ptr @P2_is_marked, align 4, !tbaa !5
-  %4166 = add nsw i64 %4161, %4160
-  %4167 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4168 = sext i32 %4167 to i64
-  %4169 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4168
-  store volatile i64 %4160, ptr %4169, align 8, !tbaa !9
-  %4170 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4171 = add nsw i32 %4170, 1
-  %4172 = sext i32 %4171 to i64
-  %4173 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4172
-  store volatile i64 %4161, ptr %4173, align 8, !tbaa !9
-  %4174 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4175 = add nsw i32 %4174, 2
-  %4176 = sext i32 %4175 to i64
-  %4177 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4176
-  store volatile i64 %4166, ptr %4177, align 8, !tbaa !9
-  %4178 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4179 = add nsw i32 %4178, 3
-  store volatile i32 %4179, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4180
+  %4164 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4164, ptr %257, align 8
+  %4165 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4165, ptr %258, align 8
+  %4166 = load i64, ptr %258, align 8
+  %4167 = load i64, ptr %257, align 8
+  %4168 = icmp sgt i64 %4166, %4167
+  br i1 %4168, label %4169, label %4192
 
-4180:                                             ; preds = %4163, %4159, %4155, %4151, %4148, %4145
-  %4181 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4182 = icmp sgt i32 %4181, 4
-  br i1 %4182, label %4183, label %4216
+4169:                                             ; preds = %4163
+  %4170 = load volatile i32, ptr @P2_is_marked, align 4
+  %4171 = sub nsw i32 %4170, 4
+  store volatile i32 %4171, ptr @P2_is_marked, align 4
+  %4172 = load i64, ptr %257, align 8
+  %4173 = load i64, ptr %258, align 8
+  %4174 = add nsw i64 %4172, %4173
+  store i64 %4174, ptr %259, align 8
+  %4175 = load i64, ptr %257, align 8
+  %4176 = load volatile i32, ptr @P3_is_marked, align 4
+  %4177 = add nsw i32 %4176, 0
+  %4178 = sext i32 %4177 to i64
+  %4179 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4178
+  store volatile i64 %4175, ptr %4179, align 8
+  %4180 = load i64, ptr %258, align 8
+  %4181 = load volatile i32, ptr @P3_is_marked, align 4
+  %4182 = add nsw i32 %4181, 1
+  %4183 = sext i32 %4182 to i64
+  %4184 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4183
+  store volatile i64 %4180, ptr %4184, align 8
+  %4185 = load i64, ptr %259, align 8
+  %4186 = load volatile i32, ptr @P3_is_marked, align 4
+  %4187 = add nsw i32 %4186, 2
+  %4188 = sext i32 %4187 to i64
+  %4189 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4188
+  store volatile i64 %4185, ptr %4189, align 8
+  %4190 = load volatile i32, ptr @P3_is_marked, align 4
+  %4191 = add nsw i32 %4190, 3
+  store volatile i32 %4191, ptr @P3_is_marked, align 4
+  br label %4192
 
-4183:                                             ; preds = %4180
-  %4184 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4185 = icmp slt i32 %4184, 4
-  br i1 %4185, label %4186, label %4216
+4192:                                             ; preds = %4169, %4163
+  br label %4193
 
-4186:                                             ; preds = %4183
-  %4187 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4188 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4189 = icmp eq i64 %4187, %4188
-  br i1 %4189, label %4190, label %4216
+4193:                                             ; preds = %4192, %4159, %4155, %4151, %4148
+  %4194 = load volatile i32, ptr @P2_is_marked, align 4
+  %4195 = icmp sge i32 %4194, 5
+  br i1 %4195, label %4196, label %4239
 
-4190:                                             ; preds = %4186
-  %4191 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4192 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4193 = icmp eq i64 %4191, %4192
-  br i1 %4193, label %4194, label %4216
+4196:                                             ; preds = %4193
+  %4197 = load volatile i32, ptr @P3_is_marked, align 4
+  %4198 = add nsw i32 %4197, 3
+  %4199 = icmp sle i32 %4198, 6
+  br i1 %4199, label %4200, label %4239
 
-4194:                                             ; preds = %4190
-  %4195 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4196 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4197 = icmp sgt i64 %4196, %4195
-  br i1 %4197, label %4198, label %4216
+4200:                                             ; preds = %4196
+  %4201 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4202 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4203 = icmp eq i64 %4201, %4202
+  br i1 %4203, label %4204, label %4239
 
-4198:                                             ; preds = %4194
-  %4199 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %4199, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4200 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4201 = add nsw i32 %4200, -4
-  store volatile i32 %4201, ptr @P2_is_marked, align 4, !tbaa !5
-  %4202 = add nsw i64 %4196, %4195
-  %4203 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4204 = sext i32 %4203 to i64
-  %4205 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4204
-  store volatile i64 %4195, ptr %4205, align 8, !tbaa !9
-  %4206 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4207 = add nsw i32 %4206, 1
-  %4208 = sext i32 %4207 to i64
-  %4209 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4208
-  store volatile i64 %4196, ptr %4209, align 8, !tbaa !9
-  %4210 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4211 = add nsw i32 %4210, 2
-  %4212 = sext i32 %4211 to i64
-  %4213 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4212
-  store volatile i64 %4202, ptr %4213, align 8, !tbaa !9
-  %4214 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4215 = add nsw i32 %4214, 3
-  store volatile i32 %4215, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4216
+4204:                                             ; preds = %4200
+  %4205 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4206 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4207 = icmp eq i64 %4205, %4206
+  br i1 %4207, label %4208, label %4239
 
-4216:                                             ; preds = %4198, %4194, %4190, %4186, %4183, %4180
-  %4217 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4218 = icmp sgt i32 %4217, 4
-  br i1 %4218, label %4219, label %4251
+4208:                                             ; preds = %4204
+  %4209 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4209, ptr %260, align 8
+  %4210 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %4210, ptr %261, align 8
+  %4211 = load i64, ptr %261, align 8
+  %4212 = load i64, ptr %260, align 8
+  %4213 = icmp sgt i64 %4211, %4212
+  br i1 %4213, label %4214, label %4238
 
-4219:                                             ; preds = %4216
-  %4220 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4221 = icmp slt i32 %4220, 4
-  br i1 %4221, label %4222, label %4251
+4214:                                             ; preds = %4208
+  %4215 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %4215, ptr @P2_marking_member_0, align 16
+  %4216 = load volatile i32, ptr @P2_is_marked, align 4
+  %4217 = sub nsw i32 %4216, 4
+  store volatile i32 %4217, ptr @P2_is_marked, align 4
+  %4218 = load i64, ptr %260, align 8
+  %4219 = load i64, ptr %261, align 8
+  %4220 = add nsw i64 %4218, %4219
+  store i64 %4220, ptr %262, align 8
+  %4221 = load i64, ptr %260, align 8
+  %4222 = load volatile i32, ptr @P3_is_marked, align 4
+  %4223 = add nsw i32 %4222, 0
+  %4224 = sext i32 %4223 to i64
+  %4225 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4224
+  store volatile i64 %4221, ptr %4225, align 8
+  %4226 = load i64, ptr %261, align 8
+  %4227 = load volatile i32, ptr @P3_is_marked, align 4
+  %4228 = add nsw i32 %4227, 1
+  %4229 = sext i32 %4228 to i64
+  %4230 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4229
+  store volatile i64 %4226, ptr %4230, align 8
+  %4231 = load i64, ptr %262, align 8
+  %4232 = load volatile i32, ptr @P3_is_marked, align 4
+  %4233 = add nsw i32 %4232, 2
+  %4234 = sext i32 %4233 to i64
+  %4235 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4234
+  store volatile i64 %4231, ptr %4235, align 8
+  %4236 = load volatile i32, ptr @P3_is_marked, align 4
+  %4237 = add nsw i32 %4236, 3
+  store volatile i32 %4237, ptr @P3_is_marked, align 4
+  br label %4238
 
-4222:                                             ; preds = %4219
-  %4223 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4224 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4225 = icmp eq i64 %4223, %4224
-  br i1 %4225, label %4226, label %4251
+4238:                                             ; preds = %4214, %4208
+  br label %4239
 
-4226:                                             ; preds = %4222
-  %4227 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4228 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4229 = icmp eq i64 %4227, %4228
-  br i1 %4229, label %4230, label %4251
+4239:                                             ; preds = %4238, %4204, %4200, %4196, %4193
+  %4240 = load volatile i32, ptr @P2_is_marked, align 4
+  %4241 = icmp sge i32 %4240, 5
+  br i1 %4241, label %4242, label %4285
 
-4230:                                             ; preds = %4226
-  %4231 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4232 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4233 = icmp sgt i64 %4232, %4231
-  br i1 %4233, label %4234, label %4251
+4242:                                             ; preds = %4239
+  %4243 = load volatile i32, ptr @P3_is_marked, align 4
+  %4244 = add nsw i32 %4243, 3
+  %4245 = icmp sle i32 %4244, 6
+  br i1 %4245, label %4246, label %4285
 
-4234:                                             ; preds = %4230
-  %4235 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4236 = add nsw i32 %4235, -4
-  store volatile i32 %4236, ptr @P2_is_marked, align 4, !tbaa !5
-  %4237 = add nsw i64 %4232, %4231
-  %4238 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4239 = sext i32 %4238 to i64
-  %4240 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4239
-  store volatile i64 %4231, ptr %4240, align 8, !tbaa !9
-  %4241 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4242 = add nsw i32 %4241, 1
-  %4243 = sext i32 %4242 to i64
-  %4244 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4243
-  store volatile i64 %4232, ptr %4244, align 8, !tbaa !9
-  %4245 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4246 = add nsw i32 %4245, 2
-  %4247 = sext i32 %4246 to i64
-  %4248 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4247
-  store volatile i64 %4237, ptr %4248, align 8, !tbaa !9
-  %4249 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4250 = add nsw i32 %4249, 3
-  store volatile i32 %4250, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4251
+4246:                                             ; preds = %4242
+  %4247 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4248 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4249 = icmp eq i64 %4247, %4248
+  br i1 %4249, label %4250, label %4285
 
-4251:                                             ; preds = %4234, %4230, %4226, %4222, %4219, %4216
-  %4252 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4253 = icmp sgt i32 %4252, 4
-  br i1 %4253, label %4254, label %4287
+4250:                                             ; preds = %4246
+  %4251 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4252 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4253 = icmp eq i64 %4251, %4252
+  br i1 %4253, label %4254, label %4285
 
-4254:                                             ; preds = %4251
-  %4255 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4256 = icmp slt i32 %4255, 4
-  br i1 %4256, label %4257, label %4287
+4254:                                             ; preds = %4250
+  %4255 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4255, ptr %263, align 8
+  %4256 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %4256, ptr %264, align 8
+  %4257 = load i64, ptr %264, align 8
+  %4258 = load i64, ptr %263, align 8
+  %4259 = icmp sgt i64 %4257, %4258
+  br i1 %4259, label %4260, label %4284
 
-4257:                                             ; preds = %4254
-  %4258 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4259 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4260 = icmp eq i64 %4258, %4259
-  br i1 %4260, label %4261, label %4287
-
-4261:                                             ; preds = %4257
-  %4262 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4263 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4264 = icmp eq i64 %4262, %4263
-  br i1 %4264, label %4265, label %4287
-
-4265:                                             ; preds = %4261
-  %4266 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4267 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4268 = icmp sgt i64 %4267, %4266
-  br i1 %4268, label %4269, label %4287
-
-4269:                                             ; preds = %4265
-  %4270 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %4270, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4271 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4272 = add nsw i32 %4271, -4
-  store volatile i32 %4272, ptr @P2_is_marked, align 4, !tbaa !5
-  %4273 = add nsw i64 %4267, %4266
-  %4274 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+4260:                                             ; preds = %4254
+  %4261 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4261, ptr @P2_marking_member_0, align 16
+  %4262 = load volatile i32, ptr @P2_is_marked, align 4
+  %4263 = sub nsw i32 %4262, 4
+  store volatile i32 %4263, ptr @P2_is_marked, align 4
+  %4264 = load i64, ptr %263, align 8
+  %4265 = load i64, ptr %264, align 8
+  %4266 = add nsw i64 %4264, %4265
+  store i64 %4266, ptr %265, align 8
+  %4267 = load i64, ptr %263, align 8
+  %4268 = load volatile i32, ptr @P3_is_marked, align 4
+  %4269 = add nsw i32 %4268, 0
+  %4270 = sext i32 %4269 to i64
+  %4271 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4270
+  store volatile i64 %4267, ptr %4271, align 8
+  %4272 = load i64, ptr %264, align 8
+  %4273 = load volatile i32, ptr @P3_is_marked, align 4
+  %4274 = add nsw i32 %4273, 1
   %4275 = sext i32 %4274 to i64
   %4276 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4275
-  store volatile i64 %4266, ptr %4276, align 8, !tbaa !9
-  %4277 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4278 = add nsw i32 %4277, 1
-  %4279 = sext i32 %4278 to i64
-  %4280 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4279
-  store volatile i64 %4267, ptr %4280, align 8, !tbaa !9
-  %4281 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4282 = add nsw i32 %4281, 2
-  %4283 = sext i32 %4282 to i64
-  %4284 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4283
-  store volatile i64 %4273, ptr %4284, align 8, !tbaa !9
-  %4285 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4286 = add nsw i32 %4285, 3
-  store volatile i32 %4286, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4287
+  store volatile i64 %4272, ptr %4276, align 8
+  %4277 = load i64, ptr %265, align 8
+  %4278 = load volatile i32, ptr @P3_is_marked, align 4
+  %4279 = add nsw i32 %4278, 2
+  %4280 = sext i32 %4279 to i64
+  %4281 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4280
+  store volatile i64 %4277, ptr %4281, align 8
+  %4282 = load volatile i32, ptr @P3_is_marked, align 4
+  %4283 = add nsw i32 %4282, 3
+  store volatile i32 %4283, ptr @P3_is_marked, align 4
+  br label %4284
 
-4287:                                             ; preds = %4269, %4265, %4261, %4257, %4254, %4251
-  %4288 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4289 = icmp sgt i32 %4288, 4
-  br i1 %4289, label %4290, label %4323
+4284:                                             ; preds = %4260, %4254
+  br label %4285
 
-4290:                                             ; preds = %4287
-  %4291 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4292 = icmp slt i32 %4291, 4
-  br i1 %4292, label %4293, label %4323
+4285:                                             ; preds = %4284, %4250, %4246, %4242, %4239
+  %4286 = load volatile i32, ptr @P2_is_marked, align 4
+  %4287 = icmp sge i32 %4286, 5
+  br i1 %4287, label %4288, label %4331
 
-4293:                                             ; preds = %4290
-  %4294 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4295 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4296 = icmp eq i64 %4294, %4295
-  br i1 %4296, label %4297, label %4323
+4288:                                             ; preds = %4285
+  %4289 = load volatile i32, ptr @P3_is_marked, align 4
+  %4290 = add nsw i32 %4289, 3
+  %4291 = icmp sle i32 %4290, 6
+  br i1 %4291, label %4292, label %4331
 
-4297:                                             ; preds = %4293
-  %4298 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4299 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4300 = icmp eq i64 %4298, %4299
-  br i1 %4300, label %4301, label %4323
+4292:                                             ; preds = %4288
+  %4293 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4294 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4295 = icmp eq i64 %4293, %4294
+  br i1 %4295, label %4296, label %4331
 
-4301:                                             ; preds = %4297
-  %4302 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4303 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4304 = icmp sgt i64 %4303, %4302
-  br i1 %4304, label %4305, label %4323
+4296:                                             ; preds = %4292
+  %4297 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4298 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4299 = icmp eq i64 %4297, %4298
+  br i1 %4299, label %4300, label %4331
 
-4305:                                             ; preds = %4301
-  %4306 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %4306, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4307 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4308 = add nsw i32 %4307, -4
-  store volatile i32 %4308, ptr @P2_is_marked, align 4, !tbaa !5
-  %4309 = add nsw i64 %4303, %4302
-  %4310 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4311 = sext i32 %4310 to i64
-  %4312 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4311
-  store volatile i64 %4302, ptr %4312, align 8, !tbaa !9
-  %4313 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4314 = add nsw i32 %4313, 1
-  %4315 = sext i32 %4314 to i64
-  %4316 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4315
-  store volatile i64 %4303, ptr %4316, align 8, !tbaa !9
-  %4317 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4318 = add nsw i32 %4317, 2
-  %4319 = sext i32 %4318 to i64
-  %4320 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4319
-  store volatile i64 %4309, ptr %4320, align 8, !tbaa !9
-  %4321 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4322 = add nsw i32 %4321, 3
-  store volatile i32 %4322, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4323
+4300:                                             ; preds = %4296
+  %4301 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4301, ptr %266, align 8
+  %4302 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %4302, ptr %267, align 8
+  %4303 = load i64, ptr %267, align 8
+  %4304 = load i64, ptr %266, align 8
+  %4305 = icmp sgt i64 %4303, %4304
+  br i1 %4305, label %4306, label %4330
 
-4323:                                             ; preds = %4305, %4301, %4297, %4293, %4290, %4287
-  %4324 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4325 = icmp sgt i32 %4324, 4
-  br i1 %4325, label %4326, label %4359
+4306:                                             ; preds = %4300
+  %4307 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %4307, ptr @P2_marking_member_0, align 16
+  %4308 = load volatile i32, ptr @P2_is_marked, align 4
+  %4309 = sub nsw i32 %4308, 4
+  store volatile i32 %4309, ptr @P2_is_marked, align 4
+  %4310 = load i64, ptr %266, align 8
+  %4311 = load i64, ptr %267, align 8
+  %4312 = add nsw i64 %4310, %4311
+  store i64 %4312, ptr %268, align 8
+  %4313 = load i64, ptr %266, align 8
+  %4314 = load volatile i32, ptr @P3_is_marked, align 4
+  %4315 = add nsw i32 %4314, 0
+  %4316 = sext i32 %4315 to i64
+  %4317 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4316
+  store volatile i64 %4313, ptr %4317, align 8
+  %4318 = load i64, ptr %267, align 8
+  %4319 = load volatile i32, ptr @P3_is_marked, align 4
+  %4320 = add nsw i32 %4319, 1
+  %4321 = sext i32 %4320 to i64
+  %4322 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4321
+  store volatile i64 %4318, ptr %4322, align 8
+  %4323 = load i64, ptr %268, align 8
+  %4324 = load volatile i32, ptr @P3_is_marked, align 4
+  %4325 = add nsw i32 %4324, 2
+  %4326 = sext i32 %4325 to i64
+  %4327 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4326
+  store volatile i64 %4323, ptr %4327, align 8
+  %4328 = load volatile i32, ptr @P3_is_marked, align 4
+  %4329 = add nsw i32 %4328, 3
+  store volatile i32 %4329, ptr @P3_is_marked, align 4
+  br label %4330
 
-4326:                                             ; preds = %4323
-  %4327 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4328 = icmp slt i32 %4327, 4
-  br i1 %4328, label %4329, label %4359
+4330:                                             ; preds = %4306, %4300
+  br label %4331
 
-4329:                                             ; preds = %4326
-  %4330 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4331 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4332 = icmp eq i64 %4330, %4331
-  br i1 %4332, label %4333, label %4359
+4331:                                             ; preds = %4330, %4296, %4292, %4288, %4285
+  %4332 = load volatile i32, ptr @P2_is_marked, align 4
+  %4333 = icmp sge i32 %4332, 5
+  br i1 %4333, label %4334, label %4377
 
-4333:                                             ; preds = %4329
-  %4334 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4335 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4336 = icmp eq i64 %4334, %4335
-  br i1 %4336, label %4337, label %4359
+4334:                                             ; preds = %4331
+  %4335 = load volatile i32, ptr @P3_is_marked, align 4
+  %4336 = add nsw i32 %4335, 3
+  %4337 = icmp sle i32 %4336, 6
+  br i1 %4337, label %4338, label %4377
 
-4337:                                             ; preds = %4333
-  %4338 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4339 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4340 = icmp sgt i64 %4339, %4338
-  br i1 %4340, label %4341, label %4359
+4338:                                             ; preds = %4334
+  %4339 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4340 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4341 = icmp eq i64 %4339, %4340
+  br i1 %4341, label %4342, label %4377
 
-4341:                                             ; preds = %4337
-  %4342 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  store volatile i64 %4342, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4343 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4344 = add nsw i32 %4343, -4
-  store volatile i32 %4344, ptr @P2_is_marked, align 4, !tbaa !5
-  %4345 = add nsw i64 %4339, %4338
-  %4346 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4347 = sext i32 %4346 to i64
-  %4348 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4347
-  store volatile i64 %4338, ptr %4348, align 8, !tbaa !9
-  %4349 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4350 = add nsw i32 %4349, 1
-  %4351 = sext i32 %4350 to i64
-  %4352 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4351
-  store volatile i64 %4339, ptr %4352, align 8, !tbaa !9
-  %4353 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4354 = add nsw i32 %4353, 2
-  %4355 = sext i32 %4354 to i64
-  %4356 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4355
-  store volatile i64 %4345, ptr %4356, align 8, !tbaa !9
-  %4357 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4358 = add nsw i32 %4357, 3
-  store volatile i32 %4358, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4359
+4342:                                             ; preds = %4338
+  %4343 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4344 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4345 = icmp eq i64 %4343, %4344
+  br i1 %4345, label %4346, label %4377
 
-4359:                                             ; preds = %4341, %4337, %4333, %4329, %4326, %4323
-  %4360 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4361 = icmp sgt i32 %4360, 4
-  br i1 %4361, label %4362, label %4394
+4346:                                             ; preds = %4342
+  %4347 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4347, ptr %269, align 8
+  %4348 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %4348, ptr %270, align 8
+  %4349 = load i64, ptr %270, align 8
+  %4350 = load i64, ptr %269, align 8
+  %4351 = icmp sgt i64 %4349, %4350
+  br i1 %4351, label %4352, label %4376
 
-4362:                                             ; preds = %4359
-  %4363 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4364 = icmp slt i32 %4363, 4
-  br i1 %4364, label %4365, label %4394
+4352:                                             ; preds = %4346
+  %4353 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4353, ptr @P2_marking_member_0, align 16
+  %4354 = load volatile i32, ptr @P2_is_marked, align 4
+  %4355 = sub nsw i32 %4354, 4
+  store volatile i32 %4355, ptr @P2_is_marked, align 4
+  %4356 = load i64, ptr %269, align 8
+  %4357 = load i64, ptr %270, align 8
+  %4358 = add nsw i64 %4356, %4357
+  store i64 %4358, ptr %271, align 8
+  %4359 = load i64, ptr %269, align 8
+  %4360 = load volatile i32, ptr @P3_is_marked, align 4
+  %4361 = add nsw i32 %4360, 0
+  %4362 = sext i32 %4361 to i64
+  %4363 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4362
+  store volatile i64 %4359, ptr %4363, align 8
+  %4364 = load i64, ptr %270, align 8
+  %4365 = load volatile i32, ptr @P3_is_marked, align 4
+  %4366 = add nsw i32 %4365, 1
+  %4367 = sext i32 %4366 to i64
+  %4368 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4367
+  store volatile i64 %4364, ptr %4368, align 8
+  %4369 = load i64, ptr %271, align 8
+  %4370 = load volatile i32, ptr @P3_is_marked, align 4
+  %4371 = add nsw i32 %4370, 2
+  %4372 = sext i32 %4371 to i64
+  %4373 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4372
+  store volatile i64 %4369, ptr %4373, align 8
+  %4374 = load volatile i32, ptr @P3_is_marked, align 4
+  %4375 = add nsw i32 %4374, 3
+  store volatile i32 %4375, ptr @P3_is_marked, align 4
+  br label %4376
 
-4365:                                             ; preds = %4362
-  %4366 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4367 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4368 = icmp eq i64 %4366, %4367
-  br i1 %4368, label %4369, label %4394
+4376:                                             ; preds = %4352, %4346
+  br label %4377
 
-4369:                                             ; preds = %4365
-  %4370 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4371 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4372 = icmp eq i64 %4370, %4371
-  br i1 %4372, label %4373, label %4394
+4377:                                             ; preds = %4376, %4342, %4338, %4334, %4331
+  %4378 = load volatile i32, ptr @P2_is_marked, align 4
+  %4379 = icmp sge i32 %4378, 5
+  br i1 %4379, label %4380, label %4423
 
-4373:                                             ; preds = %4369
-  %4374 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4375 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4376 = icmp sgt i64 %4375, %4374
-  br i1 %4376, label %4377, label %4394
+4380:                                             ; preds = %4377
+  %4381 = load volatile i32, ptr @P3_is_marked, align 4
+  %4382 = add nsw i32 %4381, 3
+  %4383 = icmp sle i32 %4382, 6
+  br i1 %4383, label %4384, label %4423
 
-4377:                                             ; preds = %4373
-  %4378 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4379 = add nsw i32 %4378, -4
-  store volatile i32 %4379, ptr @P2_is_marked, align 4, !tbaa !5
-  %4380 = add nsw i64 %4375, %4374
-  %4381 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4382 = sext i32 %4381 to i64
-  %4383 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4382
-  store volatile i64 %4374, ptr %4383, align 8, !tbaa !9
-  %4384 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4385 = add nsw i32 %4384, 1
-  %4386 = sext i32 %4385 to i64
-  %4387 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4386
-  store volatile i64 %4375, ptr %4387, align 8, !tbaa !9
-  %4388 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4389 = add nsw i32 %4388, 2
-  %4390 = sext i32 %4389 to i64
-  %4391 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4390
-  store volatile i64 %4380, ptr %4391, align 8, !tbaa !9
-  %4392 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4393 = add nsw i32 %4392, 3
-  store volatile i32 %4393, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4394
+4384:                                             ; preds = %4380
+  %4385 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4386 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4387 = icmp eq i64 %4385, %4386
+  br i1 %4387, label %4388, label %4423
 
-4394:                                             ; preds = %4377, %4373, %4369, %4365, %4362, %4359
-  %4395 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4396 = icmp sgt i32 %4395, 4
-  br i1 %4396, label %4397, label %4430
+4388:                                             ; preds = %4384
+  %4389 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4390 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4391 = icmp eq i64 %4389, %4390
+  br i1 %4391, label %4392, label %4423
 
-4397:                                             ; preds = %4394
-  %4398 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4399 = icmp slt i32 %4398, 4
-  br i1 %4399, label %4400, label %4430
+4392:                                             ; preds = %4388
+  %4393 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4393, ptr %272, align 8
+  %4394 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %4394, ptr %273, align 8
+  %4395 = load i64, ptr %273, align 8
+  %4396 = load i64, ptr %272, align 8
+  %4397 = icmp sgt i64 %4395, %4396
+  br i1 %4397, label %4398, label %4422
 
-4400:                                             ; preds = %4397
-  %4401 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4402 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4403 = icmp eq i64 %4401, %4402
-  br i1 %4403, label %4404, label %4430
-
-4404:                                             ; preds = %4400
-  %4405 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4406 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4407 = icmp eq i64 %4405, %4406
-  br i1 %4407, label %4408, label %4430
-
-4408:                                             ; preds = %4404
-  %4409 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4410 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4411 = icmp sgt i64 %4410, %4409
-  br i1 %4411, label %4412, label %4430
-
-4412:                                             ; preds = %4408
-  %4413 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  store volatile i64 %4413, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %4414 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4415 = add nsw i32 %4414, -4
-  store volatile i32 %4415, ptr @P2_is_marked, align 4, !tbaa !5
-  %4416 = add nsw i64 %4410, %4409
-  %4417 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+4398:                                             ; preds = %4392
+  %4399 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %4399, ptr @P2_marking_member_0, align 16
+  %4400 = load volatile i32, ptr @P2_is_marked, align 4
+  %4401 = sub nsw i32 %4400, 4
+  store volatile i32 %4401, ptr @P2_is_marked, align 4
+  %4402 = load i64, ptr %272, align 8
+  %4403 = load i64, ptr %273, align 8
+  %4404 = add nsw i64 %4402, %4403
+  store i64 %4404, ptr %274, align 8
+  %4405 = load i64, ptr %272, align 8
+  %4406 = load volatile i32, ptr @P3_is_marked, align 4
+  %4407 = add nsw i32 %4406, 0
+  %4408 = sext i32 %4407 to i64
+  %4409 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4408
+  store volatile i64 %4405, ptr %4409, align 8
+  %4410 = load i64, ptr %273, align 8
+  %4411 = load volatile i32, ptr @P3_is_marked, align 4
+  %4412 = add nsw i32 %4411, 1
+  %4413 = sext i32 %4412 to i64
+  %4414 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4413
+  store volatile i64 %4410, ptr %4414, align 8
+  %4415 = load i64, ptr %274, align 8
+  %4416 = load volatile i32, ptr @P3_is_marked, align 4
+  %4417 = add nsw i32 %4416, 2
   %4418 = sext i32 %4417 to i64
   %4419 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4418
-  store volatile i64 %4409, ptr %4419, align 8, !tbaa !9
-  %4420 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4421 = add nsw i32 %4420, 1
-  %4422 = sext i32 %4421 to i64
-  %4423 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4422
-  store volatile i64 %4410, ptr %4423, align 8, !tbaa !9
-  %4424 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4425 = add nsw i32 %4424, 2
-  %4426 = sext i32 %4425 to i64
-  %4427 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4426
-  store volatile i64 %4416, ptr %4427, align 8, !tbaa !9
-  %4428 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4429 = add nsw i32 %4428, 3
-  store volatile i32 %4429, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4430
+  store volatile i64 %4415, ptr %4419, align 8
+  %4420 = load volatile i32, ptr @P3_is_marked, align 4
+  %4421 = add nsw i32 %4420, 3
+  store volatile i32 %4421, ptr @P3_is_marked, align 4
+  br label %4422
 
-4430:                                             ; preds = %4412, %4408, %4404, %4400, %4397, %4394
-  %4431 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4432 = icmp sgt i32 %4431, 4
-  br i1 %4432, label %4433, label %4465
+4422:                                             ; preds = %4398, %4392
+  br label %4423
 
-4433:                                             ; preds = %4430
-  %4434 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4435 = icmp slt i32 %4434, 4
-  br i1 %4435, label %4436, label %4465
+4423:                                             ; preds = %4422, %4388, %4384, %4380, %4377
+  %4424 = load volatile i32, ptr @P2_is_marked, align 4
+  %4425 = icmp sge i32 %4424, 5
+  br i1 %4425, label %4426, label %4468
 
-4436:                                             ; preds = %4433
-  %4437 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4438 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %4439 = icmp eq i64 %4437, %4438
-  br i1 %4439, label %4440, label %4465
+4426:                                             ; preds = %4423
+  %4427 = load volatile i32, ptr @P3_is_marked, align 4
+  %4428 = add nsw i32 %4427, 3
+  %4429 = icmp sle i32 %4428, 6
+  br i1 %4429, label %4430, label %4468
 
-4440:                                             ; preds = %4436
-  %4441 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4442 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %4443 = icmp eq i64 %4441, %4442
-  br i1 %4443, label %4444, label %4465
+4430:                                             ; preds = %4426
+  %4431 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4432 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4433 = icmp eq i64 %4431, %4432
+  br i1 %4433, label %4434, label %4468
 
-4444:                                             ; preds = %4440
-  %4445 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %4446 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %4447 = icmp sgt i64 %4446, %4445
-  br i1 %4447, label %4448, label %4465
+4434:                                             ; preds = %4430
+  %4435 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4436 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4437 = icmp eq i64 %4435, %4436
+  br i1 %4437, label %4438, label %4468
 
-4448:                                             ; preds = %4444
-  %4449 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %4450 = add nsw i32 %4449, -4
-  store volatile i32 %4450, ptr @P2_is_marked, align 4, !tbaa !5
-  %4451 = add nsw i64 %4446, %4445
-  %4452 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
+4438:                                             ; preds = %4434
+  %4439 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4439, ptr %275, align 8
+  %4440 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %4440, ptr %276, align 8
+  %4441 = load i64, ptr %276, align 8
+  %4442 = load i64, ptr %275, align 8
+  %4443 = icmp sgt i64 %4441, %4442
+  br i1 %4443, label %4444, label %4467
+
+4444:                                             ; preds = %4438
+  %4445 = load volatile i32, ptr @P2_is_marked, align 4
+  %4446 = sub nsw i32 %4445, 4
+  store volatile i32 %4446, ptr @P2_is_marked, align 4
+  %4447 = load i64, ptr %275, align 8
+  %4448 = load i64, ptr %276, align 8
+  %4449 = add nsw i64 %4447, %4448
+  store i64 %4449, ptr %277, align 8
+  %4450 = load i64, ptr %275, align 8
+  %4451 = load volatile i32, ptr @P3_is_marked, align 4
+  %4452 = add nsw i32 %4451, 0
   %4453 = sext i32 %4452 to i64
   %4454 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4453
-  store volatile i64 %4445, ptr %4454, align 8, !tbaa !9
-  %4455 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4456 = add nsw i32 %4455, 1
-  %4457 = sext i32 %4456 to i64
-  %4458 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4457
-  store volatile i64 %4446, ptr %4458, align 8, !tbaa !9
-  %4459 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4460 = add nsw i32 %4459, 2
-  %4461 = sext i32 %4460 to i64
-  %4462 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4461
-  store volatile i64 %4451, ptr %4462, align 8, !tbaa !9
-  %4463 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %4464 = add nsw i32 %4463, 3
-  store volatile i32 %4464, ptr @P3_is_marked, align 4, !tbaa !5
-  br label %4465
+  store volatile i64 %4450, ptr %4454, align 8
+  %4455 = load i64, ptr %276, align 8
+  %4456 = load volatile i32, ptr @P3_is_marked, align 4
+  %4457 = add nsw i32 %4456, 1
+  %4458 = sext i32 %4457 to i64
+  %4459 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4458
+  store volatile i64 %4455, ptr %4459, align 8
+  %4460 = load i64, ptr %277, align 8
+  %4461 = load volatile i32, ptr @P3_is_marked, align 4
+  %4462 = add nsw i32 %4461, 2
+  %4463 = sext i32 %4462 to i64
+  %4464 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4463
+  store volatile i64 %4460, ptr %4464, align 8
+  %4465 = load volatile i32, ptr @P3_is_marked, align 4
+  %4466 = add nsw i32 %4465, 3
+  store volatile i32 %4466, ptr @P3_is_marked, align 4
+  br label %4467
 
-4465:                                             ; preds = %4448, %4444, %4440, %4436, %4433, %4430
-  %4466 = add nuw i32 %7, 1
-  %4467 = icmp eq i32 %4466, %1
-  br i1 %4467, label %4468, label %6, !llvm.loop !11
+4467:                                             ; preds = %4444, %4438
+  br label %4468
 
-4468:                                             ; preds = %4465
-  %4469 = add nuw nsw i32 %5, 1
-  %4470 = icmp eq i32 %4469, %0
-  br i1 %4470, label %4471, label %4, !llvm.loop !13
+4468:                                             ; preds = %4467, %4434, %4430, %4426, %4423
+  %4469 = load volatile i32, ptr @P2_is_marked, align 4
+  %4470 = icmp sge i32 %4469, 5
+  br i1 %4470, label %4471, label %4514
 
-4471:                                             ; preds = %4468, %2
-  ret void
-}
+4471:                                             ; preds = %4468
+  %4472 = load volatile i32, ptr @P3_is_marked, align 4
+  %4473 = add nsw i32 %4472, 3
+  %4474 = icmp sle i32 %4473, 6
+  br i1 %4474, label %4475, label %4514
 
-; Function Attrs: nofree noinline norecurse nounwind uwtable
-define dso_local noundef i32 @benchmark() local_unnamed_addr #3 {
-  tail call fastcc void @benchmark_body(i32 noundef 1232, i32 noundef 20)
+4475:                                             ; preds = %4471
+  %4476 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4477 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4478 = icmp eq i64 %4476, %4477
+  br i1 %4478, label %4479, label %4514
+
+4479:                                             ; preds = %4475
+  %4480 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4481 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4482 = icmp eq i64 %4480, %4481
+  br i1 %4482, label %4483, label %4514
+
+4483:                                             ; preds = %4479
+  %4484 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4484, ptr %278, align 8
+  %4485 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %4485, ptr %279, align 8
+  %4486 = load i64, ptr %279, align 8
+  %4487 = load i64, ptr %278, align 8
+  %4488 = icmp sgt i64 %4486, %4487
+  br i1 %4488, label %4489, label %4513
+
+4489:                                             ; preds = %4483
+  %4490 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %4490, ptr @P2_marking_member_0, align 16
+  %4491 = load volatile i32, ptr @P2_is_marked, align 4
+  %4492 = sub nsw i32 %4491, 4
+  store volatile i32 %4492, ptr @P2_is_marked, align 4
+  %4493 = load i64, ptr %278, align 8
+  %4494 = load i64, ptr %279, align 8
+  %4495 = add nsw i64 %4493, %4494
+  store i64 %4495, ptr %280, align 8
+  %4496 = load i64, ptr %278, align 8
+  %4497 = load volatile i32, ptr @P3_is_marked, align 4
+  %4498 = add nsw i32 %4497, 0
+  %4499 = sext i32 %4498 to i64
+  %4500 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4499
+  store volatile i64 %4496, ptr %4500, align 8
+  %4501 = load i64, ptr %279, align 8
+  %4502 = load volatile i32, ptr @P3_is_marked, align 4
+  %4503 = add nsw i32 %4502, 1
+  %4504 = sext i32 %4503 to i64
+  %4505 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4504
+  store volatile i64 %4501, ptr %4505, align 8
+  %4506 = load i64, ptr %280, align 8
+  %4507 = load volatile i32, ptr @P3_is_marked, align 4
+  %4508 = add nsw i32 %4507, 2
+  %4509 = sext i32 %4508 to i64
+  %4510 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4509
+  store volatile i64 %4506, ptr %4510, align 8
+  %4511 = load volatile i32, ptr @P3_is_marked, align 4
+  %4512 = add nsw i32 %4511, 3
+  store volatile i32 %4512, ptr @P3_is_marked, align 4
+  br label %4513
+
+4513:                                             ; preds = %4489, %4483
+  br label %4514
+
+4514:                                             ; preds = %4513, %4479, %4475, %4471, %4468
+  %4515 = load volatile i32, ptr @P2_is_marked, align 4
+  %4516 = icmp sge i32 %4515, 5
+  br i1 %4516, label %4517, label %4559
+
+4517:                                             ; preds = %4514
+  %4518 = load volatile i32, ptr @P3_is_marked, align 4
+  %4519 = add nsw i32 %4518, 3
+  %4520 = icmp sle i32 %4519, 6
+  br i1 %4520, label %4521, label %4559
+
+4521:                                             ; preds = %4517
+  %4522 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4523 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4524 = icmp eq i64 %4522, %4523
+  br i1 %4524, label %4525, label %4559
+
+4525:                                             ; preds = %4521
+  %4526 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4527 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4528 = icmp eq i64 %4526, %4527
+  br i1 %4528, label %4529, label %4559
+
+4529:                                             ; preds = %4525
+  %4530 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4530, ptr %281, align 8
+  %4531 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %4531, ptr %282, align 8
+  %4532 = load i64, ptr %282, align 8
+  %4533 = load i64, ptr %281, align 8
+  %4534 = icmp sgt i64 %4532, %4533
+  br i1 %4534, label %4535, label %4558
+
+4535:                                             ; preds = %4529
+  %4536 = load volatile i32, ptr @P2_is_marked, align 4
+  %4537 = sub nsw i32 %4536, 4
+  store volatile i32 %4537, ptr @P2_is_marked, align 4
+  %4538 = load i64, ptr %281, align 8
+  %4539 = load i64, ptr %282, align 8
+  %4540 = add nsw i64 %4538, %4539
+  store i64 %4540, ptr %283, align 8
+  %4541 = load i64, ptr %281, align 8
+  %4542 = load volatile i32, ptr @P3_is_marked, align 4
+  %4543 = add nsw i32 %4542, 0
+  %4544 = sext i32 %4543 to i64
+  %4545 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4544
+  store volatile i64 %4541, ptr %4545, align 8
+  %4546 = load i64, ptr %282, align 8
+  %4547 = load volatile i32, ptr @P3_is_marked, align 4
+  %4548 = add nsw i32 %4547, 1
+  %4549 = sext i32 %4548 to i64
+  %4550 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4549
+  store volatile i64 %4546, ptr %4550, align 8
+  %4551 = load i64, ptr %283, align 8
+  %4552 = load volatile i32, ptr @P3_is_marked, align 4
+  %4553 = add nsw i32 %4552, 2
+  %4554 = sext i32 %4553 to i64
+  %4555 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4554
+  store volatile i64 %4551, ptr %4555, align 8
+  %4556 = load volatile i32, ptr @P3_is_marked, align 4
+  %4557 = add nsw i32 %4556, 3
+  store volatile i32 %4557, ptr @P3_is_marked, align 4
+  br label %4558
+
+4558:                                             ; preds = %4535, %4529
+  br label %4559
+
+4559:                                             ; preds = %4558, %4525, %4521, %4517, %4514
+  %4560 = load volatile i32, ptr @P2_is_marked, align 4
+  %4561 = icmp sge i32 %4560, 5
+  br i1 %4561, label %4562, label %4605
+
+4562:                                             ; preds = %4559
+  %4563 = load volatile i32, ptr @P3_is_marked, align 4
+  %4564 = add nsw i32 %4563, 3
+  %4565 = icmp sle i32 %4564, 6
+  br i1 %4565, label %4566, label %4605
+
+4566:                                             ; preds = %4562
+  %4567 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4568 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4569 = icmp eq i64 %4567, %4568
+  br i1 %4569, label %4570, label %4605
+
+4570:                                             ; preds = %4566
+  %4571 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4572 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4573 = icmp eq i64 %4571, %4572
+  br i1 %4573, label %4574, label %4605
+
+4574:                                             ; preds = %4570
+  %4575 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4575, ptr %284, align 8
+  %4576 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4576, ptr %285, align 8
+  %4577 = load i64, ptr %285, align 8
+  %4578 = load i64, ptr %284, align 8
+  %4579 = icmp sgt i64 %4577, %4578
+  br i1 %4579, label %4580, label %4604
+
+4580:                                             ; preds = %4574
+  %4581 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4581, ptr @P2_marking_member_0, align 16
+  %4582 = load volatile i32, ptr @P2_is_marked, align 4
+  %4583 = sub nsw i32 %4582, 4
+  store volatile i32 %4583, ptr @P2_is_marked, align 4
+  %4584 = load i64, ptr %284, align 8
+  %4585 = load i64, ptr %285, align 8
+  %4586 = add nsw i64 %4584, %4585
+  store i64 %4586, ptr %286, align 8
+  %4587 = load i64, ptr %284, align 8
+  %4588 = load volatile i32, ptr @P3_is_marked, align 4
+  %4589 = add nsw i32 %4588, 0
+  %4590 = sext i32 %4589 to i64
+  %4591 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4590
+  store volatile i64 %4587, ptr %4591, align 8
+  %4592 = load i64, ptr %285, align 8
+  %4593 = load volatile i32, ptr @P3_is_marked, align 4
+  %4594 = add nsw i32 %4593, 1
+  %4595 = sext i32 %4594 to i64
+  %4596 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4595
+  store volatile i64 %4592, ptr %4596, align 8
+  %4597 = load i64, ptr %286, align 8
+  %4598 = load volatile i32, ptr @P3_is_marked, align 4
+  %4599 = add nsw i32 %4598, 2
+  %4600 = sext i32 %4599 to i64
+  %4601 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4600
+  store volatile i64 %4597, ptr %4601, align 8
+  %4602 = load volatile i32, ptr @P3_is_marked, align 4
+  %4603 = add nsw i32 %4602, 3
+  store volatile i32 %4603, ptr @P3_is_marked, align 4
+  br label %4604
+
+4604:                                             ; preds = %4580, %4574
+  br label %4605
+
+4605:                                             ; preds = %4604, %4570, %4566, %4562, %4559
+  %4606 = load volatile i32, ptr @P2_is_marked, align 4
+  %4607 = icmp sge i32 %4606, 5
+  br i1 %4607, label %4608, label %4650
+
+4608:                                             ; preds = %4605
+  %4609 = load volatile i32, ptr @P3_is_marked, align 4
+  %4610 = add nsw i32 %4609, 3
+  %4611 = icmp sle i32 %4610, 6
+  br i1 %4611, label %4612, label %4650
+
+4612:                                             ; preds = %4608
+  %4613 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4614 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4615 = icmp eq i64 %4613, %4614
+  br i1 %4615, label %4616, label %4650
+
+4616:                                             ; preds = %4612
+  %4617 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4618 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4619 = icmp eq i64 %4617, %4618
+  br i1 %4619, label %4620, label %4650
+
+4620:                                             ; preds = %4616
+  %4621 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4621, ptr %287, align 8
+  %4622 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4622, ptr %288, align 8
+  %4623 = load i64, ptr %288, align 8
+  %4624 = load i64, ptr %287, align 8
+  %4625 = icmp sgt i64 %4623, %4624
+  br i1 %4625, label %4626, label %4649
+
+4626:                                             ; preds = %4620
+  %4627 = load volatile i32, ptr @P2_is_marked, align 4
+  %4628 = sub nsw i32 %4627, 4
+  store volatile i32 %4628, ptr @P2_is_marked, align 4
+  %4629 = load i64, ptr %287, align 8
+  %4630 = load i64, ptr %288, align 8
+  %4631 = add nsw i64 %4629, %4630
+  store i64 %4631, ptr %289, align 8
+  %4632 = load i64, ptr %287, align 8
+  %4633 = load volatile i32, ptr @P3_is_marked, align 4
+  %4634 = add nsw i32 %4633, 0
+  %4635 = sext i32 %4634 to i64
+  %4636 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4635
+  store volatile i64 %4632, ptr %4636, align 8
+  %4637 = load i64, ptr %288, align 8
+  %4638 = load volatile i32, ptr @P3_is_marked, align 4
+  %4639 = add nsw i32 %4638, 1
+  %4640 = sext i32 %4639 to i64
+  %4641 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4640
+  store volatile i64 %4637, ptr %4641, align 8
+  %4642 = load i64, ptr %289, align 8
+  %4643 = load volatile i32, ptr @P3_is_marked, align 4
+  %4644 = add nsw i32 %4643, 2
+  %4645 = sext i32 %4644 to i64
+  %4646 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4645
+  store volatile i64 %4642, ptr %4646, align 8
+  %4647 = load volatile i32, ptr @P3_is_marked, align 4
+  %4648 = add nsw i32 %4647, 3
+  store volatile i32 %4648, ptr @P3_is_marked, align 4
+  br label %4649
+
+4649:                                             ; preds = %4626, %4620
+  br label %4650
+
+4650:                                             ; preds = %4649, %4616, %4612, %4608, %4605
+  %4651 = load volatile i32, ptr @P2_is_marked, align 4
+  %4652 = icmp sge i32 %4651, 5
+  br i1 %4652, label %4653, label %4696
+
+4653:                                             ; preds = %4650
+  %4654 = load volatile i32, ptr @P3_is_marked, align 4
+  %4655 = add nsw i32 %4654, 3
+  %4656 = icmp sle i32 %4655, 6
+  br i1 %4656, label %4657, label %4696
+
+4657:                                             ; preds = %4653
+  %4658 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4659 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4660 = icmp eq i64 %4658, %4659
+  br i1 %4660, label %4661, label %4696
+
+4661:                                             ; preds = %4657
+  %4662 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4663 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4664 = icmp eq i64 %4662, %4663
+  br i1 %4664, label %4665, label %4696
+
+4665:                                             ; preds = %4661
+  %4666 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4666, ptr %290, align 8
+  %4667 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4667, ptr %291, align 8
+  %4668 = load i64, ptr %291, align 8
+  %4669 = load i64, ptr %290, align 8
+  %4670 = icmp sgt i64 %4668, %4669
+  br i1 %4670, label %4671, label %4695
+
+4671:                                             ; preds = %4665
+  %4672 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4672, ptr @P2_marking_member_0, align 16
+  %4673 = load volatile i32, ptr @P2_is_marked, align 4
+  %4674 = sub nsw i32 %4673, 4
+  store volatile i32 %4674, ptr @P2_is_marked, align 4
+  %4675 = load i64, ptr %290, align 8
+  %4676 = load i64, ptr %291, align 8
+  %4677 = add nsw i64 %4675, %4676
+  store i64 %4677, ptr %292, align 8
+  %4678 = load i64, ptr %290, align 8
+  %4679 = load volatile i32, ptr @P3_is_marked, align 4
+  %4680 = add nsw i32 %4679, 0
+  %4681 = sext i32 %4680 to i64
+  %4682 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4681
+  store volatile i64 %4678, ptr %4682, align 8
+  %4683 = load i64, ptr %291, align 8
+  %4684 = load volatile i32, ptr @P3_is_marked, align 4
+  %4685 = add nsw i32 %4684, 1
+  %4686 = sext i32 %4685 to i64
+  %4687 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4686
+  store volatile i64 %4683, ptr %4687, align 8
+  %4688 = load i64, ptr %292, align 8
+  %4689 = load volatile i32, ptr @P3_is_marked, align 4
+  %4690 = add nsw i32 %4689, 2
+  %4691 = sext i32 %4690 to i64
+  %4692 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4691
+  store volatile i64 %4688, ptr %4692, align 8
+  %4693 = load volatile i32, ptr @P3_is_marked, align 4
+  %4694 = add nsw i32 %4693, 3
+  store volatile i32 %4694, ptr @P3_is_marked, align 4
+  br label %4695
+
+4695:                                             ; preds = %4671, %4665
+  br label %4696
+
+4696:                                             ; preds = %4695, %4661, %4657, %4653, %4650
+  %4697 = load volatile i32, ptr @P2_is_marked, align 4
+  %4698 = icmp sge i32 %4697, 5
+  br i1 %4698, label %4699, label %4741
+
+4699:                                             ; preds = %4696
+  %4700 = load volatile i32, ptr @P3_is_marked, align 4
+  %4701 = add nsw i32 %4700, 3
+  %4702 = icmp sle i32 %4701, 6
+  br i1 %4702, label %4703, label %4741
+
+4703:                                             ; preds = %4699
+  %4704 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4705 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4706 = icmp eq i64 %4704, %4705
+  br i1 %4706, label %4707, label %4741
+
+4707:                                             ; preds = %4703
+  %4708 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4709 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4710 = icmp eq i64 %4708, %4709
+  br i1 %4710, label %4711, label %4741
+
+4711:                                             ; preds = %4707
+  %4712 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4712, ptr %293, align 8
+  %4713 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %4713, ptr %294, align 8
+  %4714 = load i64, ptr %294, align 8
+  %4715 = load i64, ptr %293, align 8
+  %4716 = icmp sgt i64 %4714, %4715
+  br i1 %4716, label %4717, label %4740
+
+4717:                                             ; preds = %4711
+  %4718 = load volatile i32, ptr @P2_is_marked, align 4
+  %4719 = sub nsw i32 %4718, 4
+  store volatile i32 %4719, ptr @P2_is_marked, align 4
+  %4720 = load i64, ptr %293, align 8
+  %4721 = load i64, ptr %294, align 8
+  %4722 = add nsw i64 %4720, %4721
+  store i64 %4722, ptr %295, align 8
+  %4723 = load i64, ptr %293, align 8
+  %4724 = load volatile i32, ptr @P3_is_marked, align 4
+  %4725 = add nsw i32 %4724, 0
+  %4726 = sext i32 %4725 to i64
+  %4727 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4726
+  store volatile i64 %4723, ptr %4727, align 8
+  %4728 = load i64, ptr %294, align 8
+  %4729 = load volatile i32, ptr @P3_is_marked, align 4
+  %4730 = add nsw i32 %4729, 1
+  %4731 = sext i32 %4730 to i64
+  %4732 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4731
+  store volatile i64 %4728, ptr %4732, align 8
+  %4733 = load i64, ptr %295, align 8
+  %4734 = load volatile i32, ptr @P3_is_marked, align 4
+  %4735 = add nsw i32 %4734, 2
+  %4736 = sext i32 %4735 to i64
+  %4737 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4736
+  store volatile i64 %4733, ptr %4737, align 8
+  %4738 = load volatile i32, ptr @P3_is_marked, align 4
+  %4739 = add nsw i32 %4738, 3
+  store volatile i32 %4739, ptr @P3_is_marked, align 4
+  br label %4740
+
+4740:                                             ; preds = %4717, %4711
+  br label %4741
+
+4741:                                             ; preds = %4740, %4707, %4703, %4699, %4696
+  %4742 = load volatile i32, ptr @P2_is_marked, align 4
+  %4743 = icmp sge i32 %4742, 5
+  br i1 %4743, label %4744, label %4787
+
+4744:                                             ; preds = %4741
+  %4745 = load volatile i32, ptr @P3_is_marked, align 4
+  %4746 = add nsw i32 %4745, 3
+  %4747 = icmp sle i32 %4746, 6
+  br i1 %4747, label %4748, label %4787
+
+4748:                                             ; preds = %4744
+  %4749 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4750 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4751 = icmp eq i64 %4749, %4750
+  br i1 %4751, label %4752, label %4787
+
+4752:                                             ; preds = %4748
+  %4753 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4754 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4755 = icmp eq i64 %4753, %4754
+  br i1 %4755, label %4756, label %4787
+
+4756:                                             ; preds = %4752
+  %4757 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4757, ptr %296, align 8
+  %4758 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4758, ptr %297, align 8
+  %4759 = load i64, ptr %297, align 8
+  %4760 = load i64, ptr %296, align 8
+  %4761 = icmp sgt i64 %4759, %4760
+  br i1 %4761, label %4762, label %4786
+
+4762:                                             ; preds = %4756
+  %4763 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %4763, ptr @P2_marking_member_0, align 16
+  %4764 = load volatile i32, ptr @P2_is_marked, align 4
+  %4765 = sub nsw i32 %4764, 4
+  store volatile i32 %4765, ptr @P2_is_marked, align 4
+  %4766 = load i64, ptr %296, align 8
+  %4767 = load i64, ptr %297, align 8
+  %4768 = add nsw i64 %4766, %4767
+  store i64 %4768, ptr %298, align 8
+  %4769 = load i64, ptr %296, align 8
+  %4770 = load volatile i32, ptr @P3_is_marked, align 4
+  %4771 = add nsw i32 %4770, 0
+  %4772 = sext i32 %4771 to i64
+  %4773 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4772
+  store volatile i64 %4769, ptr %4773, align 8
+  %4774 = load i64, ptr %297, align 8
+  %4775 = load volatile i32, ptr @P3_is_marked, align 4
+  %4776 = add nsw i32 %4775, 1
+  %4777 = sext i32 %4776 to i64
+  %4778 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4777
+  store volatile i64 %4774, ptr %4778, align 8
+  %4779 = load i64, ptr %298, align 8
+  %4780 = load volatile i32, ptr @P3_is_marked, align 4
+  %4781 = add nsw i32 %4780, 2
+  %4782 = sext i32 %4781 to i64
+  %4783 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4782
+  store volatile i64 %4779, ptr %4783, align 8
+  %4784 = load volatile i32, ptr @P3_is_marked, align 4
+  %4785 = add nsw i32 %4784, 3
+  store volatile i32 %4785, ptr @P3_is_marked, align 4
+  br label %4786
+
+4786:                                             ; preds = %4762, %4756
+  br label %4787
+
+4787:                                             ; preds = %4786, %4752, %4748, %4744, %4741
+  %4788 = load volatile i32, ptr @P2_is_marked, align 4
+  %4789 = icmp sge i32 %4788, 5
+  br i1 %4789, label %4790, label %4833
+
+4790:                                             ; preds = %4787
+  %4791 = load volatile i32, ptr @P3_is_marked, align 4
+  %4792 = add nsw i32 %4791, 3
+  %4793 = icmp sle i32 %4792, 6
+  br i1 %4793, label %4794, label %4833
+
+4794:                                             ; preds = %4790
+  %4795 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4796 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4797 = icmp eq i64 %4795, %4796
+  br i1 %4797, label %4798, label %4833
+
+4798:                                             ; preds = %4794
+  %4799 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4800 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4801 = icmp eq i64 %4799, %4800
+  br i1 %4801, label %4802, label %4833
+
+4802:                                             ; preds = %4798
+  %4803 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4803, ptr %299, align 8
+  %4804 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4804, ptr %300, align 8
+  %4805 = load i64, ptr %300, align 8
+  %4806 = load i64, ptr %299, align 8
+  %4807 = icmp sgt i64 %4805, %4806
+  br i1 %4807, label %4808, label %4832
+
+4808:                                             ; preds = %4802
+  %4809 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4809, ptr @P2_marking_member_0, align 16
+  %4810 = load volatile i32, ptr @P2_is_marked, align 4
+  %4811 = sub nsw i32 %4810, 4
+  store volatile i32 %4811, ptr @P2_is_marked, align 4
+  %4812 = load i64, ptr %299, align 8
+  %4813 = load i64, ptr %300, align 8
+  %4814 = add nsw i64 %4812, %4813
+  store i64 %4814, ptr %301, align 8
+  %4815 = load i64, ptr %299, align 8
+  %4816 = load volatile i32, ptr @P3_is_marked, align 4
+  %4817 = add nsw i32 %4816, 0
+  %4818 = sext i32 %4817 to i64
+  %4819 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4818
+  store volatile i64 %4815, ptr %4819, align 8
+  %4820 = load i64, ptr %300, align 8
+  %4821 = load volatile i32, ptr @P3_is_marked, align 4
+  %4822 = add nsw i32 %4821, 1
+  %4823 = sext i32 %4822 to i64
+  %4824 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4823
+  store volatile i64 %4820, ptr %4824, align 8
+  %4825 = load i64, ptr %301, align 8
+  %4826 = load volatile i32, ptr @P3_is_marked, align 4
+  %4827 = add nsw i32 %4826, 2
+  %4828 = sext i32 %4827 to i64
+  %4829 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4828
+  store volatile i64 %4825, ptr %4829, align 8
+  %4830 = load volatile i32, ptr @P3_is_marked, align 4
+  %4831 = add nsw i32 %4830, 3
+  store volatile i32 %4831, ptr @P3_is_marked, align 4
+  br label %4832
+
+4832:                                             ; preds = %4808, %4802
+  br label %4833
+
+4833:                                             ; preds = %4832, %4798, %4794, %4790, %4787
+  %4834 = load volatile i32, ptr @P2_is_marked, align 4
+  %4835 = icmp sge i32 %4834, 5
+  br i1 %4835, label %4836, label %4879
+
+4836:                                             ; preds = %4833
+  %4837 = load volatile i32, ptr @P3_is_marked, align 4
+  %4838 = add nsw i32 %4837, 3
+  %4839 = icmp sle i32 %4838, 6
+  br i1 %4839, label %4840, label %4879
+
+4840:                                             ; preds = %4836
+  %4841 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4842 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4843 = icmp eq i64 %4841, %4842
+  br i1 %4843, label %4844, label %4879
+
+4844:                                             ; preds = %4840
+  %4845 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4846 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4847 = icmp eq i64 %4845, %4846
+  br i1 %4847, label %4848, label %4879
+
+4848:                                             ; preds = %4844
+  %4849 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4849, ptr %302, align 8
+  %4850 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4850, ptr %303, align 8
+  %4851 = load i64, ptr %303, align 8
+  %4852 = load i64, ptr %302, align 8
+  %4853 = icmp sgt i64 %4851, %4852
+  br i1 %4853, label %4854, label %4878
+
+4854:                                             ; preds = %4848
+  %4855 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %4855, ptr @P2_marking_member_0, align 16
+  %4856 = load volatile i32, ptr @P2_is_marked, align 4
+  %4857 = sub nsw i32 %4856, 4
+  store volatile i32 %4857, ptr @P2_is_marked, align 4
+  %4858 = load i64, ptr %302, align 8
+  %4859 = load i64, ptr %303, align 8
+  %4860 = add nsw i64 %4858, %4859
+  store i64 %4860, ptr %304, align 8
+  %4861 = load i64, ptr %302, align 8
+  %4862 = load volatile i32, ptr @P3_is_marked, align 4
+  %4863 = add nsw i32 %4862, 0
+  %4864 = sext i32 %4863 to i64
+  %4865 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4864
+  store volatile i64 %4861, ptr %4865, align 8
+  %4866 = load i64, ptr %303, align 8
+  %4867 = load volatile i32, ptr @P3_is_marked, align 4
+  %4868 = add nsw i32 %4867, 1
+  %4869 = sext i32 %4868 to i64
+  %4870 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4869
+  store volatile i64 %4866, ptr %4870, align 8
+  %4871 = load i64, ptr %304, align 8
+  %4872 = load volatile i32, ptr @P3_is_marked, align 4
+  %4873 = add nsw i32 %4872, 2
+  %4874 = sext i32 %4873 to i64
+  %4875 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4874
+  store volatile i64 %4871, ptr %4875, align 8
+  %4876 = load volatile i32, ptr @P3_is_marked, align 4
+  %4877 = add nsw i32 %4876, 3
+  store volatile i32 %4877, ptr @P3_is_marked, align 4
+  br label %4878
+
+4878:                                             ; preds = %4854, %4848
+  br label %4879
+
+4879:                                             ; preds = %4878, %4844, %4840, %4836, %4833
+  %4880 = load volatile i32, ptr @P2_is_marked, align 4
+  %4881 = icmp sge i32 %4880, 5
+  br i1 %4881, label %4882, label %4924
+
+4882:                                             ; preds = %4879
+  %4883 = load volatile i32, ptr @P3_is_marked, align 4
+  %4884 = add nsw i32 %4883, 3
+  %4885 = icmp sle i32 %4884, 6
+  br i1 %4885, label %4886, label %4924
+
+4886:                                             ; preds = %4882
+  %4887 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4888 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4889 = icmp eq i64 %4887, %4888
+  br i1 %4889, label %4890, label %4924
+
+4890:                                             ; preds = %4886
+  %4891 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4892 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4893 = icmp eq i64 %4891, %4892
+  br i1 %4893, label %4894, label %4924
+
+4894:                                             ; preds = %4890
+  %4895 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4895, ptr %305, align 8
+  %4896 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4896, ptr %306, align 8
+  %4897 = load i64, ptr %306, align 8
+  %4898 = load i64, ptr %305, align 8
+  %4899 = icmp sgt i64 %4897, %4898
+  br i1 %4899, label %4900, label %4923
+
+4900:                                             ; preds = %4894
+  %4901 = load volatile i32, ptr @P2_is_marked, align 4
+  %4902 = sub nsw i32 %4901, 4
+  store volatile i32 %4902, ptr @P2_is_marked, align 4
+  %4903 = load i64, ptr %305, align 8
+  %4904 = load i64, ptr %306, align 8
+  %4905 = add nsw i64 %4903, %4904
+  store i64 %4905, ptr %307, align 8
+  %4906 = load i64, ptr %305, align 8
+  %4907 = load volatile i32, ptr @P3_is_marked, align 4
+  %4908 = add nsw i32 %4907, 0
+  %4909 = sext i32 %4908 to i64
+  %4910 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4909
+  store volatile i64 %4906, ptr %4910, align 8
+  %4911 = load i64, ptr %306, align 8
+  %4912 = load volatile i32, ptr @P3_is_marked, align 4
+  %4913 = add nsw i32 %4912, 1
+  %4914 = sext i32 %4913 to i64
+  %4915 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4914
+  store volatile i64 %4911, ptr %4915, align 8
+  %4916 = load i64, ptr %307, align 8
+  %4917 = load volatile i32, ptr @P3_is_marked, align 4
+  %4918 = add nsw i32 %4917, 2
+  %4919 = sext i32 %4918 to i64
+  %4920 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4919
+  store volatile i64 %4916, ptr %4920, align 8
+  %4921 = load volatile i32, ptr @P3_is_marked, align 4
+  %4922 = add nsw i32 %4921, 3
+  store volatile i32 %4922, ptr @P3_is_marked, align 4
+  br label %4923
+
+4923:                                             ; preds = %4900, %4894
+  br label %4924
+
+4924:                                             ; preds = %4923, %4890, %4886, %4882, %4879
+  %4925 = load volatile i32, ptr @P2_is_marked, align 4
+  %4926 = icmp sge i32 %4925, 5
+  br i1 %4926, label %4927, label %4970
+
+4927:                                             ; preds = %4924
+  %4928 = load volatile i32, ptr @P3_is_marked, align 4
+  %4929 = add nsw i32 %4928, 3
+  %4930 = icmp sle i32 %4929, 6
+  br i1 %4930, label %4931, label %4970
+
+4931:                                             ; preds = %4927
+  %4932 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4933 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4934 = icmp eq i64 %4932, %4933
+  br i1 %4934, label %4935, label %4970
+
+4935:                                             ; preds = %4931
+  %4936 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4937 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %4938 = icmp eq i64 %4936, %4937
+  br i1 %4938, label %4939, label %4970
+
+4939:                                             ; preds = %4935
+  %4940 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4940, ptr %308, align 8
+  %4941 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4941, ptr %309, align 8
+  %4942 = load i64, ptr %309, align 8
+  %4943 = load i64, ptr %308, align 8
+  %4944 = icmp sgt i64 %4942, %4943
+  br i1 %4944, label %4945, label %4969
+
+4945:                                             ; preds = %4939
+  %4946 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %4946, ptr @P2_marking_member_0, align 16
+  %4947 = load volatile i32, ptr @P2_is_marked, align 4
+  %4948 = sub nsw i32 %4947, 4
+  store volatile i32 %4948, ptr @P2_is_marked, align 4
+  %4949 = load i64, ptr %308, align 8
+  %4950 = load i64, ptr %309, align 8
+  %4951 = add nsw i64 %4949, %4950
+  store i64 %4951, ptr %310, align 8
+  %4952 = load i64, ptr %308, align 8
+  %4953 = load volatile i32, ptr @P3_is_marked, align 4
+  %4954 = add nsw i32 %4953, 0
+  %4955 = sext i32 %4954 to i64
+  %4956 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4955
+  store volatile i64 %4952, ptr %4956, align 8
+  %4957 = load i64, ptr %309, align 8
+  %4958 = load volatile i32, ptr @P3_is_marked, align 4
+  %4959 = add nsw i32 %4958, 1
+  %4960 = sext i32 %4959 to i64
+  %4961 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4960
+  store volatile i64 %4957, ptr %4961, align 8
+  %4962 = load i64, ptr %310, align 8
+  %4963 = load volatile i32, ptr @P3_is_marked, align 4
+  %4964 = add nsw i32 %4963, 2
+  %4965 = sext i32 %4964 to i64
+  %4966 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %4965
+  store volatile i64 %4962, ptr %4966, align 8
+  %4967 = load volatile i32, ptr @P3_is_marked, align 4
+  %4968 = add nsw i32 %4967, 3
+  store volatile i32 %4968, ptr @P3_is_marked, align 4
+  br label %4969
+
+4969:                                             ; preds = %4945, %4939
+  br label %4970
+
+4970:                                             ; preds = %4969, %4935, %4931, %4927, %4924
+  %4971 = load volatile i32, ptr @P2_is_marked, align 4
+  %4972 = icmp sge i32 %4971, 5
+  br i1 %4972, label %4973, label %5015
+
+4973:                                             ; preds = %4970
+  %4974 = load volatile i32, ptr @P3_is_marked, align 4
+  %4975 = add nsw i32 %4974, 3
+  %4976 = icmp sle i32 %4975, 6
+  br i1 %4976, label %4977, label %5015
+
+4977:                                             ; preds = %4973
+  %4978 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4979 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %4980 = icmp eq i64 %4978, %4979
+  br i1 %4980, label %4981, label %5015
+
+4981:                                             ; preds = %4977
+  %4982 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  %4983 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %4984 = icmp eq i64 %4982, %4983
+  br i1 %4984, label %4985, label %5015
+
+4985:                                             ; preds = %4981
+  %4986 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %4986, ptr %311, align 8
+  %4987 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %4987, ptr %312, align 8
+  %4988 = load i64, ptr %312, align 8
+  %4989 = load i64, ptr %311, align 8
+  %4990 = icmp sgt i64 %4988, %4989
+  br i1 %4990, label %4991, label %5014
+
+4991:                                             ; preds = %4985
+  %4992 = load volatile i32, ptr @P2_is_marked, align 4
+  %4993 = sub nsw i32 %4992, 4
+  store volatile i32 %4993, ptr @P2_is_marked, align 4
+  %4994 = load i64, ptr %311, align 8
+  %4995 = load i64, ptr %312, align 8
+  %4996 = add nsw i64 %4994, %4995
+  store i64 %4996, ptr %313, align 8
+  %4997 = load i64, ptr %311, align 8
+  %4998 = load volatile i32, ptr @P3_is_marked, align 4
+  %4999 = add nsw i32 %4998, 0
+  %5000 = sext i32 %4999 to i64
+  %5001 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5000
+  store volatile i64 %4997, ptr %5001, align 8
+  %5002 = load i64, ptr %312, align 8
+  %5003 = load volatile i32, ptr @P3_is_marked, align 4
+  %5004 = add nsw i32 %5003, 1
+  %5005 = sext i32 %5004 to i64
+  %5006 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5005
+  store volatile i64 %5002, ptr %5006, align 8
+  %5007 = load i64, ptr %313, align 8
+  %5008 = load volatile i32, ptr @P3_is_marked, align 4
+  %5009 = add nsw i32 %5008, 2
+  %5010 = sext i32 %5009 to i64
+  %5011 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5010
+  store volatile i64 %5007, ptr %5011, align 8
+  %5012 = load volatile i32, ptr @P3_is_marked, align 4
+  %5013 = add nsw i32 %5012, 3
+  store volatile i32 %5013, ptr @P3_is_marked, align 4
+  br label %5014
+
+5014:                                             ; preds = %4991, %4985
+  br label %5015
+
+5015:                                             ; preds = %5014, %4981, %4977, %4973, %4970
+  %5016 = load volatile i32, ptr @P2_is_marked, align 4
+  %5017 = icmp sge i32 %5016, 5
+  br i1 %5017, label %5018, label %5061
+
+5018:                                             ; preds = %5015
+  %5019 = load volatile i32, ptr @P3_is_marked, align 4
+  %5020 = add nsw i32 %5019, 3
+  %5021 = icmp sle i32 %5020, 6
+  br i1 %5021, label %5022, label %5061
+
+5022:                                             ; preds = %5018
+  %5023 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5024 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5025 = icmp eq i64 %5023, %5024
+  br i1 %5025, label %5026, label %5061
+
+5026:                                             ; preds = %5022
+  %5027 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5028 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5029 = icmp eq i64 %5027, %5028
+  br i1 %5029, label %5030, label %5061
+
+5030:                                             ; preds = %5026
+  %5031 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5031, ptr %314, align 8
+  %5032 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %5032, ptr %315, align 8
+  %5033 = load i64, ptr %315, align 8
+  %5034 = load i64, ptr %314, align 8
+  %5035 = icmp sgt i64 %5033, %5034
+  br i1 %5035, label %5036, label %5060
+
+5036:                                             ; preds = %5030
+  %5037 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %5037, ptr @P2_marking_member_0, align 16
+  %5038 = load volatile i32, ptr @P2_is_marked, align 4
+  %5039 = sub nsw i32 %5038, 4
+  store volatile i32 %5039, ptr @P2_is_marked, align 4
+  %5040 = load i64, ptr %314, align 8
+  %5041 = load i64, ptr %315, align 8
+  %5042 = add nsw i64 %5040, %5041
+  store i64 %5042, ptr %316, align 8
+  %5043 = load i64, ptr %314, align 8
+  %5044 = load volatile i32, ptr @P3_is_marked, align 4
+  %5045 = add nsw i32 %5044, 0
+  %5046 = sext i32 %5045 to i64
+  %5047 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5046
+  store volatile i64 %5043, ptr %5047, align 8
+  %5048 = load i64, ptr %315, align 8
+  %5049 = load volatile i32, ptr @P3_is_marked, align 4
+  %5050 = add nsw i32 %5049, 1
+  %5051 = sext i32 %5050 to i64
+  %5052 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5051
+  store volatile i64 %5048, ptr %5052, align 8
+  %5053 = load i64, ptr %316, align 8
+  %5054 = load volatile i32, ptr @P3_is_marked, align 4
+  %5055 = add nsw i32 %5054, 2
+  %5056 = sext i32 %5055 to i64
+  %5057 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5056
+  store volatile i64 %5053, ptr %5057, align 8
+  %5058 = load volatile i32, ptr @P3_is_marked, align 4
+  %5059 = add nsw i32 %5058, 3
+  store volatile i32 %5059, ptr @P3_is_marked, align 4
+  br label %5060
+
+5060:                                             ; preds = %5036, %5030
+  br label %5061
+
+5061:                                             ; preds = %5060, %5026, %5022, %5018, %5015
+  %5062 = load volatile i32, ptr @P2_is_marked, align 4
+  %5063 = icmp sge i32 %5062, 5
+  br i1 %5063, label %5064, label %5107
+
+5064:                                             ; preds = %5061
+  %5065 = load volatile i32, ptr @P3_is_marked, align 4
+  %5066 = add nsw i32 %5065, 3
+  %5067 = icmp sle i32 %5066, 6
+  br i1 %5067, label %5068, label %5107
+
+5068:                                             ; preds = %5064
+  %5069 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5070 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5071 = icmp eq i64 %5069, %5070
+  br i1 %5071, label %5072, label %5107
+
+5072:                                             ; preds = %5068
+  %5073 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5074 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5075 = icmp eq i64 %5073, %5074
+  br i1 %5075, label %5076, label %5107
+
+5076:                                             ; preds = %5072
+  %5077 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5077, ptr %317, align 8
+  %5078 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %5078, ptr %318, align 8
+  %5079 = load i64, ptr %318, align 8
+  %5080 = load i64, ptr %317, align 8
+  %5081 = icmp sgt i64 %5079, %5080
+  br i1 %5081, label %5082, label %5106
+
+5082:                                             ; preds = %5076
+  %5083 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %5083, ptr @P2_marking_member_0, align 16
+  %5084 = load volatile i32, ptr @P2_is_marked, align 4
+  %5085 = sub nsw i32 %5084, 4
+  store volatile i32 %5085, ptr @P2_is_marked, align 4
+  %5086 = load i64, ptr %317, align 8
+  %5087 = load i64, ptr %318, align 8
+  %5088 = add nsw i64 %5086, %5087
+  store i64 %5088, ptr %319, align 8
+  %5089 = load i64, ptr %317, align 8
+  %5090 = load volatile i32, ptr @P3_is_marked, align 4
+  %5091 = add nsw i32 %5090, 0
+  %5092 = sext i32 %5091 to i64
+  %5093 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5092
+  store volatile i64 %5089, ptr %5093, align 8
+  %5094 = load i64, ptr %318, align 8
+  %5095 = load volatile i32, ptr @P3_is_marked, align 4
+  %5096 = add nsw i32 %5095, 1
+  %5097 = sext i32 %5096 to i64
+  %5098 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5097
+  store volatile i64 %5094, ptr %5098, align 8
+  %5099 = load i64, ptr %319, align 8
+  %5100 = load volatile i32, ptr @P3_is_marked, align 4
+  %5101 = add nsw i32 %5100, 2
+  %5102 = sext i32 %5101 to i64
+  %5103 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5102
+  store volatile i64 %5099, ptr %5103, align 8
+  %5104 = load volatile i32, ptr @P3_is_marked, align 4
+  %5105 = add nsw i32 %5104, 3
+  store volatile i32 %5105, ptr @P3_is_marked, align 4
+  br label %5106
+
+5106:                                             ; preds = %5082, %5076
+  br label %5107
+
+5107:                                             ; preds = %5106, %5072, %5068, %5064, %5061
+  %5108 = load volatile i32, ptr @P2_is_marked, align 4
+  %5109 = icmp sge i32 %5108, 5
+  br i1 %5109, label %5110, label %5153
+
+5110:                                             ; preds = %5107
+  %5111 = load volatile i32, ptr @P3_is_marked, align 4
+  %5112 = add nsw i32 %5111, 3
+  %5113 = icmp sle i32 %5112, 6
+  br i1 %5113, label %5114, label %5153
+
+5114:                                             ; preds = %5110
+  %5115 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5116 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5117 = icmp eq i64 %5115, %5116
+  br i1 %5117, label %5118, label %5153
+
+5118:                                             ; preds = %5114
+  %5119 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5120 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5121 = icmp eq i64 %5119, %5120
+  br i1 %5121, label %5122, label %5153
+
+5122:                                             ; preds = %5118
+  %5123 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5123, ptr %320, align 8
+  %5124 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %5124, ptr %321, align 8
+  %5125 = load i64, ptr %321, align 8
+  %5126 = load i64, ptr %320, align 8
+  %5127 = icmp sgt i64 %5125, %5126
+  br i1 %5127, label %5128, label %5152
+
+5128:                                             ; preds = %5122
+  %5129 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %5129, ptr @P2_marking_member_0, align 16
+  %5130 = load volatile i32, ptr @P2_is_marked, align 4
+  %5131 = sub nsw i32 %5130, 4
+  store volatile i32 %5131, ptr @P2_is_marked, align 4
+  %5132 = load i64, ptr %320, align 8
+  %5133 = load i64, ptr %321, align 8
+  %5134 = add nsw i64 %5132, %5133
+  store i64 %5134, ptr %322, align 8
+  %5135 = load i64, ptr %320, align 8
+  %5136 = load volatile i32, ptr @P3_is_marked, align 4
+  %5137 = add nsw i32 %5136, 0
+  %5138 = sext i32 %5137 to i64
+  %5139 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5138
+  store volatile i64 %5135, ptr %5139, align 8
+  %5140 = load i64, ptr %321, align 8
+  %5141 = load volatile i32, ptr @P3_is_marked, align 4
+  %5142 = add nsw i32 %5141, 1
+  %5143 = sext i32 %5142 to i64
+  %5144 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5143
+  store volatile i64 %5140, ptr %5144, align 8
+  %5145 = load i64, ptr %322, align 8
+  %5146 = load volatile i32, ptr @P3_is_marked, align 4
+  %5147 = add nsw i32 %5146, 2
+  %5148 = sext i32 %5147 to i64
+  %5149 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5148
+  store volatile i64 %5145, ptr %5149, align 8
+  %5150 = load volatile i32, ptr @P3_is_marked, align 4
+  %5151 = add nsw i32 %5150, 3
+  store volatile i32 %5151, ptr @P3_is_marked, align 4
+  br label %5152
+
+5152:                                             ; preds = %5128, %5122
+  br label %5153
+
+5153:                                             ; preds = %5152, %5118, %5114, %5110, %5107
+  %5154 = load volatile i32, ptr @P2_is_marked, align 4
+  %5155 = icmp sge i32 %5154, 5
+  br i1 %5155, label %5156, label %5199
+
+5156:                                             ; preds = %5153
+  %5157 = load volatile i32, ptr @P3_is_marked, align 4
+  %5158 = add nsw i32 %5157, 3
+  %5159 = icmp sle i32 %5158, 6
+  br i1 %5159, label %5160, label %5199
+
+5160:                                             ; preds = %5156
+  %5161 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5162 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5163 = icmp eq i64 %5161, %5162
+  br i1 %5163, label %5164, label %5199
+
+5164:                                             ; preds = %5160
+  %5165 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5166 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5167 = icmp eq i64 %5165, %5166
+  br i1 %5167, label %5168, label %5199
+
+5168:                                             ; preds = %5164
+  %5169 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5169, ptr %323, align 8
+  %5170 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %5170, ptr %324, align 8
+  %5171 = load i64, ptr %324, align 8
+  %5172 = load i64, ptr %323, align 8
+  %5173 = icmp sgt i64 %5171, %5172
+  br i1 %5173, label %5174, label %5198
+
+5174:                                             ; preds = %5168
+  %5175 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %5175, ptr @P2_marking_member_0, align 16
+  %5176 = load volatile i32, ptr @P2_is_marked, align 4
+  %5177 = sub nsw i32 %5176, 4
+  store volatile i32 %5177, ptr @P2_is_marked, align 4
+  %5178 = load i64, ptr %323, align 8
+  %5179 = load i64, ptr %324, align 8
+  %5180 = add nsw i64 %5178, %5179
+  store i64 %5180, ptr %325, align 8
+  %5181 = load i64, ptr %323, align 8
+  %5182 = load volatile i32, ptr @P3_is_marked, align 4
+  %5183 = add nsw i32 %5182, 0
+  %5184 = sext i32 %5183 to i64
+  %5185 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5184
+  store volatile i64 %5181, ptr %5185, align 8
+  %5186 = load i64, ptr %324, align 8
+  %5187 = load volatile i32, ptr @P3_is_marked, align 4
+  %5188 = add nsw i32 %5187, 1
+  %5189 = sext i32 %5188 to i64
+  %5190 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5189
+  store volatile i64 %5186, ptr %5190, align 8
+  %5191 = load i64, ptr %325, align 8
+  %5192 = load volatile i32, ptr @P3_is_marked, align 4
+  %5193 = add nsw i32 %5192, 2
+  %5194 = sext i32 %5193 to i64
+  %5195 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5194
+  store volatile i64 %5191, ptr %5195, align 8
+  %5196 = load volatile i32, ptr @P3_is_marked, align 4
+  %5197 = add nsw i32 %5196, 3
+  store volatile i32 %5197, ptr @P3_is_marked, align 4
+  br label %5198
+
+5198:                                             ; preds = %5174, %5168
+  br label %5199
+
+5199:                                             ; preds = %5198, %5164, %5160, %5156, %5153
+  %5200 = load volatile i32, ptr @P2_is_marked, align 4
+  %5201 = icmp sge i32 %5200, 5
+  br i1 %5201, label %5202, label %5245
+
+5202:                                             ; preds = %5199
+  %5203 = load volatile i32, ptr @P3_is_marked, align 4
+  %5204 = add nsw i32 %5203, 3
+  %5205 = icmp sle i32 %5204, 6
+  br i1 %5205, label %5206, label %5245
+
+5206:                                             ; preds = %5202
+  %5207 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5208 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5209 = icmp eq i64 %5207, %5208
+  br i1 %5209, label %5210, label %5245
+
+5210:                                             ; preds = %5206
+  %5211 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5212 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5213 = icmp eq i64 %5211, %5212
+  br i1 %5213, label %5214, label %5245
+
+5214:                                             ; preds = %5210
+  %5215 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5215, ptr %326, align 8
+  %5216 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %5216, ptr %327, align 8
+  %5217 = load i64, ptr %327, align 8
+  %5218 = load i64, ptr %326, align 8
+  %5219 = icmp sgt i64 %5217, %5218
+  br i1 %5219, label %5220, label %5244
+
+5220:                                             ; preds = %5214
+  %5221 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %5221, ptr @P2_marking_member_0, align 16
+  %5222 = load volatile i32, ptr @P2_is_marked, align 4
+  %5223 = sub nsw i32 %5222, 4
+  store volatile i32 %5223, ptr @P2_is_marked, align 4
+  %5224 = load i64, ptr %326, align 8
+  %5225 = load i64, ptr %327, align 8
+  %5226 = add nsw i64 %5224, %5225
+  store i64 %5226, ptr %328, align 8
+  %5227 = load i64, ptr %326, align 8
+  %5228 = load volatile i32, ptr @P3_is_marked, align 4
+  %5229 = add nsw i32 %5228, 0
+  %5230 = sext i32 %5229 to i64
+  %5231 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5230
+  store volatile i64 %5227, ptr %5231, align 8
+  %5232 = load i64, ptr %327, align 8
+  %5233 = load volatile i32, ptr @P3_is_marked, align 4
+  %5234 = add nsw i32 %5233, 1
+  %5235 = sext i32 %5234 to i64
+  %5236 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5235
+  store volatile i64 %5232, ptr %5236, align 8
+  %5237 = load i64, ptr %328, align 8
+  %5238 = load volatile i32, ptr @P3_is_marked, align 4
+  %5239 = add nsw i32 %5238, 2
+  %5240 = sext i32 %5239 to i64
+  %5241 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5240
+  store volatile i64 %5237, ptr %5241, align 8
+  %5242 = load volatile i32, ptr @P3_is_marked, align 4
+  %5243 = add nsw i32 %5242, 3
+  store volatile i32 %5243, ptr @P3_is_marked, align 4
+  br label %5244
+
+5244:                                             ; preds = %5220, %5214
+  br label %5245
+
+5245:                                             ; preds = %5244, %5210, %5206, %5202, %5199
+  %5246 = load volatile i32, ptr @P2_is_marked, align 4
+  %5247 = icmp sge i32 %5246, 5
+  br i1 %5247, label %5248, label %5291
+
+5248:                                             ; preds = %5245
+  %5249 = load volatile i32, ptr @P3_is_marked, align 4
+  %5250 = add nsw i32 %5249, 3
+  %5251 = icmp sle i32 %5250, 6
+  br i1 %5251, label %5252, label %5291
+
+5252:                                             ; preds = %5248
+  %5253 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5254 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5255 = icmp eq i64 %5253, %5254
+  br i1 %5255, label %5256, label %5291
+
+5256:                                             ; preds = %5252
+  %5257 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5258 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5259 = icmp eq i64 %5257, %5258
+  br i1 %5259, label %5260, label %5291
+
+5260:                                             ; preds = %5256
+  %5261 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5261, ptr %329, align 8
+  %5262 = load volatile i64, ptr @P2_marking_member_0, align 16
+  store i64 %5262, ptr %330, align 8
+  %5263 = load i64, ptr %330, align 8
+  %5264 = load i64, ptr %329, align 8
+  %5265 = icmp sgt i64 %5263, %5264
+  br i1 %5265, label %5266, label %5290
+
+5266:                                             ; preds = %5260
+  %5267 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %5267, ptr @P2_marking_member_0, align 16
+  %5268 = load volatile i32, ptr @P2_is_marked, align 4
+  %5269 = sub nsw i32 %5268, 4
+  store volatile i32 %5269, ptr @P2_is_marked, align 4
+  %5270 = load i64, ptr %329, align 8
+  %5271 = load i64, ptr %330, align 8
+  %5272 = add nsw i64 %5270, %5271
+  store i64 %5272, ptr %331, align 8
+  %5273 = load i64, ptr %329, align 8
+  %5274 = load volatile i32, ptr @P3_is_marked, align 4
+  %5275 = add nsw i32 %5274, 0
+  %5276 = sext i32 %5275 to i64
+  %5277 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5276
+  store volatile i64 %5273, ptr %5277, align 8
+  %5278 = load i64, ptr %330, align 8
+  %5279 = load volatile i32, ptr @P3_is_marked, align 4
+  %5280 = add nsw i32 %5279, 1
+  %5281 = sext i32 %5280 to i64
+  %5282 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5281
+  store volatile i64 %5278, ptr %5282, align 8
+  %5283 = load i64, ptr %331, align 8
+  %5284 = load volatile i32, ptr @P3_is_marked, align 4
+  %5285 = add nsw i32 %5284, 2
+  %5286 = sext i32 %5285 to i64
+  %5287 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5286
+  store volatile i64 %5283, ptr %5287, align 8
+  %5288 = load volatile i32, ptr @P3_is_marked, align 4
+  %5289 = add nsw i32 %5288, 3
+  store volatile i32 %5289, ptr @P3_is_marked, align 4
+  br label %5290
+
+5290:                                             ; preds = %5266, %5260
+  br label %5291
+
+5291:                                             ; preds = %5290, %5256, %5252, %5248, %5245
+  %5292 = load volatile i32, ptr @P2_is_marked, align 4
+  %5293 = icmp sge i32 %5292, 5
+  br i1 %5293, label %5294, label %5337
+
+5294:                                             ; preds = %5291
+  %5295 = load volatile i32, ptr @P3_is_marked, align 4
+  %5296 = add nsw i32 %5295, 3
+  %5297 = icmp sle i32 %5296, 6
+  br i1 %5297, label %5298, label %5337
+
+5298:                                             ; preds = %5294
+  %5299 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5300 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5301 = icmp eq i64 %5299, %5300
+  br i1 %5301, label %5302, label %5337
+
+5302:                                             ; preds = %5298
+  %5303 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5304 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5305 = icmp eq i64 %5303, %5304
+  br i1 %5305, label %5306, label %5337
+
+5306:                                             ; preds = %5302
+  %5307 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5307, ptr %332, align 8
+  %5308 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %5308, ptr %333, align 8
+  %5309 = load i64, ptr %333, align 8
+  %5310 = load i64, ptr %332, align 8
+  %5311 = icmp sgt i64 %5309, %5310
+  br i1 %5311, label %5312, label %5336
+
+5312:                                             ; preds = %5306
+  %5313 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %5313, ptr @P2_marking_member_0, align 16
+  %5314 = load volatile i32, ptr @P2_is_marked, align 4
+  %5315 = sub nsw i32 %5314, 4
+  store volatile i32 %5315, ptr @P2_is_marked, align 4
+  %5316 = load i64, ptr %332, align 8
+  %5317 = load i64, ptr %333, align 8
+  %5318 = add nsw i64 %5316, %5317
+  store i64 %5318, ptr %334, align 8
+  %5319 = load i64, ptr %332, align 8
+  %5320 = load volatile i32, ptr @P3_is_marked, align 4
+  %5321 = add nsw i32 %5320, 0
+  %5322 = sext i32 %5321 to i64
+  %5323 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5322
+  store volatile i64 %5319, ptr %5323, align 8
+  %5324 = load i64, ptr %333, align 8
+  %5325 = load volatile i32, ptr @P3_is_marked, align 4
+  %5326 = add nsw i32 %5325, 1
+  %5327 = sext i32 %5326 to i64
+  %5328 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5327
+  store volatile i64 %5324, ptr %5328, align 8
+  %5329 = load i64, ptr %334, align 8
+  %5330 = load volatile i32, ptr @P3_is_marked, align 4
+  %5331 = add nsw i32 %5330, 2
+  %5332 = sext i32 %5331 to i64
+  %5333 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5332
+  store volatile i64 %5329, ptr %5333, align 8
+  %5334 = load volatile i32, ptr @P3_is_marked, align 4
+  %5335 = add nsw i32 %5334, 3
+  store volatile i32 %5335, ptr @P3_is_marked, align 4
+  br label %5336
+
+5336:                                             ; preds = %5312, %5306
+  br label %5337
+
+5337:                                             ; preds = %5336, %5302, %5298, %5294, %5291
+  %5338 = load volatile i32, ptr @P2_is_marked, align 4
+  %5339 = icmp sge i32 %5338, 5
+  br i1 %5339, label %5340, label %5383
+
+5340:                                             ; preds = %5337
+  %5341 = load volatile i32, ptr @P3_is_marked, align 4
+  %5342 = add nsw i32 %5341, 3
+  %5343 = icmp sle i32 %5342, 6
+  br i1 %5343, label %5344, label %5383
+
+5344:                                             ; preds = %5340
+  %5345 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5346 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5347 = icmp eq i64 %5345, %5346
+  br i1 %5347, label %5348, label %5383
+
+5348:                                             ; preds = %5344
+  %5349 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5350 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5351 = icmp eq i64 %5349, %5350
+  br i1 %5351, label %5352, label %5383
+
+5352:                                             ; preds = %5348
+  %5353 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5353, ptr %335, align 8
+  %5354 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %5354, ptr %336, align 8
+  %5355 = load i64, ptr %336, align 8
+  %5356 = load i64, ptr %335, align 8
+  %5357 = icmp sgt i64 %5355, %5356
+  br i1 %5357, label %5358, label %5382
+
+5358:                                             ; preds = %5352
+  %5359 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %5359, ptr @P2_marking_member_0, align 16
+  %5360 = load volatile i32, ptr @P2_is_marked, align 4
+  %5361 = sub nsw i32 %5360, 4
+  store volatile i32 %5361, ptr @P2_is_marked, align 4
+  %5362 = load i64, ptr %335, align 8
+  %5363 = load i64, ptr %336, align 8
+  %5364 = add nsw i64 %5362, %5363
+  store i64 %5364, ptr %337, align 8
+  %5365 = load i64, ptr %335, align 8
+  %5366 = load volatile i32, ptr @P3_is_marked, align 4
+  %5367 = add nsw i32 %5366, 0
+  %5368 = sext i32 %5367 to i64
+  %5369 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5368
+  store volatile i64 %5365, ptr %5369, align 8
+  %5370 = load i64, ptr %336, align 8
+  %5371 = load volatile i32, ptr @P3_is_marked, align 4
+  %5372 = add nsw i32 %5371, 1
+  %5373 = sext i32 %5372 to i64
+  %5374 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5373
+  store volatile i64 %5370, ptr %5374, align 8
+  %5375 = load i64, ptr %337, align 8
+  %5376 = load volatile i32, ptr @P3_is_marked, align 4
+  %5377 = add nsw i32 %5376, 2
+  %5378 = sext i32 %5377 to i64
+  %5379 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5378
+  store volatile i64 %5375, ptr %5379, align 8
+  %5380 = load volatile i32, ptr @P3_is_marked, align 4
+  %5381 = add nsw i32 %5380, 3
+  store volatile i32 %5381, ptr @P3_is_marked, align 4
+  br label %5382
+
+5382:                                             ; preds = %5358, %5352
+  br label %5383
+
+5383:                                             ; preds = %5382, %5348, %5344, %5340, %5337
+  %5384 = load volatile i32, ptr @P2_is_marked, align 4
+  %5385 = icmp sge i32 %5384, 5
+  br i1 %5385, label %5386, label %5429
+
+5386:                                             ; preds = %5383
+  %5387 = load volatile i32, ptr @P3_is_marked, align 4
+  %5388 = add nsw i32 %5387, 3
+  %5389 = icmp sle i32 %5388, 6
+  br i1 %5389, label %5390, label %5429
+
+5390:                                             ; preds = %5386
+  %5391 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5392 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5393 = icmp eq i64 %5391, %5392
+  br i1 %5393, label %5394, label %5429
+
+5394:                                             ; preds = %5390
+  %5395 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5396 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5397 = icmp eq i64 %5395, %5396
+  br i1 %5397, label %5398, label %5429
+
+5398:                                             ; preds = %5394
+  %5399 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5399, ptr %338, align 8
+  %5400 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %5400, ptr %339, align 8
+  %5401 = load i64, ptr %339, align 8
+  %5402 = load i64, ptr %338, align 8
+  %5403 = icmp sgt i64 %5401, %5402
+  br i1 %5403, label %5404, label %5428
+
+5404:                                             ; preds = %5398
+  %5405 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %5405, ptr @P2_marking_member_0, align 16
+  %5406 = load volatile i32, ptr @P2_is_marked, align 4
+  %5407 = sub nsw i32 %5406, 4
+  store volatile i32 %5407, ptr @P2_is_marked, align 4
+  %5408 = load i64, ptr %338, align 8
+  %5409 = load i64, ptr %339, align 8
+  %5410 = add nsw i64 %5408, %5409
+  store i64 %5410, ptr %340, align 8
+  %5411 = load i64, ptr %338, align 8
+  %5412 = load volatile i32, ptr @P3_is_marked, align 4
+  %5413 = add nsw i32 %5412, 0
+  %5414 = sext i32 %5413 to i64
+  %5415 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5414
+  store volatile i64 %5411, ptr %5415, align 8
+  %5416 = load i64, ptr %339, align 8
+  %5417 = load volatile i32, ptr @P3_is_marked, align 4
+  %5418 = add nsw i32 %5417, 1
+  %5419 = sext i32 %5418 to i64
+  %5420 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5419
+  store volatile i64 %5416, ptr %5420, align 8
+  %5421 = load i64, ptr %340, align 8
+  %5422 = load volatile i32, ptr @P3_is_marked, align 4
+  %5423 = add nsw i32 %5422, 2
+  %5424 = sext i32 %5423 to i64
+  %5425 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5424
+  store volatile i64 %5421, ptr %5425, align 8
+  %5426 = load volatile i32, ptr @P3_is_marked, align 4
+  %5427 = add nsw i32 %5426, 3
+  store volatile i32 %5427, ptr @P3_is_marked, align 4
+  br label %5428
+
+5428:                                             ; preds = %5404, %5398
+  br label %5429
+
+5429:                                             ; preds = %5428, %5394, %5390, %5386, %5383
+  %5430 = load volatile i32, ptr @P2_is_marked, align 4
+  %5431 = icmp sge i32 %5430, 5
+  br i1 %5431, label %5432, label %5474
+
+5432:                                             ; preds = %5429
+  %5433 = load volatile i32, ptr @P3_is_marked, align 4
+  %5434 = add nsw i32 %5433, 3
+  %5435 = icmp sle i32 %5434, 6
+  br i1 %5435, label %5436, label %5474
+
+5436:                                             ; preds = %5432
+  %5437 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5438 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5439 = icmp eq i64 %5437, %5438
+  br i1 %5439, label %5440, label %5474
+
+5440:                                             ; preds = %5436
+  %5441 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5442 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5443 = icmp eq i64 %5441, %5442
+  br i1 %5443, label %5444, label %5474
+
+5444:                                             ; preds = %5440
+  %5445 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5445, ptr %341, align 8
+  %5446 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %5446, ptr %342, align 8
+  %5447 = load i64, ptr %342, align 8
+  %5448 = load i64, ptr %341, align 8
+  %5449 = icmp sgt i64 %5447, %5448
+  br i1 %5449, label %5450, label %5473
+
+5450:                                             ; preds = %5444
+  %5451 = load volatile i32, ptr @P2_is_marked, align 4
+  %5452 = sub nsw i32 %5451, 4
+  store volatile i32 %5452, ptr @P2_is_marked, align 4
+  %5453 = load i64, ptr %341, align 8
+  %5454 = load i64, ptr %342, align 8
+  %5455 = add nsw i64 %5453, %5454
+  store i64 %5455, ptr %343, align 8
+  %5456 = load i64, ptr %341, align 8
+  %5457 = load volatile i32, ptr @P3_is_marked, align 4
+  %5458 = add nsw i32 %5457, 0
+  %5459 = sext i32 %5458 to i64
+  %5460 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5459
+  store volatile i64 %5456, ptr %5460, align 8
+  %5461 = load i64, ptr %342, align 8
+  %5462 = load volatile i32, ptr @P3_is_marked, align 4
+  %5463 = add nsw i32 %5462, 1
+  %5464 = sext i32 %5463 to i64
+  %5465 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5464
+  store volatile i64 %5461, ptr %5465, align 8
+  %5466 = load i64, ptr %343, align 8
+  %5467 = load volatile i32, ptr @P3_is_marked, align 4
+  %5468 = add nsw i32 %5467, 2
+  %5469 = sext i32 %5468 to i64
+  %5470 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5469
+  store volatile i64 %5466, ptr %5470, align 8
+  %5471 = load volatile i32, ptr @P3_is_marked, align 4
+  %5472 = add nsw i32 %5471, 3
+  store volatile i32 %5472, ptr @P3_is_marked, align 4
+  br label %5473
+
+5473:                                             ; preds = %5450, %5444
+  br label %5474
+
+5474:                                             ; preds = %5473, %5440, %5436, %5432, %5429
+  %5475 = load volatile i32, ptr @P2_is_marked, align 4
+  %5476 = icmp sge i32 %5475, 5
+  br i1 %5476, label %5477, label %5520
+
+5477:                                             ; preds = %5474
+  %5478 = load volatile i32, ptr @P3_is_marked, align 4
+  %5479 = add nsw i32 %5478, 3
+  %5480 = icmp sle i32 %5479, 6
+  br i1 %5480, label %5481, label %5520
+
+5481:                                             ; preds = %5477
+  %5482 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5483 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5484 = icmp eq i64 %5482, %5483
+  br i1 %5484, label %5485, label %5520
+
+5485:                                             ; preds = %5481
+  %5486 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5487 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5488 = icmp eq i64 %5486, %5487
+  br i1 %5488, label %5489, label %5520
+
+5489:                                             ; preds = %5485
+  %5490 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5490, ptr %344, align 8
+  %5491 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %5491, ptr %345, align 8
+  %5492 = load i64, ptr %345, align 8
+  %5493 = load i64, ptr %344, align 8
+  %5494 = icmp sgt i64 %5492, %5493
+  br i1 %5494, label %5495, label %5519
+
+5495:                                             ; preds = %5489
+  %5496 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %5496, ptr @P2_marking_member_0, align 16
+  %5497 = load volatile i32, ptr @P2_is_marked, align 4
+  %5498 = sub nsw i32 %5497, 4
+  store volatile i32 %5498, ptr @P2_is_marked, align 4
+  %5499 = load i64, ptr %344, align 8
+  %5500 = load i64, ptr %345, align 8
+  %5501 = add nsw i64 %5499, %5500
+  store i64 %5501, ptr %346, align 8
+  %5502 = load i64, ptr %344, align 8
+  %5503 = load volatile i32, ptr @P3_is_marked, align 4
+  %5504 = add nsw i32 %5503, 0
+  %5505 = sext i32 %5504 to i64
+  %5506 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5505
+  store volatile i64 %5502, ptr %5506, align 8
+  %5507 = load i64, ptr %345, align 8
+  %5508 = load volatile i32, ptr @P3_is_marked, align 4
+  %5509 = add nsw i32 %5508, 1
+  %5510 = sext i32 %5509 to i64
+  %5511 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5510
+  store volatile i64 %5507, ptr %5511, align 8
+  %5512 = load i64, ptr %346, align 8
+  %5513 = load volatile i32, ptr @P3_is_marked, align 4
+  %5514 = add nsw i32 %5513, 2
+  %5515 = sext i32 %5514 to i64
+  %5516 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5515
+  store volatile i64 %5512, ptr %5516, align 8
+  %5517 = load volatile i32, ptr @P3_is_marked, align 4
+  %5518 = add nsw i32 %5517, 3
+  store volatile i32 %5518, ptr @P3_is_marked, align 4
+  br label %5519
+
+5519:                                             ; preds = %5495, %5489
+  br label %5520
+
+5520:                                             ; preds = %5519, %5485, %5481, %5477, %5474
+  %5521 = load volatile i32, ptr @P2_is_marked, align 4
+  %5522 = icmp sge i32 %5521, 5
+  br i1 %5522, label %5523, label %5565
+
+5523:                                             ; preds = %5520
+  %5524 = load volatile i32, ptr @P3_is_marked, align 4
+  %5525 = add nsw i32 %5524, 3
+  %5526 = icmp sle i32 %5525, 6
+  br i1 %5526, label %5527, label %5565
+
+5527:                                             ; preds = %5523
+  %5528 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5529 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5530 = icmp eq i64 %5528, %5529
+  br i1 %5530, label %5531, label %5565
+
+5531:                                             ; preds = %5527
+  %5532 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5533 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5534 = icmp eq i64 %5532, %5533
+  br i1 %5534, label %5535, label %5565
+
+5535:                                             ; preds = %5531
+  %5536 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5536, ptr %347, align 8
+  %5537 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store i64 %5537, ptr %348, align 8
+  %5538 = load i64, ptr %348, align 8
+  %5539 = load i64, ptr %347, align 8
+  %5540 = icmp sgt i64 %5538, %5539
+  br i1 %5540, label %5541, label %5564
+
+5541:                                             ; preds = %5535
+  %5542 = load volatile i32, ptr @P2_is_marked, align 4
+  %5543 = sub nsw i32 %5542, 4
+  store volatile i32 %5543, ptr @P2_is_marked, align 4
+  %5544 = load i64, ptr %347, align 8
+  %5545 = load i64, ptr %348, align 8
+  %5546 = add nsw i64 %5544, %5545
+  store i64 %5546, ptr %349, align 8
+  %5547 = load i64, ptr %347, align 8
+  %5548 = load volatile i32, ptr @P3_is_marked, align 4
+  %5549 = add nsw i32 %5548, 0
+  %5550 = sext i32 %5549 to i64
+  %5551 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5550
+  store volatile i64 %5547, ptr %5551, align 8
+  %5552 = load i64, ptr %348, align 8
+  %5553 = load volatile i32, ptr @P3_is_marked, align 4
+  %5554 = add nsw i32 %5553, 1
+  %5555 = sext i32 %5554 to i64
+  %5556 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5555
+  store volatile i64 %5552, ptr %5556, align 8
+  %5557 = load i64, ptr %349, align 8
+  %5558 = load volatile i32, ptr @P3_is_marked, align 4
+  %5559 = add nsw i32 %5558, 2
+  %5560 = sext i32 %5559 to i64
+  %5561 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5560
+  store volatile i64 %5557, ptr %5561, align 8
+  %5562 = load volatile i32, ptr @P3_is_marked, align 4
+  %5563 = add nsw i32 %5562, 3
+  store volatile i32 %5563, ptr @P3_is_marked, align 4
+  br label %5564
+
+5564:                                             ; preds = %5541, %5535
+  br label %5565
+
+5565:                                             ; preds = %5564, %5531, %5527, %5523, %5520
+  %5566 = load volatile i32, ptr @P2_is_marked, align 4
+  %5567 = icmp sge i32 %5566, 5
+  br i1 %5567, label %5568, label %5611
+
+5568:                                             ; preds = %5565
+  %5569 = load volatile i32, ptr @P3_is_marked, align 4
+  %5570 = add nsw i32 %5569, 3
+  %5571 = icmp sle i32 %5570, 6
+  br i1 %5571, label %5572, label %5611
+
+5572:                                             ; preds = %5568
+  %5573 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5574 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5575 = icmp eq i64 %5573, %5574
+  br i1 %5575, label %5576, label %5611
+
+5576:                                             ; preds = %5572
+  %5577 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5578 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5579 = icmp eq i64 %5577, %5578
+  br i1 %5579, label %5580, label %5611
+
+5580:                                             ; preds = %5576
+  %5581 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5581, ptr %350, align 8
+  %5582 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %5582, ptr %351, align 8
+  %5583 = load i64, ptr %351, align 8
+  %5584 = load i64, ptr %350, align 8
+  %5585 = icmp sgt i64 %5583, %5584
+  br i1 %5585, label %5586, label %5610
+
+5586:                                             ; preds = %5580
+  %5587 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %5587, ptr @P2_marking_member_0, align 16
+  %5588 = load volatile i32, ptr @P2_is_marked, align 4
+  %5589 = sub nsw i32 %5588, 4
+  store volatile i32 %5589, ptr @P2_is_marked, align 4
+  %5590 = load i64, ptr %350, align 8
+  %5591 = load i64, ptr %351, align 8
+  %5592 = add nsw i64 %5590, %5591
+  store i64 %5592, ptr %352, align 8
+  %5593 = load i64, ptr %350, align 8
+  %5594 = load volatile i32, ptr @P3_is_marked, align 4
+  %5595 = add nsw i32 %5594, 0
+  %5596 = sext i32 %5595 to i64
+  %5597 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5596
+  store volatile i64 %5593, ptr %5597, align 8
+  %5598 = load i64, ptr %351, align 8
+  %5599 = load volatile i32, ptr @P3_is_marked, align 4
+  %5600 = add nsw i32 %5599, 1
+  %5601 = sext i32 %5600 to i64
+  %5602 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5601
+  store volatile i64 %5598, ptr %5602, align 8
+  %5603 = load i64, ptr %352, align 8
+  %5604 = load volatile i32, ptr @P3_is_marked, align 4
+  %5605 = add nsw i32 %5604, 2
+  %5606 = sext i32 %5605 to i64
+  %5607 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5606
+  store volatile i64 %5603, ptr %5607, align 8
+  %5608 = load volatile i32, ptr @P3_is_marked, align 4
+  %5609 = add nsw i32 %5608, 3
+  store volatile i32 %5609, ptr @P3_is_marked, align 4
+  br label %5610
+
+5610:                                             ; preds = %5586, %5580
+  br label %5611
+
+5611:                                             ; preds = %5610, %5576, %5572, %5568, %5565
+  %5612 = load volatile i32, ptr @P2_is_marked, align 4
+  %5613 = icmp sge i32 %5612, 5
+  br i1 %5613, label %5614, label %5657
+
+5614:                                             ; preds = %5611
+  %5615 = load volatile i32, ptr @P3_is_marked, align 4
+  %5616 = add nsw i32 %5615, 3
+  %5617 = icmp sle i32 %5616, 6
+  br i1 %5617, label %5618, label %5657
+
+5618:                                             ; preds = %5614
+  %5619 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5620 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5621 = icmp eq i64 %5619, %5620
+  br i1 %5621, label %5622, label %5657
+
+5622:                                             ; preds = %5618
+  %5623 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5624 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5625 = icmp eq i64 %5623, %5624
+  br i1 %5625, label %5626, label %5657
+
+5626:                                             ; preds = %5622
+  %5627 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5627, ptr %353, align 8
+  %5628 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %5628, ptr %354, align 8
+  %5629 = load i64, ptr %354, align 8
+  %5630 = load i64, ptr %353, align 8
+  %5631 = icmp sgt i64 %5629, %5630
+  br i1 %5631, label %5632, label %5656
+
+5632:                                             ; preds = %5626
+  %5633 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %5633, ptr @P2_marking_member_0, align 16
+  %5634 = load volatile i32, ptr @P2_is_marked, align 4
+  %5635 = sub nsw i32 %5634, 4
+  store volatile i32 %5635, ptr @P2_is_marked, align 4
+  %5636 = load i64, ptr %353, align 8
+  %5637 = load i64, ptr %354, align 8
+  %5638 = add nsw i64 %5636, %5637
+  store i64 %5638, ptr %355, align 8
+  %5639 = load i64, ptr %353, align 8
+  %5640 = load volatile i32, ptr @P3_is_marked, align 4
+  %5641 = add nsw i32 %5640, 0
+  %5642 = sext i32 %5641 to i64
+  %5643 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5642
+  store volatile i64 %5639, ptr %5643, align 8
+  %5644 = load i64, ptr %354, align 8
+  %5645 = load volatile i32, ptr @P3_is_marked, align 4
+  %5646 = add nsw i32 %5645, 1
+  %5647 = sext i32 %5646 to i64
+  %5648 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5647
+  store volatile i64 %5644, ptr %5648, align 8
+  %5649 = load i64, ptr %355, align 8
+  %5650 = load volatile i32, ptr @P3_is_marked, align 4
+  %5651 = add nsw i32 %5650, 2
+  %5652 = sext i32 %5651 to i64
+  %5653 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5652
+  store volatile i64 %5649, ptr %5653, align 8
+  %5654 = load volatile i32, ptr @P3_is_marked, align 4
+  %5655 = add nsw i32 %5654, 3
+  store volatile i32 %5655, ptr @P3_is_marked, align 4
+  br label %5656
+
+5656:                                             ; preds = %5632, %5626
+  br label %5657
+
+5657:                                             ; preds = %5656, %5622, %5618, %5614, %5611
+  %5658 = load volatile i32, ptr @P2_is_marked, align 4
+  %5659 = icmp sge i32 %5658, 5
+  br i1 %5659, label %5660, label %5703
+
+5660:                                             ; preds = %5657
+  %5661 = load volatile i32, ptr @P3_is_marked, align 4
+  %5662 = add nsw i32 %5661, 3
+  %5663 = icmp sle i32 %5662, 6
+  br i1 %5663, label %5664, label %5703
+
+5664:                                             ; preds = %5660
+  %5665 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5666 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5667 = icmp eq i64 %5665, %5666
+  br i1 %5667, label %5668, label %5703
+
+5668:                                             ; preds = %5664
+  %5669 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5670 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5671 = icmp eq i64 %5669, %5670
+  br i1 %5671, label %5672, label %5703
+
+5672:                                             ; preds = %5668
+  %5673 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5673, ptr %356, align 8
+  %5674 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %5674, ptr %357, align 8
+  %5675 = load i64, ptr %357, align 8
+  %5676 = load i64, ptr %356, align 8
+  %5677 = icmp sgt i64 %5675, %5676
+  br i1 %5677, label %5678, label %5702
+
+5678:                                             ; preds = %5672
+  %5679 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store volatile i64 %5679, ptr @P2_marking_member_0, align 16
+  %5680 = load volatile i32, ptr @P2_is_marked, align 4
+  %5681 = sub nsw i32 %5680, 4
+  store volatile i32 %5681, ptr @P2_is_marked, align 4
+  %5682 = load i64, ptr %356, align 8
+  %5683 = load i64, ptr %357, align 8
+  %5684 = add nsw i64 %5682, %5683
+  store i64 %5684, ptr %358, align 8
+  %5685 = load i64, ptr %356, align 8
+  %5686 = load volatile i32, ptr @P3_is_marked, align 4
+  %5687 = add nsw i32 %5686, 0
+  %5688 = sext i32 %5687 to i64
+  %5689 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5688
+  store volatile i64 %5685, ptr %5689, align 8
+  %5690 = load i64, ptr %357, align 8
+  %5691 = load volatile i32, ptr @P3_is_marked, align 4
+  %5692 = add nsw i32 %5691, 1
+  %5693 = sext i32 %5692 to i64
+  %5694 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5693
+  store volatile i64 %5690, ptr %5694, align 8
+  %5695 = load i64, ptr %358, align 8
+  %5696 = load volatile i32, ptr @P3_is_marked, align 4
+  %5697 = add nsw i32 %5696, 2
+  %5698 = sext i32 %5697 to i64
+  %5699 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5698
+  store volatile i64 %5695, ptr %5699, align 8
+  %5700 = load volatile i32, ptr @P3_is_marked, align 4
+  %5701 = add nsw i32 %5700, 3
+  store volatile i32 %5701, ptr @P3_is_marked, align 4
+  br label %5702
+
+5702:                                             ; preds = %5678, %5672
+  br label %5703
+
+5703:                                             ; preds = %5702, %5668, %5664, %5660, %5657
+  %5704 = load volatile i32, ptr @P2_is_marked, align 4
+  %5705 = icmp sge i32 %5704, 5
+  br i1 %5705, label %5706, label %5748
+
+5706:                                             ; preds = %5703
+  %5707 = load volatile i32, ptr @P3_is_marked, align 4
+  %5708 = add nsw i32 %5707, 3
+  %5709 = icmp sle i32 %5708, 6
+  br i1 %5709, label %5710, label %5748
+
+5710:                                             ; preds = %5706
+  %5711 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5712 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5713 = icmp eq i64 %5711, %5712
+  br i1 %5713, label %5714, label %5748
+
+5714:                                             ; preds = %5710
+  %5715 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5716 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5717 = icmp eq i64 %5715, %5716
+  br i1 %5717, label %5718, label %5748
+
+5718:                                             ; preds = %5714
+  %5719 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5719, ptr %359, align 8
+  %5720 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %5720, ptr %360, align 8
+  %5721 = load i64, ptr %360, align 8
+  %5722 = load i64, ptr %359, align 8
+  %5723 = icmp sgt i64 %5721, %5722
+  br i1 %5723, label %5724, label %5747
+
+5724:                                             ; preds = %5718
+  %5725 = load volatile i32, ptr @P2_is_marked, align 4
+  %5726 = sub nsw i32 %5725, 4
+  store volatile i32 %5726, ptr @P2_is_marked, align 4
+  %5727 = load i64, ptr %359, align 8
+  %5728 = load i64, ptr %360, align 8
+  %5729 = add nsw i64 %5727, %5728
+  store i64 %5729, ptr %361, align 8
+  %5730 = load i64, ptr %359, align 8
+  %5731 = load volatile i32, ptr @P3_is_marked, align 4
+  %5732 = add nsw i32 %5731, 0
+  %5733 = sext i32 %5732 to i64
+  %5734 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5733
+  store volatile i64 %5730, ptr %5734, align 8
+  %5735 = load i64, ptr %360, align 8
+  %5736 = load volatile i32, ptr @P3_is_marked, align 4
+  %5737 = add nsw i32 %5736, 1
+  %5738 = sext i32 %5737 to i64
+  %5739 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5738
+  store volatile i64 %5735, ptr %5739, align 8
+  %5740 = load i64, ptr %361, align 8
+  %5741 = load volatile i32, ptr @P3_is_marked, align 4
+  %5742 = add nsw i32 %5741, 2
+  %5743 = sext i32 %5742 to i64
+  %5744 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5743
+  store volatile i64 %5740, ptr %5744, align 8
+  %5745 = load volatile i32, ptr @P3_is_marked, align 4
+  %5746 = add nsw i32 %5745, 3
+  store volatile i32 %5746, ptr @P3_is_marked, align 4
+  br label %5747
+
+5747:                                             ; preds = %5724, %5718
+  br label %5748
+
+5748:                                             ; preds = %5747, %5714, %5710, %5706, %5703
+  %5749 = load volatile i32, ptr @P2_is_marked, align 4
+  %5750 = icmp sge i32 %5749, 5
+  br i1 %5750, label %5751, label %5794
+
+5751:                                             ; preds = %5748
+  %5752 = load volatile i32, ptr @P3_is_marked, align 4
+  %5753 = add nsw i32 %5752, 3
+  %5754 = icmp sle i32 %5753, 6
+  br i1 %5754, label %5755, label %5794
+
+5755:                                             ; preds = %5751
+  %5756 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5757 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5758 = icmp eq i64 %5756, %5757
+  br i1 %5758, label %5759, label %5794
+
+5759:                                             ; preds = %5755
+  %5760 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5761 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5762 = icmp eq i64 %5760, %5761
+  br i1 %5762, label %5763, label %5794
+
+5763:                                             ; preds = %5759
+  %5764 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5764, ptr %362, align 8
+  %5765 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %5765, ptr %363, align 8
+  %5766 = load i64, ptr %363, align 8
+  %5767 = load i64, ptr %362, align 8
+  %5768 = icmp sgt i64 %5766, %5767
+  br i1 %5768, label %5769, label %5793
+
+5769:                                             ; preds = %5763
+  %5770 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %5770, ptr @P2_marking_member_0, align 16
+  %5771 = load volatile i32, ptr @P2_is_marked, align 4
+  %5772 = sub nsw i32 %5771, 4
+  store volatile i32 %5772, ptr @P2_is_marked, align 4
+  %5773 = load i64, ptr %362, align 8
+  %5774 = load i64, ptr %363, align 8
+  %5775 = add nsw i64 %5773, %5774
+  store i64 %5775, ptr %364, align 8
+  %5776 = load i64, ptr %362, align 8
+  %5777 = load volatile i32, ptr @P3_is_marked, align 4
+  %5778 = add nsw i32 %5777, 0
+  %5779 = sext i32 %5778 to i64
+  %5780 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5779
+  store volatile i64 %5776, ptr %5780, align 8
+  %5781 = load i64, ptr %363, align 8
+  %5782 = load volatile i32, ptr @P3_is_marked, align 4
+  %5783 = add nsw i32 %5782, 1
+  %5784 = sext i32 %5783 to i64
+  %5785 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5784
+  store volatile i64 %5781, ptr %5785, align 8
+  %5786 = load i64, ptr %364, align 8
+  %5787 = load volatile i32, ptr @P3_is_marked, align 4
+  %5788 = add nsw i32 %5787, 2
+  %5789 = sext i32 %5788 to i64
+  %5790 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5789
+  store volatile i64 %5786, ptr %5790, align 8
+  %5791 = load volatile i32, ptr @P3_is_marked, align 4
+  %5792 = add nsw i32 %5791, 3
+  store volatile i32 %5792, ptr @P3_is_marked, align 4
+  br label %5793
+
+5793:                                             ; preds = %5769, %5763
+  br label %5794
+
+5794:                                             ; preds = %5793, %5759, %5755, %5751, %5748
+  %5795 = load volatile i32, ptr @P2_is_marked, align 4
+  %5796 = icmp sge i32 %5795, 5
+  br i1 %5796, label %5797, label %5839
+
+5797:                                             ; preds = %5794
+  %5798 = load volatile i32, ptr @P3_is_marked, align 4
+  %5799 = add nsw i32 %5798, 3
+  %5800 = icmp sle i32 %5799, 6
+  br i1 %5800, label %5801, label %5839
+
+5801:                                             ; preds = %5797
+  %5802 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5803 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5804 = icmp eq i64 %5802, %5803
+  br i1 %5804, label %5805, label %5839
+
+5805:                                             ; preds = %5801
+  %5806 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5807 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5808 = icmp eq i64 %5806, %5807
+  br i1 %5808, label %5809, label %5839
+
+5809:                                             ; preds = %5805
+  %5810 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5810, ptr %365, align 8
+  %5811 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store i64 %5811, ptr %366, align 8
+  %5812 = load i64, ptr %366, align 8
+  %5813 = load i64, ptr %365, align 8
+  %5814 = icmp sgt i64 %5812, %5813
+  br i1 %5814, label %5815, label %5838
+
+5815:                                             ; preds = %5809
+  %5816 = load volatile i32, ptr @P2_is_marked, align 4
+  %5817 = sub nsw i32 %5816, 4
+  store volatile i32 %5817, ptr @P2_is_marked, align 4
+  %5818 = load i64, ptr %365, align 8
+  %5819 = load i64, ptr %366, align 8
+  %5820 = add nsw i64 %5818, %5819
+  store i64 %5820, ptr %367, align 8
+  %5821 = load i64, ptr %365, align 8
+  %5822 = load volatile i32, ptr @P3_is_marked, align 4
+  %5823 = add nsw i32 %5822, 0
+  %5824 = sext i32 %5823 to i64
+  %5825 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5824
+  store volatile i64 %5821, ptr %5825, align 8
+  %5826 = load i64, ptr %366, align 8
+  %5827 = load volatile i32, ptr @P3_is_marked, align 4
+  %5828 = add nsw i32 %5827, 1
+  %5829 = sext i32 %5828 to i64
+  %5830 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5829
+  store volatile i64 %5826, ptr %5830, align 8
+  %5831 = load i64, ptr %367, align 8
+  %5832 = load volatile i32, ptr @P3_is_marked, align 4
+  %5833 = add nsw i32 %5832, 2
+  %5834 = sext i32 %5833 to i64
+  %5835 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5834
+  store volatile i64 %5831, ptr %5835, align 8
+  %5836 = load volatile i32, ptr @P3_is_marked, align 4
+  %5837 = add nsw i32 %5836, 3
+  store volatile i32 %5837, ptr @P3_is_marked, align 4
+  br label %5838
+
+5838:                                             ; preds = %5815, %5809
+  br label %5839
+
+5839:                                             ; preds = %5838, %5805, %5801, %5797, %5794
+  %5840 = load volatile i32, ptr @P2_is_marked, align 4
+  %5841 = icmp sge i32 %5840, 5
+  br i1 %5841, label %5842, label %5885
+
+5842:                                             ; preds = %5839
+  %5843 = load volatile i32, ptr @P3_is_marked, align 4
+  %5844 = add nsw i32 %5843, 3
+  %5845 = icmp sle i32 %5844, 6
+  br i1 %5845, label %5846, label %5885
+
+5846:                                             ; preds = %5842
+  %5847 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5848 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5849 = icmp eq i64 %5847, %5848
+  br i1 %5849, label %5850, label %5885
+
+5850:                                             ; preds = %5846
+  %5851 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5852 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5853 = icmp eq i64 %5851, %5852
+  br i1 %5853, label %5854, label %5885
+
+5854:                                             ; preds = %5850
+  %5855 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5855, ptr %368, align 8
+  %5856 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %5856, ptr %369, align 8
+  %5857 = load i64, ptr %369, align 8
+  %5858 = load i64, ptr %368, align 8
+  %5859 = icmp sgt i64 %5857, %5858
+  br i1 %5859, label %5860, label %5884
+
+5860:                                             ; preds = %5854
+  %5861 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %5861, ptr @P2_marking_member_0, align 16
+  %5862 = load volatile i32, ptr @P2_is_marked, align 4
+  %5863 = sub nsw i32 %5862, 4
+  store volatile i32 %5863, ptr @P2_is_marked, align 4
+  %5864 = load i64, ptr %368, align 8
+  %5865 = load i64, ptr %369, align 8
+  %5866 = add nsw i64 %5864, %5865
+  store i64 %5866, ptr %370, align 8
+  %5867 = load i64, ptr %368, align 8
+  %5868 = load volatile i32, ptr @P3_is_marked, align 4
+  %5869 = add nsw i32 %5868, 0
+  %5870 = sext i32 %5869 to i64
+  %5871 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5870
+  store volatile i64 %5867, ptr %5871, align 8
+  %5872 = load i64, ptr %369, align 8
+  %5873 = load volatile i32, ptr @P3_is_marked, align 4
+  %5874 = add nsw i32 %5873, 1
+  %5875 = sext i32 %5874 to i64
+  %5876 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5875
+  store volatile i64 %5872, ptr %5876, align 8
+  %5877 = load i64, ptr %370, align 8
+  %5878 = load volatile i32, ptr @P3_is_marked, align 4
+  %5879 = add nsw i32 %5878, 2
+  %5880 = sext i32 %5879 to i64
+  %5881 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5880
+  store volatile i64 %5877, ptr %5881, align 8
+  %5882 = load volatile i32, ptr @P3_is_marked, align 4
+  %5883 = add nsw i32 %5882, 3
+  store volatile i32 %5883, ptr @P3_is_marked, align 4
+  br label %5884
+
+5884:                                             ; preds = %5860, %5854
+  br label %5885
+
+5885:                                             ; preds = %5884, %5850, %5846, %5842, %5839
+  %5886 = load volatile i32, ptr @P2_is_marked, align 4
+  %5887 = icmp sge i32 %5886, 5
+  br i1 %5887, label %5888, label %5931
+
+5888:                                             ; preds = %5885
+  %5889 = load volatile i32, ptr @P3_is_marked, align 4
+  %5890 = add nsw i32 %5889, 3
+  %5891 = icmp sle i32 %5890, 6
+  br i1 %5891, label %5892, label %5931
+
+5892:                                             ; preds = %5888
+  %5893 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5894 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5895 = icmp eq i64 %5893, %5894
+  br i1 %5895, label %5896, label %5931
+
+5896:                                             ; preds = %5892
+  %5897 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5898 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5899 = icmp eq i64 %5897, %5898
+  br i1 %5899, label %5900, label %5931
+
+5900:                                             ; preds = %5896
+  %5901 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5901, ptr %371, align 8
+  %5902 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %5902, ptr %372, align 8
+  %5903 = load i64, ptr %372, align 8
+  %5904 = load i64, ptr %371, align 8
+  %5905 = icmp sgt i64 %5903, %5904
+  br i1 %5905, label %5906, label %5930
+
+5906:                                             ; preds = %5900
+  %5907 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %5907, ptr @P2_marking_member_0, align 16
+  %5908 = load volatile i32, ptr @P2_is_marked, align 4
+  %5909 = sub nsw i32 %5908, 4
+  store volatile i32 %5909, ptr @P2_is_marked, align 4
+  %5910 = load i64, ptr %371, align 8
+  %5911 = load i64, ptr %372, align 8
+  %5912 = add nsw i64 %5910, %5911
+  store i64 %5912, ptr %373, align 8
+  %5913 = load i64, ptr %371, align 8
+  %5914 = load volatile i32, ptr @P3_is_marked, align 4
+  %5915 = add nsw i32 %5914, 0
+  %5916 = sext i32 %5915 to i64
+  %5917 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5916
+  store volatile i64 %5913, ptr %5917, align 8
+  %5918 = load i64, ptr %372, align 8
+  %5919 = load volatile i32, ptr @P3_is_marked, align 4
+  %5920 = add nsw i32 %5919, 1
+  %5921 = sext i32 %5920 to i64
+  %5922 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5921
+  store volatile i64 %5918, ptr %5922, align 8
+  %5923 = load i64, ptr %373, align 8
+  %5924 = load volatile i32, ptr @P3_is_marked, align 4
+  %5925 = add nsw i32 %5924, 2
+  %5926 = sext i32 %5925 to i64
+  %5927 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5926
+  store volatile i64 %5923, ptr %5927, align 8
+  %5928 = load volatile i32, ptr @P3_is_marked, align 4
+  %5929 = add nsw i32 %5928, 3
+  store volatile i32 %5929, ptr @P3_is_marked, align 4
+  br label %5930
+
+5930:                                             ; preds = %5906, %5900
+  br label %5931
+
+5931:                                             ; preds = %5930, %5896, %5892, %5888, %5885
+  %5932 = load volatile i32, ptr @P2_is_marked, align 4
+  %5933 = icmp sge i32 %5932, 5
+  br i1 %5933, label %5934, label %5977
+
+5934:                                             ; preds = %5931
+  %5935 = load volatile i32, ptr @P3_is_marked, align 4
+  %5936 = add nsw i32 %5935, 3
+  %5937 = icmp sle i32 %5936, 6
+  br i1 %5937, label %5938, label %5977
+
+5938:                                             ; preds = %5934
+  %5939 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5940 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5941 = icmp eq i64 %5939, %5940
+  br i1 %5941, label %5942, label %5977
+
+5942:                                             ; preds = %5938
+  %5943 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5944 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %5945 = icmp eq i64 %5943, %5944
+  br i1 %5945, label %5946, label %5977
+
+5946:                                             ; preds = %5942
+  %5947 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5947, ptr %374, align 8
+  %5948 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %5948, ptr %375, align 8
+  %5949 = load i64, ptr %375, align 8
+  %5950 = load i64, ptr %374, align 8
+  %5951 = icmp sgt i64 %5949, %5950
+  br i1 %5951, label %5952, label %5976
+
+5952:                                             ; preds = %5946
+  %5953 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  store volatile i64 %5953, ptr @P2_marking_member_0, align 16
+  %5954 = load volatile i32, ptr @P2_is_marked, align 4
+  %5955 = sub nsw i32 %5954, 4
+  store volatile i32 %5955, ptr @P2_is_marked, align 4
+  %5956 = load i64, ptr %374, align 8
+  %5957 = load i64, ptr %375, align 8
+  %5958 = add nsw i64 %5956, %5957
+  store i64 %5958, ptr %376, align 8
+  %5959 = load i64, ptr %374, align 8
+  %5960 = load volatile i32, ptr @P3_is_marked, align 4
+  %5961 = add nsw i32 %5960, 0
+  %5962 = sext i32 %5961 to i64
+  %5963 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5962
+  store volatile i64 %5959, ptr %5963, align 8
+  %5964 = load i64, ptr %375, align 8
+  %5965 = load volatile i32, ptr @P3_is_marked, align 4
+  %5966 = add nsw i32 %5965, 1
+  %5967 = sext i32 %5966 to i64
+  %5968 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5967
+  store volatile i64 %5964, ptr %5968, align 8
+  %5969 = load i64, ptr %376, align 8
+  %5970 = load volatile i32, ptr @P3_is_marked, align 4
+  %5971 = add nsw i32 %5970, 2
+  %5972 = sext i32 %5971 to i64
+  %5973 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %5972
+  store volatile i64 %5969, ptr %5973, align 8
+  %5974 = load volatile i32, ptr @P3_is_marked, align 4
+  %5975 = add nsw i32 %5974, 3
+  store volatile i32 %5975, ptr @P3_is_marked, align 4
+  br label %5976
+
+5976:                                             ; preds = %5952, %5946
+  br label %5977
+
+5977:                                             ; preds = %5976, %5942, %5938, %5934, %5931
+  %5978 = load volatile i32, ptr @P2_is_marked, align 4
+  %5979 = icmp sge i32 %5978, 5
+  br i1 %5979, label %5980, label %6022
+
+5980:                                             ; preds = %5977
+  %5981 = load volatile i32, ptr @P3_is_marked, align 4
+  %5982 = add nsw i32 %5981, 3
+  %5983 = icmp sle i32 %5982, 6
+  br i1 %5983, label %5984, label %6022
+
+5984:                                             ; preds = %5980
+  %5985 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5986 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %5987 = icmp eq i64 %5985, %5986
+  br i1 %5987, label %5988, label %6022
+
+5988:                                             ; preds = %5984
+  %5989 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %5990 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %5991 = icmp eq i64 %5989, %5990
+  br i1 %5991, label %5992, label %6022
+
+5992:                                             ; preds = %5988
+  %5993 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %5993, ptr %377, align 8
+  %5994 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %5994, ptr %378, align 8
+  %5995 = load i64, ptr %378, align 8
+  %5996 = load i64, ptr %377, align 8
+  %5997 = icmp sgt i64 %5995, %5996
+  br i1 %5997, label %5998, label %6021
+
+5998:                                             ; preds = %5992
+  %5999 = load volatile i32, ptr @P2_is_marked, align 4
+  %6000 = sub nsw i32 %5999, 4
+  store volatile i32 %6000, ptr @P2_is_marked, align 4
+  %6001 = load i64, ptr %377, align 8
+  %6002 = load i64, ptr %378, align 8
+  %6003 = add nsw i64 %6001, %6002
+  store i64 %6003, ptr %379, align 8
+  %6004 = load i64, ptr %377, align 8
+  %6005 = load volatile i32, ptr @P3_is_marked, align 4
+  %6006 = add nsw i32 %6005, 0
+  %6007 = sext i32 %6006 to i64
+  %6008 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6007
+  store volatile i64 %6004, ptr %6008, align 8
+  %6009 = load i64, ptr %378, align 8
+  %6010 = load volatile i32, ptr @P3_is_marked, align 4
+  %6011 = add nsw i32 %6010, 1
+  %6012 = sext i32 %6011 to i64
+  %6013 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6012
+  store volatile i64 %6009, ptr %6013, align 8
+  %6014 = load i64, ptr %379, align 8
+  %6015 = load volatile i32, ptr @P3_is_marked, align 4
+  %6016 = add nsw i32 %6015, 2
+  %6017 = sext i32 %6016 to i64
+  %6018 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6017
+  store volatile i64 %6014, ptr %6018, align 8
+  %6019 = load volatile i32, ptr @P3_is_marked, align 4
+  %6020 = add nsw i32 %6019, 3
+  store volatile i32 %6020, ptr @P3_is_marked, align 4
+  br label %6021
+
+6021:                                             ; preds = %5998, %5992
+  br label %6022
+
+6022:                                             ; preds = %6021, %5988, %5984, %5980, %5977
+  %6023 = load volatile i32, ptr @P2_is_marked, align 4
+  %6024 = icmp sge i32 %6023, 5
+  br i1 %6024, label %6025, label %6068
+
+6025:                                             ; preds = %6022
+  %6026 = load volatile i32, ptr @P3_is_marked, align 4
+  %6027 = add nsw i32 %6026, 3
+  %6028 = icmp sle i32 %6027, 6
+  br i1 %6028, label %6029, label %6068
+
+6029:                                             ; preds = %6025
+  %6030 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %6031 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %6032 = icmp eq i64 %6030, %6031
+  br i1 %6032, label %6033, label %6068
+
+6033:                                             ; preds = %6029
+  %6034 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %6035 = load volatile i64, ptr @P2_marking_member_0, align 16
+  %6036 = icmp eq i64 %6034, %6035
+  br i1 %6036, label %6037, label %6068
+
+6037:                                             ; preds = %6033
+  %6038 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %6038, ptr %380, align 8
+  %6039 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %6039, ptr %381, align 8
+  %6040 = load i64, ptr %381, align 8
+  %6041 = load i64, ptr %380, align 8
+  %6042 = icmp sgt i64 %6040, %6041
+  br i1 %6042, label %6043, label %6067
+
+6043:                                             ; preds = %6037
+  %6044 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  store volatile i64 %6044, ptr @P2_marking_member_0, align 16
+  %6045 = load volatile i32, ptr @P2_is_marked, align 4
+  %6046 = sub nsw i32 %6045, 4
+  store volatile i32 %6046, ptr @P2_is_marked, align 4
+  %6047 = load i64, ptr %380, align 8
+  %6048 = load i64, ptr %381, align 8
+  %6049 = add nsw i64 %6047, %6048
+  store i64 %6049, ptr %382, align 8
+  %6050 = load i64, ptr %380, align 8
+  %6051 = load volatile i32, ptr @P3_is_marked, align 4
+  %6052 = add nsw i32 %6051, 0
+  %6053 = sext i32 %6052 to i64
+  %6054 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6053
+  store volatile i64 %6050, ptr %6054, align 8
+  %6055 = load i64, ptr %381, align 8
+  %6056 = load volatile i32, ptr @P3_is_marked, align 4
+  %6057 = add nsw i32 %6056, 1
+  %6058 = sext i32 %6057 to i64
+  %6059 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6058
+  store volatile i64 %6055, ptr %6059, align 8
+  %6060 = load i64, ptr %382, align 8
+  %6061 = load volatile i32, ptr @P3_is_marked, align 4
+  %6062 = add nsw i32 %6061, 2
+  %6063 = sext i32 %6062 to i64
+  %6064 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6063
+  store volatile i64 %6060, ptr %6064, align 8
+  %6065 = load volatile i32, ptr @P3_is_marked, align 4
+  %6066 = add nsw i32 %6065, 3
+  store volatile i32 %6066, ptr @P3_is_marked, align 4
+  br label %6067
+
+6067:                                             ; preds = %6043, %6037
+  br label %6068
+
+6068:                                             ; preds = %6067, %6033, %6029, %6025, %6022
+  %6069 = load volatile i32, ptr @P2_is_marked, align 4
+  %6070 = icmp sge i32 %6069, 5
+  br i1 %6070, label %6071, label %6113
+
+6071:                                             ; preds = %6068
+  %6072 = load volatile i32, ptr @P3_is_marked, align 4
+  %6073 = add nsw i32 %6072, 3
+  %6074 = icmp sle i32 %6073, 6
+  br i1 %6074, label %6075, label %6113
+
+6075:                                             ; preds = %6071
+  %6076 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %6077 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 2), align 16
+  %6078 = icmp eq i64 %6076, %6077
+  br i1 %6078, label %6079, label %6113
+
+6079:                                             ; preds = %6075
+  %6080 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  %6081 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 1), align 8
+  %6082 = icmp eq i64 %6080, %6081
+  br i1 %6082, label %6083, label %6113
+
+6083:                                             ; preds = %6079
+  %6084 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 4), align 16
+  store i64 %6084, ptr %383, align 8
+  %6085 = load volatile i64, ptr getelementptr inbounds ([5 x i64], ptr @P2_marking_member_0, i64 0, i64 3), align 8
+  store i64 %6085, ptr %384, align 8
+  %6086 = load i64, ptr %384, align 8
+  %6087 = load i64, ptr %383, align 8
+  %6088 = icmp sgt i64 %6086, %6087
+  br i1 %6088, label %6089, label %6112
+
+6089:                                             ; preds = %6083
+  %6090 = load volatile i32, ptr @P2_is_marked, align 4
+  %6091 = sub nsw i32 %6090, 4
+  store volatile i32 %6091, ptr @P2_is_marked, align 4
+  %6092 = load i64, ptr %383, align 8
+  %6093 = load i64, ptr %384, align 8
+  %6094 = add nsw i64 %6092, %6093
+  store i64 %6094, ptr %385, align 8
+  %6095 = load i64, ptr %383, align 8
+  %6096 = load volatile i32, ptr @P3_is_marked, align 4
+  %6097 = add nsw i32 %6096, 0
+  %6098 = sext i32 %6097 to i64
+  %6099 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6098
+  store volatile i64 %6095, ptr %6099, align 8
+  %6100 = load i64, ptr %384, align 8
+  %6101 = load volatile i32, ptr @P3_is_marked, align 4
+  %6102 = add nsw i32 %6101, 1
+  %6103 = sext i32 %6102 to i64
+  %6104 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6103
+  store volatile i64 %6100, ptr %6104, align 8
+  %6105 = load i64, ptr %385, align 8
+  %6106 = load volatile i32, ptr @P3_is_marked, align 4
+  %6107 = add nsw i32 %6106, 2
+  %6108 = sext i32 %6107 to i64
+  %6109 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %6108
+  store volatile i64 %6105, ptr %6109, align 8
+  %6110 = load volatile i32, ptr @P3_is_marked, align 4
+  %6111 = add nsw i32 %6110, 3
+  store volatile i32 %6111, ptr @P3_is_marked, align 4
+  br label %6112
+
+6112:                                             ; preds = %6089, %6083
+  br label %6113
+
+6113:                                             ; preds = %6112, %6079, %6075, %6071, %6068
+  br label %6114
+
+6114:                                             ; preds = %6113
+  %6115 = load i32, ptr %7, align 4
+  %6116 = add i32 %6115, 1
+  store i32 %6116, ptr %7, align 4
+  br label %391, !llvm.loop !6
+
+6117:                                             ; preds = %391
+  br label %6118
+
+6118:                                             ; preds = %6117
+  %6119 = load i32, ptr %6, align 4
+  %6120 = add i32 %6119, 1
+  store i32 %6120, ptr %6, align 4
+  br label %386, !llvm.loop !8
+
+6121:                                             ; preds = %386
   ret i32 0
 }
 
-; Function Attrs: mustprogress nofree norecurse nounwind willreturn memory(readwrite, argmem: none) uwtable
-define dso_local range(i32 0, 2) i32 @verify_benchmark(i32 noundef %0) local_unnamed_addr #4 {
-  %2 = load volatile i32, ptr @P1_is_marked, align 4, !tbaa !5
-  %3 = icmp eq i32 %2, 3
-  br i1 %3, label %4, label %53
-
-4:                                                ; preds = %1
-  %5 = load volatile i32, ptr @P2_is_marked, align 4, !tbaa !5
-  %6 = icmp eq i32 %5, 5
-  br i1 %6, label %7, label %53
-
-7:                                                ; preds = %4
-  %8 = load volatile i32, ptr @P3_is_marked, align 4, !tbaa !5
-  %9 = icmp eq i32 %8, 0
-  br i1 %9, label %10, label %53
-
-10:                                               ; preds = %7
-  %11 = load volatile i64, ptr @P1_marking_member_0, align 16, !tbaa !9
-  %12 = icmp eq i64 %11, 0
-  br i1 %12, label %34, label %53
-
-13:                                               ; preds = %37
-  %14 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 8), align 8, !tbaa !9
-  %15 = icmp eq i64 %14, 0
-  br i1 %15, label %16, label %53
-
-16:                                               ; preds = %13
-  %17 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 8), align 8, !tbaa !9
-  %18 = icmp eq i64 %17, 0
-  br i1 %18, label %19, label %53
-
-19:                                               ; preds = %16
-  %20 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P3_marking_member_0, i64 8), align 8, !tbaa !9
-  %21 = icmp eq i64 %20, 0
-  br i1 %21, label %22, label %53
-
-22:                                               ; preds = %19
-  %23 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P1_marking_member_0, i64 16), align 16, !tbaa !9
-  %24 = icmp eq i64 %23, 0
-  br i1 %24, label %25, label %53
-
-25:                                               ; preds = %22
-  %26 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 16), align 16, !tbaa !9
-  %27 = icmp eq i64 %26, 0
-  br i1 %27, label %28, label %53
-
-28:                                               ; preds = %25
-  %29 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P3_marking_member_0, i64 16), align 16, !tbaa !9
-  %30 = icmp eq i64 %29, 0
-  br i1 %30, label %31, label %53
-
-31:                                               ; preds = %28
-  %32 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 24), align 8, !tbaa !9
-  %33 = icmp eq i64 %32, 0
-  br i1 %33, label %50, label %53
-
-34:                                               ; preds = %10
-  %35 = load volatile i64, ptr @P2_marking_member_0, align 16, !tbaa !9
-  %36 = icmp eq i64 %35, 0
-  br i1 %36, label %37, label %53
-
-37:                                               ; preds = %34
-  %38 = load volatile i64, ptr @P3_marking_member_0, align 16, !tbaa !9
-  %39 = icmp eq i64 %38, 0
-  br i1 %39, label %13, label %53
-
-40:                                               ; preds = %50
-  %41 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P2_marking_member_0, i64 32), align 16, !tbaa !9
-  %42 = icmp eq i64 %41, 0
-  br i1 %42, label %43, label %53
-
-43:                                               ; preds = %40
-  %44 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P3_marking_member_0, i64 32), align 16, !tbaa !9
-  %45 = icmp eq i64 %44, 0
-  br i1 %45, label %46, label %53
-
-46:                                               ; preds = %43
-  %47 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P3_marking_member_0, i64 40), align 8, !tbaa !9
-  %48 = icmp eq i64 %47, 0
-  %49 = zext i1 %48 to i32
-  br label %53
-
-50:                                               ; preds = %31
-  %51 = load volatile i64, ptr getelementptr inbounds nuw (i8, ptr @P3_marking_member_0, i64 24), align 8, !tbaa !9
-  %52 = icmp eq i64 %51, 0
-  br i1 %52, label %40, label %53
-
-53:                                               ; preds = %10, %34, %37, %13, %16, %19, %22, %25, %28, %31, %50, %40, %43, %46, %1, %4, %7
-  %54 = phi i32 [ 0, %7 ], [ 0, %4 ], [ 0, %1 ], [ %49, %46 ], [ 0, %43 ], [ 0, %40 ], [ 0, %50 ], [ 0, %31 ], [ 0, %28 ], [ 0, %25 ], [ 0, %22 ], [ 0, %19 ], [ 0, %16 ], [ 0, %13 ], [ 0, %37 ], [ 0, %34 ], [ 0, %10 ]
-  ret i32 %54
+; Function Attrs: noinline nounwind uwtable
+define dso_local i32 @benchmark() #0 {
+  %1 = call i32 @benchmark_body(i32 noundef 1232, i32 noundef 20)
+  ret i32 %1
 }
 
-attributes #0 = { mustprogress nofree norecurse nosync nounwind willreturn memory(none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #1 = { nofree norecurse nounwind uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #2 = { nofree noinline norecurse nounwind memory(readwrite, argmem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #3 = { nofree noinline norecurse nounwind uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #4 = { mustprogress nofree norecurse nounwind willreturn memory(readwrite, argmem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+; Function Attrs: noinline nounwind uwtable
+define dso_local i32 @verify_benchmark(i32 noundef %0) #0 {
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca [3 x i64], align 16
+  %6 = alloca i32, align 4
+  %7 = alloca [5 x i64], align 16
+  %8 = alloca i32, align 4
+  %9 = alloca [6 x i64], align 16
+  %10 = alloca i32, align 4
+  store i32 %0, ptr %3, align 4
+  store i32 3, ptr %4, align 4
+  call void @llvm.memset.p0.i64(ptr align 16 %5, i8 0, i64 24, i1 false)
+  store i32 5, ptr %6, align 4
+  call void @llvm.memset.p0.i64(ptr align 16 %7, i8 0, i64 40, i1 false)
+  store i32 0, ptr %8, align 4
+  call void @llvm.memset.p0.i64(ptr align 16 %9, i8 0, i64 48, i1 false)
+  %11 = load i32, ptr %4, align 4
+  %12 = load volatile i32, ptr @P1_is_marked, align 4
+  %13 = icmp ne i32 %11, %12
+  br i1 %13, label %22, label %14
 
-!llvm.module.flags = !{!0, !1, !2, !3}
-!llvm.ident = !{!4}
+14:                                               ; preds = %1
+  %15 = load i32, ptr %6, align 4
+  %16 = load volatile i32, ptr @P2_is_marked, align 4
+  %17 = icmp ne i32 %15, %16
+  br i1 %17, label %22, label %18
+
+18:                                               ; preds = %14
+  %19 = load i32, ptr %8, align 4
+  %20 = load volatile i32, ptr @P3_is_marked, align 4
+  %21 = icmp ne i32 %19, %20
+  br i1 %21, label %22, label %23
+
+22:                                               ; preds = %18, %14, %1
+  store i32 0, ptr %2, align 4
+  br label %111
+
+23:                                               ; preds = %18
+  store i32 0, ptr %10, align 4
+  br label %24
+
+24:                                               ; preds = %59, %23
+  %25 = load i32, ptr %10, align 4
+  %26 = icmp slt i32 %25, 3
+  br i1 %26, label %27, label %62
+
+27:                                               ; preds = %24
+  %28 = load i32, ptr %10, align 4
+  %29 = sext i32 %28 to i64
+  %30 = getelementptr inbounds [3 x i64], ptr %5, i64 0, i64 %29
+  %31 = load i64, ptr %30, align 8
+  %32 = load i32, ptr %10, align 4
+  %33 = sext i32 %32 to i64
+  %34 = getelementptr inbounds [3 x i64], ptr @P1_marking_member_0, i64 0, i64 %33
+  %35 = load volatile i64, ptr %34, align 8
+  %36 = icmp ne i64 %31, %35
+  br i1 %36, label %57, label %37
+
+37:                                               ; preds = %27
+  %38 = load i32, ptr %10, align 4
+  %39 = sext i32 %38 to i64
+  %40 = getelementptr inbounds [5 x i64], ptr %7, i64 0, i64 %39
+  %41 = load i64, ptr %40, align 8
+  %42 = load i32, ptr %10, align 4
+  %43 = sext i32 %42 to i64
+  %44 = getelementptr inbounds [5 x i64], ptr @P2_marking_member_0, i64 0, i64 %43
+  %45 = load volatile i64, ptr %44, align 8
+  %46 = icmp ne i64 %41, %45
+  br i1 %46, label %57, label %47
+
+47:                                               ; preds = %37
+  %48 = load i32, ptr %10, align 4
+  %49 = sext i32 %48 to i64
+  %50 = getelementptr inbounds [6 x i64], ptr %9, i64 0, i64 %49
+  %51 = load i64, ptr %50, align 8
+  %52 = load i32, ptr %10, align 4
+  %53 = sext i32 %52 to i64
+  %54 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %53
+  %55 = load volatile i64, ptr %54, align 8
+  %56 = icmp ne i64 %51, %55
+  br i1 %56, label %57, label %58
+
+57:                                               ; preds = %47, %37, %27
+  store i32 0, ptr %2, align 4
+  br label %111
+
+58:                                               ; preds = %47
+  br label %59
+
+59:                                               ; preds = %58
+  %60 = load i32, ptr %10, align 4
+  %61 = add nsw i32 %60, 1
+  store i32 %61, ptr %10, align 4
+  br label %24, !llvm.loop !9
+
+62:                                               ; preds = %24
+  store i32 3, ptr %10, align 4
+  br label %63
+
+63:                                               ; preds = %88, %62
+  %64 = load i32, ptr %10, align 4
+  %65 = icmp slt i32 %64, 5
+  br i1 %65, label %66, label %91
+
+66:                                               ; preds = %63
+  %67 = load i32, ptr %10, align 4
+  %68 = sext i32 %67 to i64
+  %69 = getelementptr inbounds [5 x i64], ptr %7, i64 0, i64 %68
+  %70 = load i64, ptr %69, align 8
+  %71 = load i32, ptr %10, align 4
+  %72 = sext i32 %71 to i64
+  %73 = getelementptr inbounds [5 x i64], ptr @P2_marking_member_0, i64 0, i64 %72
+  %74 = load volatile i64, ptr %73, align 8
+  %75 = icmp ne i64 %70, %74
+  br i1 %75, label %86, label %76
+
+76:                                               ; preds = %66
+  %77 = load i32, ptr %10, align 4
+  %78 = sext i32 %77 to i64
+  %79 = getelementptr inbounds [6 x i64], ptr %9, i64 0, i64 %78
+  %80 = load i64, ptr %79, align 8
+  %81 = load i32, ptr %10, align 4
+  %82 = sext i32 %81 to i64
+  %83 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %82
+  %84 = load volatile i64, ptr %83, align 8
+  %85 = icmp ne i64 %80, %84
+  br i1 %85, label %86, label %87
+
+86:                                               ; preds = %76, %66
+  store i32 0, ptr %2, align 4
+  br label %111
+
+87:                                               ; preds = %76
+  br label %88
+
+88:                                               ; preds = %87
+  %89 = load i32, ptr %10, align 4
+  %90 = add nsw i32 %89, 1
+  store i32 %90, ptr %10, align 4
+  br label %63, !llvm.loop !10
+
+91:                                               ; preds = %63
+  store i32 5, ptr %10, align 4
+  br label %92
+
+92:                                               ; preds = %107, %91
+  %93 = load i32, ptr %10, align 4
+  %94 = icmp slt i32 %93, 6
+  br i1 %94, label %95, label %110
+
+95:                                               ; preds = %92
+  %96 = load i32, ptr %10, align 4
+  %97 = sext i32 %96 to i64
+  %98 = getelementptr inbounds [6 x i64], ptr %9, i64 0, i64 %97
+  %99 = load i64, ptr %98, align 8
+  %100 = load i32, ptr %10, align 4
+  %101 = sext i32 %100 to i64
+  %102 = getelementptr inbounds [6 x i64], ptr @P3_marking_member_0, i64 0, i64 %101
+  %103 = load volatile i64, ptr %102, align 8
+  %104 = icmp ne i64 %99, %103
+  br i1 %104, label %105, label %106
+
+105:                                              ; preds = %95
+  store i32 0, ptr %2, align 4
+  br label %111
+
+106:                                              ; preds = %95
+  br label %107
+
+107:                                              ; preds = %106
+  %108 = load i32, ptr %10, align 4
+  %109 = add nsw i32 %108, 1
+  store i32 %109, ptr %10, align 4
+  br label %92, !llvm.loop !11
+
+110:                                              ; preds = %92
+  store i32 1, ptr %2, align 4
+  br label %111
+
+111:                                              ; preds = %110, %105, %86, %57, %22
+  %112 = load i32, ptr %2, align 4
+  ret i32 %112
+}
+
+; Function Attrs: nocallback nofree nounwind willreturn memory(argmem: write)
+declare void @llvm.memset.p0.i64(ptr nocapture writeonly, i8, i64, i1 immarg) #1
+
+attributes #0 = { noinline nounwind uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #1 = { nocallback nofree nounwind willreturn memory(argmem: write) }
+
+!llvm.module.flags = !{!0, !1, !2, !3, !4}
+!llvm.ident = !{!5}
 
 !0 = !{i32 1, !"wchar_size", i32 4}
 !1 = !{i32 8, !"PIC Level", i32 2}
 !2 = !{i32 7, !"PIE Level", i32 2}
 !3 = !{i32 7, !"uwtable", i32 2}
-!4 = !{!"clang version 20.1.8 (https://github.com/llvm/llvm-project.git 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)"}
-!5 = !{!6, !6, i64 0}
-!6 = !{!"int", !7, i64 0}
-!7 = !{!"omnipotent char", !8, i64 0}
-!8 = !{!"Simple C/C++ TBAA"}
-!9 = !{!10, !10, i64 0}
-!10 = !{!"long", !7, i64 0}
-!11 = distinct !{!11, !12}
-!12 = !{!"llvm.loop.mustprogress"}
-!13 = distinct !{!13, !12}
+!4 = !{i32 7, !"frame-pointer", i32 2}
+!5 = !{!"clang version 20.1.8 (https://github.com/llvm/llvm-project.git 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)"}
+!6 = distinct !{!6, !7}
+!7 = !{!"llvm.loop.mustprogress"}
+!8 = distinct !{!8, !7}
+!9 = distinct !{!9, !7}
+!10 = distinct !{!10, !7}
+!11 = distinct !{!11, !7}

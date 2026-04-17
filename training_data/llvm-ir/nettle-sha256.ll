@@ -1,1992 +1,3418 @@
-; ModuleID = '../src/nettle-sha256/nettle-sha256.c'
-source_filename = "../src/nettle-sha256/nettle-sha256.c"
+; ModuleID = '../../src/nettle-sha256/nettle-sha256.c'
+source_filename = "../../src/nettle-sha256/nettle-sha256.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-i128:128-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
 %struct.sha256_ctx = type { [8 x i32], i64, [64 x i8], i32 }
+%struct.nettle_hash = type { ptr, i32, i32, i32, ptr, ptr, ptr }
 
-@sha256_init.H0 = internal unnamed_addr constant [8 x i32] [i32 1779033703, i32 -1150833019, i32 1013904242, i32 -1521486534, i32 1359893119, i32 -1694144372, i32 528734635, i32 1541459225], align 16
+@sha256_init.H0 = internal constant [8 x i32] [i32 1779033703, i32 -1150833019, i32 1013904242, i32 -1521486534, i32 1359893119, i32 -1694144372, i32 528734635, i32 1541459225], align 16
 @K = internal constant [64 x i32] [i32 1116352408, i32 1899447441, i32 -1245643825, i32 -373957723, i32 961987163, i32 1508970993, i32 -1841331548, i32 -1424204075, i32 -670586216, i32 310598401, i32 607225278, i32 1426881987, i32 1925078388, i32 -2132889090, i32 -1680079193, i32 -1046744716, i32 -459576895, i32 -272742522, i32 264347078, i32 604807628, i32 770255983, i32 1249150122, i32 1555081692, i32 1996064986, i32 -1740746414, i32 -1473132947, i32 -1341970488, i32 -1084653625, i32 -958395405, i32 -710438585, i32 113926993, i32 338241895, i32 666307205, i32 773529912, i32 1294757372, i32 1396182291, i32 1695183700, i32 1986661051, i32 -2117940946, i32 -1838011259, i32 -1564481375, i32 -1474664885, i32 -1035236496, i32 -949202525, i32 -778901479, i32 -694614492, i32 -200395387, i32 275423344, i32 430227734, i32 506948616, i32 659060556, i32 883997877, i32 958139571, i32 1322822218, i32 1537002063, i32 1747873779, i32 1955562222, i32 2024104815, i32 -2067236844, i32 -1933114872, i32 -1866530822, i32 -1538233109, i32 -1090935817, i32 -965641998], align 16
 @.str = private unnamed_addr constant [7 x i8] c"sha256\00", align 1
-@nettle_sha256 = dso_local local_unnamed_addr constant { ptr, i32, i32, i32, [4 x i8], ptr, ptr, ptr } { ptr @.str, i32 112, i32 32, i32 64, [4 x i8] zeroinitializer, ptr @sha256_init, ptr @sha256_update, ptr @sha256_digest }, align 8
-@msg = dso_local local_unnamed_addr global [56 x i8] c"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq", align 16
-@hash = dso_local local_unnamed_addr global [32 x i8] c"$\8Dja\D2\068\B8\E5\C0&\93\0C>`9\A3<\E4Yd\FF!g\F6\EC\ED\D4\19\DB\06\C1", align 16
-@buffer = dso_local local_unnamed_addr global [32 x i8] zeroinitializer, align 16
+@nettle_sha256 = dso_local constant { ptr, i32, i32, i32, [4 x i8], ptr, ptr, ptr } { ptr @.str, i32 112, i32 32, i32 64, [4 x i8] zeroinitializer, ptr @sha256_init, ptr @sha256_update, ptr @sha256_digest }, align 8
+@msg = dso_local global [56 x i8] c"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq", align 16
+@hash = dso_local global [32 x i8] c"$\8Dja\D2\068\B8\E5\C0&\93\0C>`9\A3<\E4Yd\FF!g\F6\EC\ED\D4\19\DB\06\C1", align 16
+@buffer = dso_local global [32 x i8] zeroinitializer, align 16
 
-; Function Attrs: nofree norecurse nosync nounwind memory(argmem: readwrite) uwtable
-define dso_local void @_nettle_write_be32(i64 noundef %0, ptr nocapture noundef writeonly %1, ptr nocapture noundef readonly %2) local_unnamed_addr #0 {
-  %4 = lshr i64 %0, 2
-  %5 = trunc i64 %0 to i32
-  %6 = and i32 %5, 3
-  %7 = icmp ult i64 %0, 4
-  br i1 %7, label %75, label %8
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @_nettle_write_be32(i64 noundef %0, ptr noundef %1, ptr noundef %2) #0 {
+  %4 = alloca i64, align 8
+  %5 = alloca ptr, align 8
+  %6 = alloca ptr, align 8
+  %7 = alloca i64, align 8
+  %8 = alloca i64, align 8
+  %9 = alloca i32, align 4
+  %10 = alloca i32, align 4
+  %11 = alloca i32, align 4
+  store i64 %0, ptr %4, align 8
+  store ptr %1, ptr %5, align 8
+  store ptr %2, ptr %6, align 8
+  %12 = load i64, ptr %4, align 8
+  %13 = udiv i64 %12, 4
+  store i64 %13, ptr %8, align 8
+  %14 = load i64, ptr %4, align 8
+  %15 = urem i64 %14, 4
+  %16 = trunc i64 %15 to i32
+  store i32 %16, ptr %9, align 4
+  store i64 0, ptr %7, align 8
+  br label %17
+
+17:                                               ; preds = %59, %3
+  %18 = load i64, ptr %7, align 8
+  %19 = load i64, ptr %8, align 8
+  %20 = icmp ult i64 %18, %19
+  br i1 %20, label %21, label %64
+
+21:                                               ; preds = %17
+  br label %22
+
+22:                                               ; preds = %21
+  %23 = load ptr, ptr %6, align 8
+  %24 = load i64, ptr %7, align 8
+  %25 = getelementptr inbounds nuw i32, ptr %23, i64 %24
+  %26 = load i32, ptr %25, align 4
+  %27 = lshr i32 %26, 24
+  %28 = and i32 %27, 255
+  %29 = trunc i32 %28 to i8
+  %30 = load ptr, ptr %5, align 8
+  %31 = getelementptr inbounds i8, ptr %30, i64 0
+  store i8 %29, ptr %31, align 1
+  %32 = load ptr, ptr %6, align 8
+  %33 = load i64, ptr %7, align 8
+  %34 = getelementptr inbounds nuw i32, ptr %32, i64 %33
+  %35 = load i32, ptr %34, align 4
+  %36 = lshr i32 %35, 16
+  %37 = and i32 %36, 255
+  %38 = trunc i32 %37 to i8
+  %39 = load ptr, ptr %5, align 8
+  %40 = getelementptr inbounds i8, ptr %39, i64 1
+  store i8 %38, ptr %40, align 1
+  %41 = load ptr, ptr %6, align 8
+  %42 = load i64, ptr %7, align 8
+  %43 = getelementptr inbounds nuw i32, ptr %41, i64 %42
+  %44 = load i32, ptr %43, align 4
+  %45 = lshr i32 %44, 8
+  %46 = and i32 %45, 255
+  %47 = trunc i32 %46 to i8
+  %48 = load ptr, ptr %5, align 8
+  %49 = getelementptr inbounds i8, ptr %48, i64 2
+  store i8 %47, ptr %49, align 1
+  %50 = load ptr, ptr %6, align 8
+  %51 = load i64, ptr %7, align 8
+  %52 = getelementptr inbounds nuw i32, ptr %50, i64 %51
+  %53 = load i32, ptr %52, align 4
+  %54 = and i32 %53, 255
+  %55 = trunc i32 %54 to i8
+  %56 = load ptr, ptr %5, align 8
+  %57 = getelementptr inbounds i8, ptr %56, i64 3
+  store i8 %55, ptr %57, align 1
+  br label %58
+
+58:                                               ; preds = %22
+  br label %59
+
+59:                                               ; preds = %58
+  %60 = load i64, ptr %7, align 8
+  %61 = add i64 %60, 1
+  store i64 %61, ptr %7, align 8
+  %62 = load ptr, ptr %5, align 8
+  %63 = getelementptr inbounds i8, ptr %62, i64 4
+  store ptr %63, ptr %5, align 8
+  br label %17, !llvm.loop !6
+
+64:                                               ; preds = %17
+  %65 = load i32, ptr %9, align 4
+  %66 = icmp ne i32 %65, 0
+  br i1 %66, label %67, label %106
+
+67:                                               ; preds = %64
+  %68 = load i32, ptr %9, align 4
+  store i32 %68, ptr %11, align 4
+  %69 = load ptr, ptr %6, align 8
+  %70 = load i64, ptr %7, align 8
+  %71 = getelementptr inbounds nuw i32, ptr %69, i64 %70
+  %72 = load i32, ptr %71, align 4
+  store i32 %72, ptr %10, align 4
+  %73 = load i32, ptr %9, align 4
+  switch i32 %73, label %74 [
+    i32 3, label %75
+    i32 2, label %85
+    i32 1, label %95
+  ]
+
+74:                                               ; preds = %67
+  call void @abort() #4
+  unreachable
+
+75:                                               ; preds = %67
+  %76 = load i32, ptr %10, align 4
+  %77 = lshr i32 %76, 8
+  %78 = and i32 %77, 255
+  %79 = trunc i32 %78 to i8
+  %80 = load ptr, ptr %5, align 8
+  %81 = load i32, ptr %11, align 4
+  %82 = add i32 %81, -1
+  store i32 %82, ptr %11, align 4
+  %83 = zext i32 %82 to i64
+  %84 = getelementptr inbounds nuw i8, ptr %80, i64 %83
+  store i8 %79, ptr %84, align 1
+  br label %85
+
+85:                                               ; preds = %67, %75
+  %86 = load i32, ptr %10, align 4
+  %87 = lshr i32 %86, 16
+  %88 = and i32 %87, 255
+  %89 = trunc i32 %88 to i8
+  %90 = load ptr, ptr %5, align 8
+  %91 = load i32, ptr %11, align 4
+  %92 = add i32 %91, -1
+  store i32 %92, ptr %11, align 4
+  %93 = zext i32 %92 to i64
+  %94 = getelementptr inbounds nuw i8, ptr %90, i64 %93
+  store i8 %89, ptr %94, align 1
+  br label %95
+
+95:                                               ; preds = %67, %85
+  %96 = load i32, ptr %10, align 4
+  %97 = lshr i32 %96, 24
+  %98 = and i32 %97, 255
+  %99 = trunc i32 %98 to i8
+  %100 = load ptr, ptr %5, align 8
+  %101 = load i32, ptr %11, align 4
+  %102 = add i32 %101, -1
+  store i32 %102, ptr %11, align 4
+  %103 = zext i32 %102 to i64
+  %104 = getelementptr inbounds nuw i8, ptr %100, i64 %103
+  store i8 %99, ptr %104, align 1
+  br label %105
+
+105:                                              ; preds = %95
+  br label %106
+
+106:                                              ; preds = %105, %64
+  ret void
+}
+
+; Function Attrs: noreturn nounwind
+declare void @abort() #1
+
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @_nettle_sha256_compress(ptr noundef %0, ptr noundef %1, ptr noundef %2) #0 {
+  %4 = alloca ptr, align 8
+  %5 = alloca ptr, align 8
+  %6 = alloca ptr, align 8
+  %7 = alloca [16 x i32], align 16
+  %8 = alloca i32, align 4
+  %9 = alloca i32, align 4
+  %10 = alloca i32, align 4
+  %11 = alloca i32, align 4
+  %12 = alloca i32, align 4
+  %13 = alloca i32, align 4
+  %14 = alloca i32, align 4
+  %15 = alloca i32, align 4
+  %16 = alloca i32, align 4
+  %17 = alloca ptr, align 8
+  store ptr %0, ptr %4, align 8
+  store ptr %1, ptr %5, align 8
+  store ptr %2, ptr %6, align 8
+  store i32 0, ptr %16, align 4
+  br label %18
+
+18:                                               ; preds = %47, %3
+  %19 = load i32, ptr %16, align 4
+  %20 = icmp ult i32 %19, 16
+  br i1 %20, label %21, label %52
+
+21:                                               ; preds = %18
+  %22 = load ptr, ptr %5, align 8
+  %23 = getelementptr inbounds i8, ptr %22, i64 0
+  %24 = load i8, ptr %23, align 1
+  %25 = zext i8 %24 to i32
+  %26 = shl i32 %25, 24
+  %27 = load ptr, ptr %5, align 8
+  %28 = getelementptr inbounds i8, ptr %27, i64 1
+  %29 = load i8, ptr %28, align 1
+  %30 = zext i8 %29 to i32
+  %31 = shl i32 %30, 16
+  %32 = or i32 %26, %31
+  %33 = load ptr, ptr %5, align 8
+  %34 = getelementptr inbounds i8, ptr %33, i64 2
+  %35 = load i8, ptr %34, align 1
+  %36 = zext i8 %35 to i32
+  %37 = shl i32 %36, 8
+  %38 = or i32 %32, %37
+  %39 = load ptr, ptr %5, align 8
+  %40 = getelementptr inbounds i8, ptr %39, i64 3
+  %41 = load i8, ptr %40, align 1
+  %42 = zext i8 %41 to i32
+  %43 = or i32 %38, %42
+  %44 = load i32, ptr %16, align 4
+  %45 = zext i32 %44 to i64
+  %46 = getelementptr inbounds nuw [16 x i32], ptr %7, i64 0, i64 %45
+  store i32 %43, ptr %46, align 4
+  br label %47
+
+47:                                               ; preds = %21
+  %48 = load i32, ptr %16, align 4
+  %49 = add i32 %48, 1
+  store i32 %49, ptr %16, align 4
+  %50 = load ptr, ptr %5, align 8
+  %51 = getelementptr inbounds i8, ptr %50, i64 4
+  store ptr %51, ptr %5, align 8
+  br label %18, !llvm.loop !8
+
+52:                                               ; preds = %18
+  %53 = load ptr, ptr %4, align 8
+  %54 = getelementptr inbounds i32, ptr %53, i64 0
+  %55 = load i32, ptr %54, align 4
+  store i32 %55, ptr %8, align 4
+  %56 = load ptr, ptr %4, align 8
+  %57 = getelementptr inbounds i32, ptr %56, i64 1
+  %58 = load i32, ptr %57, align 4
+  store i32 %58, ptr %9, align 4
+  %59 = load ptr, ptr %4, align 8
+  %60 = getelementptr inbounds i32, ptr %59, i64 2
+  %61 = load i32, ptr %60, align 4
+  store i32 %61, ptr %10, align 4
+  %62 = load ptr, ptr %4, align 8
+  %63 = getelementptr inbounds i32, ptr %62, i64 3
+  %64 = load i32, ptr %63, align 4
+  store i32 %64, ptr %11, align 4
+  %65 = load ptr, ptr %4, align 8
+  %66 = getelementptr inbounds i32, ptr %65, i64 4
+  %67 = load i32, ptr %66, align 4
+  store i32 %67, ptr %12, align 4
+  %68 = load ptr, ptr %4, align 8
+  %69 = getelementptr inbounds i32, ptr %68, i64 5
+  %70 = load i32, ptr %69, align 4
+  store i32 %70, ptr %13, align 4
+  %71 = load ptr, ptr %4, align 8
+  %72 = getelementptr inbounds i32, ptr %71, i64 6
+  %73 = load i32, ptr %72, align 4
+  store i32 %73, ptr %14, align 4
+  %74 = load ptr, ptr %4, align 8
+  %75 = getelementptr inbounds i32, ptr %74, i64 7
+  %76 = load i32, ptr %75, align 4
+  store i32 %76, ptr %15, align 4
+  store i32 0, ptr %16, align 4
+  %77 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  store ptr %77, ptr %17, align 8
+  br label %78
+
+78:                                               ; preds = %634, %52
+  %79 = load i32, ptr %16, align 4
+  %80 = icmp ult i32 %79, 16
+  br i1 %80, label %81, label %641
+
+81:                                               ; preds = %78
+  br label %82
+
+82:                                               ; preds = %81
+  %83 = load i32, ptr %12, align 4
+  %84 = shl i32 %83, 26
+  %85 = load i32, ptr %12, align 4
+  %86 = lshr i32 %85, 6
+  %87 = or i32 %84, %86
+  %88 = load i32, ptr %12, align 4
+  %89 = shl i32 %88, 21
+  %90 = load i32, ptr %12, align 4
+  %91 = lshr i32 %90, 11
+  %92 = or i32 %89, %91
+  %93 = xor i32 %87, %92
+  %94 = load i32, ptr %12, align 4
+  %95 = shl i32 %94, 7
+  %96 = load i32, ptr %12, align 4
+  %97 = lshr i32 %96, 25
+  %98 = or i32 %95, %97
+  %99 = xor i32 %93, %98
+  %100 = load i32, ptr %14, align 4
+  %101 = load i32, ptr %12, align 4
+  %102 = load i32, ptr %13, align 4
+  %103 = load i32, ptr %14, align 4
+  %104 = xor i32 %102, %103
+  %105 = and i32 %101, %104
+  %106 = xor i32 %100, %105
+  %107 = add i32 %99, %106
+  %108 = load ptr, ptr %6, align 8
+  %109 = getelementptr inbounds i32, ptr %108, i64 0
+  %110 = load i32, ptr %109, align 4
+  %111 = add i32 %107, %110
+  %112 = load ptr, ptr %17, align 8
+  %113 = getelementptr inbounds i32, ptr %112, i64 0
+  %114 = load i32, ptr %113, align 4
+  %115 = add i32 %111, %114
+  %116 = load i32, ptr %15, align 4
+  %117 = add i32 %116, %115
+  store i32 %117, ptr %15, align 4
+  %118 = load i32, ptr %15, align 4
+  %119 = load i32, ptr %11, align 4
+  %120 = add i32 %119, %118
+  store i32 %120, ptr %11, align 4
+  %121 = load i32, ptr %8, align 4
+  %122 = shl i32 %121, 30
+  %123 = load i32, ptr %8, align 4
+  %124 = lshr i32 %123, 2
+  %125 = or i32 %122, %124
+  %126 = load i32, ptr %8, align 4
+  %127 = shl i32 %126, 19
+  %128 = load i32, ptr %8, align 4
+  %129 = lshr i32 %128, 13
+  %130 = or i32 %127, %129
+  %131 = xor i32 %125, %130
+  %132 = load i32, ptr %8, align 4
+  %133 = shl i32 %132, 10
+  %134 = load i32, ptr %8, align 4
+  %135 = lshr i32 %134, 22
+  %136 = or i32 %133, %135
+  %137 = xor i32 %131, %136
+  %138 = load i32, ptr %8, align 4
+  %139 = load i32, ptr %9, align 4
+  %140 = and i32 %138, %139
+  %141 = load i32, ptr %10, align 4
+  %142 = load i32, ptr %8, align 4
+  %143 = load i32, ptr %9, align 4
+  %144 = xor i32 %142, %143
+  %145 = and i32 %141, %144
+  %146 = xor i32 %140, %145
+  %147 = add i32 %137, %146
+  %148 = load i32, ptr %15, align 4
+  %149 = add i32 %148, %147
+  store i32 %149, ptr %15, align 4
+  br label %150
+
+150:                                              ; preds = %82
+  br label %151
+
+151:                                              ; preds = %150
+  %152 = load i32, ptr %11, align 4
+  %153 = shl i32 %152, 26
+  %154 = load i32, ptr %11, align 4
+  %155 = lshr i32 %154, 6
+  %156 = or i32 %153, %155
+  %157 = load i32, ptr %11, align 4
+  %158 = shl i32 %157, 21
+  %159 = load i32, ptr %11, align 4
+  %160 = lshr i32 %159, 11
+  %161 = or i32 %158, %160
+  %162 = xor i32 %156, %161
+  %163 = load i32, ptr %11, align 4
+  %164 = shl i32 %163, 7
+  %165 = load i32, ptr %11, align 4
+  %166 = lshr i32 %165, 25
+  %167 = or i32 %164, %166
+  %168 = xor i32 %162, %167
+  %169 = load i32, ptr %13, align 4
+  %170 = load i32, ptr %11, align 4
+  %171 = load i32, ptr %12, align 4
+  %172 = load i32, ptr %13, align 4
+  %173 = xor i32 %171, %172
+  %174 = and i32 %170, %173
+  %175 = xor i32 %169, %174
+  %176 = add i32 %168, %175
+  %177 = load ptr, ptr %6, align 8
+  %178 = getelementptr inbounds i32, ptr %177, i64 1
+  %179 = load i32, ptr %178, align 4
+  %180 = add i32 %176, %179
+  %181 = load ptr, ptr %17, align 8
+  %182 = getelementptr inbounds i32, ptr %181, i64 1
+  %183 = load i32, ptr %182, align 4
+  %184 = add i32 %180, %183
+  %185 = load i32, ptr %14, align 4
+  %186 = add i32 %185, %184
+  store i32 %186, ptr %14, align 4
+  %187 = load i32, ptr %14, align 4
+  %188 = load i32, ptr %10, align 4
+  %189 = add i32 %188, %187
+  store i32 %189, ptr %10, align 4
+  %190 = load i32, ptr %15, align 4
+  %191 = shl i32 %190, 30
+  %192 = load i32, ptr %15, align 4
+  %193 = lshr i32 %192, 2
+  %194 = or i32 %191, %193
+  %195 = load i32, ptr %15, align 4
+  %196 = shl i32 %195, 19
+  %197 = load i32, ptr %15, align 4
+  %198 = lshr i32 %197, 13
+  %199 = or i32 %196, %198
+  %200 = xor i32 %194, %199
+  %201 = load i32, ptr %15, align 4
+  %202 = shl i32 %201, 10
+  %203 = load i32, ptr %15, align 4
+  %204 = lshr i32 %203, 22
+  %205 = or i32 %202, %204
+  %206 = xor i32 %200, %205
+  %207 = load i32, ptr %15, align 4
+  %208 = load i32, ptr %8, align 4
+  %209 = and i32 %207, %208
+  %210 = load i32, ptr %9, align 4
+  %211 = load i32, ptr %15, align 4
+  %212 = load i32, ptr %8, align 4
+  %213 = xor i32 %211, %212
+  %214 = and i32 %210, %213
+  %215 = xor i32 %209, %214
+  %216 = add i32 %206, %215
+  %217 = load i32, ptr %14, align 4
+  %218 = add i32 %217, %216
+  store i32 %218, ptr %14, align 4
+  br label %219
+
+219:                                              ; preds = %151
+  br label %220
+
+220:                                              ; preds = %219
+  %221 = load i32, ptr %10, align 4
+  %222 = shl i32 %221, 26
+  %223 = load i32, ptr %10, align 4
+  %224 = lshr i32 %223, 6
+  %225 = or i32 %222, %224
+  %226 = load i32, ptr %10, align 4
+  %227 = shl i32 %226, 21
+  %228 = load i32, ptr %10, align 4
+  %229 = lshr i32 %228, 11
+  %230 = or i32 %227, %229
+  %231 = xor i32 %225, %230
+  %232 = load i32, ptr %10, align 4
+  %233 = shl i32 %232, 7
+  %234 = load i32, ptr %10, align 4
+  %235 = lshr i32 %234, 25
+  %236 = or i32 %233, %235
+  %237 = xor i32 %231, %236
+  %238 = load i32, ptr %12, align 4
+  %239 = load i32, ptr %10, align 4
+  %240 = load i32, ptr %11, align 4
+  %241 = load i32, ptr %12, align 4
+  %242 = xor i32 %240, %241
+  %243 = and i32 %239, %242
+  %244 = xor i32 %238, %243
+  %245 = add i32 %237, %244
+  %246 = load ptr, ptr %6, align 8
+  %247 = getelementptr inbounds i32, ptr %246, i64 2
+  %248 = load i32, ptr %247, align 4
+  %249 = add i32 %245, %248
+  %250 = load ptr, ptr %17, align 8
+  %251 = getelementptr inbounds i32, ptr %250, i64 2
+  %252 = load i32, ptr %251, align 4
+  %253 = add i32 %249, %252
+  %254 = load i32, ptr %13, align 4
+  %255 = add i32 %254, %253
+  store i32 %255, ptr %13, align 4
+  %256 = load i32, ptr %13, align 4
+  %257 = load i32, ptr %9, align 4
+  %258 = add i32 %257, %256
+  store i32 %258, ptr %9, align 4
+  %259 = load i32, ptr %14, align 4
+  %260 = shl i32 %259, 30
+  %261 = load i32, ptr %14, align 4
+  %262 = lshr i32 %261, 2
+  %263 = or i32 %260, %262
+  %264 = load i32, ptr %14, align 4
+  %265 = shl i32 %264, 19
+  %266 = load i32, ptr %14, align 4
+  %267 = lshr i32 %266, 13
+  %268 = or i32 %265, %267
+  %269 = xor i32 %263, %268
+  %270 = load i32, ptr %14, align 4
+  %271 = shl i32 %270, 10
+  %272 = load i32, ptr %14, align 4
+  %273 = lshr i32 %272, 22
+  %274 = or i32 %271, %273
+  %275 = xor i32 %269, %274
+  %276 = load i32, ptr %14, align 4
+  %277 = load i32, ptr %15, align 4
+  %278 = and i32 %276, %277
+  %279 = load i32, ptr %8, align 4
+  %280 = load i32, ptr %14, align 4
+  %281 = load i32, ptr %15, align 4
+  %282 = xor i32 %280, %281
+  %283 = and i32 %279, %282
+  %284 = xor i32 %278, %283
+  %285 = add i32 %275, %284
+  %286 = load i32, ptr %13, align 4
+  %287 = add i32 %286, %285
+  store i32 %287, ptr %13, align 4
+  br label %288
+
+288:                                              ; preds = %220
+  br label %289
+
+289:                                              ; preds = %288
+  %290 = load i32, ptr %9, align 4
+  %291 = shl i32 %290, 26
+  %292 = load i32, ptr %9, align 4
+  %293 = lshr i32 %292, 6
+  %294 = or i32 %291, %293
+  %295 = load i32, ptr %9, align 4
+  %296 = shl i32 %295, 21
+  %297 = load i32, ptr %9, align 4
+  %298 = lshr i32 %297, 11
+  %299 = or i32 %296, %298
+  %300 = xor i32 %294, %299
+  %301 = load i32, ptr %9, align 4
+  %302 = shl i32 %301, 7
+  %303 = load i32, ptr %9, align 4
+  %304 = lshr i32 %303, 25
+  %305 = or i32 %302, %304
+  %306 = xor i32 %300, %305
+  %307 = load i32, ptr %11, align 4
+  %308 = load i32, ptr %9, align 4
+  %309 = load i32, ptr %10, align 4
+  %310 = load i32, ptr %11, align 4
+  %311 = xor i32 %309, %310
+  %312 = and i32 %308, %311
+  %313 = xor i32 %307, %312
+  %314 = add i32 %306, %313
+  %315 = load ptr, ptr %6, align 8
+  %316 = getelementptr inbounds i32, ptr %315, i64 3
+  %317 = load i32, ptr %316, align 4
+  %318 = add i32 %314, %317
+  %319 = load ptr, ptr %17, align 8
+  %320 = getelementptr inbounds i32, ptr %319, i64 3
+  %321 = load i32, ptr %320, align 4
+  %322 = add i32 %318, %321
+  %323 = load i32, ptr %12, align 4
+  %324 = add i32 %323, %322
+  store i32 %324, ptr %12, align 4
+  %325 = load i32, ptr %12, align 4
+  %326 = load i32, ptr %8, align 4
+  %327 = add i32 %326, %325
+  store i32 %327, ptr %8, align 4
+  %328 = load i32, ptr %13, align 4
+  %329 = shl i32 %328, 30
+  %330 = load i32, ptr %13, align 4
+  %331 = lshr i32 %330, 2
+  %332 = or i32 %329, %331
+  %333 = load i32, ptr %13, align 4
+  %334 = shl i32 %333, 19
+  %335 = load i32, ptr %13, align 4
+  %336 = lshr i32 %335, 13
+  %337 = or i32 %334, %336
+  %338 = xor i32 %332, %337
+  %339 = load i32, ptr %13, align 4
+  %340 = shl i32 %339, 10
+  %341 = load i32, ptr %13, align 4
+  %342 = lshr i32 %341, 22
+  %343 = or i32 %340, %342
+  %344 = xor i32 %338, %343
+  %345 = load i32, ptr %13, align 4
+  %346 = load i32, ptr %14, align 4
+  %347 = and i32 %345, %346
+  %348 = load i32, ptr %15, align 4
+  %349 = load i32, ptr %13, align 4
+  %350 = load i32, ptr %14, align 4
+  %351 = xor i32 %349, %350
+  %352 = and i32 %348, %351
+  %353 = xor i32 %347, %352
+  %354 = add i32 %344, %353
+  %355 = load i32, ptr %12, align 4
+  %356 = add i32 %355, %354
+  store i32 %356, ptr %12, align 4
+  br label %357
+
+357:                                              ; preds = %289
+  br label %358
+
+358:                                              ; preds = %357
+  %359 = load i32, ptr %8, align 4
+  %360 = shl i32 %359, 26
+  %361 = load i32, ptr %8, align 4
+  %362 = lshr i32 %361, 6
+  %363 = or i32 %360, %362
+  %364 = load i32, ptr %8, align 4
+  %365 = shl i32 %364, 21
+  %366 = load i32, ptr %8, align 4
+  %367 = lshr i32 %366, 11
+  %368 = or i32 %365, %367
+  %369 = xor i32 %363, %368
+  %370 = load i32, ptr %8, align 4
+  %371 = shl i32 %370, 7
+  %372 = load i32, ptr %8, align 4
+  %373 = lshr i32 %372, 25
+  %374 = or i32 %371, %373
+  %375 = xor i32 %369, %374
+  %376 = load i32, ptr %10, align 4
+  %377 = load i32, ptr %8, align 4
+  %378 = load i32, ptr %9, align 4
+  %379 = load i32, ptr %10, align 4
+  %380 = xor i32 %378, %379
+  %381 = and i32 %377, %380
+  %382 = xor i32 %376, %381
+  %383 = add i32 %375, %382
+  %384 = load ptr, ptr %6, align 8
+  %385 = getelementptr inbounds i32, ptr %384, i64 4
+  %386 = load i32, ptr %385, align 4
+  %387 = add i32 %383, %386
+  %388 = load ptr, ptr %17, align 8
+  %389 = getelementptr inbounds i32, ptr %388, i64 4
+  %390 = load i32, ptr %389, align 4
+  %391 = add i32 %387, %390
+  %392 = load i32, ptr %11, align 4
+  %393 = add i32 %392, %391
+  store i32 %393, ptr %11, align 4
+  %394 = load i32, ptr %11, align 4
+  %395 = load i32, ptr %15, align 4
+  %396 = add i32 %395, %394
+  store i32 %396, ptr %15, align 4
+  %397 = load i32, ptr %12, align 4
+  %398 = shl i32 %397, 30
+  %399 = load i32, ptr %12, align 4
+  %400 = lshr i32 %399, 2
+  %401 = or i32 %398, %400
+  %402 = load i32, ptr %12, align 4
+  %403 = shl i32 %402, 19
+  %404 = load i32, ptr %12, align 4
+  %405 = lshr i32 %404, 13
+  %406 = or i32 %403, %405
+  %407 = xor i32 %401, %406
+  %408 = load i32, ptr %12, align 4
+  %409 = shl i32 %408, 10
+  %410 = load i32, ptr %12, align 4
+  %411 = lshr i32 %410, 22
+  %412 = or i32 %409, %411
+  %413 = xor i32 %407, %412
+  %414 = load i32, ptr %12, align 4
+  %415 = load i32, ptr %13, align 4
+  %416 = and i32 %414, %415
+  %417 = load i32, ptr %14, align 4
+  %418 = load i32, ptr %12, align 4
+  %419 = load i32, ptr %13, align 4
+  %420 = xor i32 %418, %419
+  %421 = and i32 %417, %420
+  %422 = xor i32 %416, %421
+  %423 = add i32 %413, %422
+  %424 = load i32, ptr %11, align 4
+  %425 = add i32 %424, %423
+  store i32 %425, ptr %11, align 4
+  br label %426
+
+426:                                              ; preds = %358
+  br label %427
+
+427:                                              ; preds = %426
+  %428 = load i32, ptr %15, align 4
+  %429 = shl i32 %428, 26
+  %430 = load i32, ptr %15, align 4
+  %431 = lshr i32 %430, 6
+  %432 = or i32 %429, %431
+  %433 = load i32, ptr %15, align 4
+  %434 = shl i32 %433, 21
+  %435 = load i32, ptr %15, align 4
+  %436 = lshr i32 %435, 11
+  %437 = or i32 %434, %436
+  %438 = xor i32 %432, %437
+  %439 = load i32, ptr %15, align 4
+  %440 = shl i32 %439, 7
+  %441 = load i32, ptr %15, align 4
+  %442 = lshr i32 %441, 25
+  %443 = or i32 %440, %442
+  %444 = xor i32 %438, %443
+  %445 = load i32, ptr %9, align 4
+  %446 = load i32, ptr %15, align 4
+  %447 = load i32, ptr %8, align 4
+  %448 = load i32, ptr %9, align 4
+  %449 = xor i32 %447, %448
+  %450 = and i32 %446, %449
+  %451 = xor i32 %445, %450
+  %452 = add i32 %444, %451
+  %453 = load ptr, ptr %6, align 8
+  %454 = getelementptr inbounds i32, ptr %453, i64 5
+  %455 = load i32, ptr %454, align 4
+  %456 = add i32 %452, %455
+  %457 = load ptr, ptr %17, align 8
+  %458 = getelementptr inbounds i32, ptr %457, i64 5
+  %459 = load i32, ptr %458, align 4
+  %460 = add i32 %456, %459
+  %461 = load i32, ptr %10, align 4
+  %462 = add i32 %461, %460
+  store i32 %462, ptr %10, align 4
+  %463 = load i32, ptr %10, align 4
+  %464 = load i32, ptr %14, align 4
+  %465 = add i32 %464, %463
+  store i32 %465, ptr %14, align 4
+  %466 = load i32, ptr %11, align 4
+  %467 = shl i32 %466, 30
+  %468 = load i32, ptr %11, align 4
+  %469 = lshr i32 %468, 2
+  %470 = or i32 %467, %469
+  %471 = load i32, ptr %11, align 4
+  %472 = shl i32 %471, 19
+  %473 = load i32, ptr %11, align 4
+  %474 = lshr i32 %473, 13
+  %475 = or i32 %472, %474
+  %476 = xor i32 %470, %475
+  %477 = load i32, ptr %11, align 4
+  %478 = shl i32 %477, 10
+  %479 = load i32, ptr %11, align 4
+  %480 = lshr i32 %479, 22
+  %481 = or i32 %478, %480
+  %482 = xor i32 %476, %481
+  %483 = load i32, ptr %11, align 4
+  %484 = load i32, ptr %12, align 4
+  %485 = and i32 %483, %484
+  %486 = load i32, ptr %13, align 4
+  %487 = load i32, ptr %11, align 4
+  %488 = load i32, ptr %12, align 4
+  %489 = xor i32 %487, %488
+  %490 = and i32 %486, %489
+  %491 = xor i32 %485, %490
+  %492 = add i32 %482, %491
+  %493 = load i32, ptr %10, align 4
+  %494 = add i32 %493, %492
+  store i32 %494, ptr %10, align 4
+  br label %495
+
+495:                                              ; preds = %427
+  br label %496
+
+496:                                              ; preds = %495
+  %497 = load i32, ptr %14, align 4
+  %498 = shl i32 %497, 26
+  %499 = load i32, ptr %14, align 4
+  %500 = lshr i32 %499, 6
+  %501 = or i32 %498, %500
+  %502 = load i32, ptr %14, align 4
+  %503 = shl i32 %502, 21
+  %504 = load i32, ptr %14, align 4
+  %505 = lshr i32 %504, 11
+  %506 = or i32 %503, %505
+  %507 = xor i32 %501, %506
+  %508 = load i32, ptr %14, align 4
+  %509 = shl i32 %508, 7
+  %510 = load i32, ptr %14, align 4
+  %511 = lshr i32 %510, 25
+  %512 = or i32 %509, %511
+  %513 = xor i32 %507, %512
+  %514 = load i32, ptr %8, align 4
+  %515 = load i32, ptr %14, align 4
+  %516 = load i32, ptr %15, align 4
+  %517 = load i32, ptr %8, align 4
+  %518 = xor i32 %516, %517
+  %519 = and i32 %515, %518
+  %520 = xor i32 %514, %519
+  %521 = add i32 %513, %520
+  %522 = load ptr, ptr %6, align 8
+  %523 = getelementptr inbounds i32, ptr %522, i64 6
+  %524 = load i32, ptr %523, align 4
+  %525 = add i32 %521, %524
+  %526 = load ptr, ptr %17, align 8
+  %527 = getelementptr inbounds i32, ptr %526, i64 6
+  %528 = load i32, ptr %527, align 4
+  %529 = add i32 %525, %528
+  %530 = load i32, ptr %9, align 4
+  %531 = add i32 %530, %529
+  store i32 %531, ptr %9, align 4
+  %532 = load i32, ptr %9, align 4
+  %533 = load i32, ptr %13, align 4
+  %534 = add i32 %533, %532
+  store i32 %534, ptr %13, align 4
+  %535 = load i32, ptr %10, align 4
+  %536 = shl i32 %535, 30
+  %537 = load i32, ptr %10, align 4
+  %538 = lshr i32 %537, 2
+  %539 = or i32 %536, %538
+  %540 = load i32, ptr %10, align 4
+  %541 = shl i32 %540, 19
+  %542 = load i32, ptr %10, align 4
+  %543 = lshr i32 %542, 13
+  %544 = or i32 %541, %543
+  %545 = xor i32 %539, %544
+  %546 = load i32, ptr %10, align 4
+  %547 = shl i32 %546, 10
+  %548 = load i32, ptr %10, align 4
+  %549 = lshr i32 %548, 22
+  %550 = or i32 %547, %549
+  %551 = xor i32 %545, %550
+  %552 = load i32, ptr %10, align 4
+  %553 = load i32, ptr %11, align 4
+  %554 = and i32 %552, %553
+  %555 = load i32, ptr %12, align 4
+  %556 = load i32, ptr %10, align 4
+  %557 = load i32, ptr %11, align 4
+  %558 = xor i32 %556, %557
+  %559 = and i32 %555, %558
+  %560 = xor i32 %554, %559
+  %561 = add i32 %551, %560
+  %562 = load i32, ptr %9, align 4
+  %563 = add i32 %562, %561
+  store i32 %563, ptr %9, align 4
+  br label %564
+
+564:                                              ; preds = %496
+  br label %565
+
+565:                                              ; preds = %564
+  %566 = load i32, ptr %13, align 4
+  %567 = shl i32 %566, 26
+  %568 = load i32, ptr %13, align 4
+  %569 = lshr i32 %568, 6
+  %570 = or i32 %567, %569
+  %571 = load i32, ptr %13, align 4
+  %572 = shl i32 %571, 21
+  %573 = load i32, ptr %13, align 4
+  %574 = lshr i32 %573, 11
+  %575 = or i32 %572, %574
+  %576 = xor i32 %570, %575
+  %577 = load i32, ptr %13, align 4
+  %578 = shl i32 %577, 7
+  %579 = load i32, ptr %13, align 4
+  %580 = lshr i32 %579, 25
+  %581 = or i32 %578, %580
+  %582 = xor i32 %576, %581
+  %583 = load i32, ptr %15, align 4
+  %584 = load i32, ptr %13, align 4
+  %585 = load i32, ptr %14, align 4
+  %586 = load i32, ptr %15, align 4
+  %587 = xor i32 %585, %586
+  %588 = and i32 %584, %587
+  %589 = xor i32 %583, %588
+  %590 = add i32 %582, %589
+  %591 = load ptr, ptr %6, align 8
+  %592 = getelementptr inbounds i32, ptr %591, i64 7
+  %593 = load i32, ptr %592, align 4
+  %594 = add i32 %590, %593
+  %595 = load ptr, ptr %17, align 8
+  %596 = getelementptr inbounds i32, ptr %595, i64 7
+  %597 = load i32, ptr %596, align 4
+  %598 = add i32 %594, %597
+  %599 = load i32, ptr %8, align 4
+  %600 = add i32 %599, %598
+  store i32 %600, ptr %8, align 4
+  %601 = load i32, ptr %8, align 4
+  %602 = load i32, ptr %12, align 4
+  %603 = add i32 %602, %601
+  store i32 %603, ptr %12, align 4
+  %604 = load i32, ptr %9, align 4
+  %605 = shl i32 %604, 30
+  %606 = load i32, ptr %9, align 4
+  %607 = lshr i32 %606, 2
+  %608 = or i32 %605, %607
+  %609 = load i32, ptr %9, align 4
+  %610 = shl i32 %609, 19
+  %611 = load i32, ptr %9, align 4
+  %612 = lshr i32 %611, 13
+  %613 = or i32 %610, %612
+  %614 = xor i32 %608, %613
+  %615 = load i32, ptr %9, align 4
+  %616 = shl i32 %615, 10
+  %617 = load i32, ptr %9, align 4
+  %618 = lshr i32 %617, 22
+  %619 = or i32 %616, %618
+  %620 = xor i32 %614, %619
+  %621 = load i32, ptr %9, align 4
+  %622 = load i32, ptr %10, align 4
+  %623 = and i32 %621, %622
+  %624 = load i32, ptr %11, align 4
+  %625 = load i32, ptr %9, align 4
+  %626 = load i32, ptr %10, align 4
+  %627 = xor i32 %625, %626
+  %628 = and i32 %624, %627
+  %629 = xor i32 %623, %628
+  %630 = add i32 %620, %629
+  %631 = load i32, ptr %8, align 4
+  %632 = add i32 %631, %630
+  store i32 %632, ptr %8, align 4
+  br label %633
+
+633:                                              ; preds = %565
+  br label %634
+
+634:                                              ; preds = %633
+  %635 = load i32, ptr %16, align 4
+  %636 = add i32 %635, 8
+  store i32 %636, ptr %16, align 4
+  %637 = load ptr, ptr %6, align 8
+  %638 = getelementptr inbounds i32, ptr %637, i64 8
+  store ptr %638, ptr %6, align 8
+  %639 = load ptr, ptr %17, align 8
+  %640 = getelementptr inbounds i32, ptr %639, i64 8
+  store ptr %640, ptr %17, align 8
+  br label %78, !llvm.loop !9
+
+641:                                              ; preds = %78
+  br label %642
+
+642:                                              ; preds = %2422, %641
+  %643 = load i32, ptr %16, align 4
+  %644 = icmp ult i32 %643, 64
+  br i1 %644, label %645, label %2427
+
+645:                                              ; preds = %642
+  br label %646
+
+646:                                              ; preds = %645
+  %647 = load i32, ptr %12, align 4
+  %648 = shl i32 %647, 26
+  %649 = load i32, ptr %12, align 4
+  %650 = lshr i32 %649, 6
+  %651 = or i32 %648, %650
+  %652 = load i32, ptr %12, align 4
+  %653 = shl i32 %652, 21
+  %654 = load i32, ptr %12, align 4
+  %655 = lshr i32 %654, 11
+  %656 = or i32 %653, %655
+  %657 = xor i32 %651, %656
+  %658 = load i32, ptr %12, align 4
+  %659 = shl i32 %658, 7
+  %660 = load i32, ptr %12, align 4
+  %661 = lshr i32 %660, 25
+  %662 = or i32 %659, %661
+  %663 = xor i32 %657, %662
+  %664 = load i32, ptr %14, align 4
+  %665 = load i32, ptr %12, align 4
+  %666 = load i32, ptr %13, align 4
+  %667 = load i32, ptr %14, align 4
+  %668 = xor i32 %666, %667
+  %669 = and i32 %665, %668
+  %670 = xor i32 %664, %669
+  %671 = add i32 %663, %670
+  %672 = load ptr, ptr %6, align 8
+  %673 = getelementptr inbounds i32, ptr %672, i64 0
+  %674 = load i32, ptr %673, align 4
+  %675 = add i32 %671, %674
+  %676 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %677 = load i32, ptr %676, align 8
+  %678 = shl i32 %677, 15
+  %679 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %680 = load i32, ptr %679, align 8
+  %681 = lshr i32 %680, 17
+  %682 = or i32 %678, %681
+  %683 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %684 = load i32, ptr %683, align 8
+  %685 = shl i32 %684, 13
+  %686 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %687 = load i32, ptr %686, align 8
+  %688 = lshr i32 %687, 19
+  %689 = or i32 %685, %688
+  %690 = xor i32 %682, %689
+  %691 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %692 = load i32, ptr %691, align 8
+  %693 = lshr i32 %692, 10
+  %694 = xor i32 %690, %693
+  %695 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %696 = load i32, ptr %695, align 4
+  %697 = add i32 %694, %696
+  %698 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %699 = load i32, ptr %698, align 4
+  %700 = shl i32 %699, 25
+  %701 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %702 = load i32, ptr %701, align 4
+  %703 = lshr i32 %702, 7
+  %704 = or i32 %700, %703
+  %705 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %706 = load i32, ptr %705, align 4
+  %707 = shl i32 %706, 14
+  %708 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %709 = load i32, ptr %708, align 4
+  %710 = lshr i32 %709, 18
+  %711 = or i32 %707, %710
+  %712 = xor i32 %704, %711
+  %713 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %714 = load i32, ptr %713, align 4
+  %715 = lshr i32 %714, 3
+  %716 = xor i32 %712, %715
+  %717 = add i32 %697, %716
+  %718 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %719 = load i32, ptr %718, align 16
+  %720 = add i32 %719, %717
+  store i32 %720, ptr %718, align 16
+  %721 = add i32 %675, %720
+  %722 = load i32, ptr %15, align 4
+  %723 = add i32 %722, %721
+  store i32 %723, ptr %15, align 4
+  %724 = load i32, ptr %15, align 4
+  %725 = load i32, ptr %11, align 4
+  %726 = add i32 %725, %724
+  store i32 %726, ptr %11, align 4
+  %727 = load i32, ptr %8, align 4
+  %728 = shl i32 %727, 30
+  %729 = load i32, ptr %8, align 4
+  %730 = lshr i32 %729, 2
+  %731 = or i32 %728, %730
+  %732 = load i32, ptr %8, align 4
+  %733 = shl i32 %732, 19
+  %734 = load i32, ptr %8, align 4
+  %735 = lshr i32 %734, 13
+  %736 = or i32 %733, %735
+  %737 = xor i32 %731, %736
+  %738 = load i32, ptr %8, align 4
+  %739 = shl i32 %738, 10
+  %740 = load i32, ptr %8, align 4
+  %741 = lshr i32 %740, 22
+  %742 = or i32 %739, %741
+  %743 = xor i32 %737, %742
+  %744 = load i32, ptr %8, align 4
+  %745 = load i32, ptr %9, align 4
+  %746 = and i32 %744, %745
+  %747 = load i32, ptr %10, align 4
+  %748 = load i32, ptr %8, align 4
+  %749 = load i32, ptr %9, align 4
+  %750 = xor i32 %748, %749
+  %751 = and i32 %747, %750
+  %752 = xor i32 %746, %751
+  %753 = add i32 %743, %752
+  %754 = load i32, ptr %15, align 4
+  %755 = add i32 %754, %753
+  store i32 %755, ptr %15, align 4
+  br label %756
+
+756:                                              ; preds = %646
+  br label %757
+
+757:                                              ; preds = %756
+  %758 = load i32, ptr %11, align 4
+  %759 = shl i32 %758, 26
+  %760 = load i32, ptr %11, align 4
+  %761 = lshr i32 %760, 6
+  %762 = or i32 %759, %761
+  %763 = load i32, ptr %11, align 4
+  %764 = shl i32 %763, 21
+  %765 = load i32, ptr %11, align 4
+  %766 = lshr i32 %765, 11
+  %767 = or i32 %764, %766
+  %768 = xor i32 %762, %767
+  %769 = load i32, ptr %11, align 4
+  %770 = shl i32 %769, 7
+  %771 = load i32, ptr %11, align 4
+  %772 = lshr i32 %771, 25
+  %773 = or i32 %770, %772
+  %774 = xor i32 %768, %773
+  %775 = load i32, ptr %13, align 4
+  %776 = load i32, ptr %11, align 4
+  %777 = load i32, ptr %12, align 4
+  %778 = load i32, ptr %13, align 4
+  %779 = xor i32 %777, %778
+  %780 = and i32 %776, %779
+  %781 = xor i32 %775, %780
+  %782 = add i32 %774, %781
+  %783 = load ptr, ptr %6, align 8
+  %784 = getelementptr inbounds i32, ptr %783, i64 1
+  %785 = load i32, ptr %784, align 4
+  %786 = add i32 %782, %785
+  %787 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %788 = load i32, ptr %787, align 4
+  %789 = shl i32 %788, 15
+  %790 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %791 = load i32, ptr %790, align 4
+  %792 = lshr i32 %791, 17
+  %793 = or i32 %789, %792
+  %794 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %795 = load i32, ptr %794, align 4
+  %796 = shl i32 %795, 13
+  %797 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %798 = load i32, ptr %797, align 4
+  %799 = lshr i32 %798, 19
+  %800 = or i32 %796, %799
+  %801 = xor i32 %793, %800
+  %802 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %803 = load i32, ptr %802, align 4
+  %804 = lshr i32 %803, 10
+  %805 = xor i32 %801, %804
+  %806 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %807 = load i32, ptr %806, align 8
+  %808 = add i32 %805, %807
+  %809 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %810 = load i32, ptr %809, align 8
+  %811 = shl i32 %810, 25
+  %812 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %813 = load i32, ptr %812, align 8
+  %814 = lshr i32 %813, 7
+  %815 = or i32 %811, %814
+  %816 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %817 = load i32, ptr %816, align 8
+  %818 = shl i32 %817, 14
+  %819 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %820 = load i32, ptr %819, align 8
+  %821 = lshr i32 %820, 18
+  %822 = or i32 %818, %821
+  %823 = xor i32 %815, %822
+  %824 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %825 = load i32, ptr %824, align 8
+  %826 = lshr i32 %825, 3
+  %827 = xor i32 %823, %826
+  %828 = add i32 %808, %827
+  %829 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %830 = load i32, ptr %829, align 4
+  %831 = add i32 %830, %828
+  store i32 %831, ptr %829, align 4
+  %832 = add i32 %786, %831
+  %833 = load i32, ptr %14, align 4
+  %834 = add i32 %833, %832
+  store i32 %834, ptr %14, align 4
+  %835 = load i32, ptr %14, align 4
+  %836 = load i32, ptr %10, align 4
+  %837 = add i32 %836, %835
+  store i32 %837, ptr %10, align 4
+  %838 = load i32, ptr %15, align 4
+  %839 = shl i32 %838, 30
+  %840 = load i32, ptr %15, align 4
+  %841 = lshr i32 %840, 2
+  %842 = or i32 %839, %841
+  %843 = load i32, ptr %15, align 4
+  %844 = shl i32 %843, 19
+  %845 = load i32, ptr %15, align 4
+  %846 = lshr i32 %845, 13
+  %847 = or i32 %844, %846
+  %848 = xor i32 %842, %847
+  %849 = load i32, ptr %15, align 4
+  %850 = shl i32 %849, 10
+  %851 = load i32, ptr %15, align 4
+  %852 = lshr i32 %851, 22
+  %853 = or i32 %850, %852
+  %854 = xor i32 %848, %853
+  %855 = load i32, ptr %15, align 4
+  %856 = load i32, ptr %8, align 4
+  %857 = and i32 %855, %856
+  %858 = load i32, ptr %9, align 4
+  %859 = load i32, ptr %15, align 4
+  %860 = load i32, ptr %8, align 4
+  %861 = xor i32 %859, %860
+  %862 = and i32 %858, %861
+  %863 = xor i32 %857, %862
+  %864 = add i32 %854, %863
+  %865 = load i32, ptr %14, align 4
+  %866 = add i32 %865, %864
+  store i32 %866, ptr %14, align 4
+  br label %867
+
+867:                                              ; preds = %757
+  br label %868
+
+868:                                              ; preds = %867
+  %869 = load i32, ptr %10, align 4
+  %870 = shl i32 %869, 26
+  %871 = load i32, ptr %10, align 4
+  %872 = lshr i32 %871, 6
+  %873 = or i32 %870, %872
+  %874 = load i32, ptr %10, align 4
+  %875 = shl i32 %874, 21
+  %876 = load i32, ptr %10, align 4
+  %877 = lshr i32 %876, 11
+  %878 = or i32 %875, %877
+  %879 = xor i32 %873, %878
+  %880 = load i32, ptr %10, align 4
+  %881 = shl i32 %880, 7
+  %882 = load i32, ptr %10, align 4
+  %883 = lshr i32 %882, 25
+  %884 = or i32 %881, %883
+  %885 = xor i32 %879, %884
+  %886 = load i32, ptr %12, align 4
+  %887 = load i32, ptr %10, align 4
+  %888 = load i32, ptr %11, align 4
+  %889 = load i32, ptr %12, align 4
+  %890 = xor i32 %888, %889
+  %891 = and i32 %887, %890
+  %892 = xor i32 %886, %891
+  %893 = add i32 %885, %892
+  %894 = load ptr, ptr %6, align 8
+  %895 = getelementptr inbounds i32, ptr %894, i64 2
+  %896 = load i32, ptr %895, align 4
+  %897 = add i32 %893, %896
+  %898 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %899 = load i32, ptr %898, align 16
+  %900 = shl i32 %899, 15
+  %901 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %902 = load i32, ptr %901, align 16
+  %903 = lshr i32 %902, 17
+  %904 = or i32 %900, %903
+  %905 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %906 = load i32, ptr %905, align 16
+  %907 = shl i32 %906, 13
+  %908 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %909 = load i32, ptr %908, align 16
+  %910 = lshr i32 %909, 19
+  %911 = or i32 %907, %910
+  %912 = xor i32 %904, %911
+  %913 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %914 = load i32, ptr %913, align 16
+  %915 = lshr i32 %914, 10
+  %916 = xor i32 %912, %915
+  %917 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %918 = load i32, ptr %917, align 4
+  %919 = add i32 %916, %918
+  %920 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %921 = load i32, ptr %920, align 4
+  %922 = shl i32 %921, 25
+  %923 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %924 = load i32, ptr %923, align 4
+  %925 = lshr i32 %924, 7
+  %926 = or i32 %922, %925
+  %927 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %928 = load i32, ptr %927, align 4
+  %929 = shl i32 %928, 14
+  %930 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %931 = load i32, ptr %930, align 4
+  %932 = lshr i32 %931, 18
+  %933 = or i32 %929, %932
+  %934 = xor i32 %926, %933
+  %935 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %936 = load i32, ptr %935, align 4
+  %937 = lshr i32 %936, 3
+  %938 = xor i32 %934, %937
+  %939 = add i32 %919, %938
+  %940 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %941 = load i32, ptr %940, align 8
+  %942 = add i32 %941, %939
+  store i32 %942, ptr %940, align 8
+  %943 = add i32 %897, %942
+  %944 = load i32, ptr %13, align 4
+  %945 = add i32 %944, %943
+  store i32 %945, ptr %13, align 4
+  %946 = load i32, ptr %13, align 4
+  %947 = load i32, ptr %9, align 4
+  %948 = add i32 %947, %946
+  store i32 %948, ptr %9, align 4
+  %949 = load i32, ptr %14, align 4
+  %950 = shl i32 %949, 30
+  %951 = load i32, ptr %14, align 4
+  %952 = lshr i32 %951, 2
+  %953 = or i32 %950, %952
+  %954 = load i32, ptr %14, align 4
+  %955 = shl i32 %954, 19
+  %956 = load i32, ptr %14, align 4
+  %957 = lshr i32 %956, 13
+  %958 = or i32 %955, %957
+  %959 = xor i32 %953, %958
+  %960 = load i32, ptr %14, align 4
+  %961 = shl i32 %960, 10
+  %962 = load i32, ptr %14, align 4
+  %963 = lshr i32 %962, 22
+  %964 = or i32 %961, %963
+  %965 = xor i32 %959, %964
+  %966 = load i32, ptr %14, align 4
+  %967 = load i32, ptr %15, align 4
+  %968 = and i32 %966, %967
+  %969 = load i32, ptr %8, align 4
+  %970 = load i32, ptr %14, align 4
+  %971 = load i32, ptr %15, align 4
+  %972 = xor i32 %970, %971
+  %973 = and i32 %969, %972
+  %974 = xor i32 %968, %973
+  %975 = add i32 %965, %974
+  %976 = load i32, ptr %13, align 4
+  %977 = add i32 %976, %975
+  store i32 %977, ptr %13, align 4
+  br label %978
+
+978:                                              ; preds = %868
+  br label %979
+
+979:                                              ; preds = %978
+  %980 = load i32, ptr %9, align 4
+  %981 = shl i32 %980, 26
+  %982 = load i32, ptr %9, align 4
+  %983 = lshr i32 %982, 6
+  %984 = or i32 %981, %983
+  %985 = load i32, ptr %9, align 4
+  %986 = shl i32 %985, 21
+  %987 = load i32, ptr %9, align 4
+  %988 = lshr i32 %987, 11
+  %989 = or i32 %986, %988
+  %990 = xor i32 %984, %989
+  %991 = load i32, ptr %9, align 4
+  %992 = shl i32 %991, 7
+  %993 = load i32, ptr %9, align 4
+  %994 = lshr i32 %993, 25
+  %995 = or i32 %992, %994
+  %996 = xor i32 %990, %995
+  %997 = load i32, ptr %11, align 4
+  %998 = load i32, ptr %9, align 4
+  %999 = load i32, ptr %10, align 4
+  %1000 = load i32, ptr %11, align 4
+  %1001 = xor i32 %999, %1000
+  %1002 = and i32 %998, %1001
+  %1003 = xor i32 %997, %1002
+  %1004 = add i32 %996, %1003
+  %1005 = load ptr, ptr %6, align 8
+  %1006 = getelementptr inbounds i32, ptr %1005, i64 3
+  %1007 = load i32, ptr %1006, align 4
+  %1008 = add i32 %1004, %1007
+  %1009 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %1010 = load i32, ptr %1009, align 4
+  %1011 = shl i32 %1010, 15
+  %1012 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %1013 = load i32, ptr %1012, align 4
+  %1014 = lshr i32 %1013, 17
+  %1015 = or i32 %1011, %1014
+  %1016 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %1017 = load i32, ptr %1016, align 4
+  %1018 = shl i32 %1017, 13
+  %1019 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %1020 = load i32, ptr %1019, align 4
+  %1021 = lshr i32 %1020, 19
+  %1022 = or i32 %1018, %1021
+  %1023 = xor i32 %1015, %1022
+  %1024 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %1025 = load i32, ptr %1024, align 4
+  %1026 = lshr i32 %1025, 10
+  %1027 = xor i32 %1023, %1026
+  %1028 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %1029 = load i32, ptr %1028, align 16
+  %1030 = add i32 %1027, %1029
+  %1031 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1032 = load i32, ptr %1031, align 16
+  %1033 = shl i32 %1032, 25
+  %1034 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1035 = load i32, ptr %1034, align 16
+  %1036 = lshr i32 %1035, 7
+  %1037 = or i32 %1033, %1036
+  %1038 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1039 = load i32, ptr %1038, align 16
+  %1040 = shl i32 %1039, 14
+  %1041 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1042 = load i32, ptr %1041, align 16
+  %1043 = lshr i32 %1042, 18
+  %1044 = or i32 %1040, %1043
+  %1045 = xor i32 %1037, %1044
+  %1046 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1047 = load i32, ptr %1046, align 16
+  %1048 = lshr i32 %1047, 3
+  %1049 = xor i32 %1045, %1048
+  %1050 = add i32 %1030, %1049
+  %1051 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1052 = load i32, ptr %1051, align 4
+  %1053 = add i32 %1052, %1050
+  store i32 %1053, ptr %1051, align 4
+  %1054 = add i32 %1008, %1053
+  %1055 = load i32, ptr %12, align 4
+  %1056 = add i32 %1055, %1054
+  store i32 %1056, ptr %12, align 4
+  %1057 = load i32, ptr %12, align 4
+  %1058 = load i32, ptr %8, align 4
+  %1059 = add i32 %1058, %1057
+  store i32 %1059, ptr %8, align 4
+  %1060 = load i32, ptr %13, align 4
+  %1061 = shl i32 %1060, 30
+  %1062 = load i32, ptr %13, align 4
+  %1063 = lshr i32 %1062, 2
+  %1064 = or i32 %1061, %1063
+  %1065 = load i32, ptr %13, align 4
+  %1066 = shl i32 %1065, 19
+  %1067 = load i32, ptr %13, align 4
+  %1068 = lshr i32 %1067, 13
+  %1069 = or i32 %1066, %1068
+  %1070 = xor i32 %1064, %1069
+  %1071 = load i32, ptr %13, align 4
+  %1072 = shl i32 %1071, 10
+  %1073 = load i32, ptr %13, align 4
+  %1074 = lshr i32 %1073, 22
+  %1075 = or i32 %1072, %1074
+  %1076 = xor i32 %1070, %1075
+  %1077 = load i32, ptr %13, align 4
+  %1078 = load i32, ptr %14, align 4
+  %1079 = and i32 %1077, %1078
+  %1080 = load i32, ptr %15, align 4
+  %1081 = load i32, ptr %13, align 4
+  %1082 = load i32, ptr %14, align 4
+  %1083 = xor i32 %1081, %1082
+  %1084 = and i32 %1080, %1083
+  %1085 = xor i32 %1079, %1084
+  %1086 = add i32 %1076, %1085
+  %1087 = load i32, ptr %12, align 4
+  %1088 = add i32 %1087, %1086
+  store i32 %1088, ptr %12, align 4
+  br label %1089
+
+1089:                                             ; preds = %979
+  br label %1090
+
+1090:                                             ; preds = %1089
+  %1091 = load i32, ptr %8, align 4
+  %1092 = shl i32 %1091, 26
+  %1093 = load i32, ptr %8, align 4
+  %1094 = lshr i32 %1093, 6
+  %1095 = or i32 %1092, %1094
+  %1096 = load i32, ptr %8, align 4
+  %1097 = shl i32 %1096, 21
+  %1098 = load i32, ptr %8, align 4
+  %1099 = lshr i32 %1098, 11
+  %1100 = or i32 %1097, %1099
+  %1101 = xor i32 %1095, %1100
+  %1102 = load i32, ptr %8, align 4
+  %1103 = shl i32 %1102, 7
+  %1104 = load i32, ptr %8, align 4
+  %1105 = lshr i32 %1104, 25
+  %1106 = or i32 %1103, %1105
+  %1107 = xor i32 %1101, %1106
+  %1108 = load i32, ptr %10, align 4
+  %1109 = load i32, ptr %8, align 4
+  %1110 = load i32, ptr %9, align 4
+  %1111 = load i32, ptr %10, align 4
+  %1112 = xor i32 %1110, %1111
+  %1113 = and i32 %1109, %1112
+  %1114 = xor i32 %1108, %1113
+  %1115 = add i32 %1107, %1114
+  %1116 = load ptr, ptr %6, align 8
+  %1117 = getelementptr inbounds i32, ptr %1116, i64 4
+  %1118 = load i32, ptr %1117, align 4
+  %1119 = add i32 %1115, %1118
+  %1120 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %1121 = load i32, ptr %1120, align 8
+  %1122 = shl i32 %1121, 15
+  %1123 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %1124 = load i32, ptr %1123, align 8
+  %1125 = lshr i32 %1124, 17
+  %1126 = or i32 %1122, %1125
+  %1127 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %1128 = load i32, ptr %1127, align 8
+  %1129 = shl i32 %1128, 13
+  %1130 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %1131 = load i32, ptr %1130, align 8
+  %1132 = lshr i32 %1131, 19
+  %1133 = or i32 %1129, %1132
+  %1134 = xor i32 %1126, %1133
+  %1135 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %1136 = load i32, ptr %1135, align 8
+  %1137 = lshr i32 %1136, 10
+  %1138 = xor i32 %1134, %1137
+  %1139 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %1140 = load i32, ptr %1139, align 4
+  %1141 = add i32 %1138, %1140
+  %1142 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1143 = load i32, ptr %1142, align 4
+  %1144 = shl i32 %1143, 25
+  %1145 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1146 = load i32, ptr %1145, align 4
+  %1147 = lshr i32 %1146, 7
+  %1148 = or i32 %1144, %1147
+  %1149 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1150 = load i32, ptr %1149, align 4
+  %1151 = shl i32 %1150, 14
+  %1152 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1153 = load i32, ptr %1152, align 4
+  %1154 = lshr i32 %1153, 18
+  %1155 = or i32 %1151, %1154
+  %1156 = xor i32 %1148, %1155
+  %1157 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1158 = load i32, ptr %1157, align 4
+  %1159 = lshr i32 %1158, 3
+  %1160 = xor i32 %1156, %1159
+  %1161 = add i32 %1141, %1160
+  %1162 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1163 = load i32, ptr %1162, align 16
+  %1164 = add i32 %1163, %1161
+  store i32 %1164, ptr %1162, align 16
+  %1165 = add i32 %1119, %1164
+  %1166 = load i32, ptr %11, align 4
+  %1167 = add i32 %1166, %1165
+  store i32 %1167, ptr %11, align 4
+  %1168 = load i32, ptr %11, align 4
+  %1169 = load i32, ptr %15, align 4
+  %1170 = add i32 %1169, %1168
+  store i32 %1170, ptr %15, align 4
+  %1171 = load i32, ptr %12, align 4
+  %1172 = shl i32 %1171, 30
+  %1173 = load i32, ptr %12, align 4
+  %1174 = lshr i32 %1173, 2
+  %1175 = or i32 %1172, %1174
+  %1176 = load i32, ptr %12, align 4
+  %1177 = shl i32 %1176, 19
+  %1178 = load i32, ptr %12, align 4
+  %1179 = lshr i32 %1178, 13
+  %1180 = or i32 %1177, %1179
+  %1181 = xor i32 %1175, %1180
+  %1182 = load i32, ptr %12, align 4
+  %1183 = shl i32 %1182, 10
+  %1184 = load i32, ptr %12, align 4
+  %1185 = lshr i32 %1184, 22
+  %1186 = or i32 %1183, %1185
+  %1187 = xor i32 %1181, %1186
+  %1188 = load i32, ptr %12, align 4
+  %1189 = load i32, ptr %13, align 4
+  %1190 = and i32 %1188, %1189
+  %1191 = load i32, ptr %14, align 4
+  %1192 = load i32, ptr %12, align 4
+  %1193 = load i32, ptr %13, align 4
+  %1194 = xor i32 %1192, %1193
+  %1195 = and i32 %1191, %1194
+  %1196 = xor i32 %1190, %1195
+  %1197 = add i32 %1187, %1196
+  %1198 = load i32, ptr %11, align 4
+  %1199 = add i32 %1198, %1197
+  store i32 %1199, ptr %11, align 4
+  br label %1200
+
+1200:                                             ; preds = %1090
+  br label %1201
+
+1201:                                             ; preds = %1200
+  %1202 = load i32, ptr %15, align 4
+  %1203 = shl i32 %1202, 26
+  %1204 = load i32, ptr %15, align 4
+  %1205 = lshr i32 %1204, 6
+  %1206 = or i32 %1203, %1205
+  %1207 = load i32, ptr %15, align 4
+  %1208 = shl i32 %1207, 21
+  %1209 = load i32, ptr %15, align 4
+  %1210 = lshr i32 %1209, 11
+  %1211 = or i32 %1208, %1210
+  %1212 = xor i32 %1206, %1211
+  %1213 = load i32, ptr %15, align 4
+  %1214 = shl i32 %1213, 7
+  %1215 = load i32, ptr %15, align 4
+  %1216 = lshr i32 %1215, 25
+  %1217 = or i32 %1214, %1216
+  %1218 = xor i32 %1212, %1217
+  %1219 = load i32, ptr %9, align 4
+  %1220 = load i32, ptr %15, align 4
+  %1221 = load i32, ptr %8, align 4
+  %1222 = load i32, ptr %9, align 4
+  %1223 = xor i32 %1221, %1222
+  %1224 = and i32 %1220, %1223
+  %1225 = xor i32 %1219, %1224
+  %1226 = add i32 %1218, %1225
+  %1227 = load ptr, ptr %6, align 8
+  %1228 = getelementptr inbounds i32, ptr %1227, i64 5
+  %1229 = load i32, ptr %1228, align 4
+  %1230 = add i32 %1226, %1229
+  %1231 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1232 = load i32, ptr %1231, align 4
+  %1233 = shl i32 %1232, 15
+  %1234 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1235 = load i32, ptr %1234, align 4
+  %1236 = lshr i32 %1235, 17
+  %1237 = or i32 %1233, %1236
+  %1238 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1239 = load i32, ptr %1238, align 4
+  %1240 = shl i32 %1239, 13
+  %1241 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1242 = load i32, ptr %1241, align 4
+  %1243 = lshr i32 %1242, 19
+  %1244 = or i32 %1240, %1243
+  %1245 = xor i32 %1237, %1244
+  %1246 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1247 = load i32, ptr %1246, align 4
+  %1248 = lshr i32 %1247, 10
+  %1249 = xor i32 %1245, %1248
+  %1250 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %1251 = load i32, ptr %1250, align 8
+  %1252 = add i32 %1249, %1251
+  %1253 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1254 = load i32, ptr %1253, align 8
+  %1255 = shl i32 %1254, 25
+  %1256 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1257 = load i32, ptr %1256, align 8
+  %1258 = lshr i32 %1257, 7
+  %1259 = or i32 %1255, %1258
+  %1260 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1261 = load i32, ptr %1260, align 8
+  %1262 = shl i32 %1261, 14
+  %1263 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1264 = load i32, ptr %1263, align 8
+  %1265 = lshr i32 %1264, 18
+  %1266 = or i32 %1262, %1265
+  %1267 = xor i32 %1259, %1266
+  %1268 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1269 = load i32, ptr %1268, align 8
+  %1270 = lshr i32 %1269, 3
+  %1271 = xor i32 %1267, %1270
+  %1272 = add i32 %1252, %1271
+  %1273 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1274 = load i32, ptr %1273, align 4
+  %1275 = add i32 %1274, %1272
+  store i32 %1275, ptr %1273, align 4
+  %1276 = add i32 %1230, %1275
+  %1277 = load i32, ptr %10, align 4
+  %1278 = add i32 %1277, %1276
+  store i32 %1278, ptr %10, align 4
+  %1279 = load i32, ptr %10, align 4
+  %1280 = load i32, ptr %14, align 4
+  %1281 = add i32 %1280, %1279
+  store i32 %1281, ptr %14, align 4
+  %1282 = load i32, ptr %11, align 4
+  %1283 = shl i32 %1282, 30
+  %1284 = load i32, ptr %11, align 4
+  %1285 = lshr i32 %1284, 2
+  %1286 = or i32 %1283, %1285
+  %1287 = load i32, ptr %11, align 4
+  %1288 = shl i32 %1287, 19
+  %1289 = load i32, ptr %11, align 4
+  %1290 = lshr i32 %1289, 13
+  %1291 = or i32 %1288, %1290
+  %1292 = xor i32 %1286, %1291
+  %1293 = load i32, ptr %11, align 4
+  %1294 = shl i32 %1293, 10
+  %1295 = load i32, ptr %11, align 4
+  %1296 = lshr i32 %1295, 22
+  %1297 = or i32 %1294, %1296
+  %1298 = xor i32 %1292, %1297
+  %1299 = load i32, ptr %11, align 4
+  %1300 = load i32, ptr %12, align 4
+  %1301 = and i32 %1299, %1300
+  %1302 = load i32, ptr %13, align 4
+  %1303 = load i32, ptr %11, align 4
+  %1304 = load i32, ptr %12, align 4
+  %1305 = xor i32 %1303, %1304
+  %1306 = and i32 %1302, %1305
+  %1307 = xor i32 %1301, %1306
+  %1308 = add i32 %1298, %1307
+  %1309 = load i32, ptr %10, align 4
+  %1310 = add i32 %1309, %1308
+  store i32 %1310, ptr %10, align 4
+  br label %1311
+
+1311:                                             ; preds = %1201
+  br label %1312
+
+1312:                                             ; preds = %1311
+  %1313 = load i32, ptr %14, align 4
+  %1314 = shl i32 %1313, 26
+  %1315 = load i32, ptr %14, align 4
+  %1316 = lshr i32 %1315, 6
+  %1317 = or i32 %1314, %1316
+  %1318 = load i32, ptr %14, align 4
+  %1319 = shl i32 %1318, 21
+  %1320 = load i32, ptr %14, align 4
+  %1321 = lshr i32 %1320, 11
+  %1322 = or i32 %1319, %1321
+  %1323 = xor i32 %1317, %1322
+  %1324 = load i32, ptr %14, align 4
+  %1325 = shl i32 %1324, 7
+  %1326 = load i32, ptr %14, align 4
+  %1327 = lshr i32 %1326, 25
+  %1328 = or i32 %1325, %1327
+  %1329 = xor i32 %1323, %1328
+  %1330 = load i32, ptr %8, align 4
+  %1331 = load i32, ptr %14, align 4
+  %1332 = load i32, ptr %15, align 4
+  %1333 = load i32, ptr %8, align 4
+  %1334 = xor i32 %1332, %1333
+  %1335 = and i32 %1331, %1334
+  %1336 = xor i32 %1330, %1335
+  %1337 = add i32 %1329, %1336
+  %1338 = load ptr, ptr %6, align 8
+  %1339 = getelementptr inbounds i32, ptr %1338, i64 6
+  %1340 = load i32, ptr %1339, align 4
+  %1341 = add i32 %1337, %1340
+  %1342 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1343 = load i32, ptr %1342, align 16
+  %1344 = shl i32 %1343, 15
+  %1345 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1346 = load i32, ptr %1345, align 16
+  %1347 = lshr i32 %1346, 17
+  %1348 = or i32 %1344, %1347
+  %1349 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1350 = load i32, ptr %1349, align 16
+  %1351 = shl i32 %1350, 13
+  %1352 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1353 = load i32, ptr %1352, align 16
+  %1354 = lshr i32 %1353, 19
+  %1355 = or i32 %1351, %1354
+  %1356 = xor i32 %1348, %1355
+  %1357 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1358 = load i32, ptr %1357, align 16
+  %1359 = lshr i32 %1358, 10
+  %1360 = xor i32 %1356, %1359
+  %1361 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %1362 = load i32, ptr %1361, align 4
+  %1363 = add i32 %1360, %1362
+  %1364 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1365 = load i32, ptr %1364, align 4
+  %1366 = shl i32 %1365, 25
+  %1367 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1368 = load i32, ptr %1367, align 4
+  %1369 = lshr i32 %1368, 7
+  %1370 = or i32 %1366, %1369
+  %1371 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1372 = load i32, ptr %1371, align 4
+  %1373 = shl i32 %1372, 14
+  %1374 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1375 = load i32, ptr %1374, align 4
+  %1376 = lshr i32 %1375, 18
+  %1377 = or i32 %1373, %1376
+  %1378 = xor i32 %1370, %1377
+  %1379 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1380 = load i32, ptr %1379, align 4
+  %1381 = lshr i32 %1380, 3
+  %1382 = xor i32 %1378, %1381
+  %1383 = add i32 %1363, %1382
+  %1384 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1385 = load i32, ptr %1384, align 8
+  %1386 = add i32 %1385, %1383
+  store i32 %1386, ptr %1384, align 8
+  %1387 = add i32 %1341, %1386
+  %1388 = load i32, ptr %9, align 4
+  %1389 = add i32 %1388, %1387
+  store i32 %1389, ptr %9, align 4
+  %1390 = load i32, ptr %9, align 4
+  %1391 = load i32, ptr %13, align 4
+  %1392 = add i32 %1391, %1390
+  store i32 %1392, ptr %13, align 4
+  %1393 = load i32, ptr %10, align 4
+  %1394 = shl i32 %1393, 30
+  %1395 = load i32, ptr %10, align 4
+  %1396 = lshr i32 %1395, 2
+  %1397 = or i32 %1394, %1396
+  %1398 = load i32, ptr %10, align 4
+  %1399 = shl i32 %1398, 19
+  %1400 = load i32, ptr %10, align 4
+  %1401 = lshr i32 %1400, 13
+  %1402 = or i32 %1399, %1401
+  %1403 = xor i32 %1397, %1402
+  %1404 = load i32, ptr %10, align 4
+  %1405 = shl i32 %1404, 10
+  %1406 = load i32, ptr %10, align 4
+  %1407 = lshr i32 %1406, 22
+  %1408 = or i32 %1405, %1407
+  %1409 = xor i32 %1403, %1408
+  %1410 = load i32, ptr %10, align 4
+  %1411 = load i32, ptr %11, align 4
+  %1412 = and i32 %1410, %1411
+  %1413 = load i32, ptr %12, align 4
+  %1414 = load i32, ptr %10, align 4
+  %1415 = load i32, ptr %11, align 4
+  %1416 = xor i32 %1414, %1415
+  %1417 = and i32 %1413, %1416
+  %1418 = xor i32 %1412, %1417
+  %1419 = add i32 %1409, %1418
+  %1420 = load i32, ptr %9, align 4
+  %1421 = add i32 %1420, %1419
+  store i32 %1421, ptr %9, align 4
+  br label %1422
+
+1422:                                             ; preds = %1312
+  br label %1423
+
+1423:                                             ; preds = %1422
+  %1424 = load i32, ptr %13, align 4
+  %1425 = shl i32 %1424, 26
+  %1426 = load i32, ptr %13, align 4
+  %1427 = lshr i32 %1426, 6
+  %1428 = or i32 %1425, %1427
+  %1429 = load i32, ptr %13, align 4
+  %1430 = shl i32 %1429, 21
+  %1431 = load i32, ptr %13, align 4
+  %1432 = lshr i32 %1431, 11
+  %1433 = or i32 %1430, %1432
+  %1434 = xor i32 %1428, %1433
+  %1435 = load i32, ptr %13, align 4
+  %1436 = shl i32 %1435, 7
+  %1437 = load i32, ptr %13, align 4
+  %1438 = lshr i32 %1437, 25
+  %1439 = or i32 %1436, %1438
+  %1440 = xor i32 %1434, %1439
+  %1441 = load i32, ptr %15, align 4
+  %1442 = load i32, ptr %13, align 4
+  %1443 = load i32, ptr %14, align 4
+  %1444 = load i32, ptr %15, align 4
+  %1445 = xor i32 %1443, %1444
+  %1446 = and i32 %1442, %1445
+  %1447 = xor i32 %1441, %1446
+  %1448 = add i32 %1440, %1447
+  %1449 = load ptr, ptr %6, align 8
+  %1450 = getelementptr inbounds i32, ptr %1449, i64 7
+  %1451 = load i32, ptr %1450, align 4
+  %1452 = add i32 %1448, %1451
+  %1453 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1454 = load i32, ptr %1453, align 4
+  %1455 = shl i32 %1454, 15
+  %1456 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1457 = load i32, ptr %1456, align 4
+  %1458 = lshr i32 %1457, 17
+  %1459 = or i32 %1455, %1458
+  %1460 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1461 = load i32, ptr %1460, align 4
+  %1462 = shl i32 %1461, 13
+  %1463 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1464 = load i32, ptr %1463, align 4
+  %1465 = lshr i32 %1464, 19
+  %1466 = or i32 %1462, %1465
+  %1467 = xor i32 %1459, %1466
+  %1468 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %1469 = load i32, ptr %1468, align 4
+  %1470 = lshr i32 %1469, 10
+  %1471 = xor i32 %1467, %1470
+  %1472 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %1473 = load i32, ptr %1472, align 16
+  %1474 = add i32 %1471, %1473
+  %1475 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1476 = load i32, ptr %1475, align 16
+  %1477 = shl i32 %1476, 25
+  %1478 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1479 = load i32, ptr %1478, align 16
+  %1480 = lshr i32 %1479, 7
+  %1481 = or i32 %1477, %1480
+  %1482 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1483 = load i32, ptr %1482, align 16
+  %1484 = shl i32 %1483, 14
+  %1485 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1486 = load i32, ptr %1485, align 16
+  %1487 = lshr i32 %1486, 18
+  %1488 = or i32 %1484, %1487
+  %1489 = xor i32 %1481, %1488
+  %1490 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1491 = load i32, ptr %1490, align 16
+  %1492 = lshr i32 %1491, 3
+  %1493 = xor i32 %1489, %1492
+  %1494 = add i32 %1474, %1493
+  %1495 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1496 = load i32, ptr %1495, align 4
+  %1497 = add i32 %1496, %1494
+  store i32 %1497, ptr %1495, align 4
+  %1498 = add i32 %1452, %1497
+  %1499 = load i32, ptr %8, align 4
+  %1500 = add i32 %1499, %1498
+  store i32 %1500, ptr %8, align 4
+  %1501 = load i32, ptr %8, align 4
+  %1502 = load i32, ptr %12, align 4
+  %1503 = add i32 %1502, %1501
+  store i32 %1503, ptr %12, align 4
+  %1504 = load i32, ptr %9, align 4
+  %1505 = shl i32 %1504, 30
+  %1506 = load i32, ptr %9, align 4
+  %1507 = lshr i32 %1506, 2
+  %1508 = or i32 %1505, %1507
+  %1509 = load i32, ptr %9, align 4
+  %1510 = shl i32 %1509, 19
+  %1511 = load i32, ptr %9, align 4
+  %1512 = lshr i32 %1511, 13
+  %1513 = or i32 %1510, %1512
+  %1514 = xor i32 %1508, %1513
+  %1515 = load i32, ptr %9, align 4
+  %1516 = shl i32 %1515, 10
+  %1517 = load i32, ptr %9, align 4
+  %1518 = lshr i32 %1517, 22
+  %1519 = or i32 %1516, %1518
+  %1520 = xor i32 %1514, %1519
+  %1521 = load i32, ptr %9, align 4
+  %1522 = load i32, ptr %10, align 4
+  %1523 = and i32 %1521, %1522
+  %1524 = load i32, ptr %11, align 4
+  %1525 = load i32, ptr %9, align 4
+  %1526 = load i32, ptr %10, align 4
+  %1527 = xor i32 %1525, %1526
+  %1528 = and i32 %1524, %1527
+  %1529 = xor i32 %1523, %1528
+  %1530 = add i32 %1520, %1529
+  %1531 = load i32, ptr %8, align 4
+  %1532 = add i32 %1531, %1530
+  store i32 %1532, ptr %8, align 4
+  br label %1533
+
+1533:                                             ; preds = %1423
+  br label %1534
+
+1534:                                             ; preds = %1533
+  %1535 = load i32, ptr %12, align 4
+  %1536 = shl i32 %1535, 26
+  %1537 = load i32, ptr %12, align 4
+  %1538 = lshr i32 %1537, 6
+  %1539 = or i32 %1536, %1538
+  %1540 = load i32, ptr %12, align 4
+  %1541 = shl i32 %1540, 21
+  %1542 = load i32, ptr %12, align 4
+  %1543 = lshr i32 %1542, 11
+  %1544 = or i32 %1541, %1543
+  %1545 = xor i32 %1539, %1544
+  %1546 = load i32, ptr %12, align 4
+  %1547 = shl i32 %1546, 7
+  %1548 = load i32, ptr %12, align 4
+  %1549 = lshr i32 %1548, 25
+  %1550 = or i32 %1547, %1549
+  %1551 = xor i32 %1545, %1550
+  %1552 = load i32, ptr %14, align 4
+  %1553 = load i32, ptr %12, align 4
+  %1554 = load i32, ptr %13, align 4
+  %1555 = load i32, ptr %14, align 4
+  %1556 = xor i32 %1554, %1555
+  %1557 = and i32 %1553, %1556
+  %1558 = xor i32 %1552, %1557
+  %1559 = add i32 %1551, %1558
+  %1560 = load ptr, ptr %6, align 8
+  %1561 = getelementptr inbounds i32, ptr %1560, i64 8
+  %1562 = load i32, ptr %1561, align 4
+  %1563 = add i32 %1559, %1562
+  %1564 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1565 = load i32, ptr %1564, align 8
+  %1566 = shl i32 %1565, 15
+  %1567 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1568 = load i32, ptr %1567, align 8
+  %1569 = lshr i32 %1568, 17
+  %1570 = or i32 %1566, %1569
+  %1571 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1572 = load i32, ptr %1571, align 8
+  %1573 = shl i32 %1572, 13
+  %1574 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1575 = load i32, ptr %1574, align 8
+  %1576 = lshr i32 %1575, 19
+  %1577 = or i32 %1573, %1576
+  %1578 = xor i32 %1570, %1577
+  %1579 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %1580 = load i32, ptr %1579, align 8
+  %1581 = lshr i32 %1580, 10
+  %1582 = xor i32 %1578, %1581
+  %1583 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 1
+  %1584 = load i32, ptr %1583, align 4
+  %1585 = add i32 %1582, %1584
+  %1586 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1587 = load i32, ptr %1586, align 4
+  %1588 = shl i32 %1587, 25
+  %1589 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1590 = load i32, ptr %1589, align 4
+  %1591 = lshr i32 %1590, 7
+  %1592 = or i32 %1588, %1591
+  %1593 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1594 = load i32, ptr %1593, align 4
+  %1595 = shl i32 %1594, 14
+  %1596 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1597 = load i32, ptr %1596, align 4
+  %1598 = lshr i32 %1597, 18
+  %1599 = or i32 %1595, %1598
+  %1600 = xor i32 %1592, %1599
+  %1601 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1602 = load i32, ptr %1601, align 4
+  %1603 = lshr i32 %1602, 3
+  %1604 = xor i32 %1600, %1603
+  %1605 = add i32 %1585, %1604
+  %1606 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1607 = load i32, ptr %1606, align 16
+  %1608 = add i32 %1607, %1605
+  store i32 %1608, ptr %1606, align 16
+  %1609 = add i32 %1563, %1608
+  %1610 = load i32, ptr %15, align 4
+  %1611 = add i32 %1610, %1609
+  store i32 %1611, ptr %15, align 4
+  %1612 = load i32, ptr %15, align 4
+  %1613 = load i32, ptr %11, align 4
+  %1614 = add i32 %1613, %1612
+  store i32 %1614, ptr %11, align 4
+  %1615 = load i32, ptr %8, align 4
+  %1616 = shl i32 %1615, 30
+  %1617 = load i32, ptr %8, align 4
+  %1618 = lshr i32 %1617, 2
+  %1619 = or i32 %1616, %1618
+  %1620 = load i32, ptr %8, align 4
+  %1621 = shl i32 %1620, 19
+  %1622 = load i32, ptr %8, align 4
+  %1623 = lshr i32 %1622, 13
+  %1624 = or i32 %1621, %1623
+  %1625 = xor i32 %1619, %1624
+  %1626 = load i32, ptr %8, align 4
+  %1627 = shl i32 %1626, 10
+  %1628 = load i32, ptr %8, align 4
+  %1629 = lshr i32 %1628, 22
+  %1630 = or i32 %1627, %1629
+  %1631 = xor i32 %1625, %1630
+  %1632 = load i32, ptr %8, align 4
+  %1633 = load i32, ptr %9, align 4
+  %1634 = and i32 %1632, %1633
+  %1635 = load i32, ptr %10, align 4
+  %1636 = load i32, ptr %8, align 4
+  %1637 = load i32, ptr %9, align 4
+  %1638 = xor i32 %1636, %1637
+  %1639 = and i32 %1635, %1638
+  %1640 = xor i32 %1634, %1639
+  %1641 = add i32 %1631, %1640
+  %1642 = load i32, ptr %15, align 4
+  %1643 = add i32 %1642, %1641
+  store i32 %1643, ptr %15, align 4
+  br label %1644
+
+1644:                                             ; preds = %1534
+  br label %1645
+
+1645:                                             ; preds = %1644
+  %1646 = load i32, ptr %11, align 4
+  %1647 = shl i32 %1646, 26
+  %1648 = load i32, ptr %11, align 4
+  %1649 = lshr i32 %1648, 6
+  %1650 = or i32 %1647, %1649
+  %1651 = load i32, ptr %11, align 4
+  %1652 = shl i32 %1651, 21
+  %1653 = load i32, ptr %11, align 4
+  %1654 = lshr i32 %1653, 11
+  %1655 = or i32 %1652, %1654
+  %1656 = xor i32 %1650, %1655
+  %1657 = load i32, ptr %11, align 4
+  %1658 = shl i32 %1657, 7
+  %1659 = load i32, ptr %11, align 4
+  %1660 = lshr i32 %1659, 25
+  %1661 = or i32 %1658, %1660
+  %1662 = xor i32 %1656, %1661
+  %1663 = load i32, ptr %13, align 4
+  %1664 = load i32, ptr %11, align 4
+  %1665 = load i32, ptr %12, align 4
+  %1666 = load i32, ptr %13, align 4
+  %1667 = xor i32 %1665, %1666
+  %1668 = and i32 %1664, %1667
+  %1669 = xor i32 %1663, %1668
+  %1670 = add i32 %1662, %1669
+  %1671 = load ptr, ptr %6, align 8
+  %1672 = getelementptr inbounds i32, ptr %1671, i64 9
+  %1673 = load i32, ptr %1672, align 4
+  %1674 = add i32 %1670, %1673
+  %1675 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1676 = load i32, ptr %1675, align 4
+  %1677 = shl i32 %1676, 15
+  %1678 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1679 = load i32, ptr %1678, align 4
+  %1680 = lshr i32 %1679, 17
+  %1681 = or i32 %1677, %1680
+  %1682 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1683 = load i32, ptr %1682, align 4
+  %1684 = shl i32 %1683, 13
+  %1685 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1686 = load i32, ptr %1685, align 4
+  %1687 = lshr i32 %1686, 19
+  %1688 = or i32 %1684, %1687
+  %1689 = xor i32 %1681, %1688
+  %1690 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %1691 = load i32, ptr %1690, align 4
+  %1692 = lshr i32 %1691, 10
+  %1693 = xor i32 %1689, %1692
+  %1694 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 2
+  %1695 = load i32, ptr %1694, align 8
+  %1696 = add i32 %1693, %1695
+  %1697 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %1698 = load i32, ptr %1697, align 8
+  %1699 = shl i32 %1698, 25
+  %1700 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %1701 = load i32, ptr %1700, align 8
+  %1702 = lshr i32 %1701, 7
+  %1703 = or i32 %1699, %1702
+  %1704 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %1705 = load i32, ptr %1704, align 8
+  %1706 = shl i32 %1705, 14
+  %1707 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %1708 = load i32, ptr %1707, align 8
+  %1709 = lshr i32 %1708, 18
+  %1710 = or i32 %1706, %1709
+  %1711 = xor i32 %1703, %1710
+  %1712 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %1713 = load i32, ptr %1712, align 8
+  %1714 = lshr i32 %1713, 3
+  %1715 = xor i32 %1711, %1714
+  %1716 = add i32 %1696, %1715
+  %1717 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1718 = load i32, ptr %1717, align 4
+  %1719 = add i32 %1718, %1716
+  store i32 %1719, ptr %1717, align 4
+  %1720 = add i32 %1674, %1719
+  %1721 = load i32, ptr %14, align 4
+  %1722 = add i32 %1721, %1720
+  store i32 %1722, ptr %14, align 4
+  %1723 = load i32, ptr %14, align 4
+  %1724 = load i32, ptr %10, align 4
+  %1725 = add i32 %1724, %1723
+  store i32 %1725, ptr %10, align 4
+  %1726 = load i32, ptr %15, align 4
+  %1727 = shl i32 %1726, 30
+  %1728 = load i32, ptr %15, align 4
+  %1729 = lshr i32 %1728, 2
+  %1730 = or i32 %1727, %1729
+  %1731 = load i32, ptr %15, align 4
+  %1732 = shl i32 %1731, 19
+  %1733 = load i32, ptr %15, align 4
+  %1734 = lshr i32 %1733, 13
+  %1735 = or i32 %1732, %1734
+  %1736 = xor i32 %1730, %1735
+  %1737 = load i32, ptr %15, align 4
+  %1738 = shl i32 %1737, 10
+  %1739 = load i32, ptr %15, align 4
+  %1740 = lshr i32 %1739, 22
+  %1741 = or i32 %1738, %1740
+  %1742 = xor i32 %1736, %1741
+  %1743 = load i32, ptr %15, align 4
+  %1744 = load i32, ptr %8, align 4
+  %1745 = and i32 %1743, %1744
+  %1746 = load i32, ptr %9, align 4
+  %1747 = load i32, ptr %15, align 4
+  %1748 = load i32, ptr %8, align 4
+  %1749 = xor i32 %1747, %1748
+  %1750 = and i32 %1746, %1749
+  %1751 = xor i32 %1745, %1750
+  %1752 = add i32 %1742, %1751
+  %1753 = load i32, ptr %14, align 4
+  %1754 = add i32 %1753, %1752
+  store i32 %1754, ptr %14, align 4
+  br label %1755
+
+1755:                                             ; preds = %1645
+  br label %1756
+
+1756:                                             ; preds = %1755
+  %1757 = load i32, ptr %10, align 4
+  %1758 = shl i32 %1757, 26
+  %1759 = load i32, ptr %10, align 4
+  %1760 = lshr i32 %1759, 6
+  %1761 = or i32 %1758, %1760
+  %1762 = load i32, ptr %10, align 4
+  %1763 = shl i32 %1762, 21
+  %1764 = load i32, ptr %10, align 4
+  %1765 = lshr i32 %1764, 11
+  %1766 = or i32 %1763, %1765
+  %1767 = xor i32 %1761, %1766
+  %1768 = load i32, ptr %10, align 4
+  %1769 = shl i32 %1768, 7
+  %1770 = load i32, ptr %10, align 4
+  %1771 = lshr i32 %1770, 25
+  %1772 = or i32 %1769, %1771
+  %1773 = xor i32 %1767, %1772
+  %1774 = load i32, ptr %12, align 4
+  %1775 = load i32, ptr %10, align 4
+  %1776 = load i32, ptr %11, align 4
+  %1777 = load i32, ptr %12, align 4
+  %1778 = xor i32 %1776, %1777
+  %1779 = and i32 %1775, %1778
+  %1780 = xor i32 %1774, %1779
+  %1781 = add i32 %1773, %1780
+  %1782 = load ptr, ptr %6, align 8
+  %1783 = getelementptr inbounds i32, ptr %1782, i64 10
+  %1784 = load i32, ptr %1783, align 4
+  %1785 = add i32 %1781, %1784
+  %1786 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1787 = load i32, ptr %1786, align 16
+  %1788 = shl i32 %1787, 15
+  %1789 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1790 = load i32, ptr %1789, align 16
+  %1791 = lshr i32 %1790, 17
+  %1792 = or i32 %1788, %1791
+  %1793 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1794 = load i32, ptr %1793, align 16
+  %1795 = shl i32 %1794, 13
+  %1796 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1797 = load i32, ptr %1796, align 16
+  %1798 = lshr i32 %1797, 19
+  %1799 = or i32 %1795, %1798
+  %1800 = xor i32 %1792, %1799
+  %1801 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %1802 = load i32, ptr %1801, align 16
+  %1803 = lshr i32 %1802, 10
+  %1804 = xor i32 %1800, %1803
+  %1805 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 3
+  %1806 = load i32, ptr %1805, align 4
+  %1807 = add i32 %1804, %1806
+  %1808 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %1809 = load i32, ptr %1808, align 4
+  %1810 = shl i32 %1809, 25
+  %1811 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %1812 = load i32, ptr %1811, align 4
+  %1813 = lshr i32 %1812, 7
+  %1814 = or i32 %1810, %1813
+  %1815 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %1816 = load i32, ptr %1815, align 4
+  %1817 = shl i32 %1816, 14
+  %1818 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %1819 = load i32, ptr %1818, align 4
+  %1820 = lshr i32 %1819, 18
+  %1821 = or i32 %1817, %1820
+  %1822 = xor i32 %1814, %1821
+  %1823 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %1824 = load i32, ptr %1823, align 4
+  %1825 = lshr i32 %1824, 3
+  %1826 = xor i32 %1822, %1825
+  %1827 = add i32 %1807, %1826
+  %1828 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %1829 = load i32, ptr %1828, align 8
+  %1830 = add i32 %1829, %1827
+  store i32 %1830, ptr %1828, align 8
+  %1831 = add i32 %1785, %1830
+  %1832 = load i32, ptr %13, align 4
+  %1833 = add i32 %1832, %1831
+  store i32 %1833, ptr %13, align 4
+  %1834 = load i32, ptr %13, align 4
+  %1835 = load i32, ptr %9, align 4
+  %1836 = add i32 %1835, %1834
+  store i32 %1836, ptr %9, align 4
+  %1837 = load i32, ptr %14, align 4
+  %1838 = shl i32 %1837, 30
+  %1839 = load i32, ptr %14, align 4
+  %1840 = lshr i32 %1839, 2
+  %1841 = or i32 %1838, %1840
+  %1842 = load i32, ptr %14, align 4
+  %1843 = shl i32 %1842, 19
+  %1844 = load i32, ptr %14, align 4
+  %1845 = lshr i32 %1844, 13
+  %1846 = or i32 %1843, %1845
+  %1847 = xor i32 %1841, %1846
+  %1848 = load i32, ptr %14, align 4
+  %1849 = shl i32 %1848, 10
+  %1850 = load i32, ptr %14, align 4
+  %1851 = lshr i32 %1850, 22
+  %1852 = or i32 %1849, %1851
+  %1853 = xor i32 %1847, %1852
+  %1854 = load i32, ptr %14, align 4
+  %1855 = load i32, ptr %15, align 4
+  %1856 = and i32 %1854, %1855
+  %1857 = load i32, ptr %8, align 4
+  %1858 = load i32, ptr %14, align 4
+  %1859 = load i32, ptr %15, align 4
+  %1860 = xor i32 %1858, %1859
+  %1861 = and i32 %1857, %1860
+  %1862 = xor i32 %1856, %1861
+  %1863 = add i32 %1853, %1862
+  %1864 = load i32, ptr %13, align 4
+  %1865 = add i32 %1864, %1863
+  store i32 %1865, ptr %13, align 4
+  br label %1866
+
+1866:                                             ; preds = %1756
+  br label %1867
+
+1867:                                             ; preds = %1866
+  %1868 = load i32, ptr %9, align 4
+  %1869 = shl i32 %1868, 26
+  %1870 = load i32, ptr %9, align 4
+  %1871 = lshr i32 %1870, 6
+  %1872 = or i32 %1869, %1871
+  %1873 = load i32, ptr %9, align 4
+  %1874 = shl i32 %1873, 21
+  %1875 = load i32, ptr %9, align 4
+  %1876 = lshr i32 %1875, 11
+  %1877 = or i32 %1874, %1876
+  %1878 = xor i32 %1872, %1877
+  %1879 = load i32, ptr %9, align 4
+  %1880 = shl i32 %1879, 7
+  %1881 = load i32, ptr %9, align 4
+  %1882 = lshr i32 %1881, 25
+  %1883 = or i32 %1880, %1882
+  %1884 = xor i32 %1878, %1883
+  %1885 = load i32, ptr %11, align 4
+  %1886 = load i32, ptr %9, align 4
+  %1887 = load i32, ptr %10, align 4
+  %1888 = load i32, ptr %11, align 4
+  %1889 = xor i32 %1887, %1888
+  %1890 = and i32 %1886, %1889
+  %1891 = xor i32 %1885, %1890
+  %1892 = add i32 %1884, %1891
+  %1893 = load ptr, ptr %6, align 8
+  %1894 = getelementptr inbounds i32, ptr %1893, i64 11
+  %1895 = load i32, ptr %1894, align 4
+  %1896 = add i32 %1892, %1895
+  %1897 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1898 = load i32, ptr %1897, align 4
+  %1899 = shl i32 %1898, 15
+  %1900 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1901 = load i32, ptr %1900, align 4
+  %1902 = lshr i32 %1901, 17
+  %1903 = or i32 %1899, %1902
+  %1904 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1905 = load i32, ptr %1904, align 4
+  %1906 = shl i32 %1905, 13
+  %1907 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1908 = load i32, ptr %1907, align 4
+  %1909 = lshr i32 %1908, 19
+  %1910 = or i32 %1906, %1909
+  %1911 = xor i32 %1903, %1910
+  %1912 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 9
+  %1913 = load i32, ptr %1912, align 4
+  %1914 = lshr i32 %1913, 10
+  %1915 = xor i32 %1911, %1914
+  %1916 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 4
+  %1917 = load i32, ptr %1916, align 16
+  %1918 = add i32 %1915, %1917
+  %1919 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %1920 = load i32, ptr %1919, align 16
+  %1921 = shl i32 %1920, 25
+  %1922 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %1923 = load i32, ptr %1922, align 16
+  %1924 = lshr i32 %1923, 7
+  %1925 = or i32 %1921, %1924
+  %1926 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %1927 = load i32, ptr %1926, align 16
+  %1928 = shl i32 %1927, 14
+  %1929 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %1930 = load i32, ptr %1929, align 16
+  %1931 = lshr i32 %1930, 18
+  %1932 = or i32 %1928, %1931
+  %1933 = xor i32 %1925, %1932
+  %1934 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %1935 = load i32, ptr %1934, align 16
+  %1936 = lshr i32 %1935, 3
+  %1937 = xor i32 %1933, %1936
+  %1938 = add i32 %1918, %1937
+  %1939 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %1940 = load i32, ptr %1939, align 4
+  %1941 = add i32 %1940, %1938
+  store i32 %1941, ptr %1939, align 4
+  %1942 = add i32 %1896, %1941
+  %1943 = load i32, ptr %12, align 4
+  %1944 = add i32 %1943, %1942
+  store i32 %1944, ptr %12, align 4
+  %1945 = load i32, ptr %12, align 4
+  %1946 = load i32, ptr %8, align 4
+  %1947 = add i32 %1946, %1945
+  store i32 %1947, ptr %8, align 4
+  %1948 = load i32, ptr %13, align 4
+  %1949 = shl i32 %1948, 30
+  %1950 = load i32, ptr %13, align 4
+  %1951 = lshr i32 %1950, 2
+  %1952 = or i32 %1949, %1951
+  %1953 = load i32, ptr %13, align 4
+  %1954 = shl i32 %1953, 19
+  %1955 = load i32, ptr %13, align 4
+  %1956 = lshr i32 %1955, 13
+  %1957 = or i32 %1954, %1956
+  %1958 = xor i32 %1952, %1957
+  %1959 = load i32, ptr %13, align 4
+  %1960 = shl i32 %1959, 10
+  %1961 = load i32, ptr %13, align 4
+  %1962 = lshr i32 %1961, 22
+  %1963 = or i32 %1960, %1962
+  %1964 = xor i32 %1958, %1963
+  %1965 = load i32, ptr %13, align 4
+  %1966 = load i32, ptr %14, align 4
+  %1967 = and i32 %1965, %1966
+  %1968 = load i32, ptr %15, align 4
+  %1969 = load i32, ptr %13, align 4
+  %1970 = load i32, ptr %14, align 4
+  %1971 = xor i32 %1969, %1970
+  %1972 = and i32 %1968, %1971
+  %1973 = xor i32 %1967, %1972
+  %1974 = add i32 %1964, %1973
+  %1975 = load i32, ptr %12, align 4
+  %1976 = add i32 %1975, %1974
+  store i32 %1976, ptr %12, align 4
+  br label %1977
+
+1977:                                             ; preds = %1867
+  br label %1978
+
+1978:                                             ; preds = %1977
+  %1979 = load i32, ptr %8, align 4
+  %1980 = shl i32 %1979, 26
+  %1981 = load i32, ptr %8, align 4
+  %1982 = lshr i32 %1981, 6
+  %1983 = or i32 %1980, %1982
+  %1984 = load i32, ptr %8, align 4
+  %1985 = shl i32 %1984, 21
+  %1986 = load i32, ptr %8, align 4
+  %1987 = lshr i32 %1986, 11
+  %1988 = or i32 %1985, %1987
+  %1989 = xor i32 %1983, %1988
+  %1990 = load i32, ptr %8, align 4
+  %1991 = shl i32 %1990, 7
+  %1992 = load i32, ptr %8, align 4
+  %1993 = lshr i32 %1992, 25
+  %1994 = or i32 %1991, %1993
+  %1995 = xor i32 %1989, %1994
+  %1996 = load i32, ptr %10, align 4
+  %1997 = load i32, ptr %8, align 4
+  %1998 = load i32, ptr %9, align 4
+  %1999 = load i32, ptr %10, align 4
+  %2000 = xor i32 %1998, %1999
+  %2001 = and i32 %1997, %2000
+  %2002 = xor i32 %1996, %2001
+  %2003 = add i32 %1995, %2002
+  %2004 = load ptr, ptr %6, align 8
+  %2005 = getelementptr inbounds i32, ptr %2004, i64 12
+  %2006 = load i32, ptr %2005, align 4
+  %2007 = add i32 %2003, %2006
+  %2008 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %2009 = load i32, ptr %2008, align 8
+  %2010 = shl i32 %2009, 15
+  %2011 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %2012 = load i32, ptr %2011, align 8
+  %2013 = lshr i32 %2012, 17
+  %2014 = or i32 %2010, %2013
+  %2015 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %2016 = load i32, ptr %2015, align 8
+  %2017 = shl i32 %2016, 13
+  %2018 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %2019 = load i32, ptr %2018, align 8
+  %2020 = lshr i32 %2019, 19
+  %2021 = or i32 %2017, %2020
+  %2022 = xor i32 %2014, %2021
+  %2023 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 10
+  %2024 = load i32, ptr %2023, align 8
+  %2025 = lshr i32 %2024, 10
+  %2026 = xor i32 %2022, %2025
+  %2027 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 5
+  %2028 = load i32, ptr %2027, align 4
+  %2029 = add i32 %2026, %2028
+  %2030 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2031 = load i32, ptr %2030, align 4
+  %2032 = shl i32 %2031, 25
+  %2033 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2034 = load i32, ptr %2033, align 4
+  %2035 = lshr i32 %2034, 7
+  %2036 = or i32 %2032, %2035
+  %2037 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2038 = load i32, ptr %2037, align 4
+  %2039 = shl i32 %2038, 14
+  %2040 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2041 = load i32, ptr %2040, align 4
+  %2042 = lshr i32 %2041, 18
+  %2043 = or i32 %2039, %2042
+  %2044 = xor i32 %2036, %2043
+  %2045 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2046 = load i32, ptr %2045, align 4
+  %2047 = lshr i32 %2046, 3
+  %2048 = xor i32 %2044, %2047
+  %2049 = add i32 %2029, %2048
+  %2050 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %2051 = load i32, ptr %2050, align 16
+  %2052 = add i32 %2051, %2049
+  store i32 %2052, ptr %2050, align 16
+  %2053 = add i32 %2007, %2052
+  %2054 = load i32, ptr %11, align 4
+  %2055 = add i32 %2054, %2053
+  store i32 %2055, ptr %11, align 4
+  %2056 = load i32, ptr %11, align 4
+  %2057 = load i32, ptr %15, align 4
+  %2058 = add i32 %2057, %2056
+  store i32 %2058, ptr %15, align 4
+  %2059 = load i32, ptr %12, align 4
+  %2060 = shl i32 %2059, 30
+  %2061 = load i32, ptr %12, align 4
+  %2062 = lshr i32 %2061, 2
+  %2063 = or i32 %2060, %2062
+  %2064 = load i32, ptr %12, align 4
+  %2065 = shl i32 %2064, 19
+  %2066 = load i32, ptr %12, align 4
+  %2067 = lshr i32 %2066, 13
+  %2068 = or i32 %2065, %2067
+  %2069 = xor i32 %2063, %2068
+  %2070 = load i32, ptr %12, align 4
+  %2071 = shl i32 %2070, 10
+  %2072 = load i32, ptr %12, align 4
+  %2073 = lshr i32 %2072, 22
+  %2074 = or i32 %2071, %2073
+  %2075 = xor i32 %2069, %2074
+  %2076 = load i32, ptr %12, align 4
+  %2077 = load i32, ptr %13, align 4
+  %2078 = and i32 %2076, %2077
+  %2079 = load i32, ptr %14, align 4
+  %2080 = load i32, ptr %12, align 4
+  %2081 = load i32, ptr %13, align 4
+  %2082 = xor i32 %2080, %2081
+  %2083 = and i32 %2079, %2082
+  %2084 = xor i32 %2078, %2083
+  %2085 = add i32 %2075, %2084
+  %2086 = load i32, ptr %11, align 4
+  %2087 = add i32 %2086, %2085
+  store i32 %2087, ptr %11, align 4
+  br label %2088
+
+2088:                                             ; preds = %1978
+  br label %2089
+
+2089:                                             ; preds = %2088
+  %2090 = load i32, ptr %15, align 4
+  %2091 = shl i32 %2090, 26
+  %2092 = load i32, ptr %15, align 4
+  %2093 = lshr i32 %2092, 6
+  %2094 = or i32 %2091, %2093
+  %2095 = load i32, ptr %15, align 4
+  %2096 = shl i32 %2095, 21
+  %2097 = load i32, ptr %15, align 4
+  %2098 = lshr i32 %2097, 11
+  %2099 = or i32 %2096, %2098
+  %2100 = xor i32 %2094, %2099
+  %2101 = load i32, ptr %15, align 4
+  %2102 = shl i32 %2101, 7
+  %2103 = load i32, ptr %15, align 4
+  %2104 = lshr i32 %2103, 25
+  %2105 = or i32 %2102, %2104
+  %2106 = xor i32 %2100, %2105
+  %2107 = load i32, ptr %9, align 4
+  %2108 = load i32, ptr %15, align 4
+  %2109 = load i32, ptr %8, align 4
+  %2110 = load i32, ptr %9, align 4
+  %2111 = xor i32 %2109, %2110
+  %2112 = and i32 %2108, %2111
+  %2113 = xor i32 %2107, %2112
+  %2114 = add i32 %2106, %2113
+  %2115 = load ptr, ptr %6, align 8
+  %2116 = getelementptr inbounds i32, ptr %2115, i64 13
+  %2117 = load i32, ptr %2116, align 4
+  %2118 = add i32 %2114, %2117
+  %2119 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %2120 = load i32, ptr %2119, align 4
+  %2121 = shl i32 %2120, 15
+  %2122 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %2123 = load i32, ptr %2122, align 4
+  %2124 = lshr i32 %2123, 17
+  %2125 = or i32 %2121, %2124
+  %2126 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %2127 = load i32, ptr %2126, align 4
+  %2128 = shl i32 %2127, 13
+  %2129 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %2130 = load i32, ptr %2129, align 4
+  %2131 = lshr i32 %2130, 19
+  %2132 = or i32 %2128, %2131
+  %2133 = xor i32 %2125, %2132
+  %2134 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 11
+  %2135 = load i32, ptr %2134, align 4
+  %2136 = lshr i32 %2135, 10
+  %2137 = xor i32 %2133, %2136
+  %2138 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 6
+  %2139 = load i32, ptr %2138, align 8
+  %2140 = add i32 %2137, %2139
+  %2141 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %2142 = load i32, ptr %2141, align 8
+  %2143 = shl i32 %2142, 25
+  %2144 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %2145 = load i32, ptr %2144, align 8
+  %2146 = lshr i32 %2145, 7
+  %2147 = or i32 %2143, %2146
+  %2148 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %2149 = load i32, ptr %2148, align 8
+  %2150 = shl i32 %2149, 14
+  %2151 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %2152 = load i32, ptr %2151, align 8
+  %2153 = lshr i32 %2152, 18
+  %2154 = or i32 %2150, %2153
+  %2155 = xor i32 %2147, %2154
+  %2156 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %2157 = load i32, ptr %2156, align 8
+  %2158 = lshr i32 %2157, 3
+  %2159 = xor i32 %2155, %2158
+  %2160 = add i32 %2140, %2159
+  %2161 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2162 = load i32, ptr %2161, align 4
+  %2163 = add i32 %2162, %2160
+  store i32 %2163, ptr %2161, align 4
+  %2164 = add i32 %2118, %2163
+  %2165 = load i32, ptr %10, align 4
+  %2166 = add i32 %2165, %2164
+  store i32 %2166, ptr %10, align 4
+  %2167 = load i32, ptr %10, align 4
+  %2168 = load i32, ptr %14, align 4
+  %2169 = add i32 %2168, %2167
+  store i32 %2169, ptr %14, align 4
+  %2170 = load i32, ptr %11, align 4
+  %2171 = shl i32 %2170, 30
+  %2172 = load i32, ptr %11, align 4
+  %2173 = lshr i32 %2172, 2
+  %2174 = or i32 %2171, %2173
+  %2175 = load i32, ptr %11, align 4
+  %2176 = shl i32 %2175, 19
+  %2177 = load i32, ptr %11, align 4
+  %2178 = lshr i32 %2177, 13
+  %2179 = or i32 %2176, %2178
+  %2180 = xor i32 %2174, %2179
+  %2181 = load i32, ptr %11, align 4
+  %2182 = shl i32 %2181, 10
+  %2183 = load i32, ptr %11, align 4
+  %2184 = lshr i32 %2183, 22
+  %2185 = or i32 %2182, %2184
+  %2186 = xor i32 %2180, %2185
+  %2187 = load i32, ptr %11, align 4
+  %2188 = load i32, ptr %12, align 4
+  %2189 = and i32 %2187, %2188
+  %2190 = load i32, ptr %13, align 4
+  %2191 = load i32, ptr %11, align 4
+  %2192 = load i32, ptr %12, align 4
+  %2193 = xor i32 %2191, %2192
+  %2194 = and i32 %2190, %2193
+  %2195 = xor i32 %2189, %2194
+  %2196 = add i32 %2186, %2195
+  %2197 = load i32, ptr %10, align 4
+  %2198 = add i32 %2197, %2196
+  store i32 %2198, ptr %10, align 4
+  br label %2199
+
+2199:                                             ; preds = %2089
+  br label %2200
+
+2200:                                             ; preds = %2199
+  %2201 = load i32, ptr %14, align 4
+  %2202 = shl i32 %2201, 26
+  %2203 = load i32, ptr %14, align 4
+  %2204 = lshr i32 %2203, 6
+  %2205 = or i32 %2202, %2204
+  %2206 = load i32, ptr %14, align 4
+  %2207 = shl i32 %2206, 21
+  %2208 = load i32, ptr %14, align 4
+  %2209 = lshr i32 %2208, 11
+  %2210 = or i32 %2207, %2209
+  %2211 = xor i32 %2205, %2210
+  %2212 = load i32, ptr %14, align 4
+  %2213 = shl i32 %2212, 7
+  %2214 = load i32, ptr %14, align 4
+  %2215 = lshr i32 %2214, 25
+  %2216 = or i32 %2213, %2215
+  %2217 = xor i32 %2211, %2216
+  %2218 = load i32, ptr %8, align 4
+  %2219 = load i32, ptr %14, align 4
+  %2220 = load i32, ptr %15, align 4
+  %2221 = load i32, ptr %8, align 4
+  %2222 = xor i32 %2220, %2221
+  %2223 = and i32 %2219, %2222
+  %2224 = xor i32 %2218, %2223
+  %2225 = add i32 %2217, %2224
+  %2226 = load ptr, ptr %6, align 8
+  %2227 = getelementptr inbounds i32, ptr %2226, i64 14
+  %2228 = load i32, ptr %2227, align 4
+  %2229 = add i32 %2225, %2228
+  %2230 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %2231 = load i32, ptr %2230, align 16
+  %2232 = shl i32 %2231, 15
+  %2233 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %2234 = load i32, ptr %2233, align 16
+  %2235 = lshr i32 %2234, 17
+  %2236 = or i32 %2232, %2235
+  %2237 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %2238 = load i32, ptr %2237, align 16
+  %2239 = shl i32 %2238, 13
+  %2240 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %2241 = load i32, ptr %2240, align 16
+  %2242 = lshr i32 %2241, 19
+  %2243 = or i32 %2239, %2242
+  %2244 = xor i32 %2236, %2243
+  %2245 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 12
+  %2246 = load i32, ptr %2245, align 16
+  %2247 = lshr i32 %2246, 10
+  %2248 = xor i32 %2244, %2247
+  %2249 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 7
+  %2250 = load i32, ptr %2249, align 4
+  %2251 = add i32 %2248, %2250
+  %2252 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %2253 = load i32, ptr %2252, align 4
+  %2254 = shl i32 %2253, 25
+  %2255 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %2256 = load i32, ptr %2255, align 4
+  %2257 = lshr i32 %2256, 7
+  %2258 = or i32 %2254, %2257
+  %2259 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %2260 = load i32, ptr %2259, align 4
+  %2261 = shl i32 %2260, 14
+  %2262 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %2263 = load i32, ptr %2262, align 4
+  %2264 = lshr i32 %2263, 18
+  %2265 = or i32 %2261, %2264
+  %2266 = xor i32 %2258, %2265
+  %2267 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %2268 = load i32, ptr %2267, align 4
+  %2269 = lshr i32 %2268, 3
+  %2270 = xor i32 %2266, %2269
+  %2271 = add i32 %2251, %2270
+  %2272 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 14
+  %2273 = load i32, ptr %2272, align 8
+  %2274 = add i32 %2273, %2271
+  store i32 %2274, ptr %2272, align 8
+  %2275 = add i32 %2229, %2274
+  %2276 = load i32, ptr %9, align 4
+  %2277 = add i32 %2276, %2275
+  store i32 %2277, ptr %9, align 4
+  %2278 = load i32, ptr %9, align 4
+  %2279 = load i32, ptr %13, align 4
+  %2280 = add i32 %2279, %2278
+  store i32 %2280, ptr %13, align 4
+  %2281 = load i32, ptr %10, align 4
+  %2282 = shl i32 %2281, 30
+  %2283 = load i32, ptr %10, align 4
+  %2284 = lshr i32 %2283, 2
+  %2285 = or i32 %2282, %2284
+  %2286 = load i32, ptr %10, align 4
+  %2287 = shl i32 %2286, 19
+  %2288 = load i32, ptr %10, align 4
+  %2289 = lshr i32 %2288, 13
+  %2290 = or i32 %2287, %2289
+  %2291 = xor i32 %2285, %2290
+  %2292 = load i32, ptr %10, align 4
+  %2293 = shl i32 %2292, 10
+  %2294 = load i32, ptr %10, align 4
+  %2295 = lshr i32 %2294, 22
+  %2296 = or i32 %2293, %2295
+  %2297 = xor i32 %2291, %2296
+  %2298 = load i32, ptr %10, align 4
+  %2299 = load i32, ptr %11, align 4
+  %2300 = and i32 %2298, %2299
+  %2301 = load i32, ptr %12, align 4
+  %2302 = load i32, ptr %10, align 4
+  %2303 = load i32, ptr %11, align 4
+  %2304 = xor i32 %2302, %2303
+  %2305 = and i32 %2301, %2304
+  %2306 = xor i32 %2300, %2305
+  %2307 = add i32 %2297, %2306
+  %2308 = load i32, ptr %9, align 4
+  %2309 = add i32 %2308, %2307
+  store i32 %2309, ptr %9, align 4
+  br label %2310
+
+2310:                                             ; preds = %2200
+  br label %2311
+
+2311:                                             ; preds = %2310
+  %2312 = load i32, ptr %13, align 4
+  %2313 = shl i32 %2312, 26
+  %2314 = load i32, ptr %13, align 4
+  %2315 = lshr i32 %2314, 6
+  %2316 = or i32 %2313, %2315
+  %2317 = load i32, ptr %13, align 4
+  %2318 = shl i32 %2317, 21
+  %2319 = load i32, ptr %13, align 4
+  %2320 = lshr i32 %2319, 11
+  %2321 = or i32 %2318, %2320
+  %2322 = xor i32 %2316, %2321
+  %2323 = load i32, ptr %13, align 4
+  %2324 = shl i32 %2323, 7
+  %2325 = load i32, ptr %13, align 4
+  %2326 = lshr i32 %2325, 25
+  %2327 = or i32 %2324, %2326
+  %2328 = xor i32 %2322, %2327
+  %2329 = load i32, ptr %15, align 4
+  %2330 = load i32, ptr %13, align 4
+  %2331 = load i32, ptr %14, align 4
+  %2332 = load i32, ptr %15, align 4
+  %2333 = xor i32 %2331, %2332
+  %2334 = and i32 %2330, %2333
+  %2335 = xor i32 %2329, %2334
+  %2336 = add i32 %2328, %2335
+  %2337 = load ptr, ptr %6, align 8
+  %2338 = getelementptr inbounds i32, ptr %2337, i64 15
+  %2339 = load i32, ptr %2338, align 4
+  %2340 = add i32 %2336, %2339
+  %2341 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2342 = load i32, ptr %2341, align 4
+  %2343 = shl i32 %2342, 15
+  %2344 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2345 = load i32, ptr %2344, align 4
+  %2346 = lshr i32 %2345, 17
+  %2347 = or i32 %2343, %2346
+  %2348 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2349 = load i32, ptr %2348, align 4
+  %2350 = shl i32 %2349, 13
+  %2351 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2352 = load i32, ptr %2351, align 4
+  %2353 = lshr i32 %2352, 19
+  %2354 = or i32 %2350, %2353
+  %2355 = xor i32 %2347, %2354
+  %2356 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 13
+  %2357 = load i32, ptr %2356, align 4
+  %2358 = lshr i32 %2357, 10
+  %2359 = xor i32 %2355, %2358
+  %2360 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 8
+  %2361 = load i32, ptr %2360, align 16
+  %2362 = add i32 %2359, %2361
+  %2363 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %2364 = load i32, ptr %2363, align 16
+  %2365 = shl i32 %2364, 25
+  %2366 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %2367 = load i32, ptr %2366, align 16
+  %2368 = lshr i32 %2367, 7
+  %2369 = or i32 %2365, %2368
+  %2370 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %2371 = load i32, ptr %2370, align 16
+  %2372 = shl i32 %2371, 14
+  %2373 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %2374 = load i32, ptr %2373, align 16
+  %2375 = lshr i32 %2374, 18
+  %2376 = or i32 %2372, %2375
+  %2377 = xor i32 %2369, %2376
+  %2378 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 0
+  %2379 = load i32, ptr %2378, align 16
+  %2380 = lshr i32 %2379, 3
+  %2381 = xor i32 %2377, %2380
+  %2382 = add i32 %2362, %2381
+  %2383 = getelementptr inbounds [16 x i32], ptr %7, i64 0, i64 15
+  %2384 = load i32, ptr %2383, align 4
+  %2385 = add i32 %2384, %2382
+  store i32 %2385, ptr %2383, align 4
+  %2386 = add i32 %2340, %2385
+  %2387 = load i32, ptr %8, align 4
+  %2388 = add i32 %2387, %2386
+  store i32 %2388, ptr %8, align 4
+  %2389 = load i32, ptr %8, align 4
+  %2390 = load i32, ptr %12, align 4
+  %2391 = add i32 %2390, %2389
+  store i32 %2391, ptr %12, align 4
+  %2392 = load i32, ptr %9, align 4
+  %2393 = shl i32 %2392, 30
+  %2394 = load i32, ptr %9, align 4
+  %2395 = lshr i32 %2394, 2
+  %2396 = or i32 %2393, %2395
+  %2397 = load i32, ptr %9, align 4
+  %2398 = shl i32 %2397, 19
+  %2399 = load i32, ptr %9, align 4
+  %2400 = lshr i32 %2399, 13
+  %2401 = or i32 %2398, %2400
+  %2402 = xor i32 %2396, %2401
+  %2403 = load i32, ptr %9, align 4
+  %2404 = shl i32 %2403, 10
+  %2405 = load i32, ptr %9, align 4
+  %2406 = lshr i32 %2405, 22
+  %2407 = or i32 %2404, %2406
+  %2408 = xor i32 %2402, %2407
+  %2409 = load i32, ptr %9, align 4
+  %2410 = load i32, ptr %10, align 4
+  %2411 = and i32 %2409, %2410
+  %2412 = load i32, ptr %11, align 4
+  %2413 = load i32, ptr %9, align 4
+  %2414 = load i32, ptr %10, align 4
+  %2415 = xor i32 %2413, %2414
+  %2416 = and i32 %2412, %2415
+  %2417 = xor i32 %2411, %2416
+  %2418 = add i32 %2408, %2417
+  %2419 = load i32, ptr %8, align 4
+  %2420 = add i32 %2419, %2418
+  store i32 %2420, ptr %8, align 4
+  br label %2421
+
+2421:                                             ; preds = %2311
+  br label %2422
+
+2422:                                             ; preds = %2421
+  %2423 = load i32, ptr %16, align 4
+  %2424 = add i32 %2423, 16
+  store i32 %2424, ptr %16, align 4
+  %2425 = load ptr, ptr %6, align 8
+  %2426 = getelementptr inbounds i32, ptr %2425, i64 16
+  store ptr %2426, ptr %6, align 8
+  br label %642, !llvm.loop !10
+
+2427:                                             ; preds = %642
+  %2428 = load i32, ptr %8, align 4
+  %2429 = load ptr, ptr %4, align 8
+  %2430 = getelementptr inbounds i32, ptr %2429, i64 0
+  %2431 = load i32, ptr %2430, align 4
+  %2432 = add i32 %2431, %2428
+  store i32 %2432, ptr %2430, align 4
+  %2433 = load i32, ptr %9, align 4
+  %2434 = load ptr, ptr %4, align 8
+  %2435 = getelementptr inbounds i32, ptr %2434, i64 1
+  %2436 = load i32, ptr %2435, align 4
+  %2437 = add i32 %2436, %2433
+  store i32 %2437, ptr %2435, align 4
+  %2438 = load i32, ptr %10, align 4
+  %2439 = load ptr, ptr %4, align 8
+  %2440 = getelementptr inbounds i32, ptr %2439, i64 2
+  %2441 = load i32, ptr %2440, align 4
+  %2442 = add i32 %2441, %2438
+  store i32 %2442, ptr %2440, align 4
+  %2443 = load i32, ptr %11, align 4
+  %2444 = load ptr, ptr %4, align 8
+  %2445 = getelementptr inbounds i32, ptr %2444, i64 3
+  %2446 = load i32, ptr %2445, align 4
+  %2447 = add i32 %2446, %2443
+  store i32 %2447, ptr %2445, align 4
+  %2448 = load i32, ptr %12, align 4
+  %2449 = load ptr, ptr %4, align 8
+  %2450 = getelementptr inbounds i32, ptr %2449, i64 4
+  %2451 = load i32, ptr %2450, align 4
+  %2452 = add i32 %2451, %2448
+  store i32 %2452, ptr %2450, align 4
+  %2453 = load i32, ptr %13, align 4
+  %2454 = load ptr, ptr %4, align 8
+  %2455 = getelementptr inbounds i32, ptr %2454, i64 5
+  %2456 = load i32, ptr %2455, align 4
+  %2457 = add i32 %2456, %2453
+  store i32 %2457, ptr %2455, align 4
+  %2458 = load i32, ptr %14, align 4
+  %2459 = load ptr, ptr %4, align 8
+  %2460 = getelementptr inbounds i32, ptr %2459, i64 6
+  %2461 = load i32, ptr %2460, align 4
+  %2462 = add i32 %2461, %2458
+  store i32 %2462, ptr %2460, align 4
+  %2463 = load i32, ptr %15, align 4
+  %2464 = load ptr, ptr %4, align 8
+  %2465 = getelementptr inbounds i32, ptr %2464, i64 7
+  %2466 = load i32, ptr %2465, align 4
+  %2467 = add i32 %2466, %2463
+  store i32 %2467, ptr %2465, align 4
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @sha256_init(ptr noundef %0) #0 {
+  %2 = alloca ptr, align 8
+  store ptr %0, ptr %2, align 8
+  %3 = load ptr, ptr %2, align 8
+  %4 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %3, i32 0, i32 0
+  %5 = getelementptr inbounds [8 x i32], ptr %4, i64 0, i64 0
+  call void @llvm.memcpy.p0.p0.i64(ptr align 8 %5, ptr align 16 @sha256_init.H0, i64 32, i1 false)
+  %6 = load ptr, ptr %2, align 8
+  %7 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %6, i32 0, i32 1
+  store i64 0, ptr %7, align 8
+  %8 = load ptr, ptr %2, align 8
+  %9 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %8, i32 0, i32 3
+  store i32 0, ptr %9, align 8
+  ret void
+}
+
+; Function Attrs: nocallback nofree nounwind willreturn memory(argmem: readwrite)
+declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #2
+
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @sha256_update(ptr noundef %0, i64 noundef %1, ptr noundef %2) #0 {
+  %4 = alloca ptr, align 8
+  %5 = alloca i64, align 8
+  %6 = alloca ptr, align 8
+  %7 = alloca i32, align 4
+  store ptr %0, ptr %4, align 8
+  store i64 %1, ptr %5, align 8
+  store ptr %2, ptr %6, align 8
+  br label %8
 
 8:                                                ; preds = %3
-  %9 = icmp eq i64 %4, 1
-  br i1 %9, label %52, label %10
+  %9 = load ptr, ptr %4, align 8
+  %10 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %9, i32 0, i32 3
+  %11 = load i32, ptr %10, align 8
+  %12 = icmp ne i32 %11, 0
+  br i1 %12, label %13, label %73
 
-10:                                               ; preds = %8
-  %11 = and i64 %4, 4611686018427387902
+13:                                               ; preds = %8
+  %14 = load ptr, ptr %4, align 8
+  %15 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %14, i32 0, i32 3
+  %16 = load i32, ptr %15, align 8
+  %17 = zext i32 %16 to i64
+  %18 = sub i64 64, %17
+  %19 = trunc i64 %18 to i32
+  store i32 %19, ptr %7, align 4
+  %20 = load i64, ptr %5, align 8
+  %21 = load i32, ptr %7, align 4
+  %22 = zext i32 %21 to i64
+  %23 = icmp ult i64 %20, %22
+  br i1 %23, label %24, label %42
+
+24:                                               ; preds = %13
+  %25 = load ptr, ptr %4, align 8
+  %26 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %25, i32 0, i32 2
+  %27 = getelementptr inbounds [64 x i8], ptr %26, i64 0, i64 0
+  %28 = load ptr, ptr %4, align 8
+  %29 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %28, i32 0, i32 3
+  %30 = load i32, ptr %29, align 8
+  %31 = zext i32 %30 to i64
+  %32 = getelementptr inbounds nuw i8, ptr %27, i64 %31
+  %33 = load ptr, ptr %6, align 8
+  %34 = load i64, ptr %5, align 8
+  call void @llvm.memcpy.p0.p0.i64(ptr align 1 %32, ptr align 1 %33, i64 %34, i1 false)
+  %35 = load i64, ptr %5, align 8
+  %36 = load ptr, ptr %4, align 8
+  %37 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %36, i32 0, i32 3
+  %38 = load i32, ptr %37, align 8
+  %39 = zext i32 %38 to i64
+  %40 = add i64 %39, %35
+  %41 = trunc i64 %40 to i32
+  store i32 %41, ptr %37, align 8
+  br label %100
+
+42:                                               ; preds = %13
+  %43 = load ptr, ptr %4, align 8
+  %44 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %43, i32 0, i32 2
+  %45 = getelementptr inbounds [64 x i8], ptr %44, i64 0, i64 0
+  %46 = load ptr, ptr %4, align 8
+  %47 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %46, i32 0, i32 3
+  %48 = load i32, ptr %47, align 8
+  %49 = zext i32 %48 to i64
+  %50 = getelementptr inbounds nuw i8, ptr %45, i64 %49
+  %51 = load ptr, ptr %6, align 8
+  %52 = load i32, ptr %7, align 4
+  %53 = zext i32 %52 to i64
+  call void @llvm.memcpy.p0.p0.i64(ptr align 1 %50, ptr align 1 %51, i64 %53, i1 false)
+  %54 = load ptr, ptr %4, align 8
+  %55 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %54, i32 0, i32 0
+  %56 = getelementptr inbounds [8 x i32], ptr %55, i64 0, i64 0
+  %57 = load ptr, ptr %4, align 8
+  %58 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %57, i32 0, i32 2
+  %59 = getelementptr inbounds [64 x i8], ptr %58, i64 0, i64 0
+  call void @_nettle_sha256_compress(ptr noundef %56, ptr noundef %59, ptr noundef @K)
+  %60 = load ptr, ptr %4, align 8
+  %61 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %60, i32 0, i32 1
+  %62 = load i64, ptr %61, align 8
+  %63 = add i64 %62, 1
+  store i64 %63, ptr %61, align 8
+  %64 = load i32, ptr %7, align 4
+  %65 = load ptr, ptr %6, align 8
+  %66 = zext i32 %64 to i64
+  %67 = getelementptr inbounds nuw i8, ptr %65, i64 %66
+  store ptr %67, ptr %6, align 8
+  %68 = load i32, ptr %7, align 4
+  %69 = zext i32 %68 to i64
+  %70 = load i64, ptr %5, align 8
+  %71 = sub i64 %70, %69
+  store i64 %71, ptr %5, align 8
+  br label %72
+
+72:                                               ; preds = %42
+  br label %73
+
+73:                                               ; preds = %72, %8
+  br label %74
+
+74:                                               ; preds = %77, %73
+  %75 = load i64, ptr %5, align 8
+  %76 = icmp uge i64 %75, 64
+  br i1 %76, label %77, label %90
+
+77:                                               ; preds = %74
+  %78 = load ptr, ptr %4, align 8
+  %79 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %78, i32 0, i32 0
+  %80 = getelementptr inbounds [8 x i32], ptr %79, i64 0, i64 0
+  %81 = load ptr, ptr %6, align 8
+  call void @_nettle_sha256_compress(ptr noundef %80, ptr noundef %81, ptr noundef @K)
+  %82 = load ptr, ptr %4, align 8
+  %83 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %82, i32 0, i32 1
+  %84 = load i64, ptr %83, align 8
+  %85 = add i64 %84, 1
+  store i64 %85, ptr %83, align 8
+  %86 = load ptr, ptr %6, align 8
+  %87 = getelementptr inbounds nuw i8, ptr %86, i64 64
+  store ptr %87, ptr %6, align 8
+  %88 = load i64, ptr %5, align 8
+  %89 = sub i64 %88, 64
+  store i64 %89, ptr %5, align 8
+  br label %74, !llvm.loop !11
+
+90:                                               ; preds = %74
+  %91 = load ptr, ptr %4, align 8
+  %92 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %91, i32 0, i32 2
+  %93 = getelementptr inbounds [64 x i8], ptr %92, i64 0, i64 0
+  %94 = load ptr, ptr %6, align 8
+  %95 = load i64, ptr %5, align 8
+  call void @llvm.memcpy.p0.p0.i64(ptr align 8 %93, ptr align 1 %94, i64 %95, i1 false)
+  %96 = load i64, ptr %5, align 8
+  %97 = trunc i64 %96 to i32
+  %98 = load ptr, ptr %4, align 8
+  %99 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %98, i32 0, i32 3
+  store i32 %97, ptr %99, align 8
+  br label %100
+
+100:                                              ; preds = %90, %24
+  br label %101
+
+101:                                              ; preds = %100
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @sha256_digest(ptr noundef %0, i64 noundef %1, ptr noundef %2) #0 {
+  %4 = alloca ptr, align 8
+  %5 = alloca i64, align 8
+  %6 = alloca ptr, align 8
+  store ptr %0, ptr %4, align 8
+  store i64 %1, ptr %5, align 8
+  store ptr %2, ptr %6, align 8
+  %7 = load ptr, ptr %4, align 8
+  %8 = load i64, ptr %5, align 8
+  %9 = load ptr, ptr %6, align 8
+  call void @sha256_write_digest(ptr noundef %7, i64 noundef %8, ptr noundef %9)
+  %10 = load ptr, ptr %4, align 8
+  call void @sha256_init(ptr noundef %10)
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define internal void @sha256_write_digest(ptr noundef %0, i64 noundef %1, ptr noundef %2) #0 {
+  %4 = alloca ptr, align 8
+  %5 = alloca i64, align 8
+  %6 = alloca ptr, align 8
+  %7 = alloca i64, align 8
+  %8 = alloca i32, align 4
+  store ptr %0, ptr %4, align 8
+  store i64 %1, ptr %5, align 8
+  store ptr %2, ptr %6, align 8
+  %9 = load i64, ptr %5, align 8
+  %10 = icmp ule i64 %9, 32
+  br i1 %10, label %13, label %11
+
+11:                                               ; preds = %3
   br label %12
 
-12:                                               ; preds = %12, %10
-  %13 = phi ptr [ %1, %10 ], [ %49, %12 ]
-  %14 = phi i64 [ 0, %10 ], [ %48, %12 ]
-  %15 = phi i64 [ 0, %10 ], [ %50, %12 ]
-  %16 = getelementptr inbounds nuw i32, ptr %2, i64 %14
-  %17 = load i32, ptr %16, align 4, !tbaa !5
-  %18 = lshr i32 %17, 24
-  %19 = trunc nuw i32 %18 to i8
-  store i8 %19, ptr %13, align 1, !tbaa !9
-  %20 = load i32, ptr %16, align 4, !tbaa !5
-  %21 = lshr i32 %20, 16
-  %22 = trunc i32 %21 to i8
-  %23 = getelementptr inbounds nuw i8, ptr %13, i64 1
-  store i8 %22, ptr %23, align 1, !tbaa !9
-  %24 = load i32, ptr %16, align 4, !tbaa !5
-  %25 = lshr i32 %24, 8
-  %26 = trunc i32 %25 to i8
-  %27 = getelementptr inbounds nuw i8, ptr %13, i64 2
-  store i8 %26, ptr %27, align 1, !tbaa !9
-  %28 = load i32, ptr %16, align 4, !tbaa !5
-  %29 = trunc i32 %28 to i8
-  %30 = getelementptr inbounds nuw i8, ptr %13, i64 3
-  store i8 %29, ptr %30, align 1, !tbaa !9
-  %31 = or disjoint i64 %14, 1
-  %32 = getelementptr inbounds nuw i8, ptr %13, i64 4
-  %33 = getelementptr inbounds nuw i32, ptr %2, i64 %31
-  %34 = load i32, ptr %33, align 4, !tbaa !5
-  %35 = lshr i32 %34, 24
-  %36 = trunc nuw i32 %35 to i8
-  store i8 %36, ptr %32, align 1, !tbaa !9
-  %37 = load i32, ptr %33, align 4, !tbaa !5
-  %38 = lshr i32 %37, 16
-  %39 = trunc i32 %38 to i8
-  %40 = getelementptr inbounds nuw i8, ptr %13, i64 5
-  store i8 %39, ptr %40, align 1, !tbaa !9
-  %41 = load i32, ptr %33, align 4, !tbaa !5
-  %42 = lshr i32 %41, 8
-  %43 = trunc i32 %42 to i8
-  %44 = getelementptr inbounds nuw i8, ptr %13, i64 6
-  store i8 %43, ptr %44, align 1, !tbaa !9
-  %45 = load i32, ptr %33, align 4, !tbaa !5
-  %46 = trunc i32 %45 to i8
-  %47 = getelementptr inbounds nuw i8, ptr %13, i64 7
-  store i8 %46, ptr %47, align 1, !tbaa !9
-  %48 = add nuw nsw i64 %14, 2
-  %49 = getelementptr inbounds nuw i8, ptr %13, i64 8
-  %50 = add i64 %15, 2
-  %51 = icmp eq i64 %50, %11
-  br i1 %51, label %52, label %12, !llvm.loop !10
+12:                                               ; preds = %11, %12
+  br label %12
 
-52:                                               ; preds = %12, %8
-  %53 = phi ptr [ poison, %8 ], [ %49, %12 ]
-  %54 = phi ptr [ %1, %8 ], [ %49, %12 ]
-  %55 = phi i64 [ 0, %8 ], [ %48, %12 ]
-  %56 = and i64 %0, 4
-  %57 = icmp eq i64 %56, 0
-  br i1 %57, label %75, label %58
+13:                                               ; preds = %3
+  br label %14
 
-58:                                               ; preds = %52
-  %59 = getelementptr inbounds nuw i32, ptr %2, i64 %55
-  %60 = load i32, ptr %59, align 4, !tbaa !5
-  %61 = lshr i32 %60, 24
-  %62 = trunc nuw i32 %61 to i8
-  store i8 %62, ptr %54, align 1, !tbaa !9
-  %63 = load i32, ptr %59, align 4, !tbaa !5
-  %64 = lshr i32 %63, 16
-  %65 = trunc i32 %64 to i8
-  %66 = getelementptr inbounds nuw i8, ptr %54, i64 1
-  store i8 %65, ptr %66, align 1, !tbaa !9
-  %67 = load i32, ptr %59, align 4, !tbaa !5
-  %68 = lshr i32 %67, 8
-  %69 = trunc i32 %68 to i8
-  %70 = getelementptr inbounds nuw i8, ptr %54, i64 2
-  store i8 %69, ptr %70, align 1, !tbaa !9
-  %71 = load i32, ptr %59, align 4, !tbaa !5
-  %72 = trunc i32 %71 to i8
-  %73 = getelementptr inbounds nuw i8, ptr %54, i64 3
-  store i8 %72, ptr %73, align 1, !tbaa !9
-  %74 = getelementptr inbounds nuw i8, ptr %54, i64 4
-  br label %75
+14:                                               ; preds = %13
+  %15 = load ptr, ptr %4, align 8
+  %16 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %15, i32 0, i32 3
+  %17 = load i32, ptr %16, align 8
+  store i32 %17, ptr %8, align 4
+  %18 = load i32, ptr %8, align 4
+  %19 = zext i32 %18 to i64
+  %20 = icmp ult i64 %19, 64
+  br i1 %20, label %23, label %21
 
-75:                                               ; preds = %58, %52, %3
-  %76 = phi i64 [ 0, %3 ], [ %4, %52 ], [ %4, %58 ]
-  %77 = phi ptr [ %1, %3 ], [ %53, %52 ], [ %74, %58 ]
-  %78 = icmp eq i32 %6, 0
-  br i1 %78, label %96, label %79
+21:                                               ; preds = %14
+  br label %22
 
-79:                                               ; preds = %75
-  %80 = getelementptr inbounds nuw i32, ptr %2, i64 %76
-  %81 = load i32, ptr %80, align 4, !tbaa !5
-  switch i32 %6, label %82 [
-    i32 3, label %83
-    i32 2, label %89
-    i32 1, label %93
-  ]
+22:                                               ; preds = %21, %22
+  br label %22
 
-82:                                               ; preds = %79
-  unreachable
+23:                                               ; preds = %14
+  %24 = load ptr, ptr %4, align 8
+  %25 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %24, i32 0, i32 2
+  %26 = load i32, ptr %8, align 4
+  %27 = add i32 %26, 1
+  store i32 %27, ptr %8, align 4
+  %28 = zext i32 %26 to i64
+  %29 = getelementptr inbounds nuw [64 x i8], ptr %25, i64 0, i64 %28
+  store i8 -128, ptr %29, align 1
+  %30 = load i32, ptr %8, align 4
+  %31 = zext i32 %30 to i64
+  %32 = icmp ugt i64 %31, 56
+  br i1 %32, label %33, label %49
 
-83:                                               ; preds = %79
-  %84 = lshr i32 %81, 8
-  %85 = trunc i32 %84 to i8
-  %86 = and i64 %0, 3
-  %87 = getelementptr i8, ptr %77, i64 %86
-  %88 = getelementptr i8, ptr %87, i64 -1
-  store i8 %85, ptr %88, align 1, !tbaa !9
-  br label %89
+33:                                               ; preds = %23
+  %34 = load ptr, ptr %4, align 8
+  %35 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %34, i32 0, i32 2
+  %36 = getelementptr inbounds [64 x i8], ptr %35, i64 0, i64 0
+  %37 = load i32, ptr %8, align 4
+  %38 = zext i32 %37 to i64
+  %39 = getelementptr inbounds nuw i8, ptr %36, i64 %38
+  %40 = load i32, ptr %8, align 4
+  %41 = zext i32 %40 to i64
+  %42 = sub i64 64, %41
+  call void @llvm.memset.p0.i64(ptr align 1 %39, i8 0, i64 %42, i1 false)
+  %43 = load ptr, ptr %4, align 8
+  %44 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %43, i32 0, i32 0
+  %45 = getelementptr inbounds [8 x i32], ptr %44, i64 0, i64 0
+  %46 = load ptr, ptr %4, align 8
+  %47 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %46, i32 0, i32 2
+  %48 = getelementptr inbounds [64 x i8], ptr %47, i64 0, i64 0
+  call void @_nettle_sha256_compress(ptr noundef %45, ptr noundef %48, ptr noundef @K)
+  store i32 0, ptr %8, align 4
+  br label %49
 
-89:                                               ; preds = %79, %83
-  %90 = lshr i32 %81, 16
-  %91 = trunc i32 %90 to i8
-  %92 = getelementptr inbounds nuw i8, ptr %77, i64 1
-  store i8 %91, ptr %92, align 1, !tbaa !9
-  br label %93
+49:                                               ; preds = %33, %23
+  %50 = load ptr, ptr %4, align 8
+  %51 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %50, i32 0, i32 2
+  %52 = getelementptr inbounds [64 x i8], ptr %51, i64 0, i64 0
+  %53 = load i32, ptr %8, align 4
+  %54 = zext i32 %53 to i64
+  %55 = getelementptr inbounds nuw i8, ptr %52, i64 %54
+  %56 = load i32, ptr %8, align 4
+  %57 = zext i32 %56 to i64
+  %58 = sub i64 56, %57
+  call void @llvm.memset.p0.i64(ptr align 1 %55, i8 0, i64 %58, i1 false)
+  br label %59
 
-93:                                               ; preds = %79, %89
-  %94 = lshr i32 %81, 24
-  %95 = trunc nuw i32 %94 to i8
-  store i8 %95, ptr %77, align 1, !tbaa !9
-  br label %96
+59:                                               ; preds = %49
+  %60 = load ptr, ptr %4, align 8
+  %61 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %60, i32 0, i32 1
+  %62 = load i64, ptr %61, align 8
+  %63 = shl i64 %62, 9
+  %64 = load ptr, ptr %4, align 8
+  %65 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %64, i32 0, i32 3
+  %66 = load i32, ptr %65, align 8
+  %67 = shl i32 %66, 3
+  %68 = zext i32 %67 to i64
+  %69 = or i64 %63, %68
+  store i64 %69, ptr %7, align 8
+  br label %70
 
-96:                                               ; preds = %93, %75
+70:                                               ; preds = %59
+  %71 = load i64, ptr %7, align 8
+  %72 = lshr i64 %71, 56
+  %73 = and i64 %72, 255
+  %74 = trunc i64 %73 to i8
+  %75 = load ptr, ptr %4, align 8
+  %76 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %75, i32 0, i32 2
+  %77 = getelementptr inbounds [64 x i8], ptr %76, i64 0, i64 0
+  %78 = getelementptr inbounds i8, ptr %77, i64 56
+  %79 = getelementptr inbounds i8, ptr %78, i64 0
+  store i8 %74, ptr %79, align 1
+  %80 = load i64, ptr %7, align 8
+  %81 = lshr i64 %80, 48
+  %82 = and i64 %81, 255
+  %83 = trunc i64 %82 to i8
+  %84 = load ptr, ptr %4, align 8
+  %85 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %84, i32 0, i32 2
+  %86 = getelementptr inbounds [64 x i8], ptr %85, i64 0, i64 0
+  %87 = getelementptr inbounds i8, ptr %86, i64 56
+  %88 = getelementptr inbounds i8, ptr %87, i64 1
+  store i8 %83, ptr %88, align 1
+  %89 = load i64, ptr %7, align 8
+  %90 = lshr i64 %89, 40
+  %91 = and i64 %90, 255
+  %92 = trunc i64 %91 to i8
+  %93 = load ptr, ptr %4, align 8
+  %94 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %93, i32 0, i32 2
+  %95 = getelementptr inbounds [64 x i8], ptr %94, i64 0, i64 0
+  %96 = getelementptr inbounds i8, ptr %95, i64 56
+  %97 = getelementptr inbounds i8, ptr %96, i64 2
+  store i8 %92, ptr %97, align 1
+  %98 = load i64, ptr %7, align 8
+  %99 = lshr i64 %98, 32
+  %100 = and i64 %99, 255
+  %101 = trunc i64 %100 to i8
+  %102 = load ptr, ptr %4, align 8
+  %103 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %102, i32 0, i32 2
+  %104 = getelementptr inbounds [64 x i8], ptr %103, i64 0, i64 0
+  %105 = getelementptr inbounds i8, ptr %104, i64 56
+  %106 = getelementptr inbounds i8, ptr %105, i64 3
+  store i8 %101, ptr %106, align 1
+  %107 = load i64, ptr %7, align 8
+  %108 = lshr i64 %107, 24
+  %109 = and i64 %108, 255
+  %110 = trunc i64 %109 to i8
+  %111 = load ptr, ptr %4, align 8
+  %112 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %111, i32 0, i32 2
+  %113 = getelementptr inbounds [64 x i8], ptr %112, i64 0, i64 0
+  %114 = getelementptr inbounds i8, ptr %113, i64 56
+  %115 = getelementptr inbounds i8, ptr %114, i64 4
+  store i8 %110, ptr %115, align 1
+  %116 = load i64, ptr %7, align 8
+  %117 = lshr i64 %116, 16
+  %118 = and i64 %117, 255
+  %119 = trunc i64 %118 to i8
+  %120 = load ptr, ptr %4, align 8
+  %121 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %120, i32 0, i32 2
+  %122 = getelementptr inbounds [64 x i8], ptr %121, i64 0, i64 0
+  %123 = getelementptr inbounds i8, ptr %122, i64 56
+  %124 = getelementptr inbounds i8, ptr %123, i64 5
+  store i8 %119, ptr %124, align 1
+  %125 = load i64, ptr %7, align 8
+  %126 = lshr i64 %125, 8
+  %127 = and i64 %126, 255
+  %128 = trunc i64 %127 to i8
+  %129 = load ptr, ptr %4, align 8
+  %130 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %129, i32 0, i32 2
+  %131 = getelementptr inbounds [64 x i8], ptr %130, i64 0, i64 0
+  %132 = getelementptr inbounds i8, ptr %131, i64 56
+  %133 = getelementptr inbounds i8, ptr %132, i64 6
+  store i8 %128, ptr %133, align 1
+  %134 = load i64, ptr %7, align 8
+  %135 = and i64 %134, 255
+  %136 = trunc i64 %135 to i8
+  %137 = load ptr, ptr %4, align 8
+  %138 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %137, i32 0, i32 2
+  %139 = getelementptr inbounds [64 x i8], ptr %138, i64 0, i64 0
+  %140 = getelementptr inbounds i8, ptr %139, i64 56
+  %141 = getelementptr inbounds i8, ptr %140, i64 7
+  store i8 %136, ptr %141, align 1
+  br label %142
+
+142:                                              ; preds = %70
+  %143 = load ptr, ptr %4, align 8
+  %144 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %143, i32 0, i32 0
+  %145 = getelementptr inbounds [8 x i32], ptr %144, i64 0, i64 0
+  %146 = load ptr, ptr %4, align 8
+  %147 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %146, i32 0, i32 2
+  %148 = getelementptr inbounds [64 x i8], ptr %147, i64 0, i64 0
+  call void @_nettle_sha256_compress(ptr noundef %145, ptr noundef %148, ptr noundef @K)
+  %149 = load i64, ptr %5, align 8
+  %150 = load ptr, ptr %6, align 8
+  %151 = load ptr, ptr %4, align 8
+  %152 = getelementptr inbounds nuw %struct.sha256_ctx, ptr %151, i32 0, i32 0
+  %153 = getelementptr inbounds [8 x i32], ptr %152, i64 0, i64 0
+  call void @_nettle_write_be32(i64 noundef %149, ptr noundef %150, ptr noundef %153)
   ret void
 }
 
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.lifetime.start.p0(i64 immarg, ptr nocapture) #1
-
-; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.lifetime.end.p0(i64 immarg, ptr nocapture) #1
-
-; Function Attrs: nofree norecurse nosync nounwind memory(argmem: readwrite) uwtable
-define dso_local void @_nettle_sha256_compress(ptr nocapture noundef %0, ptr nocapture noundef readonly %1, ptr nocapture noundef readonly %2) local_unnamed_addr #0 {
-  %4 = alloca [16 x i32], align 16
-  call void @llvm.lifetime.start.p0(i64 64, ptr nonnull %4) #11
-  %5 = load i8, ptr %1, align 1, !tbaa !9
-  %6 = zext i8 %5 to i32
-  %7 = shl nuw i32 %6, 24
-  %8 = getelementptr inbounds nuw i8, ptr %1, i64 1
-  %9 = load i8, ptr %8, align 1, !tbaa !9
-  %10 = zext i8 %9 to i32
-  %11 = shl nuw nsw i32 %10, 16
-  %12 = or disjoint i32 %11, %7
-  %13 = getelementptr inbounds nuw i8, ptr %1, i64 2
-  %14 = load i8, ptr %13, align 1, !tbaa !9
-  %15 = zext i8 %14 to i32
-  %16 = shl nuw nsw i32 %15, 8
-  %17 = or disjoint i32 %12, %16
-  %18 = getelementptr inbounds nuw i8, ptr %1, i64 3
-  %19 = load i8, ptr %18, align 1, !tbaa !9
-  %20 = zext i8 %19 to i32
-  %21 = or disjoint i32 %17, %20
-  store i32 %21, ptr %4, align 16, !tbaa !5
-  %22 = getelementptr inbounds nuw i8, ptr %1, i64 4
-  %23 = load i8, ptr %22, align 1, !tbaa !9
-  %24 = zext i8 %23 to i32
-  %25 = shl nuw i32 %24, 24
-  %26 = getelementptr inbounds nuw i8, ptr %1, i64 5
-  %27 = load i8, ptr %26, align 1, !tbaa !9
-  %28 = zext i8 %27 to i32
-  %29 = shl nuw nsw i32 %28, 16
-  %30 = or disjoint i32 %29, %25
-  %31 = getelementptr inbounds nuw i8, ptr %1, i64 6
-  %32 = load i8, ptr %31, align 1, !tbaa !9
-  %33 = zext i8 %32 to i32
-  %34 = shl nuw nsw i32 %33, 8
-  %35 = or disjoint i32 %30, %34
-  %36 = getelementptr inbounds nuw i8, ptr %1, i64 7
-  %37 = load i8, ptr %36, align 1, !tbaa !9
-  %38 = zext i8 %37 to i32
-  %39 = or disjoint i32 %35, %38
-  %40 = getelementptr inbounds nuw i8, ptr %4, i64 4
-  store i32 %39, ptr %40, align 4, !tbaa !5
-  %41 = getelementptr inbounds nuw i8, ptr %1, i64 8
-  %42 = load i8, ptr %41, align 1, !tbaa !9
-  %43 = zext i8 %42 to i32
-  %44 = shl nuw i32 %43, 24
-  %45 = getelementptr inbounds nuw i8, ptr %1, i64 9
-  %46 = load i8, ptr %45, align 1, !tbaa !9
-  %47 = zext i8 %46 to i32
-  %48 = shl nuw nsw i32 %47, 16
-  %49 = or disjoint i32 %48, %44
-  %50 = getelementptr inbounds nuw i8, ptr %1, i64 10
-  %51 = load i8, ptr %50, align 1, !tbaa !9
-  %52 = zext i8 %51 to i32
-  %53 = shl nuw nsw i32 %52, 8
-  %54 = or disjoint i32 %49, %53
-  %55 = getelementptr inbounds nuw i8, ptr %1, i64 11
-  %56 = load i8, ptr %55, align 1, !tbaa !9
-  %57 = zext i8 %56 to i32
-  %58 = or disjoint i32 %54, %57
-  %59 = getelementptr inbounds nuw i8, ptr %4, i64 8
-  store i32 %58, ptr %59, align 8, !tbaa !5
-  %60 = getelementptr inbounds nuw i8, ptr %1, i64 12
-  %61 = load i8, ptr %60, align 1, !tbaa !9
-  %62 = zext i8 %61 to i32
-  %63 = shl nuw i32 %62, 24
-  %64 = getelementptr inbounds nuw i8, ptr %1, i64 13
-  %65 = load i8, ptr %64, align 1, !tbaa !9
-  %66 = zext i8 %65 to i32
-  %67 = shl nuw nsw i32 %66, 16
-  %68 = or disjoint i32 %67, %63
-  %69 = getelementptr inbounds nuw i8, ptr %1, i64 14
-  %70 = load i8, ptr %69, align 1, !tbaa !9
-  %71 = zext i8 %70 to i32
-  %72 = shl nuw nsw i32 %71, 8
-  %73 = or disjoint i32 %68, %72
-  %74 = getelementptr inbounds nuw i8, ptr %1, i64 15
-  %75 = load i8, ptr %74, align 1, !tbaa !9
-  %76 = zext i8 %75 to i32
-  %77 = or disjoint i32 %73, %76
-  %78 = getelementptr inbounds nuw i8, ptr %4, i64 12
-  store i32 %77, ptr %78, align 4, !tbaa !5
-  %79 = getelementptr inbounds nuw i8, ptr %1, i64 16
-  %80 = load i8, ptr %79, align 1, !tbaa !9
-  %81 = zext i8 %80 to i32
-  %82 = shl nuw i32 %81, 24
-  %83 = getelementptr inbounds nuw i8, ptr %1, i64 17
-  %84 = load i8, ptr %83, align 1, !tbaa !9
-  %85 = zext i8 %84 to i32
-  %86 = shl nuw nsw i32 %85, 16
-  %87 = or disjoint i32 %86, %82
-  %88 = getelementptr inbounds nuw i8, ptr %1, i64 18
-  %89 = load i8, ptr %88, align 1, !tbaa !9
-  %90 = zext i8 %89 to i32
-  %91 = shl nuw nsw i32 %90, 8
-  %92 = or disjoint i32 %87, %91
-  %93 = getelementptr inbounds nuw i8, ptr %1, i64 19
-  %94 = load i8, ptr %93, align 1, !tbaa !9
-  %95 = zext i8 %94 to i32
-  %96 = or disjoint i32 %92, %95
-  %97 = getelementptr inbounds nuw i8, ptr %4, i64 16
-  store i32 %96, ptr %97, align 16, !tbaa !5
-  %98 = getelementptr inbounds nuw i8, ptr %1, i64 20
-  %99 = load i8, ptr %98, align 1, !tbaa !9
-  %100 = zext i8 %99 to i32
-  %101 = shl nuw i32 %100, 24
-  %102 = getelementptr inbounds nuw i8, ptr %1, i64 21
-  %103 = load i8, ptr %102, align 1, !tbaa !9
-  %104 = zext i8 %103 to i32
-  %105 = shl nuw nsw i32 %104, 16
-  %106 = or disjoint i32 %105, %101
-  %107 = getelementptr inbounds nuw i8, ptr %1, i64 22
-  %108 = load i8, ptr %107, align 1, !tbaa !9
-  %109 = zext i8 %108 to i32
-  %110 = shl nuw nsw i32 %109, 8
-  %111 = or disjoint i32 %106, %110
-  %112 = getelementptr inbounds nuw i8, ptr %1, i64 23
-  %113 = load i8, ptr %112, align 1, !tbaa !9
-  %114 = zext i8 %113 to i32
-  %115 = or disjoint i32 %111, %114
-  %116 = getelementptr inbounds nuw i8, ptr %4, i64 20
-  store i32 %115, ptr %116, align 4, !tbaa !5
-  %117 = getelementptr inbounds nuw i8, ptr %1, i64 24
-  %118 = load i8, ptr %117, align 1, !tbaa !9
-  %119 = zext i8 %118 to i32
-  %120 = shl nuw i32 %119, 24
-  %121 = getelementptr inbounds nuw i8, ptr %1, i64 25
-  %122 = load i8, ptr %121, align 1, !tbaa !9
-  %123 = zext i8 %122 to i32
-  %124 = shl nuw nsw i32 %123, 16
-  %125 = or disjoint i32 %124, %120
-  %126 = getelementptr inbounds nuw i8, ptr %1, i64 26
-  %127 = load i8, ptr %126, align 1, !tbaa !9
-  %128 = zext i8 %127 to i32
-  %129 = shl nuw nsw i32 %128, 8
-  %130 = or disjoint i32 %125, %129
-  %131 = getelementptr inbounds nuw i8, ptr %1, i64 27
-  %132 = load i8, ptr %131, align 1, !tbaa !9
-  %133 = zext i8 %132 to i32
-  %134 = or disjoint i32 %130, %133
-  %135 = getelementptr inbounds nuw i8, ptr %4, i64 24
-  store i32 %134, ptr %135, align 8, !tbaa !5
-  %136 = getelementptr inbounds nuw i8, ptr %1, i64 28
-  %137 = load i8, ptr %136, align 1, !tbaa !9
-  %138 = zext i8 %137 to i32
-  %139 = shl nuw i32 %138, 24
-  %140 = getelementptr inbounds nuw i8, ptr %1, i64 29
-  %141 = load i8, ptr %140, align 1, !tbaa !9
-  %142 = zext i8 %141 to i32
-  %143 = shl nuw nsw i32 %142, 16
-  %144 = or disjoint i32 %143, %139
-  %145 = getelementptr inbounds nuw i8, ptr %1, i64 30
-  %146 = load i8, ptr %145, align 1, !tbaa !9
-  %147 = zext i8 %146 to i32
-  %148 = shl nuw nsw i32 %147, 8
-  %149 = or disjoint i32 %144, %148
-  %150 = getelementptr inbounds nuw i8, ptr %1, i64 31
-  %151 = load i8, ptr %150, align 1, !tbaa !9
-  %152 = zext i8 %151 to i32
-  %153 = or disjoint i32 %149, %152
-  %154 = getelementptr inbounds nuw i8, ptr %4, i64 28
-  store i32 %153, ptr %154, align 4, !tbaa !5
-  %155 = getelementptr inbounds nuw i8, ptr %1, i64 32
-  %156 = load i8, ptr %155, align 1, !tbaa !9
-  %157 = zext i8 %156 to i32
-  %158 = shl nuw i32 %157, 24
-  %159 = getelementptr inbounds nuw i8, ptr %1, i64 33
-  %160 = load i8, ptr %159, align 1, !tbaa !9
-  %161 = zext i8 %160 to i32
-  %162 = shl nuw nsw i32 %161, 16
-  %163 = or disjoint i32 %162, %158
-  %164 = getelementptr inbounds nuw i8, ptr %1, i64 34
-  %165 = load i8, ptr %164, align 1, !tbaa !9
-  %166 = zext i8 %165 to i32
-  %167 = shl nuw nsw i32 %166, 8
-  %168 = or disjoint i32 %163, %167
-  %169 = getelementptr inbounds nuw i8, ptr %1, i64 35
-  %170 = load i8, ptr %169, align 1, !tbaa !9
-  %171 = zext i8 %170 to i32
-  %172 = or disjoint i32 %168, %171
-  %173 = getelementptr inbounds nuw i8, ptr %4, i64 32
-  store i32 %172, ptr %173, align 16, !tbaa !5
-  %174 = getelementptr inbounds nuw i8, ptr %1, i64 36
-  %175 = load i8, ptr %174, align 1, !tbaa !9
-  %176 = zext i8 %175 to i32
-  %177 = shl nuw i32 %176, 24
-  %178 = getelementptr inbounds nuw i8, ptr %1, i64 37
-  %179 = load i8, ptr %178, align 1, !tbaa !9
-  %180 = zext i8 %179 to i32
-  %181 = shl nuw nsw i32 %180, 16
-  %182 = or disjoint i32 %181, %177
-  %183 = getelementptr inbounds nuw i8, ptr %1, i64 38
-  %184 = load i8, ptr %183, align 1, !tbaa !9
-  %185 = zext i8 %184 to i32
-  %186 = shl nuw nsw i32 %185, 8
-  %187 = or disjoint i32 %182, %186
-  %188 = getelementptr inbounds nuw i8, ptr %1, i64 39
-  %189 = load i8, ptr %188, align 1, !tbaa !9
-  %190 = zext i8 %189 to i32
-  %191 = or disjoint i32 %187, %190
-  %192 = getelementptr inbounds nuw i8, ptr %4, i64 36
-  store i32 %191, ptr %192, align 4, !tbaa !5
-  %193 = getelementptr inbounds nuw i8, ptr %1, i64 40
-  %194 = load i8, ptr %193, align 1, !tbaa !9
-  %195 = zext i8 %194 to i32
-  %196 = shl nuw i32 %195, 24
-  %197 = getelementptr inbounds nuw i8, ptr %1, i64 41
-  %198 = load i8, ptr %197, align 1, !tbaa !9
-  %199 = zext i8 %198 to i32
-  %200 = shl nuw nsw i32 %199, 16
-  %201 = or disjoint i32 %200, %196
-  %202 = getelementptr inbounds nuw i8, ptr %1, i64 42
-  %203 = load i8, ptr %202, align 1, !tbaa !9
-  %204 = zext i8 %203 to i32
-  %205 = shl nuw nsw i32 %204, 8
-  %206 = or disjoint i32 %201, %205
-  %207 = getelementptr inbounds nuw i8, ptr %1, i64 43
-  %208 = load i8, ptr %207, align 1, !tbaa !9
-  %209 = zext i8 %208 to i32
-  %210 = or disjoint i32 %206, %209
-  %211 = getelementptr inbounds nuw i8, ptr %4, i64 40
-  store i32 %210, ptr %211, align 8, !tbaa !5
-  %212 = getelementptr inbounds nuw i8, ptr %1, i64 44
-  %213 = load i8, ptr %212, align 1, !tbaa !9
-  %214 = zext i8 %213 to i32
-  %215 = shl nuw i32 %214, 24
-  %216 = getelementptr inbounds nuw i8, ptr %1, i64 45
-  %217 = load i8, ptr %216, align 1, !tbaa !9
-  %218 = zext i8 %217 to i32
-  %219 = shl nuw nsw i32 %218, 16
-  %220 = or disjoint i32 %219, %215
-  %221 = getelementptr inbounds nuw i8, ptr %1, i64 46
-  %222 = load i8, ptr %221, align 1, !tbaa !9
-  %223 = zext i8 %222 to i32
-  %224 = shl nuw nsw i32 %223, 8
-  %225 = or disjoint i32 %220, %224
-  %226 = getelementptr inbounds nuw i8, ptr %1, i64 47
-  %227 = load i8, ptr %226, align 1, !tbaa !9
-  %228 = zext i8 %227 to i32
-  %229 = or disjoint i32 %225, %228
-  %230 = getelementptr inbounds nuw i8, ptr %4, i64 44
-  store i32 %229, ptr %230, align 4, !tbaa !5
-  %231 = getelementptr inbounds nuw i8, ptr %1, i64 48
-  %232 = load i8, ptr %231, align 1, !tbaa !9
-  %233 = zext i8 %232 to i32
-  %234 = shl nuw i32 %233, 24
-  %235 = getelementptr inbounds nuw i8, ptr %1, i64 49
-  %236 = load i8, ptr %235, align 1, !tbaa !9
-  %237 = zext i8 %236 to i32
-  %238 = shl nuw nsw i32 %237, 16
-  %239 = or disjoint i32 %238, %234
-  %240 = getelementptr inbounds nuw i8, ptr %1, i64 50
-  %241 = load i8, ptr %240, align 1, !tbaa !9
-  %242 = zext i8 %241 to i32
-  %243 = shl nuw nsw i32 %242, 8
-  %244 = or disjoint i32 %239, %243
-  %245 = getelementptr inbounds nuw i8, ptr %1, i64 51
-  %246 = load i8, ptr %245, align 1, !tbaa !9
-  %247 = zext i8 %246 to i32
-  %248 = or disjoint i32 %244, %247
-  %249 = getelementptr inbounds nuw i8, ptr %4, i64 48
-  store i32 %248, ptr %249, align 16, !tbaa !5
-  %250 = getelementptr inbounds nuw i8, ptr %1, i64 52
-  %251 = load i8, ptr %250, align 1, !tbaa !9
-  %252 = zext i8 %251 to i32
-  %253 = shl nuw i32 %252, 24
-  %254 = getelementptr inbounds nuw i8, ptr %1, i64 53
-  %255 = load i8, ptr %254, align 1, !tbaa !9
-  %256 = zext i8 %255 to i32
-  %257 = shl nuw nsw i32 %256, 16
-  %258 = or disjoint i32 %257, %253
-  %259 = getelementptr inbounds nuw i8, ptr %1, i64 54
-  %260 = load i8, ptr %259, align 1, !tbaa !9
-  %261 = zext i8 %260 to i32
-  %262 = shl nuw nsw i32 %261, 8
-  %263 = or disjoint i32 %258, %262
-  %264 = getelementptr inbounds nuw i8, ptr %1, i64 55
-  %265 = load i8, ptr %264, align 1, !tbaa !9
-  %266 = zext i8 %265 to i32
-  %267 = or disjoint i32 %263, %266
-  %268 = getelementptr inbounds nuw i8, ptr %4, i64 52
-  store i32 %267, ptr %268, align 4, !tbaa !5
-  %269 = getelementptr inbounds nuw i8, ptr %1, i64 56
-  %270 = load i8, ptr %269, align 1, !tbaa !9
-  %271 = zext i8 %270 to i32
-  %272 = shl nuw i32 %271, 24
-  %273 = getelementptr inbounds nuw i8, ptr %1, i64 57
-  %274 = load i8, ptr %273, align 1, !tbaa !9
-  %275 = zext i8 %274 to i32
-  %276 = shl nuw nsw i32 %275, 16
-  %277 = or disjoint i32 %276, %272
-  %278 = getelementptr inbounds nuw i8, ptr %1, i64 58
-  %279 = load i8, ptr %278, align 1, !tbaa !9
-  %280 = zext i8 %279 to i32
-  %281 = shl nuw nsw i32 %280, 8
-  %282 = or disjoint i32 %277, %281
-  %283 = getelementptr inbounds nuw i8, ptr %1, i64 59
-  %284 = load i8, ptr %283, align 1, !tbaa !9
-  %285 = zext i8 %284 to i32
-  %286 = or disjoint i32 %282, %285
-  %287 = getelementptr inbounds nuw i8, ptr %4, i64 56
-  store i32 %286, ptr %287, align 8, !tbaa !5
-  %288 = getelementptr inbounds nuw i8, ptr %1, i64 60
-  %289 = load i8, ptr %288, align 1, !tbaa !9
-  %290 = zext i8 %289 to i32
-  %291 = shl nuw i32 %290, 24
-  %292 = getelementptr inbounds nuw i8, ptr %1, i64 61
-  %293 = load i8, ptr %292, align 1, !tbaa !9
-  %294 = zext i8 %293 to i32
-  %295 = shl nuw nsw i32 %294, 16
-  %296 = or disjoint i32 %295, %291
-  %297 = getelementptr inbounds nuw i8, ptr %1, i64 62
-  %298 = load i8, ptr %297, align 1, !tbaa !9
-  %299 = zext i8 %298 to i32
-  %300 = shl nuw nsw i32 %299, 8
-  %301 = or disjoint i32 %296, %300
-  %302 = getelementptr inbounds nuw i8, ptr %1, i64 63
-  %303 = load i8, ptr %302, align 1, !tbaa !9
-  %304 = zext i8 %303 to i32
-  %305 = or disjoint i32 %301, %304
-  %306 = getelementptr inbounds nuw i8, ptr %4, i64 60
-  store i32 %305, ptr %306, align 4, !tbaa !5
-  %307 = load i32, ptr %0, align 4, !tbaa !5
-  %308 = getelementptr inbounds nuw i8, ptr %0, i64 4
-  %309 = load i32, ptr %308, align 4, !tbaa !5
-  %310 = getelementptr inbounds nuw i8, ptr %0, i64 8
-  %311 = load i32, ptr %310, align 4, !tbaa !5
-  %312 = getelementptr inbounds nuw i8, ptr %0, i64 12
-  %313 = load i32, ptr %312, align 4, !tbaa !5
-  %314 = getelementptr inbounds nuw i8, ptr %0, i64 16
-  %315 = load i32, ptr %314, align 4, !tbaa !5
-  %316 = getelementptr inbounds nuw i8, ptr %0, i64 20
-  %317 = load i32, ptr %316, align 4, !tbaa !5
-  %318 = getelementptr inbounds nuw i8, ptr %0, i64 24
-  %319 = load i32, ptr %318, align 4, !tbaa !5
-  %320 = getelementptr inbounds nuw i8, ptr %0, i64 28
-  %321 = load i32, ptr %320, align 4, !tbaa !5
-  br label %339
-
-322:                                              ; preds = %339
-  %323 = load i32, ptr %4, align 16
-  %324 = load i32, ptr %287, align 8, !tbaa !5
-  %325 = load i32, ptr %192, align 4, !tbaa !5
-  %326 = load i32, ptr %40, align 4, !tbaa !5
-  %327 = load i32, ptr %306, align 4, !tbaa !5
-  %328 = load i32, ptr %211, align 8, !tbaa !5
-  %329 = load i32, ptr %59, align 8, !tbaa !5
-  %330 = load i32, ptr %230, align 4, !tbaa !5
-  %331 = load i32, ptr %78, align 4, !tbaa !5
-  %332 = load i32, ptr %249, align 16, !tbaa !5
-  %333 = load i32, ptr %97, align 16, !tbaa !5
-  %334 = load i32, ptr %268, align 4, !tbaa !5
-  %335 = load i32, ptr %116, align 4, !tbaa !5
-  %336 = load i32, ptr %135, align 8, !tbaa !5
-  %337 = load i32, ptr %154, align 4, !tbaa !5
-  %338 = load i32, ptr %173, align 16, !tbaa !5
-  br label %575
-
-339:                                              ; preds = %3, %339
-  %340 = phi ptr [ %4, %3 ], [ %574, %339 ]
-  %341 = phi i1 [ true, %3 ], [ false, %339 ]
-  %342 = phi i32 [ %321, %3 ], [ %477, %339 ]
-  %343 = phi i32 [ %319, %3 ], [ %505, %339 ]
-  %344 = phi i32 [ %317, %3 ], [ %533, %339 ]
-  %345 = phi i32 [ %315, %3 ], [ %561, %339 ]
-  %346 = phi i32 [ %313, %3 ], [ %488, %339 ]
-  %347 = phi i32 [ %311, %3 ], [ %516, %339 ]
-  %348 = phi i32 [ %309, %3 ], [ %544, %339 ]
-  %349 = phi i32 [ %307, %3 ], [ %572, %339 ]
-  %350 = phi ptr [ %2, %3 ], [ %573, %339 ]
-  %351 = tail call i32 @llvm.fshl.i32(i32 %345, i32 %345, i32 26)
-  %352 = tail call i32 @llvm.fshl.i32(i32 %345, i32 %345, i32 21)
-  %353 = xor i32 %351, %352
-  %354 = tail call i32 @llvm.fshl.i32(i32 %345, i32 %345, i32 7)
-  %355 = xor i32 %353, %354
-  %356 = xor i32 %343, %344
-  %357 = and i32 %356, %345
-  %358 = xor i32 %357, %343
-  %359 = load i32, ptr %350, align 4, !tbaa !5
-  %360 = load i32, ptr %340, align 4, !tbaa !5
-  %361 = add i32 %342, %355
-  %362 = add i32 %361, %358
-  %363 = add i32 %362, %359
-  %364 = add i32 %363, %360
-  %365 = add i32 %364, %346
-  %366 = tail call i32 @llvm.fshl.i32(i32 %349, i32 %349, i32 30)
-  %367 = tail call i32 @llvm.fshl.i32(i32 %349, i32 %349, i32 19)
-  %368 = xor i32 %366, %367
-  %369 = tail call i32 @llvm.fshl.i32(i32 %349, i32 %349, i32 10)
-  %370 = xor i32 %368, %369
-  %371 = and i32 %348, %349
-  %372 = xor i32 %348, %349
-  %373 = and i32 %347, %372
-  %374 = xor i32 %373, %371
-  %375 = add i32 %374, %370
-  %376 = add i32 %375, %364
-  %377 = tail call i32 @llvm.fshl.i32(i32 %365, i32 %365, i32 26)
-  %378 = tail call i32 @llvm.fshl.i32(i32 %365, i32 %365, i32 21)
-  %379 = xor i32 %377, %378
-  %380 = tail call i32 @llvm.fshl.i32(i32 %365, i32 %365, i32 7)
-  %381 = xor i32 %379, %380
-  %382 = xor i32 %344, %345
-  %383 = and i32 %365, %382
-  %384 = xor i32 %383, %344
-  %385 = getelementptr inbounds nuw i8, ptr %350, i64 4
-  %386 = load i32, ptr %385, align 4, !tbaa !5
-  %387 = getelementptr inbounds nuw i8, ptr %340, i64 4
-  %388 = load i32, ptr %387, align 4, !tbaa !5
-  %389 = add i32 %386, %343
-  %390 = add i32 %389, %388
-  %391 = add i32 %390, %384
-  %392 = add i32 %391, %381
-  %393 = add i32 %392, %347
-  %394 = tail call i32 @llvm.fshl.i32(i32 %376, i32 %376, i32 30)
-  %395 = tail call i32 @llvm.fshl.i32(i32 %376, i32 %376, i32 19)
-  %396 = xor i32 %394, %395
-  %397 = tail call i32 @llvm.fshl.i32(i32 %376, i32 %376, i32 10)
-  %398 = xor i32 %396, %397
-  %399 = and i32 %376, %349
-  %400 = xor i32 %376, %349
-  %401 = and i32 %400, %348
-  %402 = xor i32 %401, %399
-  %403 = add i32 %398, %402
-  %404 = add i32 %403, %392
-  %405 = tail call i32 @llvm.fshl.i32(i32 %393, i32 %393, i32 26)
-  %406 = tail call i32 @llvm.fshl.i32(i32 %393, i32 %393, i32 21)
-  %407 = xor i32 %405, %406
-  %408 = tail call i32 @llvm.fshl.i32(i32 %393, i32 %393, i32 7)
-  %409 = xor i32 %407, %408
-  %410 = xor i32 %365, %345
-  %411 = and i32 %393, %410
-  %412 = xor i32 %411, %345
-  %413 = getelementptr inbounds nuw i8, ptr %350, i64 8
-  %414 = load i32, ptr %413, align 4, !tbaa !5
-  %415 = getelementptr inbounds nuw i8, ptr %340, i64 8
-  %416 = load i32, ptr %415, align 4, !tbaa !5
-  %417 = add i32 %414, %344
-  %418 = add i32 %417, %416
-  %419 = add i32 %418, %412
-  %420 = add i32 %419, %409
-  %421 = add i32 %420, %348
-  %422 = tail call i32 @llvm.fshl.i32(i32 %404, i32 %404, i32 30)
-  %423 = tail call i32 @llvm.fshl.i32(i32 %404, i32 %404, i32 19)
-  %424 = xor i32 %422, %423
-  %425 = tail call i32 @llvm.fshl.i32(i32 %404, i32 %404, i32 10)
-  %426 = xor i32 %424, %425
-  %427 = and i32 %404, %376
-  %428 = xor i32 %404, %376
-  %429 = and i32 %428, %349
-  %430 = xor i32 %429, %427
-  %431 = add i32 %426, %430
-  %432 = add i32 %431, %420
-  %433 = tail call i32 @llvm.fshl.i32(i32 %421, i32 %421, i32 26)
-  %434 = tail call i32 @llvm.fshl.i32(i32 %421, i32 %421, i32 21)
-  %435 = xor i32 %433, %434
-  %436 = tail call i32 @llvm.fshl.i32(i32 %421, i32 %421, i32 7)
-  %437 = xor i32 %435, %436
-  %438 = xor i32 %393, %365
-  %439 = and i32 %421, %438
-  %440 = xor i32 %439, %365
-  %441 = getelementptr inbounds nuw i8, ptr %350, i64 12
-  %442 = load i32, ptr %441, align 4, !tbaa !5
-  %443 = getelementptr inbounds nuw i8, ptr %340, i64 12
-  %444 = load i32, ptr %443, align 4, !tbaa !5
-  %445 = add i32 %442, %345
-  %446 = add i32 %445, %444
-  %447 = add i32 %446, %440
-  %448 = add i32 %447, %437
-  %449 = add i32 %448, %349
-  %450 = tail call i32 @llvm.fshl.i32(i32 %432, i32 %432, i32 30)
-  %451 = tail call i32 @llvm.fshl.i32(i32 %432, i32 %432, i32 19)
-  %452 = xor i32 %450, %451
-  %453 = tail call i32 @llvm.fshl.i32(i32 %432, i32 %432, i32 10)
-  %454 = xor i32 %452, %453
-  %455 = and i32 %432, %404
-  %456 = xor i32 %432, %404
-  %457 = and i32 %456, %376
-  %458 = xor i32 %457, %455
-  %459 = add i32 %454, %458
-  %460 = add i32 %459, %448
-  %461 = tail call i32 @llvm.fshl.i32(i32 %449, i32 %449, i32 26)
-  %462 = tail call i32 @llvm.fshl.i32(i32 %449, i32 %449, i32 21)
-  %463 = xor i32 %461, %462
-  %464 = tail call i32 @llvm.fshl.i32(i32 %449, i32 %449, i32 7)
-  %465 = xor i32 %463, %464
-  %466 = xor i32 %421, %393
-  %467 = and i32 %449, %466
-  %468 = xor i32 %467, %393
-  %469 = getelementptr inbounds nuw i8, ptr %350, i64 16
-  %470 = load i32, ptr %469, align 4, !tbaa !5
-  %471 = getelementptr inbounds nuw i8, ptr %340, i64 16
-  %472 = load i32, ptr %471, align 4, !tbaa !5
-  %473 = add i32 %470, %365
-  %474 = add i32 %473, %472
-  %475 = add i32 %474, %468
-  %476 = add i32 %475, %465
-  %477 = add i32 %476, %376
-  %478 = tail call i32 @llvm.fshl.i32(i32 %460, i32 %460, i32 30)
-  %479 = tail call i32 @llvm.fshl.i32(i32 %460, i32 %460, i32 19)
-  %480 = xor i32 %478, %479
-  %481 = tail call i32 @llvm.fshl.i32(i32 %460, i32 %460, i32 10)
-  %482 = xor i32 %480, %481
-  %483 = and i32 %460, %432
-  %484 = xor i32 %460, %432
-  %485 = and i32 %484, %404
-  %486 = xor i32 %485, %483
-  %487 = add i32 %482, %486
-  %488 = add i32 %487, %476
-  %489 = tail call i32 @llvm.fshl.i32(i32 %477, i32 %477, i32 26)
-  %490 = tail call i32 @llvm.fshl.i32(i32 %477, i32 %477, i32 21)
-  %491 = xor i32 %489, %490
-  %492 = tail call i32 @llvm.fshl.i32(i32 %477, i32 %477, i32 7)
-  %493 = xor i32 %491, %492
-  %494 = xor i32 %449, %421
-  %495 = and i32 %477, %494
-  %496 = xor i32 %495, %421
-  %497 = getelementptr inbounds nuw i8, ptr %350, i64 20
-  %498 = load i32, ptr %497, align 4, !tbaa !5
-  %499 = getelementptr inbounds nuw i8, ptr %340, i64 20
-  %500 = load i32, ptr %499, align 4, !tbaa !5
-  %501 = add i32 %500, %498
-  %502 = add i32 %501, %393
-  %503 = add i32 %502, %496
-  %504 = add i32 %503, %493
-  %505 = add i32 %504, %404
-  %506 = tail call i32 @llvm.fshl.i32(i32 %488, i32 %488, i32 30)
-  %507 = tail call i32 @llvm.fshl.i32(i32 %488, i32 %488, i32 19)
-  %508 = xor i32 %506, %507
-  %509 = tail call i32 @llvm.fshl.i32(i32 %488, i32 %488, i32 10)
-  %510 = xor i32 %508, %509
-  %511 = and i32 %488, %460
-  %512 = xor i32 %488, %460
-  %513 = and i32 %512, %432
-  %514 = xor i32 %513, %511
-  %515 = add i32 %510, %514
-  %516 = add i32 %515, %504
-  %517 = tail call i32 @llvm.fshl.i32(i32 %505, i32 %505, i32 26)
-  %518 = tail call i32 @llvm.fshl.i32(i32 %505, i32 %505, i32 21)
-  %519 = xor i32 %517, %518
-  %520 = tail call i32 @llvm.fshl.i32(i32 %505, i32 %505, i32 7)
-  %521 = xor i32 %519, %520
-  %522 = xor i32 %477, %449
-  %523 = and i32 %505, %522
-  %524 = xor i32 %523, %449
-  %525 = getelementptr inbounds nuw i8, ptr %350, i64 24
-  %526 = load i32, ptr %525, align 4, !tbaa !5
-  %527 = getelementptr inbounds nuw i8, ptr %340, i64 24
-  %528 = load i32, ptr %527, align 4, !tbaa !5
-  %529 = add i32 %528, %526
-  %530 = add i32 %529, %421
-  %531 = add i32 %530, %524
-  %532 = add i32 %531, %521
-  %533 = add i32 %532, %432
-  %534 = tail call i32 @llvm.fshl.i32(i32 %516, i32 %516, i32 30)
-  %535 = tail call i32 @llvm.fshl.i32(i32 %516, i32 %516, i32 19)
-  %536 = xor i32 %534, %535
-  %537 = tail call i32 @llvm.fshl.i32(i32 %516, i32 %516, i32 10)
-  %538 = xor i32 %536, %537
-  %539 = and i32 %516, %488
-  %540 = xor i32 %516, %488
-  %541 = and i32 %540, %460
-  %542 = xor i32 %541, %539
-  %543 = add i32 %538, %542
-  %544 = add i32 %543, %532
-  %545 = tail call i32 @llvm.fshl.i32(i32 %533, i32 %533, i32 26)
-  %546 = tail call i32 @llvm.fshl.i32(i32 %533, i32 %533, i32 21)
-  %547 = xor i32 %545, %546
-  %548 = tail call i32 @llvm.fshl.i32(i32 %533, i32 %533, i32 7)
-  %549 = xor i32 %547, %548
-  %550 = xor i32 %505, %477
-  %551 = and i32 %533, %550
-  %552 = xor i32 %551, %477
-  %553 = getelementptr inbounds nuw i8, ptr %350, i64 28
-  %554 = load i32, ptr %553, align 4, !tbaa !5
-  %555 = getelementptr inbounds nuw i8, ptr %340, i64 28
-  %556 = load i32, ptr %555, align 4, !tbaa !5
-  %557 = add i32 %556, %554
-  %558 = add i32 %557, %449
-  %559 = add i32 %558, %552
-  %560 = add i32 %559, %549
-  %561 = add i32 %560, %460
-  %562 = tail call i32 @llvm.fshl.i32(i32 %544, i32 %544, i32 30)
-  %563 = tail call i32 @llvm.fshl.i32(i32 %544, i32 %544, i32 19)
-  %564 = xor i32 %562, %563
-  %565 = tail call i32 @llvm.fshl.i32(i32 %544, i32 %544, i32 10)
-  %566 = xor i32 %564, %565
-  %567 = and i32 %544, %516
-  %568 = xor i32 %544, %516
-  %569 = and i32 %568, %488
-  %570 = xor i32 %569, %567
-  %571 = add i32 %566, %570
-  %572 = add i32 %571, %560
-  %573 = getelementptr inbounds nuw i8, ptr %350, i64 32
-  %574 = getelementptr inbounds nuw i8, ptr %340, i64 32
-  br i1 %341, label %339, label %322, !llvm.loop !12
-
-575:                                              ; preds = %322, %575
-  %576 = phi i32 [ %338, %322 ], [ %936, %575 ]
-  %577 = phi i32 [ %337, %322 ], [ %897, %575 ]
-  %578 = phi i32 [ %336, %322 ], [ %858, %575 ]
-  %579 = phi i32 [ %335, %322 ], [ %819, %575 ]
-  %580 = phi i32 [ %334, %322 ], [ %1131, %575 ]
-  %581 = phi i32 [ %333, %322 ], [ %780, %575 ]
-  %582 = phi i32 [ %332, %322 ], [ %1092, %575 ]
-  %583 = phi i32 [ %331, %322 ], [ %741, %575 ]
-  %584 = phi i32 [ %330, %322 ], [ %1053, %575 ]
-  %585 = phi i32 [ %329, %322 ], [ %702, %575 ]
-  %586 = phi i32 [ %328, %322 ], [ %1014, %575 ]
-  %587 = phi i32 [ %327, %322 ], [ %1209, %575 ]
-  %588 = phi i32 [ %326, %322 ], [ %663, %575 ]
-  %589 = phi i32 [ %325, %322 ], [ %975, %575 ]
-  %590 = phi i32 [ %324, %322 ], [ %1170, %575 ]
-  %591 = phi i32 [ 16, %322 ], [ %1226, %575 ]
-  %592 = phi i32 [ %477, %322 ], [ %1097, %575 ]
-  %593 = phi i32 [ %505, %322 ], [ %1136, %575 ]
-  %594 = phi i32 [ %533, %322 ], [ %1175, %575 ]
-  %595 = phi i32 [ %561, %322 ], [ %1214, %575 ]
-  %596 = phi i32 [ %488, %322 ], [ %1108, %575 ]
-  %597 = phi i32 [ %516, %322 ], [ %1147, %575 ]
-  %598 = phi i32 [ %544, %322 ], [ %1186, %575 ]
-  %599 = phi i32 [ %572, %322 ], [ %1225, %575 ]
-  %600 = phi ptr [ %2, %322 ], [ %602, %575 ]
-  %601 = phi i32 [ %323, %322 ], [ %624, %575 ]
-  %602 = getelementptr i8, ptr %600, i64 64
-  %603 = tail call i32 @llvm.fshl.i32(i32 %595, i32 %595, i32 26)
-  %604 = tail call i32 @llvm.fshl.i32(i32 %595, i32 %595, i32 21)
-  %605 = xor i32 %603, %604
-  %606 = tail call i32 @llvm.fshl.i32(i32 %595, i32 %595, i32 7)
-  %607 = xor i32 %605, %606
-  %608 = xor i32 %593, %594
-  %609 = and i32 %608, %595
-  %610 = xor i32 %609, %593
-  %611 = load i32, ptr %602, align 4, !tbaa !5
-  %612 = tail call i32 @llvm.fshl.i32(i32 %590, i32 %590, i32 15)
-  %613 = tail call i32 @llvm.fshl.i32(i32 %590, i32 %590, i32 13)
-  %614 = xor i32 %612, %613
-  %615 = lshr i32 %590, 10
-  %616 = xor i32 %614, %615
-  %617 = add i32 %616, %589
-  %618 = tail call i32 @llvm.fshl.i32(i32 %588, i32 %588, i32 25)
-  %619 = tail call i32 @llvm.fshl.i32(i32 %588, i32 %588, i32 14)
-  %620 = xor i32 %618, %619
-  %621 = lshr i32 %588, 3
-  %622 = xor i32 %620, %621
-  %623 = add i32 %617, %601
-  %624 = add i32 %623, %622
-  %625 = add i32 %592, %607
-  %626 = add i32 %625, %610
-  %627 = add i32 %626, %611
-  %628 = add i32 %627, %624
-  %629 = add i32 %628, %596
-  %630 = tail call i32 @llvm.fshl.i32(i32 %599, i32 %599, i32 30)
-  %631 = tail call i32 @llvm.fshl.i32(i32 %599, i32 %599, i32 19)
-  %632 = xor i32 %630, %631
-  %633 = tail call i32 @llvm.fshl.i32(i32 %599, i32 %599, i32 10)
-  %634 = xor i32 %632, %633
-  %635 = and i32 %598, %599
-  %636 = xor i32 %598, %599
-  %637 = and i32 %597, %636
-  %638 = xor i32 %637, %635
-  %639 = add i32 %638, %634
-  %640 = add i32 %639, %628
-  %641 = tail call i32 @llvm.fshl.i32(i32 %629, i32 %629, i32 26)
-  %642 = tail call i32 @llvm.fshl.i32(i32 %629, i32 %629, i32 21)
-  %643 = xor i32 %641, %642
-  %644 = tail call i32 @llvm.fshl.i32(i32 %629, i32 %629, i32 7)
-  %645 = xor i32 %643, %644
-  %646 = xor i32 %594, %595
-  %647 = and i32 %629, %646
-  %648 = xor i32 %647, %594
-  %649 = getelementptr i8, ptr %600, i64 68
-  %650 = load i32, ptr %649, align 4, !tbaa !5
-  %651 = tail call i32 @llvm.fshl.i32(i32 %587, i32 %587, i32 15)
-  %652 = tail call i32 @llvm.fshl.i32(i32 %587, i32 %587, i32 13)
-  %653 = xor i32 %651, %652
-  %654 = lshr i32 %587, 10
-  %655 = xor i32 %653, %654
-  %656 = tail call i32 @llvm.fshl.i32(i32 %585, i32 %585, i32 25)
-  %657 = tail call i32 @llvm.fshl.i32(i32 %585, i32 %585, i32 14)
-  %658 = xor i32 %656, %657
-  %659 = lshr i32 %585, 3
-  %660 = xor i32 %658, %659
-  %661 = add i32 %586, %588
-  %662 = add i32 %661, %655
-  %663 = add i32 %662, %660
-  %664 = add i32 %650, %593
-  %665 = add i32 %664, %648
-  %666 = add i32 %665, %645
-  %667 = add i32 %666, %663
-  %668 = add i32 %667, %597
-  %669 = tail call i32 @llvm.fshl.i32(i32 %640, i32 %640, i32 30)
-  %670 = tail call i32 @llvm.fshl.i32(i32 %640, i32 %640, i32 19)
-  %671 = xor i32 %669, %670
-  %672 = tail call i32 @llvm.fshl.i32(i32 %640, i32 %640, i32 10)
-  %673 = xor i32 %671, %672
-  %674 = and i32 %640, %599
-  %675 = xor i32 %640, %599
-  %676 = and i32 %675, %598
-  %677 = xor i32 %676, %674
-  %678 = add i32 %673, %677
-  %679 = add i32 %678, %667
-  %680 = tail call i32 @llvm.fshl.i32(i32 %668, i32 %668, i32 26)
-  %681 = tail call i32 @llvm.fshl.i32(i32 %668, i32 %668, i32 21)
-  %682 = xor i32 %680, %681
-  %683 = tail call i32 @llvm.fshl.i32(i32 %668, i32 %668, i32 7)
-  %684 = xor i32 %682, %683
-  %685 = xor i32 %629, %595
-  %686 = and i32 %668, %685
-  %687 = xor i32 %686, %595
-  %688 = getelementptr i8, ptr %600, i64 72
-  %689 = load i32, ptr %688, align 4, !tbaa !5
-  %690 = tail call i32 @llvm.fshl.i32(i32 %624, i32 %624, i32 15)
-  %691 = tail call i32 @llvm.fshl.i32(i32 %624, i32 %624, i32 13)
-  %692 = xor i32 %690, %691
-  %693 = lshr i32 %624, 10
-  %694 = xor i32 %692, %693
-  %695 = tail call i32 @llvm.fshl.i32(i32 %583, i32 %583, i32 25)
-  %696 = tail call i32 @llvm.fshl.i32(i32 %583, i32 %583, i32 14)
-  %697 = xor i32 %695, %696
-  %698 = lshr i32 %583, 3
-  %699 = xor i32 %697, %698
-  %700 = add i32 %694, %585
-  %701 = add i32 %700, %584
-  %702 = add i32 %701, %699
-  %703 = add i32 %689, %594
-  %704 = add i32 %703, %702
-  %705 = add i32 %704, %687
-  %706 = add i32 %705, %684
-  %707 = add i32 %706, %598
-  %708 = tail call i32 @llvm.fshl.i32(i32 %679, i32 %679, i32 30)
-  %709 = tail call i32 @llvm.fshl.i32(i32 %679, i32 %679, i32 19)
-  %710 = xor i32 %708, %709
-  %711 = tail call i32 @llvm.fshl.i32(i32 %679, i32 %679, i32 10)
-  %712 = xor i32 %710, %711
-  %713 = and i32 %679, %640
-  %714 = xor i32 %679, %640
-  %715 = and i32 %714, %599
-  %716 = xor i32 %715, %713
-  %717 = add i32 %712, %716
-  %718 = add i32 %717, %706
-  %719 = tail call i32 @llvm.fshl.i32(i32 %707, i32 %707, i32 26)
-  %720 = tail call i32 @llvm.fshl.i32(i32 %707, i32 %707, i32 21)
-  %721 = xor i32 %719, %720
-  %722 = tail call i32 @llvm.fshl.i32(i32 %707, i32 %707, i32 7)
-  %723 = xor i32 %721, %722
-  %724 = xor i32 %668, %629
-  %725 = and i32 %707, %724
-  %726 = xor i32 %725, %629
-  %727 = getelementptr i8, ptr %600, i64 76
-  %728 = load i32, ptr %727, align 4, !tbaa !5
-  %729 = tail call i32 @llvm.fshl.i32(i32 %663, i32 %663, i32 15)
-  %730 = tail call i32 @llvm.fshl.i32(i32 %663, i32 %663, i32 13)
-  %731 = xor i32 %729, %730
-  %732 = lshr i32 %663, 10
-  %733 = xor i32 %731, %732
-  %734 = tail call i32 @llvm.fshl.i32(i32 %581, i32 %581, i32 25)
-  %735 = tail call i32 @llvm.fshl.i32(i32 %581, i32 %581, i32 14)
-  %736 = xor i32 %734, %735
-  %737 = lshr i32 %581, 3
-  %738 = xor i32 %736, %737
-  %739 = add i32 %582, %583
-  %740 = add i32 %739, %733
-  %741 = add i32 %740, %738
-  %742 = add i32 %728, %595
-  %743 = add i32 %742, %741
-  %744 = add i32 %743, %726
-  %745 = add i32 %744, %723
-  %746 = add i32 %745, %599
-  %747 = tail call i32 @llvm.fshl.i32(i32 %718, i32 %718, i32 30)
-  %748 = tail call i32 @llvm.fshl.i32(i32 %718, i32 %718, i32 19)
-  %749 = xor i32 %747, %748
-  %750 = tail call i32 @llvm.fshl.i32(i32 %718, i32 %718, i32 10)
-  %751 = xor i32 %749, %750
-  %752 = and i32 %718, %679
-  %753 = xor i32 %718, %679
-  %754 = and i32 %753, %640
-  %755 = xor i32 %754, %752
-  %756 = add i32 %751, %755
-  %757 = add i32 %756, %745
-  %758 = tail call i32 @llvm.fshl.i32(i32 %746, i32 %746, i32 26)
-  %759 = tail call i32 @llvm.fshl.i32(i32 %746, i32 %746, i32 21)
-  %760 = xor i32 %758, %759
-  %761 = tail call i32 @llvm.fshl.i32(i32 %746, i32 %746, i32 7)
-  %762 = xor i32 %760, %761
-  %763 = xor i32 %707, %668
-  %764 = and i32 %746, %763
-  %765 = xor i32 %764, %668
-  %766 = getelementptr i8, ptr %600, i64 80
-  %767 = load i32, ptr %766, align 4, !tbaa !5
-  %768 = tail call i32 @llvm.fshl.i32(i32 %702, i32 %702, i32 15)
-  %769 = tail call i32 @llvm.fshl.i32(i32 %702, i32 %702, i32 13)
-  %770 = xor i32 %768, %769
-  %771 = lshr i32 %702, 10
-  %772 = xor i32 %770, %771
-  %773 = tail call i32 @llvm.fshl.i32(i32 %579, i32 %579, i32 25)
-  %774 = tail call i32 @llvm.fshl.i32(i32 %579, i32 %579, i32 14)
-  %775 = xor i32 %773, %774
-  %776 = lshr i32 %579, 3
-  %777 = xor i32 %775, %776
-  %778 = add i32 %580, %581
-  %779 = add i32 %778, %772
-  %780 = add i32 %779, %777
-  %781 = add i32 %767, %629
-  %782 = add i32 %781, %780
-  %783 = add i32 %782, %765
-  %784 = add i32 %783, %762
-  %785 = add i32 %784, %640
-  %786 = tail call i32 @llvm.fshl.i32(i32 %757, i32 %757, i32 30)
-  %787 = tail call i32 @llvm.fshl.i32(i32 %757, i32 %757, i32 19)
-  %788 = xor i32 %786, %787
-  %789 = tail call i32 @llvm.fshl.i32(i32 %757, i32 %757, i32 10)
-  %790 = xor i32 %788, %789
-  %791 = and i32 %757, %718
-  %792 = xor i32 %757, %718
-  %793 = and i32 %792, %679
-  %794 = xor i32 %793, %791
-  %795 = add i32 %790, %794
-  %796 = add i32 %795, %784
-  %797 = tail call i32 @llvm.fshl.i32(i32 %785, i32 %785, i32 26)
-  %798 = tail call i32 @llvm.fshl.i32(i32 %785, i32 %785, i32 21)
-  %799 = xor i32 %797, %798
-  %800 = tail call i32 @llvm.fshl.i32(i32 %785, i32 %785, i32 7)
-  %801 = xor i32 %799, %800
-  %802 = xor i32 %746, %707
-  %803 = and i32 %785, %802
-  %804 = xor i32 %803, %707
-  %805 = getelementptr i8, ptr %600, i64 84
-  %806 = load i32, ptr %805, align 4, !tbaa !5
-  %807 = tail call i32 @llvm.fshl.i32(i32 %741, i32 %741, i32 15)
-  %808 = tail call i32 @llvm.fshl.i32(i32 %741, i32 %741, i32 13)
-  %809 = xor i32 %807, %808
-  %810 = lshr i32 %741, 10
-  %811 = xor i32 %809, %810
-  %812 = tail call i32 @llvm.fshl.i32(i32 %578, i32 %578, i32 25)
-  %813 = tail call i32 @llvm.fshl.i32(i32 %578, i32 %578, i32 14)
-  %814 = xor i32 %812, %813
-  %815 = lshr i32 %578, 3
-  %816 = xor i32 %814, %815
-  %817 = add i32 %579, %590
-  %818 = add i32 %817, %811
-  %819 = add i32 %818, %816
-  %820 = add i32 %806, %668
-  %821 = add i32 %820, %819
-  %822 = add i32 %821, %804
-  %823 = add i32 %822, %801
-  %824 = add i32 %823, %679
-  %825 = tail call i32 @llvm.fshl.i32(i32 %796, i32 %796, i32 30)
-  %826 = tail call i32 @llvm.fshl.i32(i32 %796, i32 %796, i32 19)
-  %827 = xor i32 %825, %826
-  %828 = tail call i32 @llvm.fshl.i32(i32 %796, i32 %796, i32 10)
-  %829 = xor i32 %827, %828
-  %830 = and i32 %796, %757
-  %831 = xor i32 %796, %757
-  %832 = and i32 %831, %718
-  %833 = xor i32 %832, %830
-  %834 = add i32 %829, %833
-  %835 = add i32 %834, %823
-  %836 = tail call i32 @llvm.fshl.i32(i32 %824, i32 %824, i32 26)
-  %837 = tail call i32 @llvm.fshl.i32(i32 %824, i32 %824, i32 21)
-  %838 = xor i32 %836, %837
-  %839 = tail call i32 @llvm.fshl.i32(i32 %824, i32 %824, i32 7)
-  %840 = xor i32 %838, %839
-  %841 = xor i32 %785, %746
-  %842 = and i32 %824, %841
-  %843 = xor i32 %842, %746
-  %844 = getelementptr i8, ptr %600, i64 88
-  %845 = load i32, ptr %844, align 4, !tbaa !5
-  %846 = tail call i32 @llvm.fshl.i32(i32 %780, i32 %780, i32 15)
-  %847 = tail call i32 @llvm.fshl.i32(i32 %780, i32 %780, i32 13)
-  %848 = xor i32 %846, %847
-  %849 = lshr i32 %780, 10
-  %850 = xor i32 %848, %849
-  %851 = tail call i32 @llvm.fshl.i32(i32 %577, i32 %577, i32 25)
-  %852 = tail call i32 @llvm.fshl.i32(i32 %577, i32 %577, i32 14)
-  %853 = xor i32 %851, %852
-  %854 = lshr i32 %577, 3
-  %855 = xor i32 %853, %854
-  %856 = add i32 %578, %587
-  %857 = add i32 %856, %850
-  %858 = add i32 %857, %855
-  %859 = add i32 %707, %845
-  %860 = add i32 %859, %858
-  %861 = add i32 %860, %843
-  %862 = add i32 %861, %840
-  %863 = add i32 %862, %718
-  %864 = tail call i32 @llvm.fshl.i32(i32 %835, i32 %835, i32 30)
-  %865 = tail call i32 @llvm.fshl.i32(i32 %835, i32 %835, i32 19)
-  %866 = xor i32 %864, %865
-  %867 = tail call i32 @llvm.fshl.i32(i32 %835, i32 %835, i32 10)
-  %868 = xor i32 %866, %867
-  %869 = and i32 %835, %796
-  %870 = xor i32 %835, %796
-  %871 = and i32 %870, %757
-  %872 = xor i32 %871, %869
-  %873 = add i32 %868, %872
-  %874 = add i32 %873, %862
-  %875 = tail call i32 @llvm.fshl.i32(i32 %863, i32 %863, i32 26)
-  %876 = tail call i32 @llvm.fshl.i32(i32 %863, i32 %863, i32 21)
-  %877 = xor i32 %875, %876
-  %878 = tail call i32 @llvm.fshl.i32(i32 %863, i32 %863, i32 7)
-  %879 = xor i32 %877, %878
-  %880 = xor i32 %824, %785
-  %881 = and i32 %863, %880
-  %882 = xor i32 %881, %785
-  %883 = getelementptr i8, ptr %600, i64 92
-  %884 = load i32, ptr %883, align 4, !tbaa !5
-  %885 = tail call i32 @llvm.fshl.i32(i32 %819, i32 %819, i32 15)
-  %886 = tail call i32 @llvm.fshl.i32(i32 %819, i32 %819, i32 13)
-  %887 = xor i32 %885, %886
-  %888 = lshr i32 %819, 10
-  %889 = xor i32 %887, %888
-  %890 = tail call i32 @llvm.fshl.i32(i32 %576, i32 %576, i32 25)
-  %891 = tail call i32 @llvm.fshl.i32(i32 %576, i32 %576, i32 14)
-  %892 = xor i32 %890, %891
-  %893 = lshr i32 %576, 3
-  %894 = xor i32 %892, %893
-  %895 = add i32 %577, %624
-  %896 = add i32 %895, %889
-  %897 = add i32 %896, %894
-  %898 = add i32 %897, %884
-  %899 = add i32 %898, %746
-  %900 = add i32 %899, %882
-  %901 = add i32 %900, %879
-  %902 = add i32 %901, %757
-  %903 = tail call i32 @llvm.fshl.i32(i32 %874, i32 %874, i32 30)
-  %904 = tail call i32 @llvm.fshl.i32(i32 %874, i32 %874, i32 19)
-  %905 = xor i32 %903, %904
-  %906 = tail call i32 @llvm.fshl.i32(i32 %874, i32 %874, i32 10)
-  %907 = xor i32 %905, %906
-  %908 = and i32 %874, %835
-  %909 = xor i32 %874, %835
-  %910 = and i32 %909, %796
-  %911 = xor i32 %910, %908
-  %912 = add i32 %907, %911
-  %913 = add i32 %912, %901
-  %914 = tail call i32 @llvm.fshl.i32(i32 %902, i32 %902, i32 26)
-  %915 = tail call i32 @llvm.fshl.i32(i32 %902, i32 %902, i32 21)
-  %916 = xor i32 %914, %915
-  %917 = tail call i32 @llvm.fshl.i32(i32 %902, i32 %902, i32 7)
-  %918 = xor i32 %916, %917
-  %919 = xor i32 %863, %824
-  %920 = and i32 %902, %919
-  %921 = xor i32 %920, %824
-  %922 = getelementptr i8, ptr %600, i64 96
-  %923 = load i32, ptr %922, align 4, !tbaa !5
-  %924 = tail call i32 @llvm.fshl.i32(i32 %858, i32 %858, i32 15)
-  %925 = tail call i32 @llvm.fshl.i32(i32 %858, i32 %858, i32 13)
-  %926 = xor i32 %924, %925
-  %927 = lshr i32 %858, 10
-  %928 = xor i32 %926, %927
-  %929 = tail call i32 @llvm.fshl.i32(i32 %589, i32 %589, i32 25)
-  %930 = tail call i32 @llvm.fshl.i32(i32 %589, i32 %589, i32 14)
-  %931 = xor i32 %929, %930
-  %932 = lshr i32 %589, 3
-  %933 = xor i32 %931, %932
-  %934 = add i32 %663, %933
-  %935 = add i32 %934, %576
-  %936 = add i32 %935, %928
-  %937 = add i32 %936, %923
-  %938 = add i32 %937, %785
-  %939 = add i32 %938, %921
-  %940 = add i32 %939, %918
-  %941 = add i32 %940, %796
-  %942 = tail call i32 @llvm.fshl.i32(i32 %913, i32 %913, i32 30)
-  %943 = tail call i32 @llvm.fshl.i32(i32 %913, i32 %913, i32 19)
-  %944 = xor i32 %942, %943
-  %945 = tail call i32 @llvm.fshl.i32(i32 %913, i32 %913, i32 10)
-  %946 = xor i32 %944, %945
-  %947 = and i32 %913, %874
-  %948 = xor i32 %913, %874
-  %949 = and i32 %948, %835
-  %950 = xor i32 %949, %947
-  %951 = add i32 %946, %950
-  %952 = add i32 %951, %940
-  %953 = tail call i32 @llvm.fshl.i32(i32 %941, i32 %941, i32 26)
-  %954 = tail call i32 @llvm.fshl.i32(i32 %941, i32 %941, i32 21)
-  %955 = xor i32 %953, %954
-  %956 = tail call i32 @llvm.fshl.i32(i32 %941, i32 %941, i32 7)
-  %957 = xor i32 %955, %956
-  %958 = xor i32 %902, %863
-  %959 = and i32 %941, %958
-  %960 = xor i32 %959, %863
-  %961 = getelementptr i8, ptr %600, i64 100
-  %962 = load i32, ptr %961, align 4, !tbaa !5
-  %963 = tail call i32 @llvm.fshl.i32(i32 %897, i32 %897, i32 15)
-  %964 = tail call i32 @llvm.fshl.i32(i32 %897, i32 %897, i32 13)
-  %965 = xor i32 %963, %964
-  %966 = lshr i32 %897, 10
-  %967 = xor i32 %965, %966
-  %968 = tail call i32 @llvm.fshl.i32(i32 %586, i32 %586, i32 25)
-  %969 = tail call i32 @llvm.fshl.i32(i32 %586, i32 %586, i32 14)
-  %970 = xor i32 %968, %969
-  %971 = lshr i32 %586, 3
-  %972 = xor i32 %970, %971
-  %973 = add i32 %972, %589
-  %974 = add i32 %973, %702
-  %975 = add i32 %974, %967
-  %976 = add i32 %975, %962
-  %977 = add i32 %976, %824
-  %978 = add i32 %977, %960
-  %979 = add i32 %978, %957
-  %980 = add i32 %979, %835
-  %981 = tail call i32 @llvm.fshl.i32(i32 %952, i32 %952, i32 30)
-  %982 = tail call i32 @llvm.fshl.i32(i32 %952, i32 %952, i32 19)
-  %983 = xor i32 %981, %982
-  %984 = tail call i32 @llvm.fshl.i32(i32 %952, i32 %952, i32 10)
-  %985 = xor i32 %983, %984
-  %986 = and i32 %952, %913
-  %987 = xor i32 %952, %913
-  %988 = and i32 %987, %874
-  %989 = xor i32 %988, %986
-  %990 = add i32 %985, %989
-  %991 = add i32 %990, %979
-  %992 = tail call i32 @llvm.fshl.i32(i32 %980, i32 %980, i32 26)
-  %993 = tail call i32 @llvm.fshl.i32(i32 %980, i32 %980, i32 21)
-  %994 = xor i32 %992, %993
-  %995 = tail call i32 @llvm.fshl.i32(i32 %980, i32 %980, i32 7)
-  %996 = xor i32 %994, %995
-  %997 = xor i32 %941, %902
-  %998 = and i32 %980, %997
-  %999 = xor i32 %998, %902
-  %1000 = getelementptr i8, ptr %600, i64 104
-  %1001 = load i32, ptr %1000, align 4, !tbaa !5
-  %1002 = tail call i32 @llvm.fshl.i32(i32 %936, i32 %936, i32 15)
-  %1003 = tail call i32 @llvm.fshl.i32(i32 %936, i32 %936, i32 13)
-  %1004 = xor i32 %1002, %1003
-  %1005 = lshr i32 %936, 10
-  %1006 = xor i32 %1004, %1005
-  %1007 = tail call i32 @llvm.fshl.i32(i32 %584, i32 %584, i32 25)
-  %1008 = tail call i32 @llvm.fshl.i32(i32 %584, i32 %584, i32 14)
-  %1009 = xor i32 %1007, %1008
-  %1010 = lshr i32 %584, 3
-  %1011 = xor i32 %1009, %1010
-  %1012 = add i32 %1011, %586
-  %1013 = add i32 %1012, %741
-  %1014 = add i32 %1013, %1006
-  %1015 = add i32 %1014, %1001
-  %1016 = add i32 %1015, %863
-  %1017 = add i32 %1016, %999
-  %1018 = add i32 %1017, %996
-  %1019 = add i32 %1018, %874
-  %1020 = tail call i32 @llvm.fshl.i32(i32 %991, i32 %991, i32 30)
-  %1021 = tail call i32 @llvm.fshl.i32(i32 %991, i32 %991, i32 19)
-  %1022 = xor i32 %1020, %1021
-  %1023 = tail call i32 @llvm.fshl.i32(i32 %991, i32 %991, i32 10)
-  %1024 = xor i32 %1022, %1023
-  %1025 = and i32 %991, %952
-  %1026 = xor i32 %991, %952
-  %1027 = and i32 %1026, %913
-  %1028 = xor i32 %1027, %1025
-  %1029 = add i32 %1024, %1028
-  %1030 = add i32 %1029, %1018
-  %1031 = tail call i32 @llvm.fshl.i32(i32 %1019, i32 %1019, i32 26)
-  %1032 = tail call i32 @llvm.fshl.i32(i32 %1019, i32 %1019, i32 21)
-  %1033 = xor i32 %1031, %1032
-  %1034 = tail call i32 @llvm.fshl.i32(i32 %1019, i32 %1019, i32 7)
-  %1035 = xor i32 %1033, %1034
-  %1036 = xor i32 %980, %941
-  %1037 = and i32 %1019, %1036
-  %1038 = xor i32 %1037, %941
-  %1039 = getelementptr i8, ptr %600, i64 108
-  %1040 = load i32, ptr %1039, align 4, !tbaa !5
-  %1041 = tail call i32 @llvm.fshl.i32(i32 %975, i32 %975, i32 15)
-  %1042 = tail call i32 @llvm.fshl.i32(i32 %975, i32 %975, i32 13)
-  %1043 = xor i32 %1041, %1042
-  %1044 = lshr i32 %975, 10
-  %1045 = xor i32 %1043, %1044
-  %1046 = tail call i32 @llvm.fshl.i32(i32 %582, i32 %582, i32 25)
-  %1047 = tail call i32 @llvm.fshl.i32(i32 %582, i32 %582, i32 14)
-  %1048 = xor i32 %1046, %1047
-  %1049 = lshr i32 %582, 3
-  %1050 = xor i32 %1048, %1049
-  %1051 = add i32 %1050, %584
-  %1052 = add i32 %1051, %780
-  %1053 = add i32 %1052, %1045
-  %1054 = add i32 %1053, %1040
-  %1055 = add i32 %1054, %902
-  %1056 = add i32 %1055, %1038
-  %1057 = add i32 %1056, %1035
-  %1058 = add i32 %1057, %913
-  %1059 = tail call i32 @llvm.fshl.i32(i32 %1030, i32 %1030, i32 30)
-  %1060 = tail call i32 @llvm.fshl.i32(i32 %1030, i32 %1030, i32 19)
-  %1061 = xor i32 %1059, %1060
-  %1062 = tail call i32 @llvm.fshl.i32(i32 %1030, i32 %1030, i32 10)
-  %1063 = xor i32 %1061, %1062
-  %1064 = and i32 %1030, %991
-  %1065 = xor i32 %1030, %991
-  %1066 = and i32 %1065, %952
-  %1067 = xor i32 %1066, %1064
-  %1068 = add i32 %1063, %1067
-  %1069 = add i32 %1068, %1057
-  %1070 = tail call i32 @llvm.fshl.i32(i32 %1058, i32 %1058, i32 26)
-  %1071 = tail call i32 @llvm.fshl.i32(i32 %1058, i32 %1058, i32 21)
-  %1072 = xor i32 %1070, %1071
-  %1073 = tail call i32 @llvm.fshl.i32(i32 %1058, i32 %1058, i32 7)
-  %1074 = xor i32 %1072, %1073
-  %1075 = xor i32 %1019, %980
-  %1076 = and i32 %1058, %1075
-  %1077 = xor i32 %1076, %980
-  %1078 = getelementptr i8, ptr %600, i64 112
-  %1079 = load i32, ptr %1078, align 4, !tbaa !5
-  %1080 = tail call i32 @llvm.fshl.i32(i32 %1014, i32 %1014, i32 15)
-  %1081 = tail call i32 @llvm.fshl.i32(i32 %1014, i32 %1014, i32 13)
-  %1082 = xor i32 %1080, %1081
-  %1083 = lshr i32 %1014, 10
-  %1084 = xor i32 %1082, %1083
-  %1085 = tail call i32 @llvm.fshl.i32(i32 %580, i32 %580, i32 25)
-  %1086 = tail call i32 @llvm.fshl.i32(i32 %580, i32 %580, i32 14)
-  %1087 = xor i32 %1085, %1086
-  %1088 = lshr i32 %580, 3
-  %1089 = xor i32 %1087, %1088
-  %1090 = add i32 %1089, %582
-  %1091 = add i32 %1090, %819
-  %1092 = add i32 %1091, %1084
-  %1093 = add i32 %1092, %1079
-  %1094 = add i32 %1093, %941
-  %1095 = add i32 %1094, %1077
-  %1096 = add i32 %1095, %1074
-  %1097 = add i32 %1096, %952
-  %1098 = tail call i32 @llvm.fshl.i32(i32 %1069, i32 %1069, i32 30)
-  %1099 = tail call i32 @llvm.fshl.i32(i32 %1069, i32 %1069, i32 19)
-  %1100 = xor i32 %1098, %1099
-  %1101 = tail call i32 @llvm.fshl.i32(i32 %1069, i32 %1069, i32 10)
-  %1102 = xor i32 %1100, %1101
-  %1103 = and i32 %1069, %1030
-  %1104 = xor i32 %1069, %1030
-  %1105 = and i32 %1104, %991
-  %1106 = xor i32 %1105, %1103
-  %1107 = add i32 %1102, %1106
-  %1108 = add i32 %1107, %1096
-  %1109 = tail call i32 @llvm.fshl.i32(i32 %1097, i32 %1097, i32 26)
-  %1110 = tail call i32 @llvm.fshl.i32(i32 %1097, i32 %1097, i32 21)
-  %1111 = xor i32 %1109, %1110
-  %1112 = tail call i32 @llvm.fshl.i32(i32 %1097, i32 %1097, i32 7)
-  %1113 = xor i32 %1111, %1112
-  %1114 = xor i32 %1058, %1019
-  %1115 = and i32 %1097, %1114
-  %1116 = xor i32 %1115, %1019
-  %1117 = getelementptr i8, ptr %600, i64 116
-  %1118 = load i32, ptr %1117, align 4, !tbaa !5
-  %1119 = tail call i32 @llvm.fshl.i32(i32 %1053, i32 %1053, i32 15)
-  %1120 = tail call i32 @llvm.fshl.i32(i32 %1053, i32 %1053, i32 13)
-  %1121 = xor i32 %1119, %1120
-  %1122 = lshr i32 %1053, 10
-  %1123 = xor i32 %1121, %1122
-  %1124 = tail call i32 @llvm.fshl.i32(i32 %590, i32 %590, i32 25)
-  %1125 = tail call i32 @llvm.fshl.i32(i32 %590, i32 %590, i32 14)
-  %1126 = xor i32 %1124, %1125
-  %1127 = lshr i32 %590, 3
-  %1128 = xor i32 %1126, %1127
-  %1129 = add i32 %580, %1128
-  %1130 = add i32 %1129, %858
-  %1131 = add i32 %1130, %1123
-  %1132 = add i32 %1131, %1118
-  %1133 = add i32 %1132, %980
-  %1134 = add i32 %1133, %1116
-  %1135 = add i32 %1134, %1113
-  %1136 = add i32 %1135, %991
-  %1137 = tail call i32 @llvm.fshl.i32(i32 %1108, i32 %1108, i32 30)
-  %1138 = tail call i32 @llvm.fshl.i32(i32 %1108, i32 %1108, i32 19)
-  %1139 = xor i32 %1137, %1138
-  %1140 = tail call i32 @llvm.fshl.i32(i32 %1108, i32 %1108, i32 10)
-  %1141 = xor i32 %1139, %1140
-  %1142 = and i32 %1108, %1069
-  %1143 = xor i32 %1108, %1069
-  %1144 = and i32 %1143, %1030
-  %1145 = xor i32 %1144, %1142
-  %1146 = add i32 %1141, %1145
-  %1147 = add i32 %1146, %1135
-  %1148 = tail call i32 @llvm.fshl.i32(i32 %1136, i32 %1136, i32 26)
-  %1149 = tail call i32 @llvm.fshl.i32(i32 %1136, i32 %1136, i32 21)
-  %1150 = xor i32 %1148, %1149
-  %1151 = tail call i32 @llvm.fshl.i32(i32 %1136, i32 %1136, i32 7)
-  %1152 = xor i32 %1150, %1151
-  %1153 = xor i32 %1097, %1058
-  %1154 = and i32 %1136, %1153
-  %1155 = xor i32 %1154, %1058
-  %1156 = getelementptr i8, ptr %600, i64 120
-  %1157 = load i32, ptr %1156, align 4, !tbaa !5
-  %1158 = tail call i32 @llvm.fshl.i32(i32 %1092, i32 %1092, i32 15)
-  %1159 = tail call i32 @llvm.fshl.i32(i32 %1092, i32 %1092, i32 13)
-  %1160 = xor i32 %1158, %1159
-  %1161 = lshr i32 %1092, 10
-  %1162 = xor i32 %1160, %1161
-  %1163 = tail call i32 @llvm.fshl.i32(i32 %587, i32 %587, i32 25)
-  %1164 = tail call i32 @llvm.fshl.i32(i32 %587, i32 %587, i32 14)
-  %1165 = xor i32 %1163, %1164
-  %1166 = lshr i32 %587, 3
-  %1167 = xor i32 %1165, %1166
-  %1168 = add i32 %1167, %590
-  %1169 = add i32 %1168, %897
-  %1170 = add i32 %1169, %1162
-  %1171 = add i32 %1170, %1157
-  %1172 = add i32 %1171, %1019
-  %1173 = add i32 %1172, %1155
-  %1174 = add i32 %1173, %1152
-  %1175 = add i32 %1174, %1030
-  %1176 = tail call i32 @llvm.fshl.i32(i32 %1147, i32 %1147, i32 30)
-  %1177 = tail call i32 @llvm.fshl.i32(i32 %1147, i32 %1147, i32 19)
-  %1178 = xor i32 %1176, %1177
-  %1179 = tail call i32 @llvm.fshl.i32(i32 %1147, i32 %1147, i32 10)
-  %1180 = xor i32 %1178, %1179
-  %1181 = and i32 %1147, %1108
-  %1182 = xor i32 %1147, %1108
-  %1183 = and i32 %1182, %1069
-  %1184 = xor i32 %1183, %1181
-  %1185 = add i32 %1180, %1184
-  %1186 = add i32 %1185, %1174
-  %1187 = tail call i32 @llvm.fshl.i32(i32 %1175, i32 %1175, i32 26)
-  %1188 = tail call i32 @llvm.fshl.i32(i32 %1175, i32 %1175, i32 21)
-  %1189 = xor i32 %1187, %1188
-  %1190 = tail call i32 @llvm.fshl.i32(i32 %1175, i32 %1175, i32 7)
-  %1191 = xor i32 %1189, %1190
-  %1192 = xor i32 %1136, %1097
-  %1193 = and i32 %1175, %1192
-  %1194 = xor i32 %1193, %1097
-  %1195 = getelementptr i8, ptr %600, i64 124
-  %1196 = load i32, ptr %1195, align 4, !tbaa !5
-  %1197 = tail call i32 @llvm.fshl.i32(i32 %1131, i32 %1131, i32 15)
-  %1198 = tail call i32 @llvm.fshl.i32(i32 %1131, i32 %1131, i32 13)
-  %1199 = xor i32 %1197, %1198
-  %1200 = lshr i32 %1131, 10
-  %1201 = xor i32 %1199, %1200
-  %1202 = tail call i32 @llvm.fshl.i32(i32 %624, i32 %624, i32 25)
-  %1203 = tail call i32 @llvm.fshl.i32(i32 %624, i32 %624, i32 14)
-  %1204 = xor i32 %1202, %1203
-  %1205 = lshr i32 %624, 3
-  %1206 = xor i32 %1204, %1205
-  %1207 = add i32 %1206, %587
-  %1208 = add i32 %1207, %936
-  %1209 = add i32 %1208, %1201
-  %1210 = add i32 %1209, %1196
-  %1211 = add i32 %1210, %1058
-  %1212 = add i32 %1211, %1194
-  %1213 = add i32 %1212, %1191
-  %1214 = add i32 %1213, %1069
-  %1215 = tail call i32 @llvm.fshl.i32(i32 %1186, i32 %1186, i32 30)
-  %1216 = tail call i32 @llvm.fshl.i32(i32 %1186, i32 %1186, i32 19)
-  %1217 = xor i32 %1215, %1216
-  %1218 = tail call i32 @llvm.fshl.i32(i32 %1186, i32 %1186, i32 10)
-  %1219 = xor i32 %1217, %1218
-  %1220 = and i32 %1186, %1147
-  %1221 = xor i32 %1186, %1147
-  %1222 = and i32 %1221, %1108
-  %1223 = xor i32 %1222, %1220
-  %1224 = add i32 %1219, %1223
-  %1225 = add i32 %1224, %1213
-  %1226 = add nuw nsw i32 %591, 16
-  %1227 = icmp samesign ult i32 %591, 48
-  br i1 %1227, label %575, label %1228, !llvm.loop !13
-
-1228:                                             ; preds = %575
-  %1229 = add i32 %1225, %307
-  store i32 %1229, ptr %0, align 4, !tbaa !5
-  %1230 = add i32 %1186, %309
-  store i32 %1230, ptr %308, align 4, !tbaa !5
-  %1231 = add i32 %1147, %311
-  store i32 %1231, ptr %310, align 4, !tbaa !5
-  %1232 = add i32 %1108, %313
-  store i32 %1232, ptr %312, align 4, !tbaa !5
-  %1233 = add i32 %1214, %315
-  store i32 %1233, ptr %314, align 4, !tbaa !5
-  %1234 = add i32 %1175, %317
-  store i32 %1234, ptr %316, align 4, !tbaa !5
-  %1235 = add i32 %1136, %319
-  store i32 %1235, ptr %318, align 4, !tbaa !5
-  %1236 = add i32 %1097, %321
-  store i32 %1236, ptr %320, align 4, !tbaa !5
-  call void @llvm.lifetime.end.p0(i64 64, ptr nonnull %4) #11
-  ret void
-}
-
-; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(argmem: readwrite) uwtable
-define dso_local void @sha256_init(ptr nocapture noundef writeonly initializes((0, 40), (104, 108)) %0) #2 {
-  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(32) %0, ptr noundef nonnull align 16 dereferenceable(32) @sha256_init.H0, i64 32, i1 false)
-  %2 = getelementptr inbounds nuw i8, ptr %0, i64 32
-  store i64 0, ptr %2, align 8, !tbaa !14
-  %3 = getelementptr inbounds nuw i8, ptr %0, i64 104
-  store i32 0, ptr %3, align 8, !tbaa !17
-  ret void
-}
-
-; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite)
-declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias nocapture readonly, i64, i1 immarg) #3
-
-; Function Attrs: nofree norecurse nosync nounwind memory(argmem: readwrite) uwtable
-define dso_local void @sha256_update(ptr nocapture noundef %0, i64 noundef %1, ptr nocapture noundef readonly %2) #0 {
-  %4 = getelementptr inbounds nuw i8, ptr %0, i64 104
-  %5 = load i32, ptr %4, align 8, !tbaa !17
-  %6 = icmp eq i32 %5, 0
-  br i1 %6, label %24, label %7
-
-7:                                                ; preds = %3
-  %8 = zext i32 %5 to i64
-  %9 = sub i32 64, %5
-  %10 = zext i32 %9 to i64
-  %11 = icmp ult i64 %1, %10
-  %12 = getelementptr inbounds nuw i8, ptr %0, i64 40
-  %13 = getelementptr inbounds nuw i8, ptr %12, i64 %8
-  br i1 %11, label %20, label %14
-
-14:                                               ; preds = %7
-  tail call void @llvm.memcpy.p0.p0.i64(ptr nonnull align 1 %13, ptr align 1 %2, i64 %10, i1 false)
-  tail call void @_nettle_sha256_compress(ptr noundef nonnull %0, ptr noundef nonnull %12, ptr noundef nonnull @K)
-  %15 = getelementptr inbounds nuw i8, ptr %0, i64 32
-  %16 = load i64, ptr %15, align 8, !tbaa !14
-  %17 = add i64 %16, 1
-  store i64 %17, ptr %15, align 8, !tbaa !14
-  %18 = getelementptr inbounds nuw i8, ptr %2, i64 %10
-  %19 = sub nuw i64 %1, %10
-  br label %24
-
-20:                                               ; preds = %7
-  tail call void @llvm.memcpy.p0.p0.i64(ptr nonnull align 1 %13, ptr align 1 %2, i64 %1, i1 false)
-  %21 = load i32, ptr %4, align 8, !tbaa !17
-  %22 = trunc i64 %1 to i32
-  %23 = add i32 %21, %22
-  br label %43
-
-24:                                               ; preds = %14, %3
-  %25 = phi ptr [ %2, %3 ], [ %18, %14 ]
-  %26 = phi i64 [ %1, %3 ], [ %19, %14 ]
-  %27 = icmp ugt i64 %26, 63
-  br i1 %27, label %28, label %38
-
-28:                                               ; preds = %24
-  %29 = getelementptr inbounds nuw i8, ptr %0, i64 32
-  br label %30
-
-30:                                               ; preds = %28, %30
-  %31 = phi i64 [ %26, %28 ], [ %36, %30 ]
-  %32 = phi ptr [ %25, %28 ], [ %35, %30 ]
-  tail call void @_nettle_sha256_compress(ptr noundef nonnull %0, ptr noundef %32, ptr noundef nonnull @K)
-  %33 = load i64, ptr %29, align 8, !tbaa !14
-  %34 = add i64 %33, 1
-  store i64 %34, ptr %29, align 8, !tbaa !14
-  %35 = getelementptr inbounds nuw i8, ptr %32, i64 64
-  %36 = add i64 %31, -64
-  %37 = icmp ugt i64 %36, 63
-  br i1 %37, label %30, label %38, !llvm.loop !18
-
-38:                                               ; preds = %30, %24
-  %39 = phi ptr [ %25, %24 ], [ %35, %30 ]
-  %40 = phi i64 [ %26, %24 ], [ %36, %30 ]
-  %41 = getelementptr inbounds nuw i8, ptr %0, i64 40
-  tail call void @llvm.memcpy.p0.p0.i64(ptr nonnull align 8 %41, ptr align 1 %39, i64 %40, i1 false)
-  %42 = trunc nuw nsw i64 %40 to i32
-  br label %43
-
-43:                                               ; preds = %20, %38
-  %44 = phi i32 [ %23, %20 ], [ %42, %38 ]
-  store i32 %44, ptr %4, align 8, !tbaa !17
-  ret void
-}
-
-; Function Attrs: nofree norecurse nosync nounwind memory(argmem: readwrite) uwtable
-define dso_local void @sha256_digest(ptr nocapture noundef %0, i64 noundef %1, ptr nocapture noundef writeonly %2) #0 {
-  %4 = icmp ult i64 %1, 33
-  br i1 %4, label %6, label %5
-
-5:                                                ; preds = %3, %5
+; Function Attrs: noinline nounwind uwtable
+define dso_local i32 @verify_benchmark(i32 noundef %0) #0 {
+  %2 = alloca i32, align 4
+  %3 = alloca i8, align 1
+  %4 = alloca i64, align 8
+  store i32 %0, ptr %2, align 4
+  store i8 1, ptr %3, align 1
+  store i64 0, ptr %4, align 8
   br label %5
 
-6:                                                ; preds = %3
-  %7 = getelementptr inbounds nuw i8, ptr %0, i64 104
-  %8 = load i32, ptr %7, align 8, !tbaa !17
-  %9 = icmp ult i32 %8, 64
-  br i1 %9, label %11, label %10
+5:                                                ; preds = %20, %1
+  %6 = load i64, ptr %4, align 8
+  %7 = icmp ult i64 %6, 8
+  br i1 %7, label %8, label %23
 
-10:                                               ; preds = %6, %10
-  br label %10
+8:                                                ; preds = %5
+  %9 = load i64, ptr %4, align 8
+  %10 = getelementptr inbounds nuw [32 x i8], ptr @hash, i64 0, i64 %9
+  %11 = load i8, ptr %10, align 1
+  %12 = zext i8 %11 to i32
+  %13 = load i64, ptr %4, align 8
+  %14 = getelementptr inbounds nuw [32 x i8], ptr @buffer, i64 0, i64 %13
+  %15 = load i8, ptr %14, align 1
+  %16 = zext i8 %15 to i32
+  %17 = icmp ne i32 %12, %16
+  br i1 %17, label %18, label %19
 
-11:                                               ; preds = %6
-  %12 = zext nneg i32 %8 to i64
-  %13 = getelementptr inbounds nuw i8, ptr %0, i64 40
-  %14 = add nuw nsw i32 %8, 1
-  %15 = getelementptr inbounds nuw [64 x i8], ptr %13, i64 0, i64 %12
-  store i8 -128, ptr %15, align 1, !tbaa !9
-  %16 = icmp samesign ugt i32 %8, 55
-  br i1 %16, label %17, label %21
+18:                                               ; preds = %8
+  store i8 0, ptr %3, align 1
+  br label %19
 
-17:                                               ; preds = %11
-  %18 = zext nneg i32 %14 to i64
-  %19 = getelementptr inbounds nuw i8, ptr %13, i64 %18
-  %20 = sub nuw nsw i64 64, %18
-  tail call void @llvm.memset.p0.i64(ptr nonnull align 1 %19, i8 0, i64 %20, i1 false)
-  tail call void @_nettle_sha256_compress(ptr noundef nonnull %0, ptr noundef nonnull %13, ptr noundef nonnull @K)
-  br label %21
+19:                                               ; preds = %18, %8
+  br label %20
 
-21:                                               ; preds = %17, %11
-  %22 = phi i32 [ 0, %17 ], [ %14, %11 ]
-  %23 = zext nneg i32 %22 to i64
-  %24 = getelementptr inbounds nuw i8, ptr %13, i64 %23
-  %25 = sub nuw nsw i64 56, %23
-  tail call void @llvm.memset.p0.i64(ptr nonnull align 1 %24, i8 0, i64 %25, i1 false)
-  %26 = getelementptr inbounds nuw i8, ptr %0, i64 32
-  %27 = load i64, ptr %26, align 8, !tbaa !14
-  %28 = shl i64 %27, 9
-  %29 = load i32, ptr %7, align 8, !tbaa !17
-  %30 = shl i32 %29, 3
-  %31 = zext i32 %30 to i64
-  %32 = or i64 %28, %31
-  %33 = lshr i64 %28, 56
-  %34 = trunc nuw i64 %33 to i8
-  %35 = getelementptr inbounds nuw i8, ptr %0, i64 96
-  store i8 %34, ptr %35, align 1, !tbaa !9
-  %36 = lshr i64 %28, 48
-  %37 = trunc i64 %36 to i8
-  %38 = getelementptr inbounds nuw i8, ptr %0, i64 97
-  store i8 %37, ptr %38, align 1, !tbaa !9
-  %39 = lshr i64 %28, 40
-  %40 = trunc i64 %39 to i8
-  %41 = getelementptr inbounds nuw i8, ptr %0, i64 98
-  store i8 %40, ptr %41, align 1, !tbaa !9
-  %42 = lshr i64 %28, 32
-  %43 = trunc i64 %42 to i8
-  %44 = getelementptr inbounds nuw i8, ptr %0, i64 99
-  store i8 %43, ptr %44, align 1, !tbaa !9
-  %45 = lshr i64 %32, 24
-  %46 = trunc i64 %45 to i8
-  %47 = getelementptr inbounds nuw i8, ptr %0, i64 100
-  store i8 %46, ptr %47, align 1, !tbaa !9
-  %48 = lshr i64 %32, 16
-  %49 = trunc i64 %48 to i8
-  %50 = getelementptr inbounds nuw i8, ptr %0, i64 101
-  store i8 %49, ptr %50, align 1, !tbaa !9
-  %51 = lshr i64 %32, 8
-  %52 = trunc i64 %51 to i8
-  %53 = getelementptr inbounds nuw i8, ptr %0, i64 102
-  store i8 %52, ptr %53, align 1, !tbaa !9
-  %54 = trunc i32 %30 to i8
-  %55 = getelementptr inbounds nuw i8, ptr %0, i64 103
-  store i8 %54, ptr %55, align 1, !tbaa !9
-  tail call void @_nettle_sha256_compress(ptr noundef nonnull %0, ptr noundef nonnull %13, ptr noundef nonnull @K)
-  %56 = lshr i64 %1, 2
-  %57 = trunc nuw i64 %1 to i32
-  %58 = and i32 %57, 3
-  %59 = icmp samesign ult i64 %1, 4
-  br i1 %59, label %127, label %60
+20:                                               ; preds = %19
+  %21 = load i64, ptr %4, align 8
+  %22 = add i64 %21, 1
+  store i64 %22, ptr %4, align 8
+  br label %5, !llvm.loop !12
 
-60:                                               ; preds = %21
-  %61 = icmp eq i64 %56, 1
-  br i1 %61, label %104, label %62
+23:                                               ; preds = %5
+  %24 = load i8, ptr %3, align 1
+  %25 = trunc i8 %24 to i1
+  %26 = zext i1 %25 to i32
+  ret i32 %26
+}
 
-62:                                               ; preds = %60
-  %63 = and i64 %56, 14
-  br label %64
-
-64:                                               ; preds = %64, %62
-  %65 = phi ptr [ %2, %62 ], [ %101, %64 ]
-  %66 = phi i64 [ 0, %62 ], [ %100, %64 ]
-  %67 = phi i64 [ 0, %62 ], [ %102, %64 ]
-  %68 = getelementptr inbounds nuw i32, ptr %0, i64 %66
-  %69 = load i32, ptr %68, align 4, !tbaa !5
-  %70 = lshr i32 %69, 24
-  %71 = trunc nuw i32 %70 to i8
-  store i8 %71, ptr %65, align 1, !tbaa !9
-  %72 = load i32, ptr %68, align 4, !tbaa !5
-  %73 = lshr i32 %72, 16
-  %74 = trunc i32 %73 to i8
-  %75 = getelementptr inbounds nuw i8, ptr %65, i64 1
-  store i8 %74, ptr %75, align 1, !tbaa !9
-  %76 = load i32, ptr %68, align 4, !tbaa !5
-  %77 = lshr i32 %76, 8
-  %78 = trunc i32 %77 to i8
-  %79 = getelementptr inbounds nuw i8, ptr %65, i64 2
-  store i8 %78, ptr %79, align 1, !tbaa !9
-  %80 = load i32, ptr %68, align 4, !tbaa !5
-  %81 = trunc i32 %80 to i8
-  %82 = getelementptr inbounds nuw i8, ptr %65, i64 3
-  store i8 %81, ptr %82, align 1, !tbaa !9
-  %83 = or disjoint i64 %66, 1
-  %84 = getelementptr inbounds nuw i8, ptr %65, i64 4
-  %85 = getelementptr inbounds nuw i32, ptr %0, i64 %83
-  %86 = load i32, ptr %85, align 4, !tbaa !5
-  %87 = lshr i32 %86, 24
-  %88 = trunc nuw i32 %87 to i8
-  store i8 %88, ptr %84, align 1, !tbaa !9
-  %89 = load i32, ptr %85, align 4, !tbaa !5
-  %90 = lshr i32 %89, 16
-  %91 = trunc i32 %90 to i8
-  %92 = getelementptr inbounds nuw i8, ptr %65, i64 5
-  store i8 %91, ptr %92, align 1, !tbaa !9
-  %93 = load i32, ptr %85, align 4, !tbaa !5
-  %94 = lshr i32 %93, 8
-  %95 = trunc i32 %94 to i8
-  %96 = getelementptr inbounds nuw i8, ptr %65, i64 6
-  store i8 %95, ptr %96, align 1, !tbaa !9
-  %97 = load i32, ptr %85, align 4, !tbaa !5
-  %98 = trunc i32 %97 to i8
-  %99 = getelementptr inbounds nuw i8, ptr %65, i64 7
-  store i8 %98, ptr %99, align 1, !tbaa !9
-  %100 = add nuw nsw i64 %66, 2
-  %101 = getelementptr inbounds nuw i8, ptr %65, i64 8
-  %102 = add i64 %67, 2
-  %103 = icmp eq i64 %102, %63
-  br i1 %103, label %104, label %64, !llvm.loop !10
-
-104:                                              ; preds = %64, %60
-  %105 = phi ptr [ poison, %60 ], [ %101, %64 ]
-  %106 = phi ptr [ %2, %60 ], [ %101, %64 ]
-  %107 = phi i64 [ 0, %60 ], [ %100, %64 ]
-  %108 = and i64 %1, 4
-  %109 = icmp eq i64 %108, 0
-  br i1 %109, label %127, label %110
-
-110:                                              ; preds = %104
-  %111 = getelementptr inbounds nuw i32, ptr %0, i64 %107
-  %112 = load i32, ptr %111, align 4, !tbaa !5
-  %113 = lshr i32 %112, 24
-  %114 = trunc nuw i32 %113 to i8
-  store i8 %114, ptr %106, align 1, !tbaa !9
-  %115 = load i32, ptr %111, align 4, !tbaa !5
-  %116 = lshr i32 %115, 16
-  %117 = trunc i32 %116 to i8
-  %118 = getelementptr inbounds nuw i8, ptr %106, i64 1
-  store i8 %117, ptr %118, align 1, !tbaa !9
-  %119 = load i32, ptr %111, align 4, !tbaa !5
-  %120 = lshr i32 %119, 8
-  %121 = trunc i32 %120 to i8
-  %122 = getelementptr inbounds nuw i8, ptr %106, i64 2
-  store i8 %121, ptr %122, align 1, !tbaa !9
-  %123 = load i32, ptr %111, align 4, !tbaa !5
-  %124 = trunc i32 %123 to i8
-  %125 = getelementptr inbounds nuw i8, ptr %106, i64 3
-  store i8 %124, ptr %125, align 1, !tbaa !9
-  %126 = getelementptr inbounds nuw i8, ptr %106, i64 4
-  br label %127
-
-127:                                              ; preds = %110, %104, %21
-  %128 = phi i64 [ 0, %21 ], [ %56, %104 ], [ %56, %110 ]
-  %129 = phi ptr [ %2, %21 ], [ %105, %104 ], [ %126, %110 ]
-  %130 = icmp eq i32 %58, 0
-  br i1 %130, label %148, label %131
-
-131:                                              ; preds = %127
-  %132 = getelementptr inbounds nuw i32, ptr %0, i64 %128
-  %133 = load i32, ptr %132, align 4, !tbaa !5
-  switch i32 %58, label %134 [
-    i32 3, label %135
-    i32 2, label %141
-    i32 1, label %145
-  ]
-
-134:                                              ; preds = %131
-  unreachable
-
-135:                                              ; preds = %131
-  %136 = lshr i32 %133, 8
-  %137 = trunc i32 %136 to i8
-  %138 = and i64 %1, 3
-  %139 = getelementptr i8, ptr %129, i64 %138
-  %140 = getelementptr i8, ptr %139, i64 -1
-  store i8 %137, ptr %140, align 1, !tbaa !9
-  br label %141
-
-141:                                              ; preds = %135, %131
-  %142 = lshr i32 %133, 16
-  %143 = trunc i32 %142 to i8
-  %144 = getelementptr inbounds nuw i8, ptr %129, i64 1
-  store i8 %143, ptr %144, align 1, !tbaa !9
-  br label %145
-
-145:                                              ; preds = %141, %131
-  %146 = lshr i32 %133, 24
-  %147 = trunc nuw i32 %146 to i8
-  store i8 %147, ptr %129, align 1, !tbaa !9
-  br label %148
-
-148:                                              ; preds = %127, %145
-  tail call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(32) %0, ptr noundef nonnull align 16 dereferenceable(32) @sha256_init.H0, i64 32, i1 false)
-  store i64 0, ptr %26, align 8, !tbaa !14
-  store i32 0, ptr %7, align 8, !tbaa !17
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @initialise_benchmark() #0 {
   ret void
 }
 
-; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(read, argmem: none, inaccessiblemem: none) uwtable
-define dso_local range(i32 0, 2) i32 @verify_benchmark(i32 noundef %0) local_unnamed_addr #4 {
-  %2 = load <8 x i8>, ptr @hash, align 16, !tbaa !9
-  %3 = load <8 x i8>, ptr @buffer, align 16, !tbaa !9
-  %4 = icmp eq <8 x i8> %2, %3
-  %5 = freeze <8 x i1> %4
-  %6 = bitcast <8 x i1> %5 to i8
-  %7 = icmp eq i8 %6, -1
-  %8 = zext i1 %7 to i32
-  ret i32 %8
-}
-
-; Function Attrs: mustprogress nofree norecurse nosync nounwind willreturn memory(none) uwtable
-define dso_local void @initialise_benchmark() local_unnamed_addr #5 {
+; Function Attrs: noinline nounwind uwtable
+define dso_local void @warm_caches(i32 noundef %0) #0 {
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  store i32 %0, ptr %2, align 4
+  %4 = load i32, ptr %2, align 4
+  %5 = call i32 @benchmark_body(i32 noundef 1, i32 noundef %4)
+  store i32 %5, ptr %3, align 4
   ret void
 }
 
-; Function Attrs: nofree norecurse nosync nounwind memory(readwrite, inaccessiblemem: none) uwtable
-define dso_local void @warm_caches(i32 noundef %0) local_unnamed_addr #6 {
-  tail call fastcc void @benchmark_body(i32 noundef 1, i32 noundef %0)
-  ret void
-}
+; Function Attrs: noinline nounwind uwtable
+define internal i32 @benchmark_body(i32 noundef %0, i32 noundef %1) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  %8 = alloca %struct.sha256_ctx, align 8
+  store i32 %0, ptr %3, align 4
+  store i32 %1, ptr %4, align 4
+  store i32 0, ptr %6, align 4
+  br label %9
 
-; Function Attrs: nofree noinline norecurse nosync nounwind memory(readwrite, argmem: none, inaccessiblemem: none) uwtable
-define internal fastcc void @benchmark_body(i32 noundef range(i32 1, 563) %0, i32 noundef %1) unnamed_addr #7 {
-  %3 = alloca %struct.sha256_ctx, align 8
-  %4 = icmp eq i32 %1, 0
-  %5 = getelementptr inbounds nuw i8, ptr %3, i64 32
-  %6 = getelementptr inbounds nuw i8, ptr %3, i64 104
-  %7 = getelementptr inbounds nuw i8, ptr %3, i64 40
-  %8 = getelementptr inbounds nuw i8, ptr %3, i64 96
-  %9 = getelementptr inbounds nuw i8, ptr %3, i64 97
-  %10 = getelementptr inbounds nuw i8, ptr %3, i64 98
-  %11 = getelementptr inbounds nuw i8, ptr %3, i64 99
-  %12 = getelementptr inbounds nuw i8, ptr %3, i64 100
-  %13 = getelementptr inbounds nuw i8, ptr %3, i64 101
-  %14 = getelementptr inbounds nuw i8, ptr %3, i64 102
-  %15 = getelementptr inbounds nuw i8, ptr %3, i64 103
-  br i1 %4, label %118, label %16
+9:                                                ; preds = %26, %2
+  %10 = load i32, ptr %6, align 4
+  %11 = load i32, ptr %3, align 4
+  %12 = icmp ult i32 %10, %11
+  br i1 %12, label %13, label %29
 
-16:                                               ; preds = %2
-  %17 = getelementptr inbounds nuw i8, ptr %3, i64 4
-  %18 = getelementptr inbounds nuw i8, ptr %3, i64 8
-  %19 = getelementptr inbounds nuw i8, ptr %3, i64 12
-  %20 = getelementptr inbounds nuw i8, ptr %3, i64 16
-  %21 = getelementptr inbounds nuw i8, ptr %3, i64 20
-  %22 = getelementptr inbounds nuw i8, ptr %3, i64 24
-  %23 = getelementptr inbounds nuw i8, ptr %3, i64 28
-  br label %24
+13:                                               ; preds = %9
+  store i32 0, ptr %7, align 4
+  br label %14
 
-24:                                               ; preds = %16, %115
-  %25 = phi i32 [ %116, %115 ], [ 0, %16 ]
+14:                                               ; preds = %22, %13
+  %15 = load i32, ptr %7, align 4
+  %16 = load i32, ptr %4, align 4
+  %17 = icmp ult i32 %15, %16
+  br i1 %17, label %18, label %25
+
+18:                                               ; preds = %14
+  call void @llvm.memset.p0.i64(ptr align 16 @buffer, i8 0, i64 32, i1 false)
+  %19 = load ptr, ptr getelementptr inbounds nuw (%struct.nettle_hash, ptr @nettle_sha256, i32 0, i32 4), align 8
+  call void %19(ptr noundef %8)
+  %20 = load ptr, ptr getelementptr inbounds nuw (%struct.nettle_hash, ptr @nettle_sha256, i32 0, i32 5), align 8
+  call void %20(ptr noundef %8, i64 noundef 56, ptr noundef @msg)
+  %21 = load ptr, ptr getelementptr inbounds nuw (%struct.nettle_hash, ptr @nettle_sha256, i32 0, i32 6), align 8
+  call void %21(ptr noundef %8, i64 noundef 32, ptr noundef @buffer)
+  br label %22
+
+22:                                               ; preds = %18
+  %23 = load i32, ptr %7, align 4
+  %24 = add i32 %23, 1
+  store i32 %24, ptr %7, align 4
+  br label %14, !llvm.loop !13
+
+25:                                               ; preds = %14
   br label %26
 
-26:                                               ; preds = %24, %26
-  %27 = phi i32 [ 0, %24 ], [ %113, %26 ]
-  call void @llvm.lifetime.start.p0(i64 112, ptr nonnull %3) #11
-  call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(32) %3, ptr noundef nonnull align 16 dereferenceable(32) @sha256_init.H0, i64 32, i1 false)
-  store i64 0, ptr %5, align 8, !tbaa !14
-  call void @llvm.memcpy.p0.p0.i64(ptr noundef nonnull align 8 dereferenceable(56) %7, ptr noundef nonnull align 16 dereferenceable(56) @msg, i64 56, i1 false)
-  store i32 56, ptr %6, align 8, !tbaa !17
-  store i8 -128, ptr %8, align 8, !tbaa !9
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 1 dereferenceable(7) %9, i8 0, i64 7, i1 false)
-  call void @_nettle_sha256_compress(ptr noundef nonnull %3, ptr noundef nonnull %7, ptr noundef nonnull @K)
-  call void @llvm.memset.p0.i64(ptr noundef nonnull align 8 dereferenceable(56) %7, i8 0, i64 56, i1 false)
-  %28 = load i64, ptr %5, align 8, !tbaa !14
-  %29 = shl i64 %28, 9
-  %30 = load i32, ptr %6, align 8, !tbaa !17
-  %31 = shl i32 %30, 3
-  %32 = zext i32 %31 to i64
-  %33 = or i64 %29, %32
-  %34 = lshr i64 %29, 56
-  %35 = trunc nuw i64 %34 to i8
-  store i8 %35, ptr %8, align 8, !tbaa !9
-  %36 = lshr i64 %29, 48
-  %37 = trunc i64 %36 to i8
-  store i8 %37, ptr %9, align 1, !tbaa !9
-  %38 = lshr i64 %29, 40
-  %39 = trunc i64 %38 to i8
-  store i8 %39, ptr %10, align 2, !tbaa !9
-  %40 = lshr i64 %29, 32
-  %41 = trunc i64 %40 to i8
-  store i8 %41, ptr %11, align 1, !tbaa !9
-  %42 = lshr i64 %33, 24
-  %43 = trunc i64 %42 to i8
-  store i8 %43, ptr %12, align 4, !tbaa !9
-  %44 = lshr i64 %33, 16
-  %45 = trunc i64 %44 to i8
-  store i8 %45, ptr %13, align 1, !tbaa !9
-  %46 = lshr i64 %33, 8
-  %47 = trunc i64 %46 to i8
-  store i8 %47, ptr %14, align 2, !tbaa !9
-  %48 = trunc i32 %31 to i8
-  store i8 %48, ptr %15, align 1, !tbaa !9
-  call void @_nettle_sha256_compress(ptr noundef nonnull %3, ptr noundef nonnull %7, ptr noundef nonnull @K)
-  %49 = load i32, ptr %3, align 8, !tbaa !5
-  %50 = lshr i32 %49, 24
-  %51 = trunc nuw i32 %50 to i8
-  store i8 %51, ptr @buffer, align 16, !tbaa !9
-  %52 = lshr i32 %49, 16
-  %53 = trunc i32 %52 to i8
-  store i8 %53, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 1), align 1, !tbaa !9
-  %54 = lshr i32 %49, 8
-  %55 = trunc i32 %54 to i8
-  store i8 %55, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 2), align 2, !tbaa !9
-  %56 = trunc i32 %49 to i8
-  store i8 %56, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 3), align 1, !tbaa !9
-  %57 = load i32, ptr %17, align 4, !tbaa !5
-  %58 = lshr i32 %57, 24
-  %59 = trunc nuw i32 %58 to i8
-  store i8 %59, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 4), align 4, !tbaa !9
-  %60 = lshr i32 %57, 16
-  %61 = trunc i32 %60 to i8
-  store i8 %61, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 5), align 1, !tbaa !9
-  %62 = lshr i32 %57, 8
-  %63 = trunc i32 %62 to i8
-  store i8 %63, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 6), align 2, !tbaa !9
-  %64 = trunc i32 %57 to i8
-  store i8 %64, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 7), align 1, !tbaa !9
-  %65 = load i32, ptr %18, align 8, !tbaa !5
-  %66 = lshr i32 %65, 24
-  %67 = trunc nuw i32 %66 to i8
-  store i8 %67, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 8), align 8, !tbaa !9
-  %68 = lshr i32 %65, 16
-  %69 = trunc i32 %68 to i8
-  store i8 %69, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 9), align 1, !tbaa !9
-  %70 = lshr i32 %65, 8
-  %71 = trunc i32 %70 to i8
-  store i8 %71, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 10), align 2, !tbaa !9
-  %72 = trunc i32 %65 to i8
-  store i8 %72, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 11), align 1, !tbaa !9
-  %73 = load i32, ptr %19, align 4, !tbaa !5
-  %74 = lshr i32 %73, 24
-  %75 = trunc nuw i32 %74 to i8
-  store i8 %75, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 12), align 4, !tbaa !9
-  %76 = lshr i32 %73, 16
-  %77 = trunc i32 %76 to i8
-  store i8 %77, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 13), align 1, !tbaa !9
-  %78 = lshr i32 %73, 8
-  %79 = trunc i32 %78 to i8
-  store i8 %79, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 14), align 2, !tbaa !9
-  %80 = trunc i32 %73 to i8
-  store i8 %80, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 15), align 1, !tbaa !9
-  %81 = load i32, ptr %20, align 8, !tbaa !5
-  %82 = lshr i32 %81, 24
-  %83 = trunc nuw i32 %82 to i8
-  store i8 %83, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 16), align 16, !tbaa !9
-  %84 = lshr i32 %81, 16
-  %85 = trunc i32 %84 to i8
-  store i8 %85, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 17), align 1, !tbaa !9
-  %86 = lshr i32 %81, 8
-  %87 = trunc i32 %86 to i8
-  store i8 %87, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 18), align 2, !tbaa !9
-  %88 = trunc i32 %81 to i8
-  store i8 %88, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 19), align 1, !tbaa !9
-  %89 = load i32, ptr %21, align 4, !tbaa !5
-  %90 = lshr i32 %89, 24
-  %91 = trunc nuw i32 %90 to i8
-  store i8 %91, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 20), align 4, !tbaa !9
-  %92 = lshr i32 %89, 16
-  %93 = trunc i32 %92 to i8
-  store i8 %93, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 21), align 1, !tbaa !9
-  %94 = lshr i32 %89, 8
-  %95 = trunc i32 %94 to i8
-  store i8 %95, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 22), align 2, !tbaa !9
-  %96 = trunc i32 %89 to i8
-  store i8 %96, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 23), align 1, !tbaa !9
-  %97 = load i32, ptr %22, align 8, !tbaa !5
-  %98 = lshr i32 %97, 24
-  %99 = trunc nuw i32 %98 to i8
-  store i8 %99, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 24), align 8, !tbaa !9
-  %100 = lshr i32 %97, 16
-  %101 = trunc i32 %100 to i8
-  store i8 %101, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 25), align 1, !tbaa !9
-  %102 = lshr i32 %97, 8
-  %103 = trunc i32 %102 to i8
-  store i8 %103, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 26), align 2, !tbaa !9
-  %104 = trunc i32 %97 to i8
-  store i8 %104, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 27), align 1, !tbaa !9
-  %105 = load i32, ptr %23, align 4, !tbaa !5
-  %106 = lshr i32 %105, 24
-  %107 = trunc nuw i32 %106 to i8
-  store i8 %107, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 28), align 4, !tbaa !9
-  %108 = lshr i32 %105, 16
-  %109 = trunc i32 %108 to i8
-  store i8 %109, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 29), align 1, !tbaa !9
-  %110 = lshr i32 %105, 8
-  %111 = trunc i32 %110 to i8
-  store i8 %111, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 30), align 2, !tbaa !9
-  %112 = trunc i32 %105 to i8
-  store i8 %112, ptr getelementptr inbounds nuw (i8, ptr @buffer, i64 31), align 1, !tbaa !9
-  call void @llvm.lifetime.end.p0(i64 112, ptr nonnull %3) #11
-  %113 = add nuw i32 %27, 1
-  %114 = icmp eq i32 %113, %1
-  br i1 %114, label %115, label %26, !llvm.loop !19
+26:                                               ; preds = %25
+  %27 = load i32, ptr %6, align 4
+  %28 = add i32 %27, 1
+  store i32 %28, ptr %6, align 4
+  br label %9, !llvm.loop !14
 
-115:                                              ; preds = %26
-  %116 = add nuw nsw i32 %25, 1
-  %117 = icmp eq i32 %116, %0
-  br i1 %117, label %118, label %24, !llvm.loop !20
-
-118:                                              ; preds = %115, %2
-  ret void
-}
-
-; Function Attrs: nofree noinline norecurse nosync nounwind memory(readwrite, inaccessiblemem: none) uwtable
-define dso_local noundef i32 @benchmark() local_unnamed_addr #8 {
-  tail call fastcc void @benchmark_body(i32 noundef 562, i32 noundef 20)
+29:                                               ; preds = %9
   ret i32 0
 }
 
-; Function Attrs: mustprogress nocallback nofree nounwind willreturn memory(argmem: write)
-declare void @llvm.memset.p0.i64(ptr nocapture writeonly, i8, i64, i1 immarg) #9
+; Function Attrs: noinline nounwind uwtable
+define dso_local i32 @benchmark() #0 {
+  %1 = call i32 @benchmark_body(i32 noundef 562, i32 noundef 20)
+  ret i32 %1
+}
 
-; Function Attrs: nocallback nofree nosync nounwind speculatable willreturn memory(none)
-declare i32 @llvm.fshl.i32(i32, i32, i32) #10
+; Function Attrs: nocallback nofree nounwind willreturn memory(argmem: write)
+declare void @llvm.memset.p0.i64(ptr nocapture writeonly, i8, i64, i1 immarg) #3
 
-attributes #0 = { nofree norecurse nosync nounwind memory(argmem: readwrite) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #1 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
-attributes #2 = { mustprogress nofree norecurse nosync nounwind willreturn memory(argmem: readwrite) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #3 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: readwrite) }
-attributes #4 = { mustprogress nofree norecurse nosync nounwind willreturn memory(read, argmem: none, inaccessiblemem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #5 = { mustprogress nofree norecurse nosync nounwind willreturn memory(none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #6 = { nofree norecurse nosync nounwind memory(readwrite, inaccessiblemem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #7 = { nofree noinline norecurse nosync nounwind memory(readwrite, argmem: none, inaccessiblemem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #8 = { nofree noinline norecurse nosync nounwind memory(readwrite, inaccessiblemem: none) uwtable "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
-attributes #9 = { mustprogress nocallback nofree nounwind willreturn memory(argmem: write) }
-attributes #10 = { nocallback nofree nosync nounwind speculatable willreturn memory(none) }
-attributes #11 = { nounwind }
+attributes #0 = { noinline nounwind uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #1 = { noreturn nounwind "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
+attributes #2 = { nocallback nofree nounwind willreturn memory(argmem: readwrite) }
+attributes #3 = { nocallback nofree nounwind willreturn memory(argmem: write) }
+attributes #4 = { noreturn nounwind }
 
-!llvm.module.flags = !{!0, !1, !2, !3}
-!llvm.ident = !{!4}
+!llvm.module.flags = !{!0, !1, !2, !3, !4}
+!llvm.ident = !{!5}
 
 !0 = !{i32 1, !"wchar_size", i32 4}
 !1 = !{i32 8, !"PIC Level", i32 2}
 !2 = !{i32 7, !"PIE Level", i32 2}
 !3 = !{i32 7, !"uwtable", i32 2}
-!4 = !{!"clang version 20.1.8 (https://github.com/llvm/llvm-project.git 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)"}
-!5 = !{!6, !6, i64 0}
-!6 = !{!"int", !7, i64 0}
-!7 = !{!"omnipotent char", !8, i64 0}
-!8 = !{!"Simple C/C++ TBAA"}
-!9 = !{!7, !7, i64 0}
-!10 = distinct !{!10, !11}
-!11 = !{!"llvm.loop.mustprogress"}
-!12 = distinct !{!12, !11}
-!13 = distinct !{!13, !11}
-!14 = !{!15, !16, i64 32}
-!15 = !{!"sha256_ctx", !7, i64 0, !16, i64 32, !7, i64 40, !6, i64 104}
-!16 = !{!"long", !7, i64 0}
-!17 = !{!15, !6, i64 104}
-!18 = distinct !{!18, !11}
-!19 = distinct !{!19, !11}
-!20 = distinct !{!20, !11}
+!4 = !{i32 7, !"frame-pointer", i32 2}
+!5 = !{!"clang version 20.1.8 (https://github.com/llvm/llvm-project.git 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)"}
+!6 = distinct !{!6, !7}
+!7 = !{!"llvm.loop.mustprogress"}
+!8 = distinct !{!8, !7}
+!9 = distinct !{!9, !7}
+!10 = distinct !{!10, !7}
+!11 = distinct !{!11, !7}
+!12 = distinct !{!12, !7}
+!13 = distinct !{!13, !7}
+!14 = distinct !{!14, !7}

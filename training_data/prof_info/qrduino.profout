@@ -1,0 +1,198 @@
+Counters:
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  qrencode.c:ismasked:
+    Hash: 0x000000000a712458
+    Counters: 2
+    Function count: 19728
+    Block counts: [9570]
+  qrframe.c:doaligns:
+    Hash: 0x26c25365a736bd69
+    Counters: 6
+    Function count: 6
+    Block counts: [0, 6, 6, 0, 6]
+  qrframe.c:setmask:
+    Hash: 0x000000000029c491
+    Counters: 2
+    Function count: 1266
+    Block counts: [414]
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  qrtest.c:benchmark_body:
+    Hash: 0x00000046c46d1458
+    Counters: 3
+    Function count: 2
+    Block counts: [6, 6]
+  qrencode.c:stringtoqr:
+    Hash: 0xee28c810e2462114
+    Counters: 15
+    Function count: 6
+    Block counts: [0, 0, 0, 0, 126, 36, 6, 0, 204, 204, 0, 0, 60, 60]
+  initialise_benchmark:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  freeframe:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 6
+    Block counts: []
+  qrencode.c:appendrs:
+    Hash: 0xb456a384030f22ca
+    Counters: 5
+    Function count: 6
+    Block counts: [204, 204, 1836, 0]
+  qrencode:
+    Hash: 0xf748220a6b64b25d
+    Counters: 5
+    Function count: 6
+    Block counts: [48, 12, 0, 6]
+  qrencode.c:initrspoly:
+    Hash: 0x011b11c351444751
+    Counters: 5
+    Function count: 6
+    Block counts: [60, 270, 270, 66]
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 6
+    Block counts: [0, 0]
+  qrframe.c:putalign:
+    Hash: 0x000000011b4446d1
+    Counters: 3
+    Function count: 6
+    Block counts: [24, 12]
+  qrencode.c:modnn:
+    Hash: 0x000000000009e458
+    Counters: 2
+    Function count: 2370
+    Block counts: [912]
+  initeccsize:
+    Hash: 0x00046ca6d2591458
+    Counters: 3
+    Function count: 6
+    Block counts: [12, 6]
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 12
+    Block counts: [12]
+  qrframe.c:putfind:
+    Hash: 0x6ae3f45c74bb1921
+    Counters: 7
+    Function count: 6
+    Block counts: [18, 6, 6, 108, 72, 36]
+  qrencode.c:badruns:
+    Hash: 0x63a7a3253d75ab24
+    Counters: 18
+    Function count: 2400
+    Block counts: [30366, 3018, 9978, 876, 900, 1566, 900, 2196, 1566, 4122, 2196, 30, 24, 30, 30, 324, 30]
+  qrencode.c:fillframe:
+    Hash: 0xd4c3cd821ccd13b6
+    Counters: 11
+    Function count: 6
+    Block counts: [264, 2112, 1056, 1242, 1680, 900, 864, 6, 744, 0]
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 30
+    Block counts: [0, 18, 0]
+  qrencode.c:addfmt:
+    Hash: 0x21cd245af2d8b346
+    Counters: 7
+    Function count: 6
+    Block counts: [48, 36, 24, 42, 24, 24]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  qrframe.c:putvpat:
+    Hash: 0x3c2cec7addcb763f
+    Counters: 6
+    Function count: 6
+    Block counts: [6, 0, 0, 0, 0]
+  initecc:
+    Hash: 0x000a6d244a6d2458
+    Counters: 3
+    Function count: 6
+    Block counts: [6, 0]
+  qrencode.c:badcheck:
+    Hash: 0x16e65bf98f18eca8
+    Counters: 26
+    Function count: 48
+    Block counts: [1152, 27648, 4068, 25890, 3114, 1758, 7002, 3114, 13452, 7002, 3990, 2310, 7884, 3990, 14196, 7884, 1200, 30000, 15888, 14982, 30, 0, 1200, 30000, 16146]
+  freeecc:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 6
+    Block counts: []
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 30
+    Block counts: []
+  initframe:
+    Hash: 0x1ed967a84df9d001
+    Counters: 11
+    Function count: 6
+    Block counts: [42, 48, 54, 48, 42, 66, 30, 150, 1950, 408]
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  verify_benchmark:
+    Hash: 0x000000000001839f
+    Counters: 3
+    Function count: 1
+    Block counts: [1, 1]
+  qrencode.c:applymask:
+    Hash: 0x297af33e64460ba6
+    Counters: 64
+    Function count: 54
+    Block counts: [54, 6, 150, 3750, 1074, 1878, 1074, 12, 300, 7500, 2124, 3900, 2124, 6, 150, 3750, 1200, 786, 1350, 786, 6, 150, 48, 3750, 1200, 714, 1254, 714, 6, 150, 3750, 1200, 1062, 1878, 1062, 6, 150, 48, 3750, 1200, 936, 1734, 936, 6, 150, 48, 3750, 1200, 1374, 2502, 1374, 2400, 768, 6, 150, 48, 3750, 1200, 1074, 1878, 1074, 2400, 768]
+Instrumentation level: Front-end
+Functions shown: 38
+Total functions: 38
+Maximum function count: 19728
+Maximum internal block count: 30366
+Total number of blocks: 233
+Total count: 438541

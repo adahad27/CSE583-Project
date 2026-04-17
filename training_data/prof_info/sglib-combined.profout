@@ -1,0 +1,493 @@
+Counters:
+  sglib_rbtree_it_init_postorder:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib___rbtree_consistency_check:
+    Hash: 0x000a68f7df482451
+    Counters: 5
+    Function count: 0
+    Block counts: [0, 0, 0, 0]
+  sglib_dllist_add_before_if_not_member:
+    Hash: 0xa24723171aacc85a
+    Counters: 13
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_hashed_ilist_find_member:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 3300
+    Block counts: []
+  sglib_ilist_reverse:
+    Hash: 0x0000000000002811
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  sglib_rbtree_find_member:
+    Hash: 0x1856d5cd1a0c93bd
+    Counters: 4
+    Function count: 3200
+    Block counts: [17408, 9184, 8224]
+  sglib_rbtree_it_current:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_ilist_it_current:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_ilist_concat:
+    Hash: 0x000029f493120451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  sglib_ilist_len:
+    Hash: 0x00000000000a0458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  sglib_ilist_add_if_not_member:
+    Hash: 0x9fe7dcd8ed698d34
+    Counters: 5
+    Function count: 0
+    Block counts: [0, 0, 0, 0]
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib___rbtree_delete_recursive:
+    Hash: 0xb6d46a0642c95977
+    Counters: 26
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_hashed_ilist_is_member:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_ilist_it_init:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_dllist_it_next:
+    Hash: 0x42bcc067834401ae
+    Counters: 11
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_rbtree_is_member:
+    Hash: 0x2e3284a4a4cb5cfc
+    Counters: 12
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_dllist_add_after:
+    Hash: 0x000a7d24ca812451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  sglib_hashed_ilist_it_init:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 32
+    Block counts: []
+  sglib_dllist_is_member:
+    Hash: 0x2b5738a615d58ca2
+    Counters: 10
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib_ilist_delete_if_member:
+    Hash: 0xcdd73ff4269d1f65
+    Counters: 5
+    Function count: 0
+    Block counts: [0, 0, 0, 0]
+  sglib_iq_init:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib__rbtree_it_compute_current_elem:
+    Hash: 0x935150628f6b7717
+    Counters: 19
+    Function count: 3232
+    Block counts: [9600, 12800, 9600, 9600, 3200, 3200, 0, 0, 0, 0, 0, 0, 0, 0, 3168, 3200, 9568, 3200]
+  combined.c:benchmark_body:
+    Hash: 0xba6f752176184eed
+    Counters: 82
+    Function count: 2
+    Block counts: [32, 32, 768, 1632, 4352, 5440, 9408, 5440, 3968, 5440, 384, 12096, 14816, 12096, 12096, 2720, 1248, 2720, 2272, 288, 736, 992, 736, 224, 256, 576, 256, 256, 320, 3200, 3200, 3200, 3200, 3200, 3200, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4384, 7392, 4384, 3008, 4384, 3200, 0, 0, 0, 0, 0, 13248, 13696, 12896, 800, 12896, 13440, 5952, 7488, 5952, 13248, 3200, 3200, 3200]
+  sglib_iq_first_element:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_iq_is_empty:
+    Hash: 0x000000000000061f
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_iq_first_element_ptr:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_rbtree_add:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 3200
+    Block counts: []
+  sglib_dllist_find_member:
+    Hash: 0xffe57ee59cdb6fd1
+    Counters: 10
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_hashed_ilist_delete_if_member:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_rbtree_it_init_inorder:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 32
+    Block counts: []
+  sglib_rbtree_it_init_preorder:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_iq_is_full:
+    Hash: 0x000000000000061f
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_ilist_sort:
+    Hash: 0x05f7b1c56bd0f8b1
+    Counters: 17
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_dllist_add_if_not_member:
+    Hash: 0xa24723171aacc85a
+    Counters: 13
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_dllist_sort:
+    Hash: 0xe51b277b356026e4
+    Counters: 20
+    Function count: 32
+    Block counts: [32, 3168, 256, 3296, 12288, 12384, 12288, 96, 7008, 7104, 7008, 96, 17792, 19584, 17792, 9344, 1792, 4352, 3200]
+  initialise_benchmark:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib_rbtree_add_if_not_member:
+    Hash: 0x000000a7d2613611
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  sglib_hashed_ilist_add_if_not_member:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_ilist_it_init_on_equal:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 640
+    Block counts: []
+  sglib_iq_delete_first:
+    Hash: 0xea47d5228b1480be
+    Counters: 6
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0]
+  sglib_rbtree_delete_if_member:
+    Hash: 0x000000a812613611
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  sglib_iq_add:
+    Hash: 0xea47d5228b1480be
+    Counters: 6
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0]
+  sglib_rbtree_it_init:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_dllist_it_init:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_dllist_it_init_on_equal:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  sglib_rbtree_it_next:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 3200
+    Block counts: []
+  sglib_dllist_add_after_if_not_member:
+    Hash: 0xa24723171aacc85a
+    Counters: 13
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib__rbtree_it_init:
+    Hash: 0xed5a222008a37b9e
+    Counters: 13
+    Function count: 32
+    Block counts: [0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  combined.c:sglib___rbtree_fix_left_insertion_discrepancy:
+    Hash: 0xbf5e9dc738b47056
+    Counters: 18
+    Function count: 5888
+    Block counts: [2784, 5056, 2784, 2176, 832, 1760, 1440, 416, 1376, 416, 2144, 352, 1504, 352, 320, 1408, 320]
+  combined.c:sglib___rbtree_fix_right_insertion_discrepancy:
+    Hash: 0xbf5e9dc738b47056
+    Counters: 18
+    Function count: 5280
+    Block counts: [2208, 4672, 2208, 1824, 640, 1504, 1280, 320, 1216, 320, 2048, 224, 1568, 224, 224, 1472, 224]
+  combined.c:sglib___rbtree_fix_right_deletion_discrepancy:
+    Hash: 0x1663829f7693d853
+    Counters: 57
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  sglib_iq_delete:
+    Hash: 0xea47d5228b1480be
+    Counters: 6
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0]
+  sglib_rbtree_len:
+    Hash: 0xdbcd3c7a28208576
+    Counters: 19
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_iq_add_next:
+    Hash: 0xea47d5228b1480be
+    Counters: 6
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0]
+  sglib_ilist_add:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 3200
+    Block counts: []
+  sglib_ilist_it_next:
+    Hash: 0x9ee0540ecbba6304
+    Counters: 6
+    Function count: 3840
+    Block counts: [0, 0, 0, 0, 3200]
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib_rbtree_delete:
+    Hash: 0x00000000002a0491
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  sglib_dllist_add:
+    Hash: 0x000a7d24ca812451
+    Counters: 3
+    Function count: 3200
+    Block counts: [32, 3136]
+  sglib_dllist_concat:
+    Hash: 0x5ae66c7d089e2861
+    Counters: 6
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0]
+  sglib_dllist_delete:
+    Hash: 0x794206827c011e25
+    Counters: 5
+    Function count: 0
+    Block counts: [0, 0, 0, 0]
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 32
+    Block counts: [0, 0]
+  sglib_hashed_ilist_it_next:
+    Hash: 0x000000008e7db458
+    Counters: 4
+    Function count: 3200
+    Block counts: [608, 640, 608]
+  combined.c:sglib___rbtree_delete_rightmost_leaf:
+    Hash: 0x0ee4e1dc8494bb49
+    Counters: 9
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_hashed_ilist_delete:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_hashed_ilist_it_init_on_equal:
+    Hash: 0x000000000a7d2458
+    Counters: 2
+    Function count: 32
+    Block counts: [0]
+  sglib_ilist_delete:
+    Hash: 0xb0544602deac51e0
+    Counters: 8
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0]
+  sglib_rbtree_it_init_on_equal:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_dllist_len:
+    Hash: 0x72033b309156e241
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  verify_benchmark:
+    Hash: 0xad2008616882e9a0
+    Counters: 11
+    Function count: 1
+    Block counts: [100, 0, 100, 0, 100, 100, 1, 1, 1, 1]
+  sglib_ilist_find_member:
+    Hash: 0x000000010e820458
+    Counters: 4
+    Function count: 3300
+    Block counts: [6600, 6700, 6600]
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib_dllist_add_before:
+    Hash: 0x000a7d24ca812451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  combined.c:sglib___rbtree_add_recursive:
+    Hash: 0xa39f49dc4f76f11a
+    Counters: 8
+    Function count: 20608
+    Block counts: [3200, 9184, 8224, 0, 0, 5888, 5280]
+  sglib_dllist_get_first:
+    Hash: 0x00002a0484811458
+    Counters: 3
+    Function count: 33
+    Block counts: [33, 0]
+  combined.c:sglib___rbtree_fix_left_deletion_discrepancy:
+    Hash: 0x1663829f7693d853
+    Counters: 57
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  sglib_dllist_reverse:
+    Hash: 0x02a04828110a0451
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  sglib_dllist_get_last:
+    Hash: 0x00002a0484811458
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  sglib_hashed_ilist_add:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 3200
+    Block counts: []
+  sglib_hashed_ilist_init:
+    Hash: 0x00000000000046d1
+    Counters: 2
+    Function count: 32
+    Block counts: [640]
+  sglib_hashed_ilist_it_current:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 9600
+    Block counts: [0, 0, 0]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  combined.c:sglib___rbtree_consistency_check_recursive:
+    Hash: 0x4cb9b0d8b59ba5ad
+    Counters: 20
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ilist_hash_function:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 6500
+    Block counts: []
+  sglib_dllist_it_current:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  sglib_dllist_delete_if_member:
+    Hash: 0xf0c49ad09115cf10
+    Counters: 15
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  sglib_ilist_is_member:
+    Hash: 0x00000043a0811818
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+Instrumentation level: Front-end
+Functions shown: 97
+Total functions: 97
+Maximum function count: 20608
+Maximum internal block count: 19584
+Total number of blocks: 665
+Total count: 697481

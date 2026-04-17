@@ -1,0 +1,388 @@
+Counters:
+  libpicojpeg.c:createWinogradQuant:
+    Hash: 0x00000000000046d1
+    Counters: 2
+    Function count: 12
+    Block counts: [768]
+  libpicojpeg.c:upsampleCbH:
+    Hash: 0x000000011b11b451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  libpicojpeg.c:decodeNextMCU:
+    Hash: 0x69d1511c2dce3683
+    Counters: 31
+    Function count: 336
+    Block counts: [0, 0, 0, 1008, 672, 672, 672, 510, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2898, 672, 672, 1890, 1890, 594, 0, 1440, 0, 0, 0, 60174]
+  libpicojpeg.c:subAndClamp:
+    Hash: 0xe5ad3e69c86a6cd7
+    Counters: 4
+    Function count: 43008
+    Block counts: [150, 132, 18]
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  libpicojpeg.c:getExtendTest:
+    Hash: 0xaa3dd3a8ca1ca640
+    Counters: 19
+    Function count: 2898
+    Block counts: [0, 498, 1524, 546, 282, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  libpicojpeg.c:huffCreate:
+    Hash: 0xcda1b9026d1c536e
+    Counters: 4
+    Function count: 24
+    Block counts: [384, 300, 24]
+  libpicojpeg.c:upsampleCr:
+    Hash: 0x000000011b11b451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  libpicojpeg.c:huffDecode:
+    Hash: 0x98ebc464c9c08eeb
+    Counters: 6
+    Function count: 3906
+    Block counts: [9036, 0, 3906, 6468, 3906]
+  libpicojpeg.c:init:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 6
+    Block counts: []
+  libpicojpeg.c:upsampleCbV:
+    Hash: 0x000000011b11b451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  libpicojpeg.c:getHuffVal:
+    Hash: 0x5e55fd07be2b9b6d
+    Counters: 7
+    Function count: 24
+    Block counts: [0, 6, 6, 6, 6, 0]
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  libpicojpeg.c:getMaxHuffCodes:
+    Hash: 0x000000000001835b
+    Counters: 2
+    Function count: 24
+    Block counts: [12]
+  libpicojpeg.c:fillInBuf:
+    Hash: 0x000000000000a491
+    Counters: 2
+    Function count: 18
+    Block counts: [0]
+  libpicojpeg.c:getBit:
+    Hash: 0x000029244a692458
+    Counters: 3
+    Function count: 9036
+    Block counts: [3576, 1056]
+  libpicojpeg.c:getBits1:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1782
+    Block counts: []
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  libpicojpeg.c:locateSOFMarker:
+    Hash: 0xf8e12e57c23dd95e
+    Counters: 10
+    Function count: 6
+    Block counts: [0, 0, 6, 0, 6, 0, 0, 0, 0]
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  libpicojpeg.c:processRestart:
+    Hash: 0x4b0dfd206db6653d
+    Counters: 8
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0]
+  libpicojpeg.c:convertCb:
+    Hash: 0x0000000000004711
+    Counters: 2
+    Function count: 336
+    Block counts: [21504]
+  libpicojpeg.c:checkHuffTables:
+    Hash: 0x1c0823041b5054a2
+    Counters: 5
+    Function count: 6
+    Block counts: [18, 0, 18, 18]
+  libpicojpeg.c:imul_b5:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 3168
+    Block counts: []
+  libpicojpeg.c:getHuffTable:
+    Hash: 0x5e55fd07be2b9b6d
+    Counters: 7
+    Function count: 24
+    Block counts: [0, 6, 6, 6, 6, 0]
+  libpicojpeg.c:locateSOIMarker:
+    Hash: 0x8ebf0cd84ea82ee0
+    Counters: 10
+    Function count: 6
+    Block counts: [6, 6, 6, 0, 0, 0, 0, 0, 0]
+  libpicojpeg.c:upsampleCrH:
+    Hash: 0x000000011b11b451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  verify_benchmark:
+    Hash: 0x000000060e39f7df
+    Counters: 5
+    Function count: 1
+    Block counts: [1, 1, 1, 1]
+  libpicojpeg.c:copyY:
+    Hash: 0x0000000000004711
+    Counters: 2
+    Function count: 336
+    Block counts: [21504]
+  libpicojpeg.c:imul_b4:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 3168
+    Block counts: []
+  libpicojpeg.c:processMarkers:
+    Hash: 0xcf391d509bad0526
+    Counters: 34
+    Function count: 12
+    Block counts: [54, 42, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 24, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6]
+  libpicojpeg.c:readSOFMarker:
+    Hash: 0x01f6cd310f53ab20
+    Counters: 12
+    Function count: 6
+    Block counts: [0, 0, 6, 6, 0, 6, 6, 0, 0, 18, 0]
+  libpicojpeg.c:idctCols:
+    Hash: 0x000011b29f493451
+    Counters: 3
+    Function count: 1008
+    Block counts: [8064, 5568]
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  picojpeg_test.c:benchmark_body:
+    Hash: 0xe7b3e7b336d4648b
+    Counters: 5
+    Function count: 2
+    Block counts: [6, 6, 342, 6]
+  libpicojpeg.c:imul_b1_b3:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 6336
+    Block counts: []
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  libpicojpeg.c:upsampleCrV:
+    Hash: 0x000000011b11b451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  libpicojpeg.c:fixInBuffer:
+    Hash: 0x000000000029c491
+    Counters: 2
+    Function count: 6
+    Block counts: [0]
+  libpicojpeg.c:readDHTMarker:
+    Hash: 0x045454757f0e6ebb
+    Counters: 10
+    Function count: 24
+    Block counts: [0, 24, 0, 24, 24, 384, 0, 162, 0]
+  libpicojpeg.c:imul_b2:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 3168
+    Block counts: []
+  initialise_benchmark:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  libpicojpeg.c:idctRows:
+    Hash: 0x000011b29f493451
+    Counters: 3
+    Function count: 1008
+    Block counts: [8064, 7392]
+  libpicojpeg.c:skipVariableMarker:
+    Hash: 0x000029b498442458
+    Counters: 3
+    Function count: 6
+    Block counts: [0, 84]
+  libpicojpeg.c:getOctet:
+    Hash: 0x000a39f48a491458
+    Counters: 5
+    Function count: 3414
+    Block counts: [12, 1596, 12, 6]
+  libpicojpeg.c:clamp:
+    Hash: 0xe5ad3e69c86a6cd7
+    Counters: 4
+    Function count: 25536
+    Block counts: [504, 114, 390]
+  pjpeg_decode_mcu:
+    Hash: 0x0c015f1617a0ca67
+    Counters: 7
+    Function count: 342
+    Block counts: [0, 6, 0, 336, 336, 0]
+  libpicojpeg.c:initFrame:
+    Hash: 0x5f138cea042b7ddb
+    Counters: 26
+    Function count: 6
+    Block counts: [0, 0, 0, 0, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6]
+  libpicojpeg.c:getBits:
+    Hash: 0x029c49129b493458
+    Counters: 3
+    Function count: 4194
+    Block counts: [66, 2292]
+  libpicojpeg.c:readSOSMarker:
+    Hash: 0xa67e3fa93b40b7ec
+    Counters: 11
+    Function count: 6
+    Block counts: [0, 6, 6, 6, 6, 18, 36, 18, 0, 0]
+  pjpeg_need_bytes_callback:
+    Hash: 0x000000000000d6d8
+    Counters: 2
+    Function count: 18
+    Block counts: [6]
+  libpicojpeg.c:getExtendOffset:
+    Hash: 0xaa3dd3a8ca1ca640
+    Counters: 19
+    Function count: 1266
+    Block counts: [0, 0, 798, 306, 138, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  libpicojpeg.c:huffExtend:
+    Hash: 0x000000000001835b
+    Counters: 2
+    Function count: 2898
+    Block counts: [1266]
+  libpicojpeg.c:transformBlockReduce:
+    Hash: 0x26693e368612cb38
+    Counters: 28
+    Function count: 0
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  libpicojpeg.c:transformBlock:
+    Hash: 0x26693e368612cb38
+    Counters: 28
+    Function count: 1008
+    Block counts: [1008, 0, 1008, 1008, 336, 336, 336, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  libpicojpeg.c:readDQTMarker:
+    Hash: 0x7de3b5f88afcc64e
+    Counters: 11
+    Function count: 12
+    Block counts: [0, 12, 0, 6, 768, 0, 384, 6, 0, 0]
+  libpicojpeg.c:stuffChar:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 18
+    Block counts: []
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  libpicojpeg.c:nextMarker:
+    Hash: 0x00c38110df45f458
+    Counters: 4
+    Function count: 54
+    Block counts: [0, 0, 0]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  libpicojpeg.c:getBits2:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 2412
+    Block counts: []
+  libpicojpeg.c:checkQuantTables:
+    Hash: 0x011b34a7d2611458
+    Counters: 4
+    Function count: 6
+    Block counts: [18, 12, 0]
+  libpicojpeg.c:locateSOSMarker:
+    Hash: 0x8971e243a4a56ccc
+    Counters: 4
+    Function count: 6
+    Block counts: [0, 0, 0]
+  libpicojpeg.c:readDRIMarker:
+    Hash: 0x00000002a0498458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  libpicojpeg.c:initScan:
+    Hash: 0x81011c141024c461
+    Counters: 6
+    Function count: 6
+    Block counts: [0, 0, 0, 0, 0]
+  libpicojpeg.c:addAndClamp:
+    Hash: 0xe5ad3e69c86a6cd7
+    Counters: 4
+    Function count: 43008
+    Block counts: [684, 162, 522]
+  libpicojpeg.c:getChar:
+    Hash: 0x28271200d17b3ad9
+    Counters: 4
+    Function count: 3426
+    Block counts: [18, 0, 0]
+  libpicojpeg.c:upsampleCb:
+    Hash: 0x000000011b11b451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  libpicojpeg.c:convertCr:
+    Hash: 0x0000000000004711
+    Counters: 2
+    Function count: 336
+    Block counts: [21504]
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  pjpeg_decode_init:
+    Hash: 0x0a3a5cc68c2be954
+    Counters: 17
+    Function count: 6
+    Block counts: [0, 6, 6, 0, 0, 6, 6, 0, 0, 6, 6, 0, 0, 6, 6, 0]
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+Instrumentation level: Front-end
+Functions shown: 76
+Total functions: 76
+Maximum function count: 43008
+Maximum internal block count: 60174
+Total number of blocks: 444
+Total count: 384116

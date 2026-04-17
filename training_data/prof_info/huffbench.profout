@@ -1,0 +1,103 @@
+Counters:
+  libhuffbench.c:benchmark_body:
+    Hash: 0x00000046c46d1458
+    Counters: 3
+    Function count: 2
+    Block counts: [12, 12]
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 12
+    Block counts: [0, 0]
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 12
+    Block counts: [0, 12, 0]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  initialise_benchmark:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  libhuffbench.c:heap_adjust:
+    Hash: 0xd9fa73e982214a4d
+    Counters: 6
+    Function count: 1128
+    Block counts: [2508, 996, 2364, 996, 144]
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  compdecomp:
+    Hash: 0x6697177265be7da9
+    Counters: 33
+    Function count: 12
+    Block counts: [6000, 3072, 384, 384, 372, 3072, 2688, 1944, 1032, 36, 24, 0, 0, 6000, 29928, 3732, 0, 16008, 3072, 384, 1944, 1032, 3060, 67692, 70752, 67692, 2688, 29928, 16008, 92940, 6000, 26196]
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 12
+    Block counts: []
+  verify_benchmark:
+    Hash: 0x000000000000061f
+    Counters: 1
+    Function count: 1
+    Block counts: []
+Instrumentation level: Front-end
+Functions shown: 19
+Total functions: 19
+Maximum function count: 1128
+Maximum internal block count: 92940
+Total number of blocks: 67
+Total count: 472294

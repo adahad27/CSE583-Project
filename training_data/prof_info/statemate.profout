@@ -1,0 +1,128 @@
+Counters:
+  generic_KINDERSICHERUNG_CTRL:
+    Hash: 0xaff4abdcedb50b8a
+    Counters: 68
+    Function count: 6662
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  FH_DU:
+    Hash: 0x6aaa75afa0a44da9
+    Counters: 31
+    Function count: 3331
+    Block counts: [6662, 6662, 0, 0, 0, 0, 3331, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3331, 6662, 6662, 6662, 6662, 0, 0, 0, 0, 0, 0, 0, 0]
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  interface:
+    Hash: 0xc62ed2d6b49d3814
+    Counters: 23
+    Function count: 3331
+    Block counts: [0, 0, 3331, 3331, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3331, 3331]
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  initialise_benchmark:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  generic_BLOCK_ERKENNUNG_CTRL:
+    Hash: 0xc571ed6d0b07b135
+    Counters: 36
+    Function count: 6662
+    Block counts: [0, 0, 0, 6662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  generic_EINKLEMMSCHUTZ_CTRL:
+    Hash: 0xe54cf4a3f813a363
+    Counters: 15
+    Function count: 6662
+    Block counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  init:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 3331
+    Block counts: []
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  generic_FH_TUERMODUL_CTRL:
+    Hash: 0xa2cafe796b57ff75
+    Counters: 132
+    Function count: 6662
+    Block counts: [0, 0, 0, 6662, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  libstatemate.c:benchmark_body:
+    Hash: 0x00000046c46d1458
+    Counters: 3
+    Function count: 2
+    Block counts: [3331, 3331]
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  verify_benchmark:
+    Hash: 0xe85f07bd1acf5a7e
+    Counters: 40
+    Function count: 1
+    Block counts: [64, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Instrumentation level: Front-end
+Functions shown: 24
+Total functions: 24
+Maximum function count: 6662
+Maximum internal block count: 6662
+Total number of blocks: 373
+Total count: 116695

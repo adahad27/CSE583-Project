@@ -1,0 +1,118 @@
+Counters:
+  Multiply:
+    Hash: 0x00046c46c46d1451
+    Counters: 4
+    Function count: 40
+    Block counts: [800, 16000, 320000]
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 0
+    Block counts: [0, 0]
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 0
+    Block counts: [0]
+  matmult-int.c:benchmark_body:
+    Hash: 0x00000046c46d1458
+    Counters: 3
+    Function count: 2
+    Block counts: [40, 40]
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  Test:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 40
+    Block counts: []
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  values_match:
+    Hash: 0x000000000000061f
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  InitSeed:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  initialise_benchmark:
+    Hash: 0x31f3800d697472db
+    Counters: 5
+    Function count: 1
+    Block counts: [20, 400, 20, 400]
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  RandomInteger:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 800
+    Block counts: []
+  verify_benchmark:
+    Hash: 0x000000000000061f
+    Counters: 1
+    Function count: 1
+    Block counts: []
+Instrumentation level: Front-end
+Functions shown: 22
+Total functions: 22
+Maximum function count: 800
+Maximum internal block count: 320000
+Total number of blocks: 40
+Total count: 338611

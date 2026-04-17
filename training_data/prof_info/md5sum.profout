@@ -1,0 +1,98 @@
+Counters:
+  md5.c:benchmark_body:
+    Hash: 0x011b11b11b451458
+    Counters: 4
+    Function count: 2
+    Block counts: [67, 67, 67000]
+  init_heap_beebs:
+    Hash: 0x000000a69f482451
+    Counters: 3
+    Function count: 67
+    Block counts: [0, 0]
+  benchmark:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  calloc_beebs:
+    Hash: 0x000000000a812458
+    Counters: 2
+    Function count: 67
+    Block counts: [67]
+  malloc_beebs:
+    Hash: 0xe15f52ca8abed389
+    Counters: 4
+    Function count: 134
+    Block counts: [0, 0, 0]
+  rand_beebs:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  stop_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  warm_caches:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  srand_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  initialise_benchmark:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  start_trigger:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  main:
+    Hash: 0x000000000000061a
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  initialise_board:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 1
+    Block counts: []
+  check_heap_beebs:
+    Hash: 0x000000000000061d
+    Counters: 1
+    Function count: 0
+    Block counts: []
+  md5:
+    Hash: 0x0518e573f4a10bea
+    Counters: 6
+    Function count: 67
+    Block counts: [1072, 68608, 17152, 17152, 17152]
+  realloc_beebs:
+    Hash: 0xadf0d323742c71a4
+    Counters: 4
+    Function count: 0
+    Block counts: [0, 0, 0]
+  free_beebs:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 134
+    Block counts: []
+  verify_benchmark:
+    Hash: 0x000000000000061f
+    Counters: 1
+    Function count: 1
+    Block counts: []
+Instrumentation level: Front-end
+Functions shown: 18
+Total functions: 18
+Maximum function count: 134
+Maximum internal block count: 68608
+Total number of blocks: 35
+Total count: 188816

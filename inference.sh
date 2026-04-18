@@ -8,8 +8,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
-#SBATCH --mem=16G
-#SBATCH --time=00:10:00
+#SBATCH --mem=32G
+#SBATCH --time=00:20:00
 #SBATCH --output=inference.log
 
 # This script runs inference LLMCompiler for testing loop unroll factor prediction

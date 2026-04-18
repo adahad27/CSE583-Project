@@ -1,0 +1,218 @@
+Starting inference...
+==============================================
+cuda
+Loading weights:   0%|          | 0/363 [00:00<?, ?it/s]Loading weights:   1%|          | 2/363 [00:00<00:38,  9.30it/s]Loading weights:   1%|▏         | 5/363 [00:00<00:23, 15.17it/s]Loading weights:   2%|▏         | 9/363 [00:00<00:16, 21.22it/s]Loading weights:   4%|▎         | 13/363 [00:00<00:18, 18.85it/s]Loading weights:   6%|▌         | 20/363 [00:00<00:11, 30.58it/s]Loading weights:   7%|▋         | 24/363 [00:01<00:13, 25.16it/s]Loading weights:   8%|▊         | 29/363 [00:01<00:11, 30.14it/s]Loading weights:   9%|▉         | 33/363 [00:01<00:12, 26.28it/s]Loading weights:  11%|█         | 40/363 [00:01<00:10, 31.58it/s]Loading weights:  12%|█▏        | 44/363 [00:01<00:12, 25.47it/s]Loading weights:  14%|█▍        | 50/363 [00:01<00:10, 30.67it/s]Loading weights:  15%|█▍        | 54/363 [00:02<00:10, 30.38it/s]Loading weights:  16%|█▌        | 58/363 [00:02<00:09, 31.62it/s]Loading weights:  17%|█▋        | 62/363 [00:02<00:10, 29.22it/s]Loading weights:  18%|█▊        | 67/363 [00:02<00:09, 30.50it/s]Loading weights:  20%|█▉        | 71/363 [00:02<00:10, 28.51it/s]Loading weights:  21%|██        | 76/363 [00:02<00:09, 29.61it/s]Loading weights:  22%|██▏       | 80/363 [00:02<00:09, 28.99it/s]Loading weights:  23%|██▎       | 85/363 [00:03<00:09, 29.39it/s]Loading weights:  24%|██▍       | 88/363 [00:03<00:10, 27.34it/s]Loading weights:  26%|██▌       | 94/363 [00:03<00:08, 30.54it/s]Loading weights:  27%|██▋       | 98/363 [00:03<00:09, 29.03it/s]Loading weights:  28%|██▊       | 103/363 [00:03<00:08, 29.16it/s]Loading weights:  29%|██▉       | 106/363 [00:03<00:09, 27.58it/s]Loading weights:  31%|███       | 112/363 [00:04<00:08, 29.67it/s]Loading weights:  32%|███▏      | 115/363 [00:04<00:08, 28.47it/s]Loading weights:  33%|███▎      | 119/363 [00:04<00:07, 30.90it/s]Loading weights:  34%|███▍      | 123/363 [00:04<00:09, 26.02it/s]Loading weights:  36%|███▌      | 130/363 [00:04<00:07, 31.40it/s]Loading weights:  37%|███▋      | 134/363 [00:04<00:07, 28.91it/s]Loading weights:  38%|███▊      | 137/363 [00:04<00:07, 29.10it/s]Loading weights:  39%|███▊      | 140/363 [00:05<00:09, 23.56it/s]Loading weights:  41%|████      | 148/363 [00:05<00:06, 31.81it/s]Loading weights:  42%|████▏     | 152/363 [00:05<00:07, 29.51it/s]Loading weights:  43%|████▎     | 157/363 [00:05<00:06, 31.05it/s]Loading weights:  44%|████▍     | 161/363 [00:05<00:06, 28.97it/s]Loading weights:  46%|████▌     | 166/363 [00:05<00:06, 30.38it/s]Loading weights:  47%|████▋     | 170/363 [00:06<00:06, 28.04it/s]Loading weights:  48%|████▊     | 175/363 [00:06<00:06, 29.38it/s]Loading weights:  49%|████▉     | 178/363 [00:06<00:06, 27.53it/s]Loading weights:  50%|█████     | 182/363 [00:06<00:06, 30.07it/s]Loading weights:  51%|█████     | 186/363 [00:06<00:06, 25.58it/s]Loading weights:  53%|█████▎    | 193/363 [00:06<00:05, 30.04it/s]Loading weights:  54%|█████▍    | 197/363 [00:06<00:05, 28.31it/s]Loading weights:  56%|█████▌    | 202/363 [00:07<00:06, 23.79it/s]Loading weights:  58%|█████▊    | 209/363 [00:07<00:04, 31.69it/s]Loading weights:  59%|█████▊    | 213/363 [00:07<00:05, 27.31it/s]Loading weights:  60%|██████    | 218/363 [00:07<00:04, 31.38it/s]Loading weights:  61%|██████    | 222/363 [00:07<00:05, 27.08it/s]Loading weights:  63%|██████▎   | 227/363 [00:07<00:04, 31.48it/s]Loading weights:  64%|██████▎   | 231/363 [00:08<00:05, 25.78it/s]Loading weights:  66%|██████▌   | 238/363 [00:08<00:04, 30.49it/s]Loading weights:  67%|██████▋   | 242/363 [00:08<00:04, 29.16it/s]Loading weights:  68%|██████▊   | 247/363 [00:08<00:03, 30.51it/s]Loading weights:  69%|██████▉   | 251/363 [00:08<00:03, 28.45it/s]Loading weights:  70%|███████   | 255/363 [00:08<00:03, 30.84it/s]Loading weights:  71%|███████▏  | 259/363 [00:09<00:03, 27.53it/s]Loading weights:  72%|███████▏  | 263/363 [00:09<00:03, 29.26it/s]Loading weights:  74%|███████▎  | 267/363 [00:09<00:03, 25.48it/s]Loading weights:  75%|███████▍  | 272/363 [00:09<00:03, 29.84it/s]Loading weights:  76%|███████▌  | 276/363 [00:09<00:03, 26.34it/s]Loading weights:  78%|███████▊  | 283/363 [00:09<00:02, 30.57it/s]Loading weights:  79%|███████▉  | 287/363 [00:10<00:02, 28.48it/s]Loading weights:  80%|████████  | 292/363 [00:10<00:02, 30.39it/s]Loading weights:  82%|████████▏ | 296/363 [00:10<00:02, 28.56it/s]Loading weights:  83%|████████▎ | 301/363 [00:10<00:02, 29.81it/s]Loading weights:  84%|████████▍ | 305/363 [00:10<00:02, 28.24it/s]Loading weights:  85%|████████▌ | 310/363 [00:11<00:02, 23.44it/s]Loading weights:  88%|████████▊ | 319/363 [00:11<00:01, 31.34it/s]Loading weights:  89%|████████▉ | 323/363 [00:11<00:01, 29.66it/s]Loading weights:  90%|█████████ | 328/363 [00:11<00:01, 31.60it/s]Loading weights:  91%|█████████▏| 332/363 [00:11<00:01, 29.31it/s]Loading weights:  93%|█████████▎| 337/363 [00:11<00:00, 30.60it/s]Loading weights:  94%|█████████▍| 341/363 [00:11<00:00, 26.93it/s]Loading weights:  96%|█████████▌| 347/363 [00:12<00:00, 29.24it/s]Loading weights:  97%|█████████▋| 351/363 [00:12<00:00, 29.95it/s]Loading weights:  98%|█████████▊| 355/363 [00:12<00:00, 30.60it/s]Loading weights:  99%|█████████▉| 359/363 [00:12<00:00, 28.43it/s]Loading weights: 100%|██████████| 363/363 [00:12<00:00, 28.69it/s]
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[INST] You are a compiler agent that is specialized at predicting the optimal unroll factors of loops in LLVM IR format.
+
+I will give you 2 examples for how to perform this task.
+You will be given: the LLVM IR of a loop
+You must predict: the unroll factor.
+
+Example 1:
+
+Input:
+
+9:                                                ; preds = %34, %3
+  %10 = load i64, ptr %7, align 8
+  %11 = icmp sle i64 %10, 64
+  br i1 %11, label %12, label %37
+
+12:                                               ; preds = %9
+  %13 = load i64, ptr %4, align 8
+  %14 = ashr i64 %13, 63
+  store i64 %14, ptr %8, align 8
+  %15 = load i64, ptr %4, align 8
+  %16 = shl i64 %15, 1
+  %17 = load i64, ptr %5, align 8
+  %18 = lshr i64 %17, 63
+  %19 = or i64 %16, %18
+  store i64 %19, ptr %4, align 8
+  %20 = load i64, ptr %5, align 8
+  %21 = shl i64 %20, 1
+  store i64 %21, ptr %5, align 8
+  %22 = load i64, ptr %4, align 8
+  %23 = load i64, ptr %8, align 8
+  %24 = or i64 %22, %23
+  %25 = load i64, ptr %6, align 8
+  %26 = icmp uge i64 %24, %25
+  br i1 %26, label %27, label %33
+
+27:                                               ; preds = %12
+  %28 = load i64, ptr %4, align 8
+  %29 = load i64, ptr %6, align 8
+  %30 = sub i64 %28, %29
+  store i64 %30, ptr %4, align 8
+  %31 = load i64, ptr %5, align 8
+  %32 = add i64 %31, 1
+  store i64 %32, ptr %5, align 8
+  br label %33
+
+33:                                               ; preds = %27, %12
+  br label %34
+
+34:                                               ; preds = %33
+  %35 = load i64, ptr %7, align 8
+  %36 = add nsw i64 %35, 1
+  store i64 %36, ptr %7, align 8
+  br label %9, !llvm.loop !6 
+
+Expected Output:
+The optimal unroll factor for the following loop is: 64.  
+
+Example 2:
+
+Input:
+3:                                                ; preds = %18, %0
+  %4 = load i32, ptr %1, align 4
+  %5 = icmp slt i32 %4, 1024
+  br i1 %5, label %6, label %21
+
+6:                                                ; preds = %3
+  %7 = load i64, ptr %2, align 8
+  %8 = call i32 @rand_beebs()
+  %9 = trunc i32 %8 to i8
+  %10 = zext i8 %9 to i64
+  %11 = xor i64 %7, %10
+  %12 = and i64 %11, 255
+  %13 = getelementptr inbounds nuw [256 x i64], ptr @crc_32_tab, i64 0, i64 %12
+  %14 = load i64, ptr %13, align 8
+  %15 = load i64, ptr %2, align 8
+  %16 = lshr i64 %15, 8
+  %17 = xor i64 %14, %16
+  store i64 %17, ptr %2, align 8
+  br label %18
+
+18:                                               ; preds = %6
+  %19 = load i32, ptr %1, align 4
+  %20 = add nsw i32 %19, 1
+  store i32 %20, ptr %1, align 4
+  br label %3, !llvm.loop !6
+
+Expected Output:
+The optimal unroll factor for the following loop is: 32.  
+
+Now, predict the optimal unroll factor for this loop:
+Input:
+15:                                               ; preds = %42, %4
+  %16 = load i64, ptr %5, align 8
+  %17 = icmp ugt i64 %16, 0
+  br i1 %17, label %18, label %43
+
+18:                                               ; preds = %15
+  %19 = load i64, ptr %5, align 8
+  %20 = lshr i64 %19, 1
+  store i64 %20, ptr %5, align 8
+  %21 = load i64, ptr %11, align 8
+  %22 = and i64 %21, 1
+  %23 = icmp eq i64 %22, 0
+  br i1 %23, label %24, label %29
+
+24:                                               ; preds = %18
+  %25 = load i64, ptr %11, align 8
+  %26 = lshr i64 %25, 1
+  store i64 %26, ptr %11, align 8
+  %27 = load i64, ptr %12, align 8
+  %28 = lshr i64 %27, 1
+  store i64 %28, ptr %12, align 8
+  br label %42
+
+29:                                               ; preds = %18
+  %30 = load i64, ptr %11, align 8
+  %31 = load i64, ptr %10, align 8
+  %32 = xor i64 %30, %31
+  %33 = lshr i64 %32, 1
+  %34 = load i64, ptr %11, align 8
+  %35 = load i64, ptr %10, align 8
+  %36 = and i64 %34, %35
+  %37 = add i64 %33, %36
+  store i64 %37, ptr %11, align 8
+  %38 = load i64, ptr %12, align 8
+  %39 = lshr i64 %38, 1
+  %40 = load i64, ptr %9, align 8
+  %41 = add i64 %39, %40
+  store i64 %41, ptr %12, align 8
+  br label %42
+
+42:                                               ; preds = %29, %24
+  br label %15, !llvm.loop !8
+
+[/INST]
+
+1871
+[TUT] You are a compiler agent that is specialized at predicting the optimal unroll factors of loops in LLVM IR format.
+
+I will give you 2 examples for how to perform this task.
+You will be given: the LLVM IR of a loop
+You must predict: the unroll factor.
+
+Example 1:
+
+Input:
+
+9:                                                 ; preds = %34, %3
+   %10 = load i64, ptr %7, align 8
+   %11 = icmp sle i64 %10, 64
+   br i1 %11, label %12, label %37
+
+12:                                               ; preds = %9
+   %13 = load i64, ptr %4, align 8
+  %14 = ashr i64 %13, 63
+  store i64 %14, ptr %8, align 8
+  %15 = load i64, ptr %4, align 8
+  %16 = shl i64 %15, 1
+  %17 = load i64, ptr %5, align 8
+  %18 = lshr i64 %17, 63
+  %19 = or i64 %16, %18
+  store i64 %19, ptr %4, align 8
+  %20 = load i64, ptr %5, align 8
+  %21 = shl i64 %20, 1
+  store i64 %21, ptr %5, align 8
+  %22 = load i64, ptr %4, align 8
+  %23 = load i64, ptr %8, align 8
+  %24 = or i64 %22, %23
+  %25 = load i64, ptr %6, align 8
+  %26 = icmp uge i64 %24, %25
+  br i1 %26, label %27, label %33
+
+27:                                               ; preds = %12
+  %28 = load i64, ptr %4, align 8
+  %29 = load i64, ptr %6, align 8
+  %30 = sub i64 %28, %29
+  store i64 %30, ptr %4, align 8
+  %31 = load i64, ptr %5, align 8
+  %32 = add i64 %31, 1
+  store i64 %32, ptr %5, align 8
+  br label %33
+
+33:                                               ; preds = %27, %12
+  br label %34
+
+34:                                               ; preds = %33
+  %35 = load i64, ptr %7, align 8
+  %36 = add nsw i64 %35, 1
+  store i64 %36, ptr %7, align 8
+  br label %9, !llvm.loop !6 
+
+Expected Output:
+The optimal unroll factor for the following loop is: 64.  
+
+Example 2:
+
+Input:
+3:                                                 ; preds = %18, %0
+   %4 = load i32, ptr %1, align 4
+   %5 = icmp slt i32 %4, 1024
+   br i1 %5, label %6, label %21
+
+6:                                                ; preds = %3
+  %7 = load i64, ptr %2, align 8
+  %8 = call i32 @rand_beebs()
+  %9 = trunc i32 %8 to i8
+  %10 = zext i8 %9 to i64
+  %11 = xor i64 %7, %10
+  %12 = and i64 %11, 255
+  %13 = getelementptr inbounds nuw [256 x i64], ptr @crc_32_tab, i64 0, i64 %12
+  %14 = load i64, ptr %13, align 8
+  %15 = load i64,
+Inference completed!

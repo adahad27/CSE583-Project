@@ -10,3 +10,5 @@ Make sure to run setup.sh before you do anything so you can download the require
 7. Install dependencies `pip install -r requirements.txt`
 8. Run the bash script for the python file you want to run. eg: `sbatch inference.sh`
 9. Terminal output will appear in the .log file specified in the bash script.
+
+Alternatively do `./run.sh`

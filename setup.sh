@@ -4,7 +4,7 @@
 # PolyBench (if missing)
 if [ ! -d "PolyBenchC-4.2.1" ]; then
     echo "Cloning PolyBench..."
-    git clone https://github.com/PolyBench/PolyBenchC.git PolyBenchC-4.2.1
+    git clone https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1
 fi
 
 # Embench-IoT (if missing)

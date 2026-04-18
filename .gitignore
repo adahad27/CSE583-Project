@@ -1,6 +1,11 @@
 .vscode/
 .env/
+env/
 inference.log
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
 # # Ignore everything by default
 # /*

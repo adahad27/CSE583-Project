@@ -1,3 +1,4 @@
+filename, loop header label, loop end label, function name, unroll factor
 LLVM-IR-DATA/combined.ll, %4, %15, sglib_hashed_ilist_init, 19
 LLVM-IR-DATA/combined.ll, %7, %37, sglib_hashed_ilist_it_next, 19
 LLVM-IR-DATA/combined.ll, %355, %370, benchmark_body, 10

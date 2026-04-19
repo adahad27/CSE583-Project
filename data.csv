@@ -1,9 +1,4 @@
 filename, start label, end label, num float ops, num branches, num operands, num memory ops, num unique predicates, trip count, num uses, num blocks in lp, loop depth, function name, unroll factor
-LLVM-IR-DATA/combined.ll, %4, %15, 0,3,20,6,1,32,8,3,1, sglib_hashed_ilist_init, 19
-LLVM-IR-DATA/combined.ll, %7, %37, 0,4,59,15,2,32,28,4,1, sglib_hashed_ilist_it_next, 19
-LLVM-IR-DATA/combined.ll, %355, %370, 0,3,33,9,1,32,12,3,3, benchmark_body, 10
-LLVM-IR-DATA/combined.ll, %384, %408, 0,5,53,12,2,32,19,5,3, benchmark_body, 10
-LLVM-IR-DATA/combined.ll, %671, %696, 0,5,54,13,2,32,20,5,3, benchmark_body, 10
 LLVM-IR-DATA/crc_32.ll, %3, %21, 0,3,32,7,1,32,15,3,1, crc32pseudo, 32
 LLVM-IR-DATA/libedn.ll, %8, %31, 0,3,36,11,1,32,21,3,1, vec_mpy1, 30
 LLVM-IR-DATA/libedn.ll, %13, %48, 0,3,53,19,1,32,32,3,1, mac, 25
@@ -74,10 +69,6 @@ LLVM-IR-DATA/adi.ll, %96, %194, 7,3,159,45,1,32,95,3,3, kernel_adi, 2
 LLVM-IR-DATA/adi.ll, %205, %245, 0,3,64,19,1,32,37,3,3, kernel_adi, 2
 LLVM-IR-DATA/adi.ll, %277, %375, 7,3,159,45,1,32,95,3,3, kernel_adi, 2
 LLVM-IR-DATA/adi.ll, %386, %426, 0,3,64,19,1,32,37,3,3, kernel_adi, 2
-LLVM-IR-DATA/atax.ll, %14, %31, 2,3,28,9,1,32,14,3,1, init_array, 15
-LLVM-IR-DATA/atax.ll, %37, %62, 1,3,40,12,1,32,22,3,2, init_array, 21
-LLVM-IR-DATA/atax.ll, %37, %68, 0,3,48,17,1,32,28,3,2, kernel_atax, 42
-LLVM-IR-DATA/atax.ll, %69, %100, 0,3,48,17,1,32,28,3,2, kernel_atax, 42
 LLVM-IR-DATA/bicg.ll, %13, %32, 1,3,30,10,1,32,16,3,1, init_array, 10
 LLVM-IR-DATA/bicg.ll, %49, %74, 1,3,40,12,1,32,22,3,2, init_array, 20
 LLVM-IR-DATA/bicg.ll, %39, %93, 0,3,82,30,1,32,51,3,2, kernel_bicg, 20

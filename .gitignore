@@ -35,6 +35,13 @@ __pycache__/
 /llvm-test-suite/
 /NPB3.0-omp-C/
 
+# Ignore model artifacts, but keep evaluation outputs and run notes for specific runs
+models/**
+!models/**/
+!models/**/eval_predictions.csv
+!models/**/trainer_log_history.json
+
+
 # Common build artifacts to ignore (backup safety)
 *.o
 *.a

@@ -1,160 +1,161 @@
-filename, loop header label, loop end label, function name, unroll factor
-LLVM-IR-DATA/combined.ll, %4, %15, sglib_hashed_ilist_init, 19
-LLVM-IR-DATA/combined.ll, %7, %37, sglib_hashed_ilist_it_next, 19
-LLVM-IR-DATA/combined.ll, %355, %370, benchmark_body, 10
-LLVM-IR-DATA/combined.ll, %384, %408, benchmark_body, 10
-LLVM-IR-DATA/combined.ll, %671, %696, benchmark_body, 10
-LLVM-IR-DATA/crc_32.ll, %3, %21, crc32pseudo, 32
-LLVM-IR-DATA/libedn.ll, %8, %31, vec_mpy1, 30
-LLVM-IR-DATA/libedn.ll, %13, %48, mac, 25
-LLVM-IR-DATA/libedn.ll, %14, %37, fir, 50
-LLVM-IR-DATA/libedn.ll, %23, %85, fir_no_red_ld, 16
-LLVM-IR-DATA/libedn.ll, %28, %69, latsynth, 11
-LLVM-IR-DATA/libedn.ll, %16, %75, iir1, 50
-LLVM-IR-DATA/libedn.ll, %22, %84, jpegdct, 4
-LLVM-IR-DATA/libedn.ll, %12, %407, jpegdct, 2
-LLVM-IR-DATA/libedn.ll, %17, %387, jpegdct, 8
-LLVM-IR-DATA/libhuffbench.ll, %62, %80, compdecomp, 16
-LLVM-IR-DATA/libhuffbench.ll, %364, %412, compdecomp, 5
-LLVM-IR-DATA/libpicojpeg.ll, %281, %296, decodeNextMCU, 16
-LLVM-IR-DATA/libpicojpeg.ll, %236, %249, decodeNextMCU, 3
-LLVM-IR-DATA/libpicojpeg.ll, %33, %323, idctRows, 8
-LLVM-IR-DATA/libpicojpeg.ll, %21, %42, copyY, 64
-LLVM-IR-DATA/libpicojpeg.ll, %18, %61, convertCb, 8
-LLVM-IR-DATA/libpicojpeg.ll, %18, %61, convertCr, 8
-LLVM-IR-DATA/libpicojpeg.ll, %30, %89, upsampleCbV, 8
-LLVM-IR-DATA/libpicojpeg.ll, %30, %89, upsampleCrV, 8
-LLVM-IR-DATA/libpicojpeg.ll, %30, %89, upsampleCbH, 4
-LLVM-IR-DATA/libpicojpeg.ll, %30, %89, upsampleCrH, 4
-LLVM-IR-DATA/libpicojpeg.ll, %30, %117, upsampleCb, 4
-LLVM-IR-DATA/libpicojpeg.ll, %30, %117, upsampleCr, 4
-LLVM-IR-DATA/libpicojpeg.ll, %59, %79, readDHTMarker, 16
-LLVM-IR-DATA/libpicojpeg.ll, %46, %79, readDQTMarker, 2
-LLVM-IR-DATA/libpicojpeg.ll, %9, %80, huffCreate, 16
-LLVM-IR-DATA/libpicojpeg.ll, %5, %34, createWinogradQuant, 64
-LLVM-IR-DATA/libud.ll, %27, %69, benchmark_body, 6
-LLVM-IR-DATA/libud.ll, %22, %77, benchmark_body, 6
-LLVM-IR-DATA/libud.ll, %10, %135, ludcmp, 5
-LLVM-IR-DATA/libud.ll, %93, %119, ludcmp, 2
-LLVM-IR-DATA/libud.ll, %32, %57, ludcmp, 3
-LLVM-IR-DATA/libud.ll, %80, %131, ludcmp, 5
-LLVM-IR-DATA/libud.ll, %17, %77, ludcmp, 4
-LLVM-IR-DATA/libud.ll, %138, %177, ludcmp, 5
-LLVM-IR-DATA/libud.ll, %147, %169, ludcmp, 2
-LLVM-IR-DATA/libud.ll, %195, %243, ludcmp, 5
-LLVM-IR-DATA/libwikisort.ll, %16, %62, InsertionSort, 24
-LLVM-IR-DATA/libwikisort.ll, %28, %49, benchmark_body, 40
-LLVM-IR-DATA/matmult-int.ll, %25, %58, Multiply, 20
-LLVM-IR-DATA/matmult-int.ll, %14, %62, Multiply, 2
-LLVM-IR-DATA/matmult-int.ll, %7, %22, initialise_benchmark, 20
-LLVM-IR-DATA/matmult-int.ll, %31, %46, initialise_benchmark, 20
-LLVM-IR-DATA/md5.ll, %57, %164, md5, 4
-LLVM-IR-DATA/md5.ll, %26, %40, benchmark_body, 125
-LLVM-IR-DATA/mont64.ll, %9, %37, modul64, 64
-LLVM-IR-DATA/mont64.ll, %15, %43, xbinGCD, 64
-LLVM-IR-DATA/nettle-aes.ll, %21, %71, _aes_set_key, 8
-LLVM-IR-DATA/nettle-aes.ll, %76, %99, _nettle_aes_invert, 4
-LLVM-IR-DATA/nettle-aes.ll, %26, %62, _nettle_aes_invert, 4
-LLVM-IR-DATA/nettle-aes.ll, %5, %38, verify_benchmark, 8
-LLVM-IR-DATA/nettle-sha256.ll, %17, %64, _nettle_write_be32, 8
-LLVM-IR-DATA/nettle-sha256.ll, %18, %52, _nettle_sha256_compress, 16
-LLVM-IR-DATA/nettle-sha256.ll, %78, %641, _nettle_sha256_compress, 2
-LLVM-IR-DATA/nettle-sha256.ll, %5, %23, verify_benchmark, 2
-LLVM-IR-DATA/xgboost.ll, %27, %117, predict, 40
-LLVM-IR-DATA/xgboost.ll, %124, %147, predict, 9
-LLVM-IR-DATA/xgboost.ll, %44, %84, predict, 5
-LLVM-IR-DATA/2mm.ll, %43, %78, kernel_2mm, 25
-LLVM-IR-DATA/2mm.ll, %107, %140, kernel_2mm, 36
-LLVM-IR-DATA/3mm.ll, %45, %78, kernel_3mm, 40
-LLVM-IR-DATA/3mm.ll, %104, %137, kernel_3mm, 40
-LLVM-IR-DATA/3mm.ll, %163, %196, kernel_3mm, 36
-LLVM-IR-DATA/adi.ll, %12, %36, init_array, 25
-LLVM-IR-DATA/adi.ll, %96, %194, kernel_adi, 2
-LLVM-IR-DATA/adi.ll, %205, %245, kernel_adi, 2
-LLVM-IR-DATA/adi.ll, %277, %375, kernel_adi, 2
-LLVM-IR-DATA/adi.ll, %386, %426, kernel_adi, 2
-LLVM-IR-DATA/atax.ll, %14, %31, init_array, 15
-LLVM-IR-DATA/atax.ll, %37, %62, init_array, 21
-LLVM-IR-DATA/atax.ll, %37, %68, kernel_atax, 42
-LLVM-IR-DATA/atax.ll, %69, %100, kernel_atax, 42
-LLVM-IR-DATA/bicg.ll, %13, %32, init_array, 10
-LLVM-IR-DATA/bicg.ll, %49, %74, init_array, 20
-LLVM-IR-DATA/bicg.ll, %39, %93, kernel_bicg, 20
-LLVM-IR-DATA/cholesky.ll, %106, %139, init_array, 25
-LLVM-IR-DATA/cholesky.ll, %153, %176, init_array, 50
-LLVM-IR-DATA/correlation.ll, %16, %38, init_array, 25
-LLVM-IR-DATA/correlation.ll, %28, %50, kernel_correlation, 56
-LLVM-IR-DATA/correlation.ll, %71, %113, kernel_correlation, 40
-LLVM-IR-DATA/correlation.ll, %160, %199, kernel_correlation, 20
-LLVM-IR-DATA/correlation.ll, %231, %264, kernel_correlation, 40
-LLVM-IR-DATA/covariance.ll, %18, %38, init_array, 30
-LLVM-IR-DATA/covariance.ll, %25, %47, kernel_covariance, 56
-LLVM-IR-DATA/covariance.ll, %64, %86, kernel_covariance, 48
-LLVM-IR-DATA/covariance.ll, %109, %142, kernel_covariance, 40
-LLVM-IR-DATA/deriche.ll, %19, %42, init_array, 27
-LLVM-IR-DATA/deriche.ll, %95, %146, kernel_deriche, 27
-LLVM-IR-DATA/deriche.ll, %158, %202, kernel_deriche, 30
-LLVM-IR-DATA/deriche.ll, %212, %246, kernel_deriche, 36
-LLVM-IR-DATA/deriche.ll, %256, %307, kernel_deriche, 16
-LLVM-IR-DATA/deriche.ll, %319, %363, kernel_deriche, 32
-LLVM-IR-DATA/deriche.ll, %373, %407, kernel_deriche, 36
-LLVM-IR-DATA/doitgen.ll, %74, %97, kernel_doitgen, 160
-LLVM-IR-DATA/doitgen.ll, %36, %69, kernel_doitgen, 40
-LLVM-IR-DATA/doitgen.ll, %24, %53, init_array, 20
-LLVM-IR-DATA/durbin.ll, %7, %24, init_array, 25
-LLVM-IR-DATA/durbin.ll, %23, %120, kernel_durbin, 2
-LLVM-IR-DATA/fdtd-2d.ll, %37, %93, init_array, 10
-LLVM-IR-DATA/fdtd-2d.ll, %23, %41, kernel_fdtd_2d, 80
-LLVM-IR-DATA/fdtd-2d.ll, %47, %89, kernel_fdtd_2d, 25
-LLVM-IR-DATA/fdtd-2d.ll, %99, %141, kernel_fdtd_2d, 11
-LLVM-IR-DATA/fdtd-2d.ll, %94, %145, kernel_fdtd_2d, 2
-LLVM-IR-DATA/fdtd-2d.ll, %152, %214, kernel_fdtd_2d, 11
-LLVM-IR-DATA/floyd-warshall.ll, %12, %58, init_array, 10
-LLVM-IR-DATA/floyd-warshall.ll, %18, %88, kernel_floyd_warshall, 28
-LLVM-IR-DATA/gemm.ll, %26, %51, init_array, 20
-LLVM-IR-DATA/gemm.ll, %61, %86, init_array, 20
-LLVM-IR-DATA/gemm.ll, %96, %121, init_array, 20
-LLVM-IR-DATA/gemm.ll, %25, %43, kernel_gemm, 55
-LLVM-IR-DATA/gemver.ll, %101, %125, init_array, 20
-LLVM-IR-DATA/gemver.ll, %32, %77, kernel_gemver, 25
-LLVM-IR-DATA/gemver.ll, %87, %120, kernel_gemver, 40
-LLVM-IR-DATA/gemver.ll, %125, %148, kernel_gemver, 25
-LLVM-IR-DATA/gemver.ll, %154, %187, kernel_gemver, 40
-LLVM-IR-DATA/gesummv.ll, %33, %75, init_array, 10
-LLVM-IR-DATA/gesummv.ll, %32, %86, kernel_gesummv, 20
-LLVM-IR-DATA/gramschmidt.ll, %103, %136, kernel_gramschmidt, 40
-LLVM-IR-DATA/gramschmidt.ll, %137, %178, kernel_gramschmidt, 25
-LLVM-IR-DATA/heat-3d.ll, %20, %60, init_array, 24
-LLVM-IR-DATA/heat-3d.ll, %29, %174, kernel_heat_3d, 2
-LLVM-IR-DATA/heat-3d.ll, %23, %178, kernel_heat_3d, 2
-LLVM-IR-DATA/heat-3d.ll, %17, %182, kernel_heat_3d, 2
-LLVM-IR-DATA/heat-3d.ll, %195, %340, kernel_heat_3d, 2
-LLVM-IR-DATA/heat-3d.ll, %189, %344, kernel_heat_3d, 2
-LLVM-IR-DATA/heat-3d.ll, %183, %348, kernel_heat_3d, 2
-LLVM-IR-DATA/jacobi-1d.ll, %8, %36, init_array, 10
-LLVM-IR-DATA/jacobi-1d.ll, %16, %49, kernel_jacobi_1d, 27
-LLVM-IR-DATA/jacobi-1d.ll, %50, %83, kernel_jacobi_1d, 27
-LLVM-IR-DATA/jacobi-2d.ll, %14, %54, init_array, 13
-LLVM-IR-DATA/jacobi-2d.ll, %23, %88, kernel_jacobi_2d, 11
-LLVM-IR-DATA/jacobi-2d.ll, %99, %164, kernel_jacobi_2d, 11
-LLVM-IR-DATA/lu.ll, %106, %139, init_array, 25
-LLVM-IR-DATA/lu.ll, %153, %176, init_array, 50
-LLVM-IR-DATA/ludcmp.ll, %143, %176, init_array, 25
-LLVM-IR-DATA/ludcmp.ll, %190, %213, init_array, 50
-LLVM-IR-DATA/mvt.ll, %67, %91, init_array, 20
-LLVM-IR-DATA/mvt.ll, %20, %51, kernel_mvt, 40
-LLVM-IR-DATA/mvt.ll, %61, %92, kernel_mvt, 40
-LLVM-IR-DATA/seidel-2d.ll, %12, %36, init_array, 25
-LLVM-IR-DATA/seidel-2d.ll, %22, %131, kernel_seidel_2d, 9
-LLVM-IR-DATA/symm.ll, %24, %64, init_array, 10
-LLVM-IR-DATA/symm.ll, %24, %125, kernel_symm, 30
-LLVM-IR-DATA/syr2k.ll, %24, %66, init_array, 10
-LLVM-IR-DATA/syr2k.ll, %76, %101, init_array, 20
-LLVM-IR-DATA/syr2k.ll, %42, %106, kernel_syr2k, 10
-LLVM-IR-DATA/syrk.ll, %22, %47, init_array, 20
-LLVM-IR-DATA/syrk.ll, %57, %82, init_array, 20
-LLVM-IR-DATA/syrk.ll, %40, %84, kernel_syrk, 20
-LLVM-IR-DATA/trisolv.ll, %11, %56, init_array, 5
-LLVM-IR-DATA/trisolv.ll, %11, %75, kernel_trisolv, 5
-LLVM-IR-DATA/trmm.ll, %51, %77, init_array, 20
-LLVM-IR-DATA/trmm.ll, %19, %80, kernel_trmm, 16
+filename, start label, end label, num float ops, num branches, num operands, num unique predicates, trip count, num uses, num blocks in lp, loop depth
+LLVM-IR-DATA/combined.ll, %4, %15, 0,3,20,6,1,-1,8,3,1, sglib_hashed_ilist_init, 19
+LLVM-IR-DATA/combined.ll, %7, %37, 0,4,59,15,2,-1,28,4,1, sglib_hashed_ilist_it_next, 19
+LLVM-IR-DATA/combined.ll, %355, %370, 0,3,33,9,1,-1,12,3,3, benchmark_body, 10
+LLVM-IR-DATA/combined.ll, %384, %408, 0,5,53,12,2,-1,19,5,3, benchmark_body, 10
+LLVM-IR-DATA/combined.ll, %671, %696, 0,5,54,13,2,-1,20,5,3, benchmark_body, 10
+LLVM-IR-DATA/crc_32.ll, %3, %21, 0,3,32,7,1,-1,15,3,1, crc32pseudo, 32
+LLVM-IR-DATA/libedn.ll, %8, %31, 0,3,36,11,1,-1,21,3,1, vec_mpy1, 30
+LLVM-IR-DATA/libedn.ll, %13, %48, 0,3,53,19,1,-1,32,3,1, mac, 25
+LLVM-IR-DATA/libedn.ll, %14, %37, 0,3,36,12,1,-1,20,3,2, fir, 50
+LLVM-IR-DATA/libedn.ll, %23, %85, 0,3,101,37,1,-1,59,3,2, fir_no_red_ld, 16
+LLVM-IR-DATA/libedn.ll, %28, %69, 0,3,63,21,1,-1,38,3,1, latsynth, 11
+LLVM-IR-DATA/libedn.ll, %16, %75, 0,3,100,34,1,-1,56,3,1, iir1, 50
+LLVM-IR-DATA/libedn.ll, %22, %84, 0,3,89,23,1,-1,59,3,3, jpegdct, 4
+LLVM-IR-DATA/libedn.ll, %12, %407, 0,11,676,153,1,-1,384,11,1, jpegdct, 2
+LLVM-IR-DATA/libedn.ll, %17, %387, 0,7,631,141,0,-1,363,7,2, jpegdct, 8
+LLVM-IR-DATA/libhuffbench.ll, %62, %80, 0,5,36,10,2,-1,13,5,1, compdecomp, 16
+LLVM-IR-DATA/libhuffbench.ll, %364, %412, 0,8,99,31,3,-1,40,8,1, compdecomp, 5
+LLVM-IR-DATA/libpicojpeg.ll, %281, %296, 0,3,30,7,1,-1,13,3,3, decodeNextMCU, 16
+LLVM-IR-DATA/libpicojpeg.ll, %236, %249, 0,2,28,7,1,-1,12,2,3, decodeNextMCU, 3
+LLVM-IR-DATA/libpicojpeg.ll, %33, %323, 0,6,462,162,2,-1,284,6,1, idctRows, 8
+LLVM-IR-DATA/libpicojpeg.ll, %21, %42, 0,3,47,19,1,-1,22,3,1, copyY, 64
+LLVM-IR-DATA/libpicojpeg.ll, %18, %61, 0,3,81,26,1,-1,41,3,1, convertCb, 8
+LLVM-IR-DATA/libpicojpeg.ll, %18, %61, 0,3,81,26,1,-1,41,3,1, convertCr, 8
+LLVM-IR-DATA/libpicojpeg.ll, %30, %89, 0,3,111,36,1,-1,57,3,2, upsampleCbV, 8
+LLVM-IR-DATA/libpicojpeg.ll, %30, %89, 0,3,111,36,1,-1,57,3,2, upsampleCrV, 8
+LLVM-IR-DATA/libpicojpeg.ll, %30, %89, 0,3,111,36,1,-1,57,3,2, upsampleCbH, 4
+LLVM-IR-DATA/libpicojpeg.ll, %30, %89, 0,3,111,36,1,-1,57,3,2, upsampleCrH, 4
+LLVM-IR-DATA/libpicojpeg.ll, %30, %117, 0,3,163,56,1,-1,85,3,2, upsampleCb, 4
+LLVM-IR-DATA/libpicojpeg.ll, %30, %117, 0,3,163,56,1,-1,85,3,2, upsampleCr, 4
+LLVM-IR-DATA/libpicojpeg.ll, %59, %79, 0,3,36,10,1,-1,17,3,2, readDHTMarker, 16
+LLVM-IR-DATA/libpicojpeg.ll, %46, %79, 0,8,61,14,1,-1,25,8,2, readDQTMarker, 2
+LLVM-IR-DATA/libpicojpeg.ll, %9, %80, 0,5,131,38,2,-1,67,5,1, huffCreate, 16
+LLVM-IR-DATA/libpicojpeg.ll, %5, %34, 0,3,48,15,1,-1,26,3,1, createWinogradQuant, 64
+LLVM-IR-DATA/libud.ll, %27, %69, 0,5,74,20,2,-1,38,5,4, benchmark_body, 6
+LLVM-IR-DATA/libud.ll, %22, %77, 0,9,101,29,1,-1,47,9,3, benchmark_body, 6
+LLVM-IR-DATA/libud.ll, %10, %135, 0,21,224,62,1,-1,104,21,1, ludcmp, 5
+LLVM-IR-DATA/libud.ll, %93, %119, 0,3,45,12,1,-1,23,3,3, ludcmp, 2
+LLVM-IR-DATA/libud.ll, %32, %57, 0,3,43,12,1,-1,22,3,3, ludcmp, 3
+LLVM-IR-DATA/libud.ll, %80, %131, 0,7,92,25,0,-1,44,7,2, ludcmp, 5
+LLVM-IR-DATA/libud.ll, %17, %77, 0,9,106,29,3,-1,51,9,2, ludcmp, 4
+LLVM-IR-DATA/libud.ll, %138, %177, 0,7,71,22,2,-1,32,7,1, ludcmp, 5
+LLVM-IR-DATA/libud.ll, %147, %169, 0,3,38,11,1,-1,19,3,2, ludcmp, 2
+LLVM-IR-DATA/libud.ll, %195, %243, 0,7,86,25,2,-1,41,7,1, ludcmp, 5
+LLVM-IR-DATA/libud.ll, %205, %227, 0,3,38,11,1,-1,19,3,2, ludcmp, 0
+LLVM-IR-DATA/libwikisort.ll, %16, %62, 0,9,92,23,3,-1,37,9,1, InsertionSort, 24
+LLVM-IR-DATA/libwikisort.ll, %28, %49, 0,3,46,12,1,-1,18,3,4, benchmark_body, 40
+LLVM-IR-DATA/matmult-int.ll, %25, %58, 0,3,52,16,1,-1,31,3,3, Multiply, 20
+LLVM-IR-DATA/matmult-int.ll, %14, %62, 0,7,80,24,0,-1,42,7,2, Multiply, 2
+LLVM-IR-DATA/matmult-int.ll, %7, %22, 0,3,27,6,1,-1,12,3,2, initialise_benchmark, 20
+LLVM-IR-DATA/matmult-int.ll, %31, %46, 0,3,27,6,1,-1,12,3,2, initialise_benchmark, 20
+LLVM-IR-DATA/md5.ll, %57, %164, 0,12,190,60,0,-1,95,12,2, md5, 4
+LLVM-IR-DATA/md5.ll, %26, %40, 0,3,23,8,1,-1,11,3,3, benchmark_body, 125
+LLVM-IR-DATA/mont64.ll, %9, %37, 0,5,55,18,2,-1,23,5,1, modul64, 64
+LLVM-IR-DATA/mont64.ll, %15, %43, 0,5,54,16,2,-1,23,5,1, xbinGCD, 64
+LLVM-IR-DATA/nettle-aes.ll, %21, %71, 0,3,77,19,1,-1,47,3,1, _aes_set_key, 8
+LLVM-IR-DATA/nettle-aes.ll, %76, %99, 0,3,37,12,1,-1,20,3,2, _nettle_aes_invert, 4
+LLVM-IR-DATA/nettle-aes.ll, %26, %62, 0,5,56,21,1,-1,31,5,2, _nettle_aes_invert, 4
+LLVM-IR-DATA/nettle-aes.ll, %5, %38, 0,7,57,13,1,-1,26,7,1, verify_benchmark, 8
+LLVM-IR-DATA/nettle-sha256.ll, %17, %64, 0,5,79,26,1,-1,42,5,1, _nettle_write_be32, 8
+LLVM-IR-DATA/nettle-sha256.ll, %18, %52, 0,3,57,15,1,-1,31,3,1, _nettle_sha256_compress, 16
+LLVM-IR-DATA/nettle-sha256.ll, %78, %641, 0,19,927,263,1,-1,544,19,1, _nettle_sha256_compress, 2
+LLVM-IR-DATA/nettle-sha256.ll, %5, %23, 0,5,33,8,2,-1,13,5,1, verify_benchmark, 2
+LLVM-IR-DATA/xgboost.ll, %27, %117, 0,9,164,56,3,-1,82,9,2, predict, 40
+LLVM-IR-DATA/xgboost.ll, %124, %147, 0,5,40,11,2,-1,18,5,1, predict, 9
+LLVM-IR-DATA/xgboost.ll, %44, %84, 0,5,61,21,2,-1,35,5,3, predict, 5
+LLVM-IR-DATA/2mm.ll, %43, %78, 1,3,56,18,1,-1,33,3,3, kernel_2mm, 25
+LLVM-IR-DATA/2mm.ll, %107, %140, 0,3,53,17,1,-1,31,3,3, kernel_2mm, 36
+LLVM-IR-DATA/3mm.ll, %45, %78, 0,3,53,17,1,-1,31,3,3, kernel_3mm, 40
+LLVM-IR-DATA/3mm.ll, %104, %137, 0,3,53,17,1,-1,31,3,3, kernel_3mm, 40
+LLVM-IR-DATA/3mm.ll, %163, %196, 0,3,53,17,1,-1,31,3,3, kernel_3mm, 36
+LLVM-IR-DATA/adi.ll, %12, %36, 1,3,38,12,1,-1,21,3,2, init_array, 25
+LLVM-IR-DATA/adi.ll, %96, %194, 7,3,159,45,1,-1,95,3,3, kernel_adi, 2
+LLVM-IR-DATA/adi.ll, %205, %245, 0,3,64,19,1,-1,37,3,3, kernel_adi, 2
+LLVM-IR-DATA/adi.ll, %277, %375, 7,3,159,45,1,-1,95,3,3, kernel_adi, 2
+LLVM-IR-DATA/adi.ll, %386, %426, 0,3,64,19,1,-1,37,3,3, kernel_adi, 2
+LLVM-IR-DATA/atax.ll, %14, %31, 2,3,28,9,1,-1,14,3,1, init_array, 15
+LLVM-IR-DATA/atax.ll, %37, %62, 1,3,40,12,1,-1,22,3,2, init_array, 21
+LLVM-IR-DATA/atax.ll, %37, %68, 0,3,48,17,1,-1,28,3,2, kernel_atax, 42
+LLVM-IR-DATA/atax.ll, %69, %100, 0,3,48,17,1,-1,28,3,2, kernel_atax, 42
+LLVM-IR-DATA/bicg.ll, %13, %32, 1,3,30,10,1,-1,16,3,1, init_array, 10
+LLVM-IR-DATA/bicg.ll, %49, %74, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/bicg.ll, %39, %93, 0,3,82,30,1,-1,51,3,2, kernel_bicg, 20
+LLVM-IR-DATA/cholesky.ll, %106, %139, 0,3,54,17,1,-1,31,3,3, init_array, 25
+LLVM-IR-DATA/cholesky.ll, %153, %176, 0,3,38,12,1,-1,20,3,2, init_array, 50
+LLVM-IR-DATA/correlation.ll, %16, %38, 2,3,36,10,1,-1,19,3,2, init_array, 25
+LLVM-IR-DATA/correlation.ll, %28, %50, 1,3,35,12,1,-1,20,3,2, kernel_correlation, 56
+LLVM-IR-DATA/correlation.ll, %71, %113, 2,3,64,22,1,-1,40,3,2, kernel_correlation, 40
+LLVM-IR-DATA/correlation.ll, %160, %199, 3,3,61,21,1,-1,38,3,2, kernel_correlation, 20
+LLVM-IR-DATA/correlation.ll, %231, %264, 0,3,53,17,1,-1,31,3,3, kernel_correlation, 40
+LLVM-IR-DATA/covariance.ll, %18, %38, 2,3,33,9,1,-1,17,3,2, init_array, 30
+LLVM-IR-DATA/covariance.ll, %25, %47, 1,3,35,12,1,-1,20,3,2, kernel_covariance, 56
+LLVM-IR-DATA/covariance.ll, %64, %86, 1,3,35,12,1,-1,20,3,2, kernel_covariance, 48
+LLVM-IR-DATA/covariance.ll, %109, %142, 0,3,53,17,1,-1,31,3,3, kernel_covariance, 40
+LLVM-IR-DATA/deriche.ll, %19, %42, 1,3,39,10,1,-1,20,3,2, init_array, 27
+LLVM-IR-DATA/deriche.ll, %95, %146, 1,3,87,31,1,-1,48,3,2, kernel_deriche, 27
+LLVM-IR-DATA/deriche.ll, %158, %202, 1,3,79,29,1,-1,41,3,2, kernel_deriche, 30
+LLVM-IR-DATA/deriche.ll, %212, %246, 2,3,53,17,1,-1,31,3,2, kernel_deriche, 36
+LLVM-IR-DATA/deriche.ll, %256, %307, 1,3,87,31,1,-1,48,3,2, kernel_deriche, 16
+LLVM-IR-DATA/deriche.ll, %319, %363, 1,3,79,29,1,-1,41,3,2, kernel_deriche, 32
+LLVM-IR-DATA/deriche.ll, %373, %407, 2,3,53,17,1,-1,31,3,2, kernel_deriche, 36
+LLVM-IR-DATA/doitgen.ll, %74, %97, 0,3,37,12,1,-1,20,3,3, kernel_doitgen, 160
+LLVM-IR-DATA/doitgen.ll, %36, %69, 0,3,53,17,1,-1,31,3,4, kernel_doitgen, 40
+LLVM-IR-DATA/doitgen.ll, %24, %53, 1,3,46,14,1,-1,26,3,3, init_array, 20
+LLVM-IR-DATA/durbin.ll, %7, %24, 0,3,28,9,1,-1,14,3,1, init_array, 25
+LLVM-IR-DATA/durbin.ll, %23, %120, 5,15,168,58,0,-1,82,15,1, kernel_durbin, 2
+LLVM-IR-DATA/fdtd-2d.ll, %37, %93, 6,3,86,25,1,-1,53,3,2, init_array, 10
+LLVM-IR-DATA/fdtd-2d.ll, %23, %41, 0,3,30,10,1,-1,15,3,2, kernel_fdtd_2d, 80
+LLVM-IR-DATA/fdtd-2d.ll, %47, %89, 1,3,67,20,1,-1,39,3,3, kernel_fdtd_2d, 25
+LLVM-IR-DATA/fdtd-2d.ll, %99, %141, 1,3,67,20,1,-1,39,3,3, kernel_fdtd_2d, 11
+LLVM-IR-DATA/fdtd-2d.ll, %94, %145, 1,7,84,25,0,-1,44,7,2, kernel_fdtd_2d, 2
+LLVM-IR-DATA/fdtd-2d.ll, %152, %214, 3,3,97,28,1,-1,59,3,3, kernel_fdtd_2d, 11
+LLVM-IR-DATA/floyd-warshall.ll, %12, %58, 0,7,80,20,1,-1,39,7,2, init_array, 10
+LLVM-IR-DATA/floyd-warshall.ll, %18, %88, 0,6,105,32,0,-1,64,6,3, kernel_floyd_warshall, 28
+LLVM-IR-DATA/gemm.ll, %26, %51, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/gemm.ll, %61, %86, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/gemm.ll, %96, %121, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/gemm.ll, %25, %43, 1,3,30,10,1,-1,16,3,2, kernel_gemm, 55
+LLVM-IR-DATA/gemver.ll, %101, %125, 1,3,38,12,1,-1,21,3,2, init_array, 20
+LLVM-IR-DATA/gemver.ll, %32, %77, 0,3,69,24,1,-1,42,3,2, kernel_gemver, 25
+LLVM-IR-DATA/gemver.ll, %87, %120, 1,3,51,18,1,-1,30,3,2, kernel_gemver, 40
+LLVM-IR-DATA/gemver.ll, %125, %148, 1,3,35,13,1,-1,20,3,1, kernel_gemver, 25
+LLVM-IR-DATA/gemver.ll, %154, %187, 1,3,51,18,1,-1,30,3,2, kernel_gemver, 40
+LLVM-IR-DATA/gesummv.ll, %33, %75, 2,3,66,20,1,-1,39,3,2, init_array, 10
+LLVM-IR-DATA/gesummv.ll, %32, %86, 0,3,82,30,1,-1,51,3,2, kernel_gesummv, 20
+LLVM-IR-DATA/gramschmidt.ll, %103, %136, 0,3,53,17,1,-1,31,3,3, kernel_gramschmidt, 40
+LLVM-IR-DATA/gramschmidt.ll, %137, %178, 1,3,64,20,1,-1,38,3,3, kernel_gramschmidt, 25
+LLVM-IR-DATA/heat-3d.ll, %20, %60, 2,3,65,19,1,-1,38,3,3, init_array, 24
+LLVM-IR-DATA/heat-3d.ll, %29, %174, 5,3,235,59,1,-1,142,3,4, kernel_heat_3d, 2
+LLVM-IR-DATA/heat-3d.ll, %23, %178, 5,7,254,64,0,-1,148,7,3, kernel_heat_3d, 2
+LLVM-IR-DATA/heat-3d.ll, %17, %182, 5,11,273,69,0,-1,154,11,2, kernel_heat_3d, 2
+LLVM-IR-DATA/heat-3d.ll, %195, %340, 5,3,235,59,1,-1,142,3,4, kernel_heat_3d, 2
+LLVM-IR-DATA/heat-3d.ll, %189, %344, 5,7,254,64,0,-1,148,7,3, kernel_heat_3d, 2
+LLVM-IR-DATA/heat-3d.ll, %183, %348, 5,11,273,69,0,-1,154,11,2, kernel_heat_3d, 2
+LLVM-IR-DATA/jacobi-1d.ll, %8, %36, 4,3,44,14,1,-1,25,3,1, init_array, 10
+LLVM-IR-DATA/jacobi-1d.ll, %16, %49, 3,3,51,16,1,-1,30,3,2, kernel_jacobi_1d, 27
+LLVM-IR-DATA/jacobi-1d.ll, %50, %83, 3,3,51,16,1,-1,30,3,2, kernel_jacobi_1d, 27
+LLVM-IR-DATA/jacobi-2d.ll, %14, %54, 2,3,66,18,1,-1,37,3,2, init_array, 13
+LLVM-IR-DATA/jacobi-2d.ll, %23, %88, 5,3,101,28,1,-1,62,3,3, kernel_jacobi_2d, 11
+LLVM-IR-DATA/jacobi-2d.ll, %99, %164, 5,3,101,28,1,-1,62,3,3, kernel_jacobi_2d, 11
+LLVM-IR-DATA/lu.ll, %106, %139, 0,3,54,17,1,-1,31,3,3, init_array, 25
+LLVM-IR-DATA/lu.ll, %153, %176, 0,3,38,12,1,-1,20,3,2, init_array, 50
+LLVM-IR-DATA/ludcmp.ll, %143, %176, 0,3,54,17,1,-1,31,3,3, init_array, 25
+LLVM-IR-DATA/ludcmp.ll, %190, %213, 0,3,38,12,1,-1,20,3,2, init_array, 50
+LLVM-IR-DATA/mvt.ll, %67, %91, 1,3,38,12,1,-1,21,3,2, init_array, 20
+LLVM-IR-DATA/mvt.ll, %20, %51, 0,3,48,17,1,-1,28,3,2, kernel_mvt, 40
+LLVM-IR-DATA/mvt.ll, %61, %92, 0,3,48,17,1,-1,28,3,2, kernel_mvt, 40
+LLVM-IR-DATA/seidel-2d.ll, %12, %36, 1,3,40,11,1,-1,21,3,2, init_array, 25
+LLVM-IR-DATA/seidel-2d.ll, %22, %131, 9,3,169,44,1,-1,106,3,3, kernel_seidel_2d, 9
+LLVM-IR-DATA/symm.ll, %24, %64, 2,3,63,19,1,-1,37,3,2, init_array, 10
+LLVM-IR-DATA/symm.ll, %24, %125, 3,7,165,54,0,-1,95,7,2, kernel_symm, 30
+LLVM-IR-DATA/syr2k.ll, %24, %66, 2,3,66,20,1,-1,39,3,2, init_array, 10
+LLVM-IR-DATA/syr2k.ll, %76, %101, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/syr2k.ll, %42, %106, 4,7,102,32,2,-1,58,7,2, kernel_syr2k, 10
+LLVM-IR-DATA/syrk.ll, %22, %47, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/syrk.ll, %57, %82, 1,3,40,12,1,-1,22,3,2, init_array, 20
+LLVM-IR-DATA/syrk.ll, %40, %84, 1,7,73,23,2,-1,38,7,2, kernel_syrk, 20
+LLVM-IR-DATA/trisolv.ll, %11, %56, 2,7,75,24,2,-1,38,7,1, init_array, 5
+LLVM-IR-DATA/trisolv.ll, %11, %75, 2,7,100,36,0,-1,58,7,1, kernel_trisolv, 5
+LLVM-IR-DATA/trmm.ll, %51, %77, 1,3,41,13,1,-1,23,3,2, init_array, 20
+LLVM-IR-DATA/trmm.ll, %19, %80, 1,7,99,32,0,-1,55,7,2, kernel_trmm, 16

@@ -34,6 +34,7 @@ __pycache__/
 /embench-iot/
 /llvm-test-suite/
 /NPB3.0-omp-C/
+/speccpu2017
 
 # Ignore model artifacts, but keep evaluation outputs and run notes for specific runs
 models/**

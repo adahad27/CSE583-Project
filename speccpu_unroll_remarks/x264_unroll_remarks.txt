@@ -1,0 +1,1670 @@
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:155:1: remark: completely unrolled loop with 20 iterations [-Rpass=loop-unroll]
+  155 | MC_WEIGHT_C( mc_weight_w20, 20 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:155:1: remark: completely unrolled loop with 20 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:156:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  156 | MC_WEIGHT_C( mc_weight_w16, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:156:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:157:1: remark: completely unrolled loop with 12 iterations [-Rpass=loop-unroll]
+  157 | MC_WEIGHT_C( mc_weight_w12, 12 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:157:1: remark: completely unrolled loop with 12 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:158:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  158 | MC_WEIGHT_C( mc_weight_w8,   8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:158:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:159:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  159 | MC_WEIGHT_C( mc_weight_w4,   4 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:159:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:160:1: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  160 | MC_WEIGHT_C( mc_weight_w2,   2 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:160:1: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:70:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   70 |     for( int y = 0; y<height; y++, dst += i_dst, src1 += i_src1, src2 += i_src2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:70:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   70 |     for( int y = 0; y<height; y++, dst += i_dst, src1 += i_src1, src2 += i_src2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:70:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   70 |     for( int y = 0; y<height; y++, dst += i_dst, src1 += i_src1, src2 += i_src2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:70:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   70 |     for( int y = 0; y<height; y++, dst += i_dst, src1 += i_src1, src2 += i_src2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:70:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   70 |     for( int y = 0; y<height; y++, dst += i_dst, src1 += i_src1, src2 += i_src2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:54:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   54 |     for( int y = 0; y < height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:56:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   56 |         for( int x = 0; x < width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:302:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  302 |     while( h-- )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:364:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  364 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:364:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:378:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  378 |         for( int x = 0; x <= h->param.i_bframe; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:44:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+   44 |         for( int x = 0; x < i_width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:133:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  133 |             for( int x = 0; x < i_width; x++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:133:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:174:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  174 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:44:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+   44 |         for( int x = 0; x < i_width; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:133:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  133 |             for( int x = 0; x < i_width; x++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:133:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:174:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  174 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:174:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:174:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:325:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  325 |     for( int x = 0; x < stride-4; x++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:335:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  335 |     for( int x = 0; x < stride-8; x++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:344:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  344 |     for( int x = 0; x < stride-8; x++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  346 |     for( int x = 0; x < stride-8; x++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mc.c:352:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  352 |     for( int x = 0; x < stride-8; x++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:89:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   89 |     PREDICT_16x16_DC(0x80808080);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:81:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   81 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:85:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   85 |     PREDICT_16x16_DC(dc);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:71:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   71 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:75:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   75 |     PREDICT_16x16_DC(dc);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:124:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  124 |     for( int i = 0; i <= 7; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:139:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  139 |         for( int x = 0; x < 16; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:58:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   58 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:65:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   65 |     PREDICT_16x16_DC(dc);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:93:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   93 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:110:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  110 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:156:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  156 |     for( int y = 0; y < 8; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:193:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  193 |     for( int x = 0; x < 4; x++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:201:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  201 |     for( int y = 0; y < 8; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:167:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  167 |     for( int y = 0; y < 4; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:175:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  175 |     for( int y = 0; y < 4; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:181:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  181 |     for( int y = 0; y < 4; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:273:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  273 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:287:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  287 |         for( int x = 0; x < 8; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:284:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  284 |     for( int y = 0; y < 8; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:217:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  217 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:233:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  233 |     for( int y = 0; y < 4; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:240:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  240 |     for( int y = 0; y < 4; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:249:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  249 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:262:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  262 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:526:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  526 |     PREDICT_8x8_DC(0x80808080);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:538:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  538 |     PREDICT_8x8_DC(dc);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:532:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  532 |     PREDICT_8x8_DC(dc);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:546:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  546 |     PREDICT_8x8_DC(dc);
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/predict.c:559:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  559 |     for( int y = 0; y < 8; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:170:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  170 |         for( int x = 0; x < 8; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:168:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  168 |     for( int y = 0; y < 8; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:469:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  469 |             for( int x = 0; x < 4; x++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:468:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  468 |         for( int y = 0; y < 4; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:465:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  465 |     for( int z = 0; z < 2; z++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:160:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  160 | PIXEL_VAR_C( x264_pixel_var_8x8,    8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:160:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:159:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  159 | PIXEL_VAR_C( x264_pixel_var_16x16, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:283:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  283 |     for( int i = 0; i < 8; i++, pix1 += i_pix1, pix2 += i_pix2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:299:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  299 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:333:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  333 |     for( int i = 0; i < 8; i++, pix+=stride )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:345:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  345 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:354:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  354 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:214:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  214 |     for( int i = 0; i < 4; i++, pix1 += i_pix1, pix2 += i_pix2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:225:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  225 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:239:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  239 |     for( int i = 0; i < 4; i++, pix1 += i_pix1, pix2 += i_pix2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:247:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  247 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:97:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   97 | PIXEL_SSD_C( x264_pixel_ssd_4x4,    4,  4 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:97:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:96:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   96 | PIXEL_SSD_C( x264_pixel_ssd_4x8,    4,  8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:96:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:95:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   95 | PIXEL_SSD_C( x264_pixel_ssd_8x4,    8,  4 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:95:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:94:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   94 | PIXEL_SSD_C( x264_pixel_ssd_8x8,    8,  8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:94:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:93:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   93 | PIXEL_SSD_C( x264_pixel_ssd_8x16,   8, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:93:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:92:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   92 | PIXEL_SSD_C( x264_pixel_ssd_16x8,  16,  8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:92:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:91:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   91 | PIXEL_SSD_C( x264_pixel_ssd_16x16, 16, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:67:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   67 | PIXEL_SAD_C( x264_pixel_sad_4x4,    4,  4 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:67:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:66:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   66 | PIXEL_SAD_C( x264_pixel_sad_4x8,    4,  8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:66:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:65:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   65 | PIXEL_SAD_C( x264_pixel_sad_8x4,    8,  4 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:65:1: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:64:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   64 | PIXEL_SAD_C( x264_pixel_sad_8x8,    8,  8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:64:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:63:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   63 | PIXEL_SAD_C( x264_pixel_sad_8x16,   8, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:63:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:62:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   62 | PIXEL_SAD_C( x264_pixel_sad_16x8,  16,  8 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:62:1: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:61:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   61 | PIXEL_SAD_C( x264_pixel_sad_16x16, 16, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:124:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  124 |         for( y = 0; y < (i_height & ~7); y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:131:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  131 |             for( int x = 0; x < i_width; x++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:61:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   61 | PIXEL_SAD_C( x264_pixel_sad_16x16, 16, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/pixel.c:91:1: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   91 | PIXEL_SSD_C( x264_pixel_ssd_16x16, 16, 16 )
+      | ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:171:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  171 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:245:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  245 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:303:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  303 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:304:9: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+  304 |         for( int j = !i; j < 32; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:304:9: remark: completely unrolled loop with 31 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:306:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  306 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:329:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  329 |             for( int j = 0; j < 3; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:365:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  365 |             for( int j = 0; j < 3; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:411:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  411 |         for( int field = 0; field <= h->sh.b_mbaff; field++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:490:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  490 |     for( int i = -4; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:521:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  521 |             for( int k = 1; k < 4; k++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:534:17: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  534 |                 for( int k = 1; k < 4; k++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:831:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  831 |                 for( int i = 0; i < 4; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:854:21: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  854 |                     for( int i = 0; i < 4; i++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:1078:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+ 1078 |         for( int i = 0; i < 24; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:424:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  424 |     for( int i = 0; i < h->i_ref0 << h->sh.b_mbaff; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:424:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:697:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  697 |             for( int l = 0; l < (h->sh.i_type == SLICE_TYPE_B) + 1; l++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:759:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  759 |         for( int i = 0; i < h->mb.pic.i_fref[0]; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:761:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  761 |         for( int i = 0; i < h->mb.pic.i_fref[1]; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:773:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  773 |         for( int l = 0; l < (h->sh.i_type == SLICE_TYPE_B) + 1; l++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:514:9: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+  514 |         for( int j = 0; j < w; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:516:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  516 |     for( int j = 0; j < h->mb.pic.i_fref[0]; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/macroblock.c:530:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  530 |         for( int j = 0; j < h->mb.pic.i_fref[1]; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:48:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+   48 |     for( int i = 0; i < 3; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:57:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   57 |     for( int i = 1; i < 3; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:91:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   91 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:140:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  140 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:184:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  184 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:186:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  186 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:189:13: remark: completely unrolled loop with 18 iterations [-Rpass=loop-unroll]
+  189 |             for( int j = 0; j < X264_BFRAME_MAX+2; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:192:13: remark: completely unrolled loop with 17 iterations [-Rpass=loop-unroll]
+  192 |             for( int i = 0; i <= X264_BFRAME_MAX; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:191:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  191 |         for( int j = 0; j < 2; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:199:13: remark: completely unrolled loop with 18 iterations [-Rpass=loop-unroll]
+  199 |             for( int i = 0; i <= X264_BFRAME_MAX+1; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:234:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  234 |     for( int i = 0; i < 3; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:234:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:188:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  188 |         for( int i = 0; i < X264_BFRAME_MAX+2; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:198:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  198 |         for( int j = 0; j <= X264_BFRAME_MAX+1; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  261 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  261 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  261 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:270:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  270 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:274:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  274 |         for( int y = 0; y < i_padv; y++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  261 |     for( int y = 0; y < i_height; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:261:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:350:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  350 |             for( int y = 0; y < i_height; y++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/frame.c:406:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  406 |     while( i-- )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:73:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   73 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:86:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   86 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:42:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   42 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:55:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   55 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:342:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  342 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:349:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  349 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:105:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  105 |         for( int x = 0; x < i_size; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:103:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  103 |     for( int y = 0; y < i_size; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:288:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  288 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:295:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  295 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:366:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  366 |     for( int i = 0; i < 4; i++, p_dst += FDEC_STRIDE )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:385:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  385 |     for( int i = 0; i < 4; i++, dct += 4, p_dst += 4*FDEC_STRIDE )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:198:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  198 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:211:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  211 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:227:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  227 |         for( int x = 0; x < 4; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:225:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  225 |     for( int y = 0; y < 4; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:105:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  105 |         for( int x = 0; x < i_size; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:103:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  103 |     for( int y = 0; y < i_size; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:119:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  119 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:132:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  132 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:105:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  105 |         for( int x = 0; x < i_size; x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:103:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  103 |     for( int y = 0; y < i_size; y++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:524:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  524 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:526:9: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  526 |         for( int i = 0; i < 64; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:522:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  522 |     for( int j = 0; j < 2; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:694:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  694 |         for( int j = 0; j < 16; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/dct.c:691:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  691 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  808 |             while( bytes_outstanding > 0 )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/cabac.c:808:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.c:21:
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/common.h:826:
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:214:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  214 |     CQM_DELETE( 4, 4 );
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:214:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:214:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:214:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:214:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:215:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  215 |     CQM_DELETE( 8, 2 );
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:215:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:215:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:113:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  113 |     CQM_ALLOC( 4, 4 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:113:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:113:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:113:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:113:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:114:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  114 |     CQM_ALLOC( 8, 2 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:114:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:118:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  118 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:135:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  135 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:140:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  140 |         for( int i_list = 0; i_list < 2; i_list++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:151:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  151 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:151:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:151:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:163:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  163 |             for( int i_list = 0; i_list < 2; i_list++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:163:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:236:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  236 |     for( i = 0; i < length && (p = strpbrk( p, " \t\n," )) && (p = strpbrk( p, "0123456789" )); i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:116:5: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  116 |     for( int q = 0; q < 6; q++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/set.c:134:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  134 |         for( int i_list = 0; i_list < 4; i_list++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:220:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  220 |     for( i_last = i_count-1; i_last >= 3; i_last -= 4 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:220:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:223:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  223 |     while( i_last >= 0 && l[i_last] == 0 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:220:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  220 |     for( i_last = i_count-1; i_last >= 3; i_last -= 4 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:181:5: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+  181 |     while( idx >= 0 && M32( &dct[idx-1] ) == 0 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:181:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:181:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:116:9: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  116 |         for( int i = 0; i < 64; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:110:9: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  110 |         for( int i = 0; i < 64; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:135:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  135 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:128:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  128 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:98:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   98 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:92:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   92 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:64:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   64 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:56:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+   56 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/quant.c:223:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  223 |     while( i_last >= 0 && l[i_last] == 0 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:286:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  286 |             for( int i = 0, loc = X264_SCAN8_0+edge*s2; i < 4; i++, loc += s1 )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:285:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  285 |         for( int edge = 0; edge < 4; edge++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:286:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  286 |             for( int i = 0, loc = X264_SCAN8_0+edge*s2; i < 4; i++, loc += s1 )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:285:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  285 |         for( int edge = 0; edge < 4; edge++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:253:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  253 |     for( int d = 0; d < 8; d++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:173:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  173 |         for( int d = 0; d < 2; d++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:165:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  165 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:120:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  120 |         for( int d = 0; d < 4; d++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/deblock.c:281:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  281 |     for( int dir = 0; dir < 2; dir++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/vlc.c:694:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  694 |     for( int i_suffix = 0; i_suffix < 7; i_suffix++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mvpred.c:233:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  233 |     for( int i_list = 0; i_list < 2; i_list++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/mvpred.c:375:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  375 |         for( int l = 0; l < 2; l++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:37:
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:70:
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:860:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  860 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:865:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  865 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:870:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  870 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:874:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  874 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:878:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  878 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:842:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  842 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:854:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  854 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:900:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  900 |         for( i_list = 0; i_list < 2; i_list++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:953:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  953 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:959:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  959 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:948:17: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  948 |                 for( int i = 0; i < 16; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:969:17: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  969 |                 for( int i = 16; i < 24; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:283:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  283 |             for( int i4 = 0; i4 < 4; i4++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:439:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  439 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:444:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  444 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:448:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  448 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:453:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  453 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:456:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  456 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:417:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  417 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:431:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  431 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:526:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  526 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:540:13: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  540 |             for( int i = 16; i < 24; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:1019:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1019 |                 for( int i4 = 0; i4 < 4; i4++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:364:9: remark: completely unrolled loop with 128 iterations [-Rpass=loop-unroll]
+  364 |         for( int i_ctx = 0; i_ctx < 128; i_ctx++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:384:9: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+  384 |         for( int i = 0; i < 5; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:472:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  472 |     for( int j = 1; j < 8; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:523:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  523 |         for( int j = 0; j < 8; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:563:13: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  563 |             for( int j = 0; j < 8; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:545:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  545 |         for( int abs_level = q; abs_level >= q-1; abs_level-- )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:504:13: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  504 |             for( int j = 1; j < 8; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:618:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  618 |     for( int j = 1; j < 8; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:261:9: remark: completely unrolled loop with 33 iterations [-Rpass=loop-unroll]
+  261 |         for( int j = 0; j < 33; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:261:9: remark: completely unrolled loop with 33 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:260:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  260 |     for( int i = 0; i < 3; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:266:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  266 |         for( int j = 0; j < 4; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:286:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  286 |             for( int j = 0; j < 4; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:469:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  469 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:655:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  655 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:721:17: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  721 |                 for( int i = 2; i >= 0; i-- )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:816:17: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  816 |                 for( int i = 2; i >= 0; i-- )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3399:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3399 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3376:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3376 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3330:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3330 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3324:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 3324 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:37:
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:70:
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:1073:13: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 1073 |             for( int i = 16; i < 24; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:643:13: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  643 |             for( int i = 16; i < 24; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1065:25: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1065 |                         for( int j = 0; j < 7; j++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1074:17: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1074 |                 for( int j = 0; j < 7; j++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1123:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1123 |     for( int i_ref = 0; i_ref < h->mb.pic.i_fref[0]; i_ref++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1222:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1222 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1298:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1298 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1522:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1522 |     for( int i4x4 = 0; i4x4 < 4; i4x4++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1561:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1561 |     for( int i8x4 = 0; i8x4 < 2; i8x4++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1597:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1597 |     for( int i4x8 = 0; i4x8 < 2; i4x8++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1346:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1346 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1412:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1412 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2279:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2279 |                 for( subtype = D_L0_4x4; subtype <= D_L0_8x8; subtype++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1634:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1634 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1889:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1889 |     for( int l = 0; l < 2; l++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1922:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1922 |         for( int l = 0; l < 2; l++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2001:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2001 |         for( int l = 0; l < 2; l++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2068:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2068 |         for( int l = 0; l < 2; l++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2058:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2058 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2159:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2159 |         for( int l = 0; l < 2; l++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2149:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2149 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2407:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2407 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2399:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2399 |             for( int i = 0; i < 2; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2391:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2391 |             for( int i = 0; i < 2; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2923:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2923 |             for( int i = 0; i < 2; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3033:17: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3033 |                 for( int i = 0; i < 2; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3140:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3140 |                 for( int i = 0; i < 4; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3130:17: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3130 |                 for( int i = 0; i < 2; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3120:17: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3120 |                 for( int i = 0; i < 2; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3272:21: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3272 |                     for( int i = 0; i < 4; i++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3256:21: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3256 |                     for( int i = 0; i < 2; i++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3240:21: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3240 |                     for( int i = 0; i < 2; i++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1358:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1358 |         for( int j = 0; j < i_ref8s; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1358:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1424:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1424 |         for( int j = 0; j < i_ref8s; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1424:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2760:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2760 |                 for( int i8x8 = 0; i8x8 < 4; i8x8++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2273:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2273 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2883:21: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2883 |                     for( int i8x8 = 0; i8x8 < 4; i8x8++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:62:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+   62 |     while( w->i_denom > 0 && (w->i_scale > 127 || !(w->i_scale & 1)) )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:430:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  430 |         for( int i = 0; i < 8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:438:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  438 |             for( int i = 0; i < 3; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:452:13: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  452 |             for( int i = 3; i < 9; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:686:17: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  686 |                 for( int list = 0; list < 2; list++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1218:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1218 |         for( int j = 0; j < num_frames; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1425:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1425 |     for( int i = 0; i <= bframes; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:364:9: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  364 |         for( int i_ctx = 0; i_ctx < 128; i_ctx++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:369:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  369 |             for( int i = 1; i < i_prefix; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:464:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  464 |     for( ; i >= b_ac; i-- )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/rdo.c:638:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  638 |     for( ; i < i_coefs; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:254:5: remark: unrolled loop by a factor of 5 [-Rpass=loop-unroll]
+  254 |     for( int i = 0; i <= 2*4*2048; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:270:13: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+  270 |             for( int i = -2*2048; i < 2*2048; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:270:13: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:270:13: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:270:13: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:281:5: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+  281 |     for( int i = 0; i < 92; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:1219:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1219 |     for( int i_ref = 0; i_ref <= i_maxref; i_ref++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2074:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2074 |             for( int j = 0; j < i_ref8s; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2074:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2074:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2074:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2165:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2165 |             for( int j = 0; j < i_ref8s; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2165:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2165:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:2165:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+In file included from ./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/analyse.c:3479:
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1133:17: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1133 |                 for( int j = 1; j < num_frames; j++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1187:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1187 |             for( int j = 1; j < num_frames; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1205:9: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 1205 |         for( int j = 1; j <= num_frames; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1233:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 1233 |     for( int j = reset_start; j <= num_frames; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/slicetype.c:1043:17: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 1043 |                 for( int i = curp1; i > p0; i-- )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  346 |     for( int i_ref = h->mb.cache.ref[i_list][i8]; i_ref > 0; i_ref-- )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:272:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  272 |         do
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:346:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  346 |     for( int i_ref = h->mb.cache.ref[i_list][i8]; i_ref > 0; i_ref-- )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:366:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  366 |             for( int i = 1; i < i_abs; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:631:25: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  631 |                         for( int j = 0; j < 3; j++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:497:21: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  497 |                     for( int j = 0; j < 16; j++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:1193:5: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+ 1193 |     for( int j = 0; j < 6; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:1211:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1211 |             for( int j = 0; j < 3; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:1224:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 1224 |     for( int i = 0; i < 8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:669:21: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  669 |                     for( int j = i; j < nmvsad; j++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/me.c:693:21: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  693 |                     for( int i = 1; i < nmvsad; i++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+   79 |             do
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/common/rectangle.h:79:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:898:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  898 |     while( (tok = strtok( p, "," )) )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:576:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  576 |         for( int j = 0; j < 2; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:564:5: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+  564 |     for( int i = 0; i < 5; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:751:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  751 |             for( ref = 0; ref < 16; ref++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:858:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  858 |     for( int i = 0; i<h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:1403:5: remark: completely unrolled loop with 10 iterations [-Rpass=loop-unroll]
+ 1403 |     for( int i = B_DIRECT; i < B_8x8; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2205:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2205 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:274:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  274 |         for( int mb_x = 0; mb_x < h->sps->i_mb_width; mb_x++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:248:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+  248 |             for( int mb_xy = 0; mb_xy < h->mb.i_mb_count; mb_xy++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:321:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  321 |         for( int i = 0; i < h->mb.i_mb_count; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:359:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  359 |         for( int i = 1; i < h->i_ref0; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:569:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  569 |         for( int j = 0; j < num_preds; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:569:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:569:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:569:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:569:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:975:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  975 |         for( int i = 1; i < rc->i_zones; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:708:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  708 |         for( int i = 0; i < rc->num_entries; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2406:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2406 |     for( int i = 0; i < rcc->num_entries; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2418:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2418 |     for( int i = 0; i < rcc->num_entries; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2518:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 2518 |             for( int i = 0; i < rcc->num_entries; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2392:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2392 |     for( int i = 0; i < rcc->num_entries; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2564:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2564 |         for( int i = 0; i < rcc->num_entries; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:1272:13: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1272 |             for( int i = 0; i < h->param.i_threads; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:1215:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1215 |     for( int i = h->i_threadslice_start; i <= y; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:1215:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:1460:13: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1460 |             for( int i = 0; i < h->mb.i_mb_count; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2143:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2143 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2146:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2146 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2172:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 2172 |             for( row = t->i_threadslice_start; row < t->i_threadslice_end; row++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2143:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2143 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2146:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2146 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2143:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2143 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2146:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2146 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2195:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2195 |         for( int i = 0; i < h->param.i_threads; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2212:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 2212 |             for( int row = t->i_threadslice_start; row < t->i_threadslice_end; row++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:2205:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2205 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/ratecontrol.c:1863:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 1863 |             for( int i = 0; i < nb; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:325:13: remark: completely unrolled loop with 13 iterations [-Rpass=loop-unroll]
+  325 |             for( i = 0; sar[i].sar != 255; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:36:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   36 |     for( int i = 0; i < w; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+   37 |         for( int j = 0; j < i; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:36:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   36 |     for( int i = 0; i < w; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+   37 |         for( int j = 0; j < i; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:36:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   36 |     for( int i = 0; i < w; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+   37 |         for( int j = 0; j < i; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:36:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+   36 |     for( int i = 0; i < w; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+   37 |         for( int j = 0; j < i; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:36:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   36 |     for( int i = 0; i < w; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+   37 |         for( int j = 0; j < i; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:36:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+   36 |     for( int i = 0; i < w; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+   37 |         for( int j = 0; j < i; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:37:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:463:9: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  463 |         for( int i = 0; i < 6; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:464:13: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  464 |             for( int j = 0; j < (i < 4 ? 16 : 64); j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:464:13: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:464:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:464:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:464:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:464:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:446:9: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  446 |         for( int i = 0; i < 6; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:442:9: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  442 |         for( int i = 0; i < 6; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:68:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+   68 |         for( int j = 0; j < run; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:561:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  561 |     for( int j = 0; j < 16; j++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:668:5: remark: completely unrolled loop with 15 iterations [-Rpass=loop-unroll]
+  668 |     while( l->level_idc != 0 && l->level_idc != h->param.i_level_idc )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/set.c:122:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  122 |     while( (1 << sps->i_log2_max_frame_num) <= param->i_keyint_max && sps->i_log2_max_frame_num < 10 )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:349:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  349 |             for( int ch = 0; ch < 2; ch++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:386:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  386 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:401:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  401 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:375:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  375 |     for( int ch = 0; ch < 2; ch++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:466:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  466 |     for( int i = 16; i < 24; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:197:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  197 |         for( int i = 0; i < 16; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:213:5: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  213 |     for( int i = 0; i < 16; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:254:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  254 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:729:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  729 |                 for( int i8x8 = 0; i8x8 < 4; i8x8++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:740:17: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  740 |                 for( int i4x4 = 0; i4x4 < 16; i4x4++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:756:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  756 |             for( int idx = 0; idx < 4; idx++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:784:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  784 |                 for( int idx = 0; idx < 4; idx++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:809:17: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  809 |                 for( int i4x4 = 0; i4x4 < 4; i4x4++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:853:21: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  853 |                     for( int i8x8 = 0; i8x8 < 4; i8x8++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:940:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  940 |         for( int i4x4 = 0; i4x4 < 4; i4x4++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:932:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  932 |     for( int i8x8 = 0, i_decimate_mb = 0; i8x8 < 4; i8x8++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:998:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  998 |         for( int i4x4 = 0, i_decimate_mb = 0; i4x4 < 4; i4x4++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:955:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  955 |     for( int ch = 0; ch < 2; ch++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1021:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1021 |     for( int cat = 0; cat < 2; cat++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1033:9: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+ 1033 |         for( int i = 0; i < size; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1028:13: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+ 1028 |             for( int i = 0; i < size; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1033:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 1033 |         for( int i = 0; i < size; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1028:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 1028 |             for( int i = 0; i < size; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1066:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1066 |             for( int i4 = i8*4; i4 < i8*4+4; i4++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1075:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1075 |         for( int ch = 0; ch < 2; ch++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1115:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1115 |             for( int i4 = 0; i4 < 4; i4++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/macroblock.c:1140:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1140 |         for( int ch = 0; ch < 2; ch++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:405:13: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  405 |             for( int i = 1; i < 9; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:776:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  776 |         for( int i = 0; i < 8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:779:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  779 |         for( int i = 0; i < 8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:860:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  860 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:865:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  865 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:870:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  870 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:874:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  874 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:878:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  878 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:842:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  842 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:900:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  900 |         for( i_list = 0; i_list < 2; i_list++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:953:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  953 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:959:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  959 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:948:17: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  948 |                 for( int i = 0; i < 16; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:969:17: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  969 |                 for( int i = 16; i < 24; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cabac.c:605:9: remark: unrolled loop by a factor of 3 [-Rpass=loop-unroll]
+  605 |         WRITE_SIGMAP( 1 )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:276:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  276 |         for( int i8 = i8start; i8 <= i8end; i8++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:283:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  283 |             for( int i4 = 0; i4 < 4; i4++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:281:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  281 |     for( int i8 = i8start; i8 <= i8end; i8++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:439:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  439 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:444:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  444 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:448:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  448 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:453:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  453 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:456:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  456 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:417:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  417 |             for( int i = 0; i < 4; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:431:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  431 |         for( int i = 0; i < 4; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:526:13: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  526 |             for( int i = 0; i < 16; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:540:13: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  540 |             for( int i = 16; i < 24; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:322:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  322 |         for( int i = 0; i < 8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/cavlc.c:325:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  325 |         for( int i = 0; i < 8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1018:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1018 |     for( int i = 0; x264_cpu_names[i].flags; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1078:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1078 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2639:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2639 |     for( int i = 0; i < 3; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2694:5: remark: completely unrolled loop with 19 iterations [-Rpass=loop-unroll]
+ 2694 |     for( int i = 0; i < X264_MBTYPE_MAX; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2696:5: remark: completely unrolled loop with 17 iterations [-Rpass=loop-unroll]
+ 2696 |     for( int i = 0; i < X264_PARTTYPE_MAX; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2698:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2698 |     for( int i = 0; i < 2; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2700:5: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+ 2700 |     for( int i = 0; i < 6; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2703:9: remark: completely unrolled loop with 13 iterations [-Rpass=loop-unroll]
+ 2703 |         for( int j = 0; j < 13; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2702:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2702 |     for( int i = 0; i < 4; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2707:13: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+ 2707 |             for( int i = 0; i < 32; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2706:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2706 |         for( int i_list = 0; i_list < 2; i_list++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2713:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2713 |             for( int i = 0; i < 3; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2728:17: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2728 |                 for( int i = 0; i < 2; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2730:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2730 |             for( int i = 0; i < 2; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1403:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1403 |         for( int i = 0; i < 3; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1592:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1592 |             for( int i = 0; i < 3; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1623:13: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1623 |             for( int i = 0; i < 3; i++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2116:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2116 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2174:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2174 |         for( int j = 0; j < 3; j++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:289:17: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  289 |                 for( int j = 1; j < 3; j++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1932:25: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1932 |                         for( int i = 0; i < 4; i++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1936:25: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1936 |                         for( int i = 0; i < 4; i++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1965:21: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1965 |                     for( int i = 0; i < 16; i += 4 )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1968:21: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 1968 |                     for( int i = 0; i < 16; i++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1935:21: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1935 |                     for( int i_list = 0; i_list <= (h->sh.i_type == SLICE_TYPE_B); i_list++ )
+      |                     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2874:5: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2874 |     for( int i = 0; i < 5; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2919:9: remark: completely unrolled loop with 17 iterations [-Rpass=loop-unroll]
+ 2919 |         for( int i = 0; i < X264_PARTTYPE_MAX; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2918:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2918 |     for( int i_type = 0; i_type < 2; i_type++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2958:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2958 |             for( int j = 0; j < 2; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2957:9: remark: completely unrolled loop with 17 iterations [-Rpass=loop-unroll]
+ 2957 |         for( int i = 0; i < X264_PARTTYPE_MAX; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3038:9: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 3038 |         for( int i = 0; i <= I_PRED_16x16_DC_128; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3051:13: remark: completely unrolled loop with 12 iterations [-Rpass=loop-unroll]
+ 3051 |             for( int j = 0; j <= I_PRED_8x8_DC_128; j++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3049:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3049 |         for( int i = 1; i <= 2; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3068:9: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 3068 |         for( int i = 0; i <= I_PRED_CHROMA_DC_128; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3090:17: remark: completely unrolled loop with 32 iterations [-Rpass=loop-unroll]
+ 3090 |                 for( int i = 0; i < 32; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3085:13: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3085 |             for( int i_slice = 0; i_slice < 2; i_slice++ )
+      |             ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3084:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 3084 |         for( int i_list = 0; i_list < 2; i_list++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1277:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1277 |     for( int i = 0; i < start; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1280:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1280 |     for( int i = start; i < h->out.i_nal; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1395:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1395 |     for( int i_ref = 0; i_ref < h->i_ref0; i_ref++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:1402:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1402 |     for( int i_ref = 0; i_ref < (h->i_ref0 << h->sh.b_mbaff); i_ref++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2136:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 2136 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2142:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 2142 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2170:9: remark: unrolled loop by a factor of 4 [-Rpass=loop-unroll]
+ 2170 |         for( int j = 0; 
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:361:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  361 |         for( int i = 0; i <= h->out.i_nal; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:2911:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 2911 |         for( int i = 0; i <= h->param.i_bframe; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/encoder.c:3183:9: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 3183 |         for( int i = 0; i < h->i_thread_frames; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/encoder/lookahead.c:131:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+  131 |     for( int i = 0; i < h->param.i_threads; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/input/timecode.c:232:17: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  232 |                 for( ; num < start && num < timecodes_num - 1; num++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/input/y4m.c:213:5: remark: completely unrolled loop with 80 iterations [-Rpass=loop-unroll]
+  213 |     while( i < MAX_FRAME_HEADER && fgetc( h->fh ) != '\n' )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/input/y4m.c:65:5: remark: completely unrolled loop with 80 iterations [-Rpass=loop-unroll]
+   65 |     for( i = 0; i < MAX_YUV4_HEADER; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/output/matroska_ebml.c:254:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  254 |     while( i < 7 && !c_ui[i] )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/x264.c:194:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  194 |     for( p[0] = 0; names[i]; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/x264.c:194:5: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/x264.c:898:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  898 |     for( int i = 0; names[i]; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/x264.c:887:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  887 |     for( int i = 0; names[i]; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/525.x264_r/src/x264_src/x264.c:887:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]

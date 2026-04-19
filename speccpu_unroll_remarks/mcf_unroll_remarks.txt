@@ -1,0 +1,56 @@
+./speccpu2017/benchspec/CPU/505.mcf_r/src/mcfutil.c:40:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+   40 |     for( stop = (void *)net->stop_nodes; node < (node_t *)stop; node++ )
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/mcfutil.c:79:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+   79 |     for( i = 0; i < net->m ; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/mcfutil.c:92:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+   92 |     for( i = 1; i <= net->n; i++) {
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/implicit.c:243:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  243 |     for(node++, stop = net->stop_nodes; node < stop; node++ ) {
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/implicit.c:393:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  393 |   for (i = 0; i < num_threads; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/implicit.c:566:7: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  566 |       for (i = 0; i < max_new_par_residual_new_arcs; i++) {
+      |       ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/implicit.c:571:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  571 |       for( i = 0; i < trips && arcout[1].ident == FIXED; i++, arcout += 3);
+      |       ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/implicit.c:674:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  674 |       while (!first_replace) {
+      |       ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/pstart.c:55:5: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+   55 |     for( i = 0; i < net->m; i++ )
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/treeup.c:107:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  107 |     while( temp != jminus )
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/treeup.c:147:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  147 |         for( temp = jminus; temp != w; temp = temp->pred )
+      |         ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/treeup.c:155:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  155 |         for( temp = jplus; temp != w; temp = temp->pred )
+      |         ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/psimplex.c:45:5: remark: completely unrolled loop with 60 iterations [-Rpass=loop-unroll]
+   45 |     for ( i=1; i<=B; i++) {
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/psimplex.c:53:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+   53 |         for (j = 1; j < num_threads; j++) {
+      |         ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/psimplex.c:163:3: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  163 |   for( j = 1, i=1; i < K/num_threads+B+1; i++, j ++ )
+      |   ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/psimplex.c:188:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  188 |     for (i = 0; i< num_threads; i++) {
+      |     ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/pbeampp.c:158:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  158 |       for (j = 0; j < num_threads; j++) {
+      |       ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/spec_qsort/spec_qsort.c:84:17: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+   84 |                 swapcode(long, a, b, n)
+      |                 ^
+./speccpu2017/benchspec/CPU/505.mcf_r/src/spec_qsort/spec_qsort.c:84:17: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/505.mcf_r/src/spec_qsort/spec_qsort.c:84:17: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]

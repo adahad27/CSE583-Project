@@ -1,0 +1,10 @@
+./speccpu2017/benchspec/CPU/519.lbm_r/src/lbm.c:121:4: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  121 |                         for( x = 0; x < SIZE_X; x++ ) {
+      |                         ^
+./speccpu2017/benchspec/CPU/519.lbm_r/src/lbm.c:150:4: remark: completely unrolled loop with 100 iterations [-Rpass=loop-unroll]
+  150 |                         for( x = 0; x < SIZE_X; x++ ) {
+      |                         ^
+./speccpu2017/benchspec/CPU/519.lbm_r/src/lbm.c:150:4: remark: completely unrolled loop with 100 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/519.lbm_r/src/lbm.c:99:4: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+   99 |                         for( x = 0; x < SIZE_X; x++ ) {
+      |                         ^

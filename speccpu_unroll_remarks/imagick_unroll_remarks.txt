@@ -1,0 +1,773 @@
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/token-private.h:112:3: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  112 |   for (i=0; i < MaxMultibyteCodes; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/attribute.c:386:9: remark: completely unrolled loop with 15 iterations [-Rpass=loop-unroll]
+  386 |         for (depth=1; depth < MAGICKCORE_QUANTUM_DEPTH; depth++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/cache.c:255:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  255 |   for (i=0; i < (ssize_t) number_threads; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/cache.c:1029:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1029 |   for (i=0; i < (ssize_t) number_threads; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/cache.c:1029:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/cache.c:4418:7: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 4418 |       for (y=0; y < (ssize_t) rows; y++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/cache.c:5392:7: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 5392 |       for (y=0; y < (ssize_t) rows; y++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/channel.c:870:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+  870 |             for (x=0; x < (ssize_t) image->columns; x++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/channel.c:721:9: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  721 |         for (x=0; x < (ssize_t) image->columns; x++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/channel.c:734:13: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+  734 |             for (x=0; x < (ssize_t) image->columns; x++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/color.c:2608:11: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+ 2608 |           do
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/color.c:2577:11: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+ 2577 |           do
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/color.c:2552:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2552 |   while (isspace((int) ((unsigned char) *name)) != 0)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/color.c:2574:7: remark:  peeled loop by 7 iterations [-Rpass=loop-unroll]
+ 2574 |       for (n=0; isxdigit((int) ((unsigned char) name[n])) != 0; n++) ;
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:452:5: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  452 |     for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:590:5: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  590 |     for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:595:3: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  595 |   for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:711:5: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  711 |     for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:716:3: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  716 |   for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:954:5: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  954 |     for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:959:3: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  959 |   for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:1095:3: remark: completely unrolled loop with 47 iterations [-Rpass=loop-unroll]
+ 1095 |   for (i=0; i < (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:1250:5: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+ 1250 |     for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:1325:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1325 |   for (i=0; i < 7; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compare.c:1372:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1372 |   for (i=0; i < 7; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:256:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  256 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:341:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  341 |   for (n=0; n < 4; n++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:491:3: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  491 |   InitializeHashTable(mw_hash,TWTable,MWHashA,MWHashB);
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:492:3: remark: completely unrolled loop with 27 iterations [-Rpass=loop-unroll]
+  492 |   InitializeHashTable(mw_hash,MWTable,MWHashA,MWHashB);
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:493:3: remark: completely unrolled loop with 13 iterations [-Rpass=loop-unroll]
+  493 |   InitializeHashTable(mw_hash,EXTable,MWHashA,MWHashB);
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:494:3: remark: completely unrolled loop with 64 iterations [-Rpass=loop-unroll]
+  494 |   InitializeHashTable(mb_hash,TBTable,MBHashA,MBHashB);
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:495:3: remark: completely unrolled loop with 27 iterations [-Rpass=loop-unroll]
+  495 |   InitializeHashTable(mb_hash,MBTable,MBHashA,MBHashB);
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:496:3: remark: completely unrolled loop with 13 iterations [-Rpass=loop-unroll]
+  496 |   InitializeHashTable(mb_hash,EXTable,MBHashA,MBHashB);
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:547:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  547 |       do
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:796:7: remark: completely unrolled loop with 11 iterations [-Rpass=loop-unroll]
+  796 |       for (k=0; k < 11; k++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:866:5: remark: completely unrolled loop with 11 iterations [-Rpass=loop-unroll]
+  866 |     for (k=0; k < 11; k++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:881:3: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  881 |   for (i=0; i < 6; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:1164:42: remark: completely unrolled loop with 124 iterations [-Rpass=loop-unroll]
+ 1164 |             while (((ssize_t) count < i) && (*pixels == *(pixels+count)))
+      |                                          ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/compress.c:1122:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1122 |   for (i=(ssize_t) length; i != 0; )
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/configure.c:187:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  187 |   for (i=0; i < (ssize_t) (sizeof(ConfigureMap)/sizeof(*ConfigureMap)); i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/configure.c:680:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  680 |       while (element != (const char *) NULL)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/constitute.c:588:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  588 |   for (next=image; next != (Image *) NULL; next=GetNextImageInList(next))
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/constitute.c:1294:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1294 |     for (p=images; p != (Image *) NULL; p=GetNextImageInList(p))
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:341:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  341 |             for (x=0; x < (ssize_t) frame_info->outer_bevel; x++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:354:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  354 |             for (x=0; x < (ssize_t) frame_info->outer_bevel; x++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:440:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  440 |     for (x=0; x < (ssize_t) frame_info->outer_bevel; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:446:5: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+  446 |     for (x=0; x < (ssize_t) (frame_info->x-bevel_width); x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:452:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  452 |     for (x=0; x < (ssize_t) frame_info->inner_bevel; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:494:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  494 |     for (x=0; x < (ssize_t) frame_info->inner_bevel; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:501:5: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+  501 |     for (x=0; x < (ssize_t) width; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:507:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  507 |     for (x=0; x < (ssize_t) frame_info->outer_bevel; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:598:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  598 |             for (x=0; x < (ssize_t) frame_info->outer_bevel; x++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/decorate.c:611:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  611 |             for (x=0; x < (ssize_t) frame_info->outer_bevel; x++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/deprecate.c:3846:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3846 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/deprecate.c:4017:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 4017 |         for (j=(-1); j < 3L; j++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/deprecate.c:3686:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3686 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/deprecate.c:3688:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 3688 |       for (i=0; i < 16L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/deprecate.c:3705:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3705 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/deprecate.c:3734:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3734 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2182:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 2182 |         for ( i=0; i<8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2163:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 2163 |         for ( i=0; i<8; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2145:9: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2145 |         for ( i=0; i<5; i++ )
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2128:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2128 |         for (i=0; i<(ssize_t) nterms; i++) {
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2134:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2134 |         for (i=0; i<(ssize_t) nterms; i++) {
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2044:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2044 |         for (i=0; i<4; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2047:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2047 |         for (; i<7; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/distort.c:2012:9: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2012 |         for (i=0; i < 5; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:1163:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1163 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:1171:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1171 |   for (i=1; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5687:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 5687 |   for (i=0; i < (ssize_t) primitive_info->coordinates; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5602:11: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 5602 |           for (i=0; i < 3; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5543:11: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 5543 |           for (i=2; i < 4; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5564:11: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 5564 |           for (i=0; i < 4; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5508:11: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 5508 |           for (i=1; i < 3; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5524:11: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 5524 |           for (i=0; i < 3; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5474:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 5474 |         do
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5407:11: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 5407 |           for (i=1; i < 4; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:5421:11: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 5421 |           for (i=0; i < 4; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:764:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  764 |   for (i=0; primitive_info[i].primitive != UndefinedPrimitive; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:4683:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 4683 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/draw.c:1563:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1563 |   for (n=0; offset > 0.0; j=0)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/effect.c:1170:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1170 |     for (k=0; k < 4; k++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/enhance.c:4144:7: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 4144 |       for (x=0; x < (ssize_t) image->columns; x++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/enhance.c:4164:7: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 4164 |       for (x=0; x < (ssize_t) image->columns; x++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/exception.c:667:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  667 |   while (p != (const ExceptionInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:203:7: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  203 |       for (u=(-1); u <= 1; u++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:198:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  198 |     for (v=(-1); v <= 1; v++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:373:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  373 |         for (u=0; u < 2; u++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:368:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  368 |       for (v=0; v < 2; v++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:931:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  931 |       for (i=0; i < 4; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:1036:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1036 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:1290:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1290 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/feature.c:1637:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1637 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/fx.c:949:9: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  949 |         for (u=0; u < 6; u++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/fx.c:944:7: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  944 |       for (v=0; v < 6; v++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/fx.c:1011:7: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+ 1011 |       for (v=0; v < (ssize_t) height; v++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/geometry.c:434:3: remark: completely unrolled loop with 75 iterations [-Rpass=loop-unroll]
+  434 |   for (i=0; *PageSizes[i] != (char *) NULL; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/geometry.c:967:7: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  967 |       while (isspace((int) ((unsigned char) *p)) != 0)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/geometry.c:982:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  982 |   while (isspace((int) ((unsigned char) *p)) != 0)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/hashmap.c:906:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  906 |   for (i=0; i < 8; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/hashmap.c:955:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  955 |   for (i=0; i < 8; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/hashmap.c:1444:3: remark: completely unrolled loop with 20 iterations [-Rpass=loop-unroll]
+ 1444 |   for (i=0; i < MaxCapacities; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/hashmap.c:216:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  216 |   while (next != (ElementInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/hashmap.c:409:3: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+  409 |   for (next=list_info->head; next != (ElementInfo *) NULL; )
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/hashmap.c:409:3: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/histogram.c:244:7: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  244 |       for (level=1; level < MaxTreeDepth; level++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/histogram.c:710:7: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  710 |       for (level=1; level < MaxTreeDepth; level++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/histogram.c:873:7: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  873 |       for (level=1; level < MaxTreeDepth; level++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/identify.c:155:3: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+  155 |   for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/identify.c:419:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  419 |   for (i=0; i < 8; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/identify.c:436:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  436 |   for (i=0; i < 7; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/image.c:2642:7: remark: completely unrolled loop with 18 iterations [-Rpass=loop-unroll]
+ 2642 |       while ((format_type == UndefinedFormatType) &&
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/image.c:3751:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 3751 |   for (option=GetNextImageOption(image_info); option != (const char *) NULL; )
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/image.c:1237:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1237 |   for (next=image; next != (Image *) NULL; next=GetNextImageInList(next))
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/image.c:2975:5: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 2975 |     for (x=0; x < (ssize_t) image->columns; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/image.c:3516:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 3516 |   for ( ; image != (Image *) NULL; image=GetNextImageInList(image))
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:450:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  450 |   while (images != (Image *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:693:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  693 |   for (i=0; images != (Image *) NULL; images=images->previous)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:654:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  654 |   for (i=0; images->previous != (Image *) NULL; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  550 |   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:550:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/list.c:728:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  728 |   for (p=images; p->next != (Image *) NULL; p=p->next) ;
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/locale.c:826:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  826 |       while (element != (const char *) NULL)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/locale.c:210:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  210 |     while (option != (const StringInfo *) NULL)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/locale.c:222:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  222 |         while (option != (const StringInfo *) NULL)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/locale.c:1326:9: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+ 1326 |         while (isspace((int) ((unsigned char) *p)) != 0)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/locale.c:1329:9: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+ 1329 |         while ((isspace((int) ((unsigned char) *q)) != 0) && (q > p))
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/locale.c:1125:3: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 1125 |   for (count=0; (count < (ssize_t) components) && (p > path); p--)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/magic.c:273:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  273 |   while (option != (const StringInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/magic.c:283:3: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+  283 |   for (i=0; i < (ssize_t) (sizeof(MagicMap)/sizeof(*MagicMap)); i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/mime.c:757:9: remark: completely unrolled loop with 28 iterations [-Rpass=loop-unroll]
+  757 |         for (j=0; j <= 27; j++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/option.c:2006:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2006 |     while (((isspace((int) ((unsigned char) *p)) != 0) || (*p == sentinel)) &&
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/option.c:2013:5: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2013 |     while (((isspace((int) ((unsigned char) *p)) == 0) && (*p != sentinel)) &&
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/option.c:2454:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2454 |     while (((isspace((int) ((unsigned char) *p)) != 0) || (*p == sentinel)) &&
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/option.c:2461:5: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+ 2461 |     while (((isspace((int) ((unsigned char) *p)) == 0) && (*p != sentinel)) &&
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/option.c:2482:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2482 |         while ((q=strchr(token+1,'-')) != (char *) NULL)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/option.c:2484:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2484 |         while ((q=strchr(token+1,'_')) != (char *) NULL)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/pixel.c:4480:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 4480 |       for (i=0; i < 16L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/pixel.c:4415:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 4415 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/pixel.c:4421:7: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 4421 |       for (i=0; i <= 1L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/pixel.c:4729:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 4729 |       for (i=0; i < 16L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/pixel.c:4583:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 4583 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/pixel.c:4369:7: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 4369 |       for (i=0; i < 4L; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/policy.c:273:3: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+  273 |   for (q=policyname; *q != '\0'; q++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/policy.c:587:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  587 |   while ((p != (PolicyInfo *) NULL) && (authorized != MagickFalse))
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/policy.c:587:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/policy.c:587:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/policy.c:587:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/policy.c:185:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  185 |   while (option != (const StringInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/property.c:536:3: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+  536 |   for (i=0; i < 2; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/property.c:506:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  506 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/property.c:1953:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1953 |         for (i=0; i < 3; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/property.c:1756:9: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1756 |         for (i=0; i < 3; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:2000:3: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 2000 |   for (i=0; i < ErrorQueueLength; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:2009:3: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 2009 |   for (i=0; i < ErrorQueueLength; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:2012:3: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 2012 |   for (i=0; i < ErrorQueueLength; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:1585:11: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1585 |           for (index=MaxTreeDepth-1; (ssize_t) index > 0; index--)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:1776:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+ 1776 |       for (i=0; i < ErrorQueueLength; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:1802:11: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1802 |           for (index=MaxTreeDepth-1; (ssize_t) index > 0; index--)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:597:11: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  597 |           for (index=MaxTreeDepth-1; (ssize_t) index > 0; index--)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantize.c:1521:5: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1521 |     for (x=0; x < (ssize_t) image->columns; x++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:690:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  690 |             for (i=0; i < 4; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:1167:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1167 |         for (i=0; i < 4; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:1126:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1126 |             for (i=0; i < 4; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:2977:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2977 |             for (i=0; i < 4; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:1581:11: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1581 |           for (bit=7; bit >= (ssize_t) (8-(number_pixels % 8)); bit--)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:1840:11: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1840 |           for (bit=0; bit <= (ssize_t) (number_pixels % 4); bit+=2)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:2133:11: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 2133 |           for (bit=7; bit >= (ssize_t) (8-(number_pixels % 8)); bit--)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-export.c:2293:11: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2293 |           for (bit=3; bit >= (ssize_t) (4-(number_pixels % 4)); bit-=2)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:731:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  731 |             for (i=0; i < 4; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:1174:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1174 |             for (i=0; i < 4; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:1615:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 1615 |         for (bit=0; bit < 8; bit++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:1966:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1966 |         for (bit=0; bit < 8; bit+=2)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:2324:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 2324 |         for (bit=0; bit < 8; bit++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:2532:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 2532 |         for (bit=0; bit < 8; bit+=2)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:3191:13: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 3191 |             for (i=0; i < 4; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:1624:7: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1624 |       for (bit=0; bit < (ssize_t) (number_pixels % 8); bit++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:1979:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 1979 |         for (bit=3; bit >= (ssize_t) (4-(number_pixels % 4)); bit-=2)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:2338:7: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 2338 |       for (bit=0; bit < (ssize_t) (number_pixels % 8); bit++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/quantum-import.c:2548:9: remark: completely unrolled loop with 2 iterations [-Rpass=loop-unroll]
+ 2548 |         for (bit=0; bit < (ssize_t) (number_pixels % 4); bit+=2)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/random.c:621:3: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+  621 |   do
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:1364:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 1364 |   for (i=7; i >= 0; i--)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:1404:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 1404 |   for (i=4; i >= 0; i--)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:1444:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 1444 |   for (i=4; i >= 0; i--)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2118:7: remark: completely unrolled loop with 9 iterations [-Rpass=loop-unroll]
+ 2118 |       for (i=0; i < 9; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:3586:11: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 3586 |           while (scale.x >= span.x)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2556:5: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2556 |     for (n=0; n < (stop-start); n++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2572:9: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2572 |         for (i=0; i < n; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2636:11: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2636 |           for (i=0; i < n; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2603:11: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 2603 |           for (i=0; i < n; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2802:5: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2802 |     for (n=0; n < (stop-start); n++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2818:9: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2818 |         for (i=0; i < n; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2883:11: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 2883 |           for (i=0; i < n; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2850:11: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 2850 |           for (i=0; i < n; i++)
+      |           ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/resize.c:2403:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2403 |   for (i=0; i < (ssize_t) GetMagickResourceLimit(ThreadResource); i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/segment.c:997:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  997 |   for (i=0; i < MaxDimension; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/segment.c:1209:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1209 |   for (i=0; i < MaxDimension; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/segment.c:1821:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1821 |   for (i=0; i < MaxDimension; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/segment.c:1856:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1856 |   for (i=0; i < MaxDimension; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:144:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  144 |   for (i=0; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:144:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:155:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  155 |   for (i=1; i < 4; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:1295:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1295 |         for (i=0; i < (step-1); i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:1265:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1265 |         for (i=0; i < (step-1); i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:1516:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1516 |         for (i=0; i < (step-1); i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/shear.c:1486:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1486 |         for (i=0; i < (step-1); i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/signature.c:685:7: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  685 |       for (i=0; i < 16; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/signature.c:666:9: remark: completely unrolled loop with 16 iterations [-Rpass=loop-unroll]
+  666 |         for (i=0; i < 16; i++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/signature.c:264:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  264 |   for (i=0; i < (SignatureDigestsize/4); i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/splay-tree.c:339:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  339 |   while (node->left != (NodeInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/splay-tree.c:376:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  376 |         while (node->left != (NodeInfo *) NULL)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/splay-tree.c:339:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  339 |   while (node->left != (NodeInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/splay-tree.c:842:7: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  842 |       while (node->left != (NodeInfo *) NULL)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/splay-tree.c:339:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  339 |   while (node->left != (NodeInfo *) NULL)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/splay-tree.c:339:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2161:3: remark: completely unrolled loop with 48 iterations [-Rpass=loop-unroll]
+ 2161 |   for (i=0; i <= (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2313:3: remark: completely unrolled loop with 47 iterations [-Rpass=loop-unroll]
+ 2313 |   for (i=0; i < (ssize_t) CompositeChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:1941:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1941 |     for (i=0; i < 7; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:1971:5: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 1971 |     for (i=0; i < 7; i++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2705:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2705 |   for (i=0; i < ListChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2739:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2739 |   for (i=0; i < ListChannels; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:3232:5: remark: completely unrolled loop with 9 iterations [-Rpass=loop-unroll]
+ 3232 |     for (level=0; level < 9; level++)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:3227:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 3227 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2988:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2988 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2860:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2860 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2905:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2905 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:2947:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 2947 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:3032:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 3032 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:3080:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 3080 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/statistic.c:3132:3: remark: completely unrolled loop with 5 iterations [-Rpass=loop-unroll]
+ 3132 |   for (channel=0; channel < 5; channel++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/string.c:1109:3: remark: completely unrolled loop with 10 iterations [-Rpass=loop-unroll]
+ 1109 |   for (j=2; j < 12; j++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/string.c:774:5: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+  774 |     for (n--; n != 0; n--)
+      |     ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/string.c:437:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  437 |   while (*p != '\0')
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/string.c:1691:3: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+ 1691 |   for (q=string; *q != '\0'; q++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/token-private.h:112:3: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+  112 |   for (i=0; i < MaxMultibyteCodes; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/token.c:183:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  183 |   while ((isspace((int) ((unsigned char) *p)) != 0) && (*p != '\0'))
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/token.c:281:3: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  281 |   while (isspace((int) ((unsigned char) *p)) != 0)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/transform.c:747:3: remark:  peeled loop by 7 iterations [-Rpass=loop-unroll]
+  747 |   for (y=0; y < (ssize_t) crop_image->rows; y++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/type.c:502:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  502 |   for (i=0; fontmap[i].name != (char *) NULL; i++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/magick/version.c:452:9: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  452 |         for (j=0; j < 8; j++)
+      |         ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/convert.c:463:3: remark: completely unrolled loop with 95 iterations [-Rpass=loop-unroll]
+  463 |   for (p=settings; *p != (char *) NULL; p++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/convert.c:469:3: remark: completely unrolled loop with 24 iterations [-Rpass=loop-unroll]
+  469 |   for (p=sequence_operators; *p != (char *) NULL; p++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/convert.c:472:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  472 |   for (p=stack_operators; *p != (char *) NULL; p++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/convert.c:475:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+  475 |   for (p=miscellaneous; *p != (char *) NULL; p++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/convert.c:3205:3: remark:  peeled loop by 7 iterations [-Rpass=loop-unroll]
+ 3205 |   DestroyConvert();
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/drawing-wand.c:2603:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 2603 |       for (i=0; CurrentContext->dash_pattern[i] != 0.0; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/drawing-wand.c:5560:13: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 5560 |             for (i=0; i < (ssize_t) n_new; i++)
+      |             ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/mogrify.c:3690:3: remark: completely unrolled loop with 25 iterations [-Rpass=loop-unroll]
+ 3690 |   for (p=sequence_operators; *p != (char *) NULL; p++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/mogrify.c:3693:3: remark: completely unrolled loop with 6 iterations [-Rpass=loop-unroll]
+ 3693 |   for (p=stack_operators; *p != (char *) NULL; p++)
+      |   ^
+./speccpu2017/benchspec/CPU/538.imagick_r/src/wand/mogrify.c:3696:3: remark: completely unrolled loop with 7 iterations [-Rpass=loop-unroll]
+ 3696 |   for (p=miscellaneous; *p != (char *) NULL; p++)
+      |   ^

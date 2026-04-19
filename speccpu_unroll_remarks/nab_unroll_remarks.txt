@@ -1,0 +1,264 @@
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:3760:4: remark: completely unrolled loop with 12 iterations [-Rpass=loop-unroll]
+ 3760 |    for (k = 1; k <= 12; k++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1343:10: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+ 1343 |          for (j = 0; j < prm->N14pairs[i]; j++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1380:10: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+ 1380 |          for (j = 0; j < prm->Iblo[i]; j++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:2059:10: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+ 2059 |          for (j = 0; j < prm->Iblo[i]; j++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:3723:4: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 3723 |    for (i = 0; i < dim * prm->Natom; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:3729:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 3729 |    for (k = 0; k < prm->Natom; k++) {   /* zero out frozen forces */
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:3729:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:3753:4: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 3753 |    for (i = 0; i < dim * prm->Natom; i++)
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1701:7: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+ 1701 |       for (i = 0; i < n; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1742:7: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1742 |       for (i = 0; i < n; i++) {
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1767:7: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1767 |       for (i = 0; i < n; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1798:10: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1798 |          for (i = 0; i < n; i++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1824:7: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1824 |       for (i = 0; i < n; i++)
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/sff.c:1582:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1582 |    for (k = 0, i = 0; i < prm->Natom; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/eff.c:926:10: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+  926 |          for (j = 0; j < prm->Iblo[i]; j++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/nblist.c:836:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  836 |    for (i = 0; i < natom; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/nblist.c:836:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/544.nab_r/src/nblist.c:1162:10: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1162 |          for (j = 0; j < locnt; j++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/nblist.c:1165:10: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1165 |          for (j = 0; j < upcnt; j++) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1384:16: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 1384 |                for (j = 1; j <= 3; j++) {
+      |                ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1367:7: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1367 |       for (i = 0; i < prm->Natom; i++) {
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:578:4: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+  578 |    for (i = 0; i < (prm->Natom / 20 + (prm->Natom % 20 ? 1 : 0)); i++)
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:688:4: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  688 |    for (i = 0; i < (prm->Nres / 20 + (prm->Nres % 20 ? 1 : 0)); i++)
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:696:4: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+  696 |    for (i = 0; i < prm->Nres; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1102:4: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1102 |    for (i = 0; i < prm->Nphb; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1123:4: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1123 |    for (i = 0; i < prm->Nphb; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1145:4: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1145 |    for (i = 0; i < prm->Nphb; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1169:4: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 1169 |    for (i = 0; i < (prm->Natom / 20 + (prm->Natom % 20 ? 1 : 0)); i++)
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1177:4: remark:  peeled loop by 4 iterations [-Rpass=loop-unroll]
+ 1177 |    for (i = 0; i < (prm->Natom / 20 + (prm->Natom % 20 ? 1 : 0)); i++)
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1351:7: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+ 1351 |       for (i = 0; i < prm->Natom; i++) {
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1458:4: remark:  peeled loop by 6 iterations [-Rpass=loop-unroll]
+ 1458 |    for (i = 0; i < prm->Ntypes; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1478:4: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+ 1478 |    for (i = 0; i < prm->Natom; i++) {
+      |    ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:1518:7: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+ 1518 |       for (k = 0; k < prm->N14pairs[i]; k++)
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/prm.c:324:7: remark: unrolled loop by a factor of 9 [-Rpass=loop-unroll]
+  324 |       for (i = 0; i < 81; i++) {
+      |       ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:180:10: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  180 |     for (r = 0; fgets(line, sizeof(line), fp);) {
+      |          ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:446:9: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  446 |         for (j = 0; j < 4; j++)
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:445:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  445 |     for (i = 0; i < 4; i++) {
+      |     ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:663:21: remark:  peeled loop by 2 iterations [-Rpass=loop-unroll]
+  663 |                     for (sp = NULL, spl = mol->m_strands; spl;
+      |                     ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:780:5: remark: unrolled loop by a factor of 10 [-Rpass=loop-unroll]
+  780 |     for (ap = atab, a = 0; a < ATAB_SIZE; a++, ap++) {
+      |     ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:801:5: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  801 |     for (a1 = 0; a1 < res->r_natoms; a1++) {
+      |     ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:1045:5: remark: completely unrolled loop with 26 iterations [-Rpass=loop-unroll]
+ 1045 |     for (c = cid->c_next; c <= cid->c_last; c++)
+      |     ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molio.c:1061:9: remark: completely unrolled loop with 26 iterations [-Rpass=loop-unroll]
+ 1061 |         for (; cid->c_next <= cid->c_last; cid->c_next++) {
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1568:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1568 |                 for( j = 0; j < 4; j++ ){
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1567:2: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1567 |         for( i = 0; i < 4; i++ ){
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1581:4: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1581 |                         for( k = 0; k < 4; k++ ){
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1579:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1579 |                 for( j = 0; j < 4; j++ ){
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1578:2: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1578 |         for( i = 0; i < 4; i++ ){
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1593:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1593 |                 for( j = 0; j < 4; j++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1592:2: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1592 |         for( i = 0; i < 4; i++ ){
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1609:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1609 |                 for( j = 0; j < 4; j++ ){
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:1607:2: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1607 |         for( i = 0; i < 4; i++ ){
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2108:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2108 |   for (i=0;i<3;i++) ab[i] = p2[i] - p1[i];
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2109:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2109 |   for (i=0;i<3;i++) ac[i] = p3[i] - p1[i];
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2110:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2110 |   for (i=0;i<3;i++) bc[i] = p3[i] - p2[i];
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2111:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2111 |   for (i=0;i<3;i++) m_ab[i] = 0.5*(p1[i] + p2[i]);
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2112:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2112 |   for (i=0;i<3;i++) cm[i] = p3[i] - m_ab[i];
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2116:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2116 |   for (i=0;i<3;i++) v[i] = ac[i] - fac1 * ab[i];
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2126:3: remark: completely unrolled loop with 3 iterations [-Rpass=loop-unroll]
+ 2126 |   for (i=0;i<3;i++) pc[i] = m_ab[i] + fac2*v[i];
+      |   ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:316:3: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  316 |                 for( r = 0; r < sp->s_nresidues; r++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/molutil.c:2029:4: remark:  peeled loop by 3 iterations [-Rpass=loop-unroll]
+ 2029 |                         for( k=0; k<prm->N14pairs[i]; k++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/rand2.c:151:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  151 |                 do {
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:409:4: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  409 |                         for( a = 0; a < res->r_natoms; a++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:443:4: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  443 |                         for( a = 0; a < res->r_natoms; a++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:426:4: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  426 |                         for( a = 0; a < res->r_natoms; a++ )
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:536:2: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  536 |         for( m = 1, sp = mol->m_strands; m <= mol->m_nstrands;
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:536:2: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:536:2: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:264:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  264 |                 while( (wp = strtok( NULL, "," )) ){
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:462:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  462 |                         for( a = 0; a < res->r_natoms; a++ ){
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:484:4: remark: unrolled loop by a factor of 2 with run-time trip count [-Rpass=loop-unroll]
+  484 |                         for( a = 0; a < res->r_natoms; a++ ){
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:617:4: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+  617 |                         for( r = 0; r < sp->s_nresidues; r++ ){
+      |                         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/select_atoms.c:617:4: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:1105:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 1105 |                                 for( a = 0; a < A_CONNECT_SIZE; a++ ){
+      |                                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:1115:5: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+ 1115 |                                 for( a = 0; a < A_CONNECT_SIZE; a++ ){
+      |                                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:1185:5: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+ 1185 |                                 for( a = 0; a < 4; a++ ){
+      |                                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:274:3: remark: completely unrolled loop with 4 iterations [-Rpass=loop-unroll]
+  274 |                 for( a = 0; a < 4; a++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:302:3: remark: completely unrolled loop with 8 iterations [-Rpass=loop-unroll]
+  302 |                 for ( i = 0; i < A_CONNECT_SIZE ; i++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:359:9: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  359 |         for ( resctr = 0; resctr < str->s_nresidues; resctr++ ) {
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:267:2: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  267 |         for( b = 0; b < res->r_nintbonds; b++ ){
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:273:2: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  273 |         for( cp = nres->r_chiral, c = 0; c < res->r_nchiral; c++, cp++ ){
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:283:3: remark: unrolled loop by a factor of 4 with run-time trip count [-Rpass=loop-unroll]
+  283 |                 for( a = 0; a < res->r_natoms; a++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/reslib.c:286:3: remark: unrolled loop by a factor of 8 with run-time trip count [-Rpass=loop-unroll]
+  286 |                 for( a = 0; a < res->r_natoms; a++ )
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/chirvol.c:63:2: remark: completely unrolled loop with 12 iterations [-Rpass=loop-unroll]
+   63 |         for( i=0; i<12; i++ ) d[i] *= SIXTH;
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/specrand/specrand.c:86:5: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+   86 |     for (mti=1; mti<N; mti++) {
+      |     ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/specrand/specrand.c:86:5: remark: unrolled loop by a factor of 2 [-Rpass=loop-unroll]
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regcomp.c:741:2: remark: completely unrolled loop with 19 iterations [-Rpass=loop-unroll]
+  741 |         for (cp = cclasses; cp->name != NULL; cp++)
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regcomp.c:814:2: remark: completely unrolled loop with 95 iterations [-Rpass=loop-unroll]
+  814 |         for (cp = cnames; cp->name != NULL; cp++)
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regcomp.c:1410:2: remark: completely unrolled loop with 9 iterations [-Rpass=loop-unroll]
+ 1410 |         for (i = 1; i < NPAREN; i++) {
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regcomp.c:428:2: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+  428 |         while (MORE() && !SEETWO(end1, end2)) {
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regcomp.c:1558:3: remark:  peeled loop by 1 iterations [-Rpass=loop-unroll]
+ 1558 |                 while (OP(s = *scan++) != OCHAR)
+      |                 ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regcomp.c:1585:2: remark:  peeled loop by 5 iterations [-Rpass=loop-unroll]
+ 1585 |         do {
+      |         ^
+./speccpu2017/benchspec/CPU/544.nab_r/src/regex-alpha/regerror.c:118:2: remark: completely unrolled loop with 17 iterations [-Rpass=loop-unroll]
+  118 |         for (r = rerrs; r->code >= 0; r++)
+      |         ^

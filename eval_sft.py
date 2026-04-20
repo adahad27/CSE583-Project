@@ -1,7 +1,7 @@
 import csv
 import os
 import re
-from typing import Dict
+from typing import Dict, List
 import json
 
 import torch
@@ -11,9 +11,49 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 
 path_to_dataset = "data.csv"
-path_to_model = "models/sft-llm-compiler-13b"
+path_to_model = "models/sft-llm-compiler-7b-final_fold4"
 MAX_SAMPLES = 50
 MAX_NEW_TOKENS = 20
+
+
+def parse_fold_idx_from_model_path(model_path: str) -> int:
+    model_dir = os.path.basename(os.path.normpath(model_path))
+    match = re.search(r"_fold(\d+)$", model_dir)
+    if not match:
+        raise ValueError(
+            f"path_to_model must end with _foldN for leakage-free eval. Got: {model_path}"
+        )
+    return int(match.group(1))
+
+
+def load_fold_eval_dataset(dataset, model_path: str):
+    fold_idx = parse_fold_idx_from_model_path(model_path)
+    base_dir = model_path.rsplit("_fold", 1)[0]
+    split_path = os.path.join(base_dir, "kfold_splits.json")
+
+    if not os.path.exists(split_path):
+        raise FileNotFoundError(
+            f"Missing {split_path}. Re-run training.py to generate fold split indices."
+        )
+
+    with open(split_path, "r") as f:
+        split_data = json.load(f)
+
+    fold_splits: List[Dict] = split_data.get("fold_splits", [])
+    selected = None
+    for fold_info in fold_splits:
+        if int(fold_info.get("fold", -1)) == fold_idx:
+            selected = fold_info
+            break
+
+    if selected is None:
+        raise ValueError(f"Fold {fold_idx} not found in {split_path}")
+
+    val_indices = selected.get("val_indices", [])
+    if not val_indices:
+        raise ValueError(f"Fold {fold_idx} has no validation indices in {split_path}")
+
+    return dataset.select(val_indices), fold_idx, len(val_indices)
 
 
 def resolve_ir_path(path_value: str, repo_root: str) -> str:
@@ -141,8 +181,8 @@ def main() -> None:
     dataset_dict = load_dataset("csv", data_files=path_to_dataset)
     dataset = dataset_dict["train"]
     dataset = dataset.rename_columns({column: column.strip() for column in dataset.column_names})
-    split = dataset.train_test_split(test_size=0.1, seed=42)
-    eval_dataset = split["test"]
+    eval_dataset, fold_idx, fold_size = load_fold_eval_dataset(dataset, path_to_model)
+    print(f"Using leakage-free fold split: fold={fold_idx}, eval_size={fold_size}")
 
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,

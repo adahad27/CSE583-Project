@@ -37,7 +37,6 @@ LLVM-IR-DATA/libud.ll, %17, %77, 0,9,106,29,3,32,51,9,2, ludcmp, 4
 LLVM-IR-DATA/libud.ll, %138, %177, 0,7,71,22,2,32,32,7,1, ludcmp, 5
 LLVM-IR-DATA/libud.ll, %147, %169, 0,3,38,11,1,32,19,3,2, ludcmp, 2
 LLVM-IR-DATA/libud.ll, %195, %243, 0,7,86,25,2,32,41,7,1, ludcmp, 5
-LLVM-IR-DATA/libud.ll, %205, %227, 0,3,38,11,1,32,19,3,2, ludcmp, 469380768
 LLVM-IR-DATA/libwikisort.ll, %16, %62, 0,9,92,23,3,32,37,9,1, InsertionSort, 24
 LLVM-IR-DATA/libwikisort.ll, %28, %49, 0,3,46,12,1,32,18,3,4, benchmark_body, 40
 LLVM-IR-DATA/matmult-int.ll, %25, %58, 0,3,52,16,1,32,31,3,3, Multiply, 20

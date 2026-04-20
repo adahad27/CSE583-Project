@@ -1,0 +1,17 @@
+idx,filename,function_name,start_label,end_label,gold,prediction_text,prediction_factor,exact_match
+0,LLVM-IR-DATA/deriche.ll,init_array,%19,%42,27,The unroll factor is 20,20,0
+1,LLVM-IR-DATA/libpicojpeg.ll,upsampleCbH,%30,%89,4,The unroll factor is 16,16,0
+2,LLVM-IR-DATA/md5.ll,md5,%57,%164,4,The unroll factor is 16,16,0
+3,LLVM-IR-DATA/mont64.ll,modul64,%9,%37,64,The unroll factor is 16,16,0
+4,LLVM-IR-DATA/floyd-warshall.ll,init_array,%12,%58,10,The unroll factor is 16,16,0
+5,LLVM-IR-DATA/gramschmidt.ll,kernel_gramschmidt,%137,%178,25,The unroll factor is 16,16,0
+6,LLVM-IR-DATA/syrk.ll,kernel_syrk,%40,%84,20,The unroll factor is 16,16,0
+7,LLVM-IR-DATA/heat-3d.ll,kernel_heat_3d,%23,%178,2,The unroll factor is 16,16,0
+8,LLVM-IR-DATA/libedn.ll,jpegdct,%17,%387,8,The unroll factor is 16,16,0
+9,LLVM-IR-DATA/deriche.ll,kernel_deriche,%373,%407,36,The unroll factor is 16,16,0
+10,LLVM-IR-DATA/trisolv.ll,kernel_trisolv,%11,%75,5,The unroll factor is 16,16,0
+11,LLVM-IR-DATA/libpicojpeg.ll,idctRows,%33,%323,8,The unroll factor is 16,16,0
+12,LLVM-IR-DATA/libud.ll,ludcmp,%80,%131,5,The unroll factor is 3,3,0
+13,LLVM-IR-DATA/syr2k.ll,kernel_syr2k,%42,%106,10,The unroll factor is 16,16,0
+14,LLVM-IR-DATA/libpicojpeg.ll,decodeNextMCU,%236,%249,3,The unroll factor is 40,40,0
+15,LLVM-IR-DATA/correlation.ll,kernel_correlation,%71,%113,40,The unroll factor is 8,8,0

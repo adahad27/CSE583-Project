@@ -3,13 +3,13 @@
 #SBATCH --account=cse583w26_class
 #SBATCH --mail-user=ksodum@umich.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --partition=spgpu
+#SBATCH --partition=gpu-rtx6000
 #SBATCH --gpus=1
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=32G
-#SBATCH --time=00:40:00
+#SBATCH --time=03:00:00
 #SBATCH --output=training.log
 
 # This script finetunes LLMCompiler for testing loop unroll factor prediction

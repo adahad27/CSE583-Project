@@ -1,0 +1,27 @@
+idx,filename,function_name,start_label,end_label,gold,prediction_text,prediction_factor,exact_match
+0,LLVM-IR-DATA/fdtd-2d.ll,init_array,%37,%93,10,The unroll factor is 25,25,0
+1,LLVM-IR-DATA/matmult-int.ll,Multiply,%25,%58,20,The unroll factor is 10,10,0
+2,LLVM-IR-DATA/libedn.ll,iir1,%16,%75,50,The unroll factor is 10,10,0
+3,LLVM-IR-DATA/jquant2.ll,init_error_limit,%22,%43,16,The unroll factor is 256,256,0
+4,LLVM-IR-DATA/correlation.ll,kernel_correlation,%231,%264,40,The unroll factor is 2,2,0
+5,LLVM-IR-DATA/covariance.ll,kernel_covariance,%25,%47,56,The unroll factor is 20,20,0
+6,LLVM-IR-DATA/gemm.ll,init_array,%61,%86,20,The unroll factor is 20,20,1
+7,LLVM-IR-DATA/xgboost.ll,predict,%44,%84,5,The unroll factor is 2,2,0
+8,LLVM-IR-DATA/heat-3d.ll,kernel_heat_3d,%17,%182,2,The unroll factor is 20,20,0
+9,LLVM-IR-DATA/symm.ll,kernel_symm,%24,%125,30,The unroll factor is 13,13,0
+10,LLVM-IR-DATA/libhuffbench.ll,compdecomp,%62,%80,16,The unroll factor is 2,2,0
+11,LLVM-IR-DATA/fdtd-2d.ll,kernel_fdtd_2d,%94,%145,2,The unroll factor is 25,25,0
+12,LLVM-IR-DATA/correlation.ll,kernel_correlation,%28,%50,56,The unroll factor is 20,20,0
+13,LLVM-IR-DATA/gemver.ll,init_array,%101,%125,20,The unroll factor is 20,20,1
+14,LLVM-IR-DATA/jdmarker.ll,jinit_marker_reader,%29,%43,16,The unroll factor is 16,16,1
+15,LLVM-IR-DATA/syr2k.ll,kernel_syr2k,%42,%106,10,The unroll factor is 40,40,0
+16,LLVM-IR-DATA/libedn.ll,mac,%13,%48,25,The unroll factor is 10,10,0
+17,LLVM-IR-DATA/blocksort.ll,fallbackSort,%162,%204,32,The unroll factor is 256,256,0
+18,LLVM-IR-DATA/jcdctmgr.ll,forward_DCT,%51,%122,8,The unroll factor is 8,8,1
+19,LLVM-IR-DATA/mvt.ll,init_array,%67,%91,20,The unroll factor is 20,20,1
+20,LLVM-IR-DATA/jchuff.ll,jinit_huff_encoder,%18,%45,4,The unroll factor is 4,4,1
+21,LLVM-IR-DATA/sha.ll,sha_transform,%157,%198,20,The unroll factor is 20,20,1
+22,LLVM-IR-DATA/jacobi-2d.ll,kernel_jacobi_2d,%23,%88,11,The unroll factor is 20,20,0
+23,LLVM-IR-DATA/jacobi-1d.ll,kernel_jacobi_1d,%16,%49,27,The unroll factor is 20,20,0
+24,LLVM-IR-DATA/gemver.ll,kernel_gemver,%87,%120,40,The unroll factor is 25,25,0
+25,LLVM-IR-DATA/jctrans.ll,jpeg_copy_critical_parameters,%235,%275,64,The unroll factor is 16,16,0

@@ -2,9 +2,12 @@ import os
 import csv
 import json
 from typing import Dict, List
+from collections import Counter
 
 import torch
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
+from sklearn.model_selection import StratifiedKFold, ShuffleSplit
+from imblearn.over_sampling import RandomOverSampler
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from transformers import (
     AutoModelForCausalLM,
@@ -19,9 +22,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
 path_to_dataset = "data.csv"
-path_to_output_model = "models/sft-llm-compiler-13b"
-model_name = "facebook/llm-compiler-13b"
+path_to_output_model = "models/sft-llm-compiler-7b-final"
+model_name = "facebook/llm-compiler-7b"
 max_length = 4096
+num_folds = 5  # K-fold cross-validation with 5 folds
 
 
 def resolve_ir_path(path_value: str, repo_root: str) -> str:
@@ -109,6 +113,13 @@ def main() -> None:
     dataset = dataset_dict["train"]
     dataset = dataset.rename_columns({column: column.strip() for column in dataset.column_names})
 
+    # Extract labels for stratification
+    labels = []
+    for example in dataset:
+        label = int(str(example["unroll factor"]).strip())
+        labels.append(label)
+    labels_array = torch.tensor(labels).numpy()
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -170,109 +181,173 @@ def main() -> None:
             "labels": labels,
         }
 
+    # Process entire dataset once
     processed = dataset.map(
         preprocess,
         remove_columns=dataset.column_names,
         desc="Building prompt-target SFT samples",
     )
 
-    split = processed.train_test_split(test_size=0.1, seed=42)
-    train_dataset = split["train"]
-    eval_dataset = split["test"]
+    # K-Fold Cross-Validation
+    skf = ShuffleSplit(n_splits=num_folds, train_size=0.9, random_state=42)
+    fold_results = []
+    fold_splits = []
 
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_compute_dtype=torch.bfloat16,
+    for fold_idx, (train_indices, val_indices) in enumerate(skf.split(range(len(processed)), labels_array)):
+        print(f"\n{'='*60}")
+        print(f"Fold {fold_idx + 1}/{num_folds}")
+        print(f"{'='*60}")
+
+        # Apply RandomOverSampler to training indices for this fold
+        train_labels = labels_array[train_indices]
+        ros = RandomOverSampler(random_state=42)
+        train_indices_resampled, _ = ros.fit_resample(train_indices.reshape(-1, 1), train_labels)
+        train_indices_resampled = train_indices_resampled.flatten()
+
+        # Persist original fold splits for leakage-free evaluation later.
+        fold_splits.append({
+            "fold": fold_idx + 1,
+            "train_indices": train_indices.astype(int).tolist(),
+            "val_indices": val_indices.astype(int).tolist(),
+        })
+
+        # Create train and eval datasets for this fold
+        train_dataset = processed.select(train_indices_resampled)
+        eval_dataset = processed.select(val_indices)
+
+        print(f"Train size: {len(train_dataset)}, Eval size: {len(eval_dataset)}")
+
+        # Reload model for this fold
+        bnb_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_compute_dtype=torch.bfloat16,
+        )
+
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            quantization_config=bnb_config,
+            dtype=torch.bfloat16,
+            device_map="auto",
+        )
+        model = prepare_model_for_kbit_training(model)
+        model.config.use_cache = False
+
+        lora_config = LoraConfig(
+            r=16,
+            lora_alpha=32,
+            lora_dropout=0.05,
+            bias="none",
+            task_type="CAUSAL_LM",
+            target_modules=[
+                "q_proj",
+                "k_proj",
+                "v_proj",
+                "o_proj",
+                "gate_proj",
+                "up_proj",
+                "down_proj",
+            ],
+        )
+        model = get_peft_model(model, lora_config)
+        
+        if fold_idx == 0:  # Only print once
+            model.print_trainable_parameters()
+
+        # Output directory for this fold
+        fold_output_dir = f"{path_to_output_model}_fold{fold_idx + 1}"
+
+        training_args = TrainingArguments(
+            output_dir=fold_output_dir,
+            num_train_epochs=3,
+            per_device_train_batch_size=1,
+            per_device_eval_batch_size=1,
+            gradient_accumulation_steps=8,
+            learning_rate=2e-5,
+            bf16=torch.cuda.is_available(),
+            gradient_checkpointing=True,
+            optim="paged_adamw_8bit",
+            logging_steps=10,
+            eval_strategy="epoch",
+            save_strategy="epoch",
+            save_total_limit=2,
+            load_best_model_at_end=True,
+            report_to="none",
+        )
+
+        data_collator = DataCollatorForSeq2Seq(
+            tokenizer=tokenizer,
+            model=model,
+            padding="longest",
+            label_pad_token_id=-100,
+            return_tensors="pt",
+        )
+
+        trainer = Trainer(
+            model=model,
+            args=training_args,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            processing_class=tokenizer,
+            data_collator=data_collator,
+        )
+
+        trainer.train()
+
+        # Save fold checkpoint
+        trainer.save_model(fold_output_dir)
+        tokenizer.save_pretrained(fold_output_dir)
+
+        # Save fold logs
+        logs_path_json = os.path.join(fold_output_dir, "trainer_log_history.json")
+
+        with open(logs_path_json, "w") as jf:
+            json.dump(trainer.state.log_history, jf, indent=2)
+
+        # Record fold results
+        final_eval_loss = trainer.state.log_history[-2].get("eval_loss", None) if trainer.state.log_history else None
+        fold_results.append({
+            "fold": fold_idx + 1,
+            "train_size": len(train_dataset),
+            "eval_size": len(eval_dataset),
+            "final_eval_loss": final_eval_loss,
+            "checkpoint_dir": fold_output_dir,
+        })
+
+        print(f"Fold {fold_idx + 1} complete. Final eval loss: {final_eval_loss}")
+        print(f"Model saved to: {fold_output_dir}")
+
+    # Summary
+    print(f"\n{'='*60}")
+    print(f"K-Fold Cross-Validation Complete ({num_folds} folds)")
+    print(f"{'='*60}")
+    for result in fold_results:
+        print(f"Fold {result['fold']}: eval_loss={result['final_eval_loss']:} "
+              f"(train={result['train_size']}, val={result['eval_size']})")
+
+    avg_eval_loss = sum(r["final_eval_loss"] for r in fold_results if r["final_eval_loss"]) / len(
+        [r for r in fold_results if r["final_eval_loss"]]
     )
+    print(f"Average eval loss across folds: {avg_eval_loss:.4f}")
 
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        quantization_config=bnb_config,
-        dtype=torch.bfloat16,
-        device_map="auto",
-    )
-    model = prepare_model_for_kbit_training(model)
-    model.config.use_cache = False
-
-    lora_config = LoraConfig(
-        r=16,
-        lora_alpha=32,
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-        target_modules=[
-            "q_proj",
-            "k_proj",
-            "v_proj",
-            "o_proj",
-            "gate_proj",
-            "up_proj",
-            "down_proj",
-        ],
-    )
-    model = get_peft_model(model, lora_config)
-    model.print_trainable_parameters()
-
-    training_args = TrainingArguments(
-        output_dir=path_to_output_model,
-        num_train_epochs=3,
-        per_device_train_batch_size=1,
-        per_device_eval_batch_size=1,
-        gradient_accumulation_steps=8,
-        learning_rate=2e-5,
-        bf16=torch.cuda.is_available(),
-        gradient_checkpointing=True,
-        optim="paged_adamw_8bit",
-        logging_steps=10,
-        eval_strategy="epoch",
-        save_strategy="epoch",
-        save_total_limit=2,
-        load_best_model_at_end=True,
-        report_to="none",
-    )
-
-    data_collator = DataCollatorForSeq2Seq(
-        tokenizer=tokenizer,
-        model=model,
-        padding="longest",
-        label_pad_token_id=-100,
-        return_tensors="pt",
-    )
-
-    trainer = Trainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=eval_dataset,
-        processing_class=tokenizer,
-        data_collator=data_collator,
-    )
-
-    trainer.train()
-
-    trainer.save_model(path_to_output_model)
-    tokenizer.save_pretrained(path_to_output_model)
-
-    print(f"SFT complete. Model saved to: {path_to_output_model}")
-
-
-    logs_path_json = os.path.join(path_to_output_model, "trainer_log_history.json")
-    logs_path_csv = os.path.join(path_to_output_model, "trainer_log_history.csv")
-
-    with open(logs_path_json, "w") as jf:
-        json.dump(trainer.state.log_history, jf, indent=2)
-
-    if trainer.state.log_history:
-        all_keys = sorted({k for row in trainer.state.log_history for k in row.keys()})
-        with open(logs_path_csv, "w", newline="") as cf:
-            writer = csv.DictWriter(cf, fieldnames=all_keys)
-            writer.writeheader()
-            for row in trainer.state.log_history:
-                writer.writerow(row)
-
-    print(f"Trainer logs saved to: {logs_path_json} and {logs_path_csv}")
+    # Save summary
+    summary_path = os.path.join(path_to_output_model, "kfold_summary.json")
+    split_path = os.path.join(path_to_output_model, "kfold_splits.json")
+    os.makedirs(path_to_output_model, exist_ok=True)
+    with open(summary_path, "w") as f:
+        json.dump({
+            "num_folds": num_folds,
+            "fold_results": fold_results,
+            "average_eval_loss": avg_eval_loss,
+        }, f, indent=2)
+    with open(split_path, "w") as f:
+        json.dump({
+            "num_folds": num_folds,
+            "fold_splits": fold_splits,
+        }, f, indent=2)
+    print(f"\nK-Fold summary saved to: {summary_path}")
+    print(f"K-Fold split indices saved to: {split_path}")
 
 
 if __name__ == "__main__":

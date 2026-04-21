@@ -1,0 +1,41 @@
+{
+  "num_folds": 5,
+  "fold_results": [
+    {
+      "fold": 1,
+      "train_size": 986,
+      "eval_size": 26,
+      "final_eval_loss": 0.45975449681282043,
+      "checkpoint_dir": "models/sft-qwen2.5-1.0/_fold1"
+    },
+    {
+      "fold": 2,
+      "train_size": 1225,
+      "eval_size": 26,
+      "final_eval_loss": 0.4776647686958313,
+      "checkpoint_dir": "models/sft-qwen2.5-1.0/_fold2"
+    },
+    {
+      "fold": 3,
+      "train_size": 1190,
+      "eval_size": 26,
+      "final_eval_loss": 0.4279249310493469,
+      "checkpoint_dir": "models/sft-qwen2.5-1.0/_fold3"
+    },
+    {
+      "fold": 4,
+      "train_size": 1190,
+      "eval_size": 26,
+      "final_eval_loss": NaN,
+      "checkpoint_dir": "models/sft-qwen2.5-1.0/_fold4"
+    },
+    {
+      "fold": 5,
+      "train_size": 1122,
+      "eval_size": 26,
+      "final_eval_loss": 0.4927177131175995,
+      "checkpoint_dir": "models/sft-qwen2.5-1.0/_fold5"
+    }
+  ],
+  "average_eval_loss": NaN
+}

@@ -1,0 +1,41 @@
+{
+  "num_folds": 5,
+  "fold_results": [
+    {
+      "fold": 1,
+      "train_size": 986,
+      "eval_size": 26,
+      "final_eval_loss": 0.5015584826469421,
+      "checkpoint_dir": "models/sft-llm-compiler-7b-final_fold1"
+    },
+    {
+      "fold": 2,
+      "train_size": 1225,
+      "eval_size": 26,
+      "final_eval_loss": 0.4640349745750427,
+      "checkpoint_dir": "models/sft-llm-compiler-7b-final_fold2"
+    },
+    {
+      "fold": 3,
+      "train_size": 1190,
+      "eval_size": 26,
+      "final_eval_loss": 0.4749353229999542,
+      "checkpoint_dir": "models/sft-llm-compiler-7b-final_fold3"
+    },
+    {
+      "fold": 4,
+      "train_size": 1190,
+      "eval_size": 26,
+      "final_eval_loss": NaN,
+      "checkpoint_dir": "models/sft-llm-compiler-7b-final_fold4"
+    },
+    {
+      "fold": 5,
+      "train_size": 1122,
+      "eval_size": 26,
+      "final_eval_loss": 0.4267434775829315,
+      "checkpoint_dir": "models/sft-llm-compiler-7b-final_fold5"
+    }
+  ],
+  "average_eval_loss": NaN
+}

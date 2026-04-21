@@ -1,0 +1,9 @@
+fold,idx,filename,function_name,start_label,end_label,gold,prediction_text,prediction_factor,exact_match
+4,0,LLVM-IR-DATA/3mm.ll,kernel_3mm,%45,%78,40,Theunrollfactoris10,10,0
+4,1,LLVM-IR-DATA/3mm.ll,kernel_3mm,%163,%196,36,Theunrollfactoris5,5,0
+4,2,LLVM-IR-DATA/3mm.ll,kernel_3mm,%104,%137,40,Theunrollfactoris5,5,0
+4,3,LLVM-IR-DATA/adi.ll,init_array,%12,%36,25,Theunrollfactoris4,4,0
+4,4,LLVM-IR-DATA/libedn.ll,latsynth,%28,%69,11,Theunrollfactoris50,50,0
+4,5,LLVM-IR-DATA/libud.ll,ludcmp,%138,%177,5,Theunrollfactoris25,25,0
+4,6,LLVM-IR-DATA/libpicojpeg.ll,idctRows,%33,%323,8,Theunrollfactoris10,10,0
+4,7,LLVM-IR-DATA/libpicojpeg.ll,decodeNextMCU,%281,%296,16,Theunrollfactoris4,4,0

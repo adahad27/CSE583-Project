@@ -1,0 +1,41 @@
+{
+  "num_folds": 5,
+  "fold_results": [
+    {
+      "fold": 1,
+      "train_size": 220,
+      "eval_size": 8,
+      "final_eval_loss": 0.41488438844680786,
+      "checkpoint_dir": "models/sft-qwen2.5-0.25/fold1"
+    },
+    {
+      "fold": 2,
+      "train_size": 171,
+      "eval_size": 8,
+      "final_eval_loss": 0.4424648582935333,
+      "checkpoint_dir": "models/sft-qwen2.5-0.25/fold2"
+    },
+    {
+      "fold": 3,
+      "train_size": 231,
+      "eval_size": 8,
+      "final_eval_loss": 0.40506210923194885,
+      "checkpoint_dir": "models/sft-qwen2.5-0.25/fold3"
+    },
+    {
+      "fold": 4,
+      "train_size": 220,
+      "eval_size": 8,
+      "final_eval_loss": 0.4437187612056732,
+      "checkpoint_dir": "models/sft-qwen2.5-0.25/fold4"
+    },
+    {
+      "fold": 5,
+      "train_size": 220,
+      "eval_size": 8,
+      "final_eval_loss": 0.4249955415725708,
+      "checkpoint_dir": "models/sft-qwen2.5-0.25/fold5"
+    }
+  ],
+  "average_eval_loss": 0.4262251317501068
+}

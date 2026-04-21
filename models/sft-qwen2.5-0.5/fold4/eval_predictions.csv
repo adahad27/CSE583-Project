@@ -1,0 +1,17 @@
+fold,idx,filename,function_name,start_label,end_label,gold,prediction_text,prediction_factor,exact_match
+4,0,LLVM-IR-DATA/xgboost.ll,predict,%124,%147,9,The unroll factor is 36,36,0
+4,1,LLVM-IR-DATA/matmult-int.ll,initialise_benchmark,%31,%46,20,The unroll factor is 2,2,0
+4,2,LLVM-IR-DATA/mvt.ll,init_array,%67,%91,20,The unroll factor is 10,10,0
+4,3,LLVM-IR-DATA/ludcmp.ll,init_array,%143,%176,25,The unroll factor is 10,10,0
+4,4,LLVM-IR-DATA/jacobi-1d.ll,init_array,%8,%36,10,The unroll factor is 5,5,0
+4,5,LLVM-IR-DATA/3mm.ll,kernel_3mm,%45,%78,40,The unroll factor is 2,2,0
+4,6,LLVM-IR-DATA/libud.ll,ludcmp,%195,%243,5,The unroll factor is 16,16,0
+4,7,LLVM-IR-DATA/libpicojpeg.ll,huffCreate,%9,%80,16,The unroll factor is 4,4,0
+4,8,LLVM-IR-DATA/gemver.ll,init_array,%101,%125,20,The unroll factor is 10,10,0
+4,9,LLVM-IR-DATA/syrk.ll,init_array,%22,%47,20,The unroll factor is 5,5,0
+4,10,LLVM-IR-DATA/heat-3d.ll,kernel_heat_3d,%183,%348,2,The unroll factor is 2,2,1
+4,11,LLVM-IR-DATA/gramschmidt.ll,kernel_gramschmidt,%103,%136,40,The unroll factor is 10,10,0
+4,12,LLVM-IR-DATA/fdtd-2d.ll,init_array,%37,%93,10,The unroll factor is 10,10,1
+4,13,LLVM-IR-DATA/doitgen.ll,kernel_doitgen,%36,%69,40,The unroll factor is 5,5,0
+4,14,LLVM-IR-DATA/deriche.ll,kernel_deriche,%256,%307,16,The unroll factor is 2,2,0
+4,15,LLVM-IR-DATA/jacobi-1d.ll,kernel_jacobi_1d,%16,%49,27,The unroll factor is 7,7,0

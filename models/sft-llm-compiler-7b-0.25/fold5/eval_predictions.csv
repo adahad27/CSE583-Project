@@ -1,0 +1,9 @@
+fold,idx,filename,function_name,start_label,end_label,gold,prediction_text,prediction_factor,exact_match
+5,0,LLVM-IR-DATA/nettle-aes.ll,verify_benchmark,%5,%38,8,The unroll factor is 10,10,0
+5,1,LLVM-IR-DATA/libud.ll,ludcmp,%80,%131,5,The unroll factor is 10,10,0
+5,2,LLVM-IR-DATA/libpicojpeg.ll,copyY,%21,%42,64,The unroll factor is 16,16,0
+5,3,LLVM-IR-DATA/nettle-aes.ll,_aes_set_key,%21,%71,8,The unroll factor is 10,10,0
+5,4,LLVM-IR-DATA/xgboost.ll,predict,%27,%117,40,The unroll factor is 10,10,0
+5,5,LLVM-IR-DATA/3mm.ll,kernel_3mm,%45,%78,40,The unroll factor is 10,10,0
+5,6,LLVM-IR-DATA/xgboost.ll,predict,%124,%147,9,The unroll factor is 10,10,0
+5,7,LLVM-IR-DATA/libpicojpeg.ll,upsampleCrV,%30,%89,8,The unroll factor is 16,16,0

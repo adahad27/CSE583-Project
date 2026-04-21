@@ -1,0 +1,41 @@
+{
+  "num_folds": 5,
+  "fold_results": [
+    {
+      "fold": 1,
+      "train_size": 432,
+      "eval_size": 16,
+      "final_eval_loss": 0.5759682059288025,
+      "checkpoint_dir": "models/sft-deepseekR1-0.5/fold1"
+    },
+    {
+      "fold": 2,
+      "train_size": 522,
+      "eval_size": 16,
+      "final_eval_loss": 0.4508821964263916,
+      "checkpoint_dir": "models/sft-deepseekR1-0.5/fold2"
+    },
+    {
+      "fold": 3,
+      "train_size": 493,
+      "eval_size": 16,
+      "final_eval_loss": 0.4971793293952942,
+      "checkpoint_dir": "models/sft-deepseekR1-0.5/fold3"
+    },
+    {
+      "fold": 4,
+      "train_size": 522,
+      "eval_size": 16,
+      "final_eval_loss": 0.5362951755523682,
+      "checkpoint_dir": "models/sft-deepseekR1-0.5/fold4"
+    },
+    {
+      "fold": 5,
+      "train_size": 504,
+      "eval_size": 16,
+      "final_eval_loss": 0.503581166267395,
+      "checkpoint_dir": "models/sft-deepseekR1-0.5/fold5"
+    }
+  ],
+  "average_eval_loss": 0.5127812147140502
+}

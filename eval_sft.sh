@@ -9,7 +9,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=32G
-#SBATCH --time=00:10:00
+#SBATCH --time=00:30:00
 #SBATCH --output=eval_sft.log
 
 echo "Starting SFT eval..."

@@ -1,0 +1,6 @@
+fold,model_path,eval_size,evaluated_samples,parsed_predictions,exact_matches,accuracy
+1,models/sft-qwen2.5-0.25/fold1,8,8,8,0,0.0000
+2,models/sft-qwen2.5-0.25/fold2,8,8,8,2,0.2500
+3,models/sft-qwen2.5-0.25/fold3,8,8,8,0,0.0000
+4,models/sft-qwen2.5-0.25/fold4,8,8,8,0,0.0000
+5,models/sft-qwen2.5-0.25/fold5,8,8,8,1,0.1250

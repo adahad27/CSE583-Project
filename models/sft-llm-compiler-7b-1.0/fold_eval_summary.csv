@@ -1,0 +1,6 @@
+fold,model_path,eval_size,evaluated_samples,parsed_predictions,exact_matches,accuracy
+1,models/sft-llm-compiler-7b-1.0/fold1,26,26,26,3,0.1154
+2,models/sft-llm-compiler-7b-1.0/fold2,26,26,26,7,0.2692
+3,models/sft-llm-compiler-7b-1.0/fold3,26,26,26,4,0.1538
+4,models/sft-llm-compiler-7b-1.0/fold4,26,26,26,6,0.2308
+5,models/sft-llm-compiler-7b-1.0/fold5,26,26,26,5,0.1923

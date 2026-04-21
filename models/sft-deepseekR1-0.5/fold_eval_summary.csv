@@ -1,0 +1,6 @@
+fold,model_path,eval_size,evaluated_samples,parsed_predictions,exact_matches,accuracy
+1,models/sft-deepseekR1-0.5/fold1,16,16,16,0,0.0000
+2,models/sft-deepseekR1-0.5/fold2,16,16,16,1,0.0625
+3,models/sft-deepseekR1-0.5/fold3,16,16,16,1,0.0625
+4,models/sft-deepseekR1-0.5/fold4,16,16,16,1,0.0625
+5,models/sft-deepseekR1-0.5/fold5,16,16,16,3,0.1875

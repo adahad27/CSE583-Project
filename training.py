@@ -22,8 +22,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
 path_to_dataset = "data.csv"
-path_to_output_model = "models/sft-llm-compiler-7b-final"
+path_to_output_model = "models/sft-llm-compiler-7b-0.25"
 model_name = "facebook/llm-compiler-7b"
+#deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+#Qwen/Qwen2.5-Coder-7B-Instruct
 max_length = 4096
 num_folds = 5  # K-fold cross-validation with 5 folds
 
@@ -256,7 +258,9 @@ def main() -> None:
             model.print_trainable_parameters()
 
         # Output directory for this fold
-        fold_output_dir = f"{path_to_output_model}_fold{fold_idx + 1}"
+
+        fold_output_dir = os.path.join(path_to_output_model, f"fold{fold_idx + 1}")
+        os.makedirs(fold_output_dir, exist_ok=True)
 
         training_args = TrainingArguments(
             output_dir=fold_output_dir,

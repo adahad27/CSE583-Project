@@ -40,7 +40,11 @@ __pycache__/
 models/**
 !models/**/
 !models/**/eval_predictions.csv
+!models/**/eval_predictions_all_folds.csv
+!models/**/fold_eval_summary.csv
 !models/**/trainer_log_history.json
+!models/**/kfold_splits.json
+!models/**/kfold_summary.json
 
 
 # Common build artifacts to ignore (backup safety)

@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=run
 #SBATCH --account=cse583w26_class
-#SBATCH --mail-user=ksodum@umich.edu
+#SBATCH --mail-user=<uniqname>@umich.edu
 #SBATCH --mail-type=BEGIN,END
 #SBATCH --partition=spgpu
 #SBATCH --gpus=1
